@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4724",
+  "source_split": "train",
+  "source_row_index": 4724,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Comparing the stock price of the company shown in the image on April 7th with Hershey's stock price on the same day, which one is lower?",
+  "reward_model": {
+    "ground_truth": "Best Buy Co., Inc. (BBY)",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/001_fvqa_train_4724.png",
+  "image_width": 1314,
+  "image_height": 672,
+  "source_image_sha256": "a774841f1651e9461d259420c73ec5369afdbf2ffc2530d54e103a1e984f2501",
+  "normalized_png_sha256": "a774841f1651e9461d259420c73ec5369afdbf2ffc2530d54e103a1e984f2501",
+  "eval_index": 1,
+  "selection_rank_sha256": "000c1e37c71fc872e70218342ef255c3452d60b05611abb54a9a0cfdf2d75772",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

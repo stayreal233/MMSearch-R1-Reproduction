@@ -1,0 +1,127 @@
+{
+  "all_lfs_shard_sha256_verified": true,
+  "config": {
+    "architectures": [
+      "Qwen2_5_VLForConditionalGeneration"
+    ],
+    "model_type": "qwen2_5_vl",
+    "torch_dtype": "bfloat16"
+  },
+  "credentials_recorded": false,
+  "environment": {
+    "cuda_available": true,
+    "device_capability": [
+      12,
+      0
+    ],
+    "device_name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "python": "3.11.15",
+    "torch": "2.8.0+cu128",
+    "torch_cuda": "12.8",
+    "transformers": "4.51.0"
+  },
+  "exact_top_level_file_set_verified": true,
+  "file_count": 16,
+  "file_records": [
+    {
+      "bytes": 1519,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/.gitattributes",
+      "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+    },
+    {
+      "bytes": 18574,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/README.md",
+      "sha256": "1fa65dbb08bc9ffe0b020409c8686f08b23008c5a68554353305fd2de6f2b81e"
+    },
+    {
+      "bytes": 1050,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/chat_template.json",
+      "sha256": "ad60d90252ed0b0705ba14e2d0ad0fec0beac1ea955642b54059b36052d8bc96"
+    },
+    {
+      "bytes": 1374,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/config.json",
+      "sha256": "77d9ec7321cc572e3579e2c84799c9cadaded63c49ce93b101733349fc330c43"
+    },
+    {
+      "bytes": 216,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/generation_config.json",
+      "sha256": "0a3aea82869fe29f20dc95ccf3e2bcff380eca1f5ad6447a4a4b37110b08e43e"
+    },
+    {
+      "bytes": 1671839,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/merges.txt",
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3"
+    },
+    {
+      "bytes": 3900233256,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/model-00001-of-00005.safetensors",
+      "sha256": "e97b877e47fde53a6c6e77aafb36e58e91ee9d95c4a3eeac6f1b5c0e6a1c986e"
+    },
+    {
+      "bytes": 3864726320,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/model-00002-of-00005.safetensors",
+      "sha256": "a9a300a43b4724eee2abe7c18ceb26768d0ab011eb0cad19d9bfd2476a24d024"
+    },
+    {
+      "bytes": 3864726424,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/model-00003-of-00005.safetensors",
+      "sha256": "111223d173e00bbee81cba1216fad28668df3476706b7fd26f4d5b50f8b3a507"
+    },
+    {
+      "bytes": 3864733680,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/model-00004-of-00005.safetensors",
+      "sha256": "ef47f634fa57d46ee134edcc09f34085a47da1e16c12a2abe0d67118be6d72ed"
+    },
+    {
+      "bytes": 1089994880,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/model-00005-of-00005.safetensors",
+      "sha256": "0c859795ad3a627a9b95bcb762e059d5b768a4a36fdd4affeff269d93fdecc67"
+    },
+    {
+      "bytes": 57619,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/model.safetensors.index.json",
+      "sha256": "73b333b0b16e5286ddba615d2caebcd495cf7e616f52eb217a81781393d79de9"
+    },
+    {
+      "bytes": 350,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/preprocessor_config.json",
+      "sha256": "f2058c716eef96ccaed1cc1e2d0c08306b62586d535b28d9d08e691b2fab7ca0"
+    },
+    {
+      "bytes": 7031645,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/tokenizer.json",
+      "sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    },
+    {
+      "bytes": 5702,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/tokenizer_config.json",
+      "sha256": "4abd3520120e266da84c0864fee064d1fb10806f02225911a47253dd38dc5f56"
+    },
+    {
+      "bytes": 2776833,
+      "path": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct/vocab.json",
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  ],
+  "model_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct",
+  "no_incomplete_downloads": true,
+  "protocol": {
+    "bytes": 5559,
+    "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step12_base_comparison_protocol.json",
+    "sha256": "3a80ee1fe4685cde68335a1ad336a3cf6f8f970a71f9664f6f66e22ee3d651f5"
+  },
+  "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+  "revision_metadata": {
+    "bytes": 1923,
+    "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step12_base_huggingface_revision.json",
+    "sha256": "fb8c62723161017c615f95e48e5cb9a21d3c841c9eac0dd12e5fb29414b42a48"
+  },
+  "schema_version": 1,
+  "shard_count": 5,
+  "status": "passed",
+  "total_bytes": 16595981281,
+  "validated_at_utc": "2026-08-17T04:57:18.618359+00:00",
+  "weight_index_shard_set_verified": true
+}

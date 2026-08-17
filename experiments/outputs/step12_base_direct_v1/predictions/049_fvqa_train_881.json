@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 49,
+  "data_id": "fvqa_train_881",
+  "category": "search_free",
+  "source_row_index": 881,
+  "selection_rank_sha256": "05bd3ae4e4df7e8473d14a32881a72955659355b5b1eb818331023795755f6ab",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/049_fvqa_train_881.png",
+      "bytes": 825220,
+      "sha256": "c748094163cbbf67d2566ae56af948356c77cf2f46cd1fb252eb4093a0cea01b"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/049_fvqa_train_881.json",
+      "bytes": 930,
+      "sha256": "de1cda19c58502b1f3f9ea17d1eeaf3bc5a65cfa55c4199ce4b6cd668e802f31"
+    },
+    "image_width": 1356,
+    "image_height": 668,
+    "question": "What is the method used to understand what someone is saying without hearing them?"
+  },
+  "result": {
+    "response_text": "Reading lips",
+    "answer": "Reading lips",
+    "parser_mode": "plain_text_fallback",
+    "ground_truth": "lip-reading",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 626,
+    "output_tokens": 3,
+    "generation_seconds": 0.136177,
+    "case_seconds": 0.190676,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17404264448,
+    "cuda_peak_memory_allocated_bytes": 16847438336,
+    "cuda_peak_memory_reserved_bytes": 17404264448
+  },
+  "credentials_recorded": false
+}

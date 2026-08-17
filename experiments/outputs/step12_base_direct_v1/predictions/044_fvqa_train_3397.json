@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 44,
+  "data_id": "fvqa_train_3397",
+  "category": "search_required",
+  "source_row_index": 3397,
+  "selection_rank_sha256": "018cca0e4b83c16332641bcceaef1296e53c5ace2fd940822ab41da146947f06",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/044_fvqa_train_3397.png",
+      "bytes": 764278,
+      "sha256": "d5d2d38485871a87317077c98819ca93e1ef4cb6ca0b60141e2b8bbb5b036b4d"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/044_fvqa_train_3397.json",
+      "bytes": 1088,
+      "sha256": "98264b16374130546ea014c471833e0ceb03854f1da381832c4e43d4ea8f5908"
+    },
+    "image_width": 800,
+    "image_height": 600,
+    "question": "Who is the founder of the building in the image?"
+  },
+  "result": {
+    "response_text": "The founder of the building in the image is Ivan Ivanovich Shchusev.",
+    "answer": "The founder of the building in the image is Ivan Ivanovich Shchusev.",
+    "parser_mode": "plain_text_fallback",
+    "ground_truth": "Vikentiy Khvoyka",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 618,
+    "output_tokens": 18,
+    "generation_seconds": 0.357535,
+    "case_seconds": 0.398723,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17404264448,
+    "cuda_peak_memory_allocated_bytes": 16844290048,
+    "cuda_peak_memory_reserved_bytes": 17404264448
+  },
+  "credentials_recorded": false
+}

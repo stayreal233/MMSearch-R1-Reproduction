@@ -1,0 +1,545 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "03d9250439690a4e60af422acc00d4d902faa9efb77572f88792d8141f599cfa",
+    "eval_index": 35
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_3978",
+    "source_split": "train",
+    "source_row_index": 3978,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "Who is the main building contractor of this building?",
+    "candidate_answers": [
+      "Thomas Cubitt"
+    ],
+    "ground_truth": "Thomas Cubitt",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/035_fvqa_train_3978.png",
+      "width": 800,
+      "height": 451,
+      "png_sha256": "0d4aa1c5f901a9a7319bda608bd06b02b1f7b0c8e374dc2b38ef209df205cfe1",
+      "source_sha256": "7ffc467a64256e5b11e17b2a3a6fcdcddf0c1148988ec1607b0fa9e6a025a40b"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows Osborne House, a historic building in the United Kingdom. To answer the question about the main building contractor, I would need to research the construction history of this specific building. However, the image does not provide enough information to identify the contractor directly.</reason>\n<search><img></search>",
+        "response_sha256": "75f95473a4765e7d59fd6d5965e002fcac5df6ead39ad5301e6532388063bef5",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 869,
+        "output_tokens": 64,
+        "generation_seconds": 1.037,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_3978",
+            "requested": 5,
+            "num_images": 4,
+            "cache_hits": 0,
+            "titles": [
+              "سبک ایتالیایی‌مآب - ویکی‌پدیا، دانشنامهٔ آزاد",
+              "File:Isle of Wight, Osborne House.jpg - Wikimedia Commons",
+              "Historic England on X: \"Queen Victoria was crowned today in 1838. What's your favourite Victorian building? 📷 Osborne House on the Isle of Wight, the holiday home of Queen Victoria and Prince",
+              "Carisbrooke Castle - Castle / Fort in Newport, Newport - Visit South East England"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDBzr1KuD4c74s19jEAXMQoyI6k3o3nCtb0_-aJWFGSmhMXIYK",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSi6Rw5162rzbbcHywsEF6JQxdHKoOnKRr6tWmy3bKbbq8SmDjt",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNzQ6bZTPkZZ9MMakjQQiea1PbcvaTcgDRgifUKdtZKjHCDhxZ",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUZCW7ErAxO-Dz6c_5dVBusMXddfcn1RBetTZjTNxEGDNxVs7"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3978_1_7189861b2f8983a82ab5.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3978_3_25ea77e1c79eb4c4a402.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3978_4_5c0001fec329364665b7.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3978_5_2532d74c57f404c1fa6b.png"
+            ],
+            "failures": [
+              {
+                "index": 1,
+                "title": "East Cowes - Wikipedia",
+                "source": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTQXI04cG2YF62kB6_Muv1v16d9lNA-j5w5vM5OJ5XX6b_crC6P",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTQXI04cG2YF62kB6_Muv1v16d9lNA-j5w5vM5OJ5XX6b_crC6P"
+              }
+            ]
+          },
+          "returned_text_characters": 1188,
+          "returned_text_sha256": "3dd6f7016719b570bfbe141ae6e3f2dcf9cf64c271fc36f5614ad73ff932eaad"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results do not provide any information about the main building contractor of Osborne House. To answer the user's question, a text search is necessary to find the construction details of the building.</reason>\n<text_search>Who is the main building contractor of Osborne House?</text_search>",
+        "response_sha256": "ceda0a65d5e490ae1f2098aecc18ea3868dee122119a0c3c6b788499f8c334fb",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "Who is the main building contractor of Osborne House?",
+        "input_tokens": 1604,
+        "output_tokens": 61,
+        "generation_seconds": 1.078,
+        "query": "Who is the main building contractor of Osborne House?",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "Who is the main building contractor of Osborne House?",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/553cabce6f2544b01abb4492e1cbccc92a14c05b16b0a3b19d5c3f1b967b5404.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 36534,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 11548,
+              "total_output_tokens": 597,
+              "total_tokens": 12145,
+              "total_generation_seconds": 17.827906,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "John Osborne House (1673) - Historic Buildings of Connecticut",
+                "url": "https://historicbuildingsct.com/john-osborne-house-1673/",
+                "snippet": "The traditional date of construction is 1673, The house is traditionally associated with John Osborne, who married in 1673. His father Richard received a grant ..."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "Our Story - Osborne Construction Co.",
+                "url": "https://osborneconstruction.com/our-story/",
+                "snippet": "How it all began. In 1987, George Osborne formed Osborne Construction Company in Alaska, providing contracting services for state and federal agencies."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "History of Osborne - English Heritage",
+                "url": "https://www.english-heritage.org.uk/visit/places/osborne/history-and-stories/history/",
+                "snippet": "Instead he commissioned Thomas Cubitt (1788–1855), the master builder and developer of much of the Duke of Westminster's Belgravia estate in London,"
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "OSBORNE CONSTRUCTION - Project Photos & Reviews - Houzz",
+                "url": "https://www.houzz.com/professionals/general-contractors/osborne-construction-pfvwus-pf~1166271381",
+                "snippet": "Osborne Construction is an owner-operated in-house design/build firm. Contact Brian Osborne Phone Number (917) 586-2098 Address Philadelphia, PA 19144 Typical ..."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "OSBORNE HOUSE :: A ROYAL HOUSE BY THE SEA",
+                "url": "http://www.studiotraveler.com/osborne-house-a-very-english-history",
+                "snippet": "Prince Albert collaborate with architect Thomas Cubitt to design the Italianate house, So influential was it that it came to be known as 'the Osborne style'"
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "John Osborne House (1673) - Historic Buildings of Connecticut",
+                "url": "https://historicbuildingsct.com/john-osborne-house-1673/",
+                "snippet": "The traditional date of construction is 1673, The house is traditionally associated with John Osborne, who married in 1673. His father Richard received a grant ...",
+                "full_characters": 29707,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/ec5494f068170454da677cf40a75d6a632c982444f035a22a0a448af10ac725e.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "Our Story - Osborne Construction Co.",
+                "url": "https://osborneconstruction.com/our-story/",
+                "snippet": "How it all began. In 1987, George Osborne formed Osborne Construction Company in Alaska, providing contracting services for state and federal agencies.",
+                "full_characters": 2379,
+                "returned_characters": 2379,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/1d9eba79bfd6dbd24542e4f974084ef9ded7a7ce8bef5dc1ace21e6952663f2f.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "History of Osborne - English Heritage",
+                "url": "https://www.english-heritage.org.uk/visit/places/osborne/history-and-stories/history/",
+                "snippet": "Instead he commissioned Thomas Cubitt (1788–1855), the master builder and developer of much of the Duke of Westminster's Belgravia estate in London,",
+                "full_characters": 18894,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/50c70cbe9f4ca47ee9b9500a1b71aeb9b14d447fc860f91133a777b99226ce5a.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "OSBORNE CONSTRUCTION - Project Photos & Reviews - Houzz",
+                "url": "https://www.houzz.com/professionals/general-contractors/osborne-construction-pfvwus-pf~1166271381",
+                "snippet": "Osborne Construction is an owner-operated in-house design/build firm. Contact Brian Osborne Phone Number (917) 586-2098 Address Philadelphia, PA 19144 Typical ...",
+                "full_characters": 7169,
+                "returned_characters": 7169,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/55df096559630e8ac3dd59fd2f9d5920114a0fef7fc24905a0fe907c7c02e60d.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "OSBORNE HOUSE :: A ROYAL HOUSE BY THE SEA",
+                "url": "http://www.studiotraveler.com/osborne-house-a-very-english-history",
+                "snippet": "Prince Albert collaborate with architect Thomas Cubitt to design the Italianate house, So influential was it that it came to be known as 'the Osborne style'",
+                "full_characters": 2986,
+                "returned_characters": 2986,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/25eb958cb607dc4bec21dd33528b9dd233df6f3e0422fe08d559ef141010dd20.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "John Osborne House (1673) - Historic Buildings of Connecticut",
+                "url": "https://historicbuildingsct.com/john-osborne-house-1673/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/ec5494f068170454da677cf40a75d6a632c982444f035a22a0a448af10ac725e.md",
+                "full_characters": 29707,
+                "returned_characters": 12000,
+                "jina_content_sha256": "29fac63fea3fafe874299885337dd0837e5cad5fe325bbc6570bb3fd5f92415f",
+                "jina_input_characters": 12000,
+                "public_input_signature": "11195518d9e167cbaa725242bf1191814a0ae6c4a73cba4ed4f4bd92addc8efd",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/11195518d9e167cbaa725242bf1191814a0ae6c4a73cba4ed4f4bd92addc8efd.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The John Osborne House, traditionally dated to 1673, is associated with John Osborne, who married in 1673.  \n- His father, Richard Osborne, received a land grant for his service in the Pequot War.  \n- The house is located in Fairfield, Connecticut, near the site of the last battle of the Pequot War.  \n- The original section of the house is a center-chimney block, likely starting as a one-room structure.  \n- The house has been expanded over time, with two 20th-century wings added to the colonial-era structure.  \n- No specific building contractor is mentioned in the provided text.",
+                "input_tokens": 3954,
+                "output_tokens": 138,
+                "total_tokens": 4092,
+                "finish_reason": "stop",
+                "generation_seconds": 4.431786,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "Our Story - Osborne Construction Co.",
+                "url": "https://osborneconstruction.com/our-story/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/1d9eba79bfd6dbd24542e4f974084ef9ded7a7ce8bef5dc1ace21e6952663f2f.md",
+                "full_characters": 2379,
+                "returned_characters": 2379,
+                "jina_content_sha256": "555de4677f94d6a7d54138225eb99ccfb539e86481c4839ae29a4c0f33dd4e5d",
+                "jina_input_characters": 2379,
+                "public_input_signature": "c852a6435f31a3d97426742f52057b04cc47c9d374688ca8d71583387e618404",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/c852a6435f31a3d97426742f52057b04cc47c9d374688ca8d71583387e618404.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Osborne Construction Company was founded in 1987 by George Osborne in Alaska.\n- The company provides contracting services for state and federal agencies.\n- Osborne Construction expanded to the Pacific Northwest in 1987, focusing on multifamily, tenant improvement, and military building projects.\n- Osborne is now an employee-owned general contractor headquartered in Redmond, Washington.\n- The company has experience with complex projects, including those valued at $250,000,000.\n- Osborne Construction serves both public and private sectors and emphasizes collaboration with stakeholders.",
+                "input_tokens": 695,
+                "output_tokens": 116,
+                "total_tokens": 811,
+                "finish_reason": "stop",
+                "generation_seconds": 3.121821,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "History of Osborne - English Heritage",
+                "url": "https://www.english-heritage.org.uk/visit/places/osborne/history-and-stories/history/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/50c70cbe9f4ca47ee9b9500a1b71aeb9b14d447fc860f91133a777b99226ce5a.md",
+                "full_characters": 18894,
+                "returned_characters": 12000,
+                "jina_content_sha256": "b14b3a1ceec971aaf0cd15a596f04e21f03dc396482f434b515a85d2b8cf2056",
+                "jina_input_characters": 12000,
+                "public_input_signature": "d2920fd703510a35aaba7236fc449fb08070eb9813e67bcf9e0e79dbdd5915a8",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/d2920fd703510a35aaba7236fc449fb08070eb9813e67bcf9e0e79dbdd5915a8.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The main building contractor for Osborne House was Thomas Cubitt.\n- Prince Albert commissioned Cubitt to design and build the new Osborne House after the old one was demolished in 1848.\n- Cubitt had previously worked on the Belgravia estate for the Duke of Westminster.\n- Construction of the new house began in 1846 and was completed in phases, with the main wing finished in 1851.\n- Prince Albert was heavily involved in the design and development of Osborne House and its grounds.\n- Osborne House was a private royal retreat used by Queen Victoria for over 50 years.",
+                "input_tokens": 3371,
+                "output_tokens": 127,
+                "total_tokens": 3498,
+                "finish_reason": "stop",
+                "generation_seconds": 4.000647,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "OSBORNE CONSTRUCTION - Project Photos & Reviews - Houzz",
+                "url": "https://www.houzz.com/professionals/general-contractors/osborne-construction-pfvwus-pf~1166271381",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/55df096559630e8ac3dd59fd2f9d5920114a0fef7fc24905a0fe907c7c02e60d.md",
+                "full_characters": 7169,
+                "returned_characters": 7169,
+                "jina_content_sha256": "48f67a0a93b23817df76e4e7f69e23f33ab2fa3292d96fc3b7f41ef8c7ab9f12",
+                "jina_input_characters": 7169,
+                "public_input_signature": "0075c6d911aee2a7c268645e7dbcbb626b5a5f050881c1d41581416542cb3060",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/0075c6d911aee2a7c268645e7dbcbb626b5a5f050881c1d41581416542cb3060.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Osborne Construction is a design/build firm based in Philadelphia, PA.\n- The company is owner-operated and specializes in custom homes, renovations, and sustainable design.\n- Osborne Construction has completed projects in Philadelphia, Cape May, and Southern California.\n- The firm is certified as a Passive House Builder by PHIUS.\n- Brian Osborne is the owner and contact person for the company.\n- Osborne Construction has worked on historic restorations and adaptive reuse projects.",
+                "input_tokens": 2626,
+                "output_tokens": 92,
+                "total_tokens": 2718,
+                "finish_reason": "stop",
+                "generation_seconds": 2.904842,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "OSBORNE HOUSE :: A ROYAL HOUSE BY THE SEA",
+                "url": "http://www.studiotraveler.com/osborne-house-a-very-english-history",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/25eb958cb607dc4bec21dd33528b9dd233df6f3e0422fe08d559ef141010dd20.md",
+                "full_characters": 2986,
+                "returned_characters": 2986,
+                "jina_content_sha256": "f002fa9eeb44ab554d98526ee0ec5401d3e0483974506d74e25f1648e4a3379e",
+                "jina_input_characters": 2986,
+                "public_input_signature": "fd87c87c7bf781b4ceac6b25aac5ce25c7f2a09168d2ec1fbb8c7a8c0197f77d",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/fd87c87c7bf781b4ceac6b25aac5ce25c7f2a09168d2ec1fbb8c7a8c0197f77d.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Osborne House was designed by architect Thomas Cubitt in collaboration with Prince Albert.\n- The house is known for its Italianate style, which became influential and was imitated across the British Empire.\n- The article does not mention the name of the main building contractor.\n- The Durbar Room was designed by Lockwood Kipling and Bhai Ram Singh.\n- The Children’s Swiss Cottage was built for Queen Victoria and Prince Albert’s children to learn domestic skills.\n- Osborne House was given to the British nation in 1903 and remains preserved as it was in the late 19th century.",
+                "input_tokens": 902,
+                "output_tokens": 124,
+                "total_tokens": 1026,
+                "finish_reason": "stop",
+                "generation_seconds": 3.36881,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003692,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 5200,
+          "returned_text_sha256": "0d2dd20ea06b71a4ae606dc7ef1caed150bb9c661fe0ce2e27158b8963df7d11"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the main building contractor of Osborne House was Thomas Cubitt. The information is found in the summary of the third search result from the English Heritage website.</reason>\n<answer>Thomas Cubitt</answer>",
+        "response_sha256": "c56da3553e611afdc54b677f46676aa131e2fd4907533b1fbb5de7a58831b64e",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Thomas Cubitt",
+        "input_tokens": 3033,
+        "output_tokens": 49,
+        "generation_seconds": 0.951
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "Thomas Cubitt",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": true,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 5506,
+    "mmsearch_output_tokens": 174,
+    "mmsearch_generation_seconds": 3.066,
+    "case_seconds": 32.513,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 35,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16936.96,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_35_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:56:40.032386+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69200, 28053",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69200",
+            "memory_free_mib": "28053"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "50384",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "229170",
+            "used_gpu_memory_mib": "18802",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 229170,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 18987614208,
+            "max_memory_allocated_bytes": 17759692288,
+            "max_memory_reserved_bytes": 18987614208
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.00267,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.743,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

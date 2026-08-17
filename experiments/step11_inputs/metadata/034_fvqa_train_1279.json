@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1279",
+  "source_split": "train",
+  "source_row_index": 1279,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is the character holding the trident with a glowing symbol on their chest?",
+  "reward_model": {
+    "ground_truth": "Daimon Hellstrom",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/034_fvqa_train_1279.png",
+  "image_width": 187,
+  "image_height": 532,
+  "source_image_sha256": "14aa29d3cd85a5586f875a57de62dfd07b47c489de370b77e036479d9f2860b7",
+  "normalized_png_sha256": "14aa29d3cd85a5586f875a57de62dfd07b47c489de370b77e036479d9f2860b7",
+  "eval_index": 34,
+  "selection_rank_sha256": "00ebb07537f3d0c7a1df3d2625c126397a5fd23b83b132e79767173b86f8da0b",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

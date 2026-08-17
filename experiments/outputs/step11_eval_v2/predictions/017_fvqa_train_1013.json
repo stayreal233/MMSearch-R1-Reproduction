@@ -1,0 +1,506 @@
+{
+  "schema_version": 1,
+  "status": "failed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "022d85d02fa2b3eeec5f2da0060c8405e5857cedaea776bb8779b197f1f6742c",
+    "eval_index": 17
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_1013",
+    "source_split": "train",
+    "source_row_index": 1013,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What company does this logo represent?",
+    "candidate_answers": [],
+    "ground_truth": "BSI Group",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/017_fvqa_train_1013.png",
+      "width": 788,
+      "height": 672,
+      "png_sha256": "ec5077f70611719f44af201a788d24c658fa5c1c7af35e034271a5757e2c37a2",
+      "source_sha256": "ec5077f70611719f44af201a788d24c658fa5c1c7af35e034271a5757e2c37a2"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a logo with the text \"bsi\" on a dark background. The logo appears to be associated with a company. The text \"bsi\" is likely the abbreviation for a company name. However, without additional context or a recognizable image, it's not possible to determine the exact company represented by this logo.</reason>\n<search><img></search>",
+        "response_sha256": "97b0997341664a37bb78abd0a447b0934e6559414f45528611b5b162b153ec87",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 952,
+        "output_tokens": 78,
+        "generation_seconds": 1.278,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_1013",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "BSI Group - Wikipedia",
+              "Sponsorship | People Management Association of the Philippines",
+              "BSI Ltd Bank B.S.I. Logo Business, bank, text, trademark png | PNGEgg",
+              "BSI Digital trust on X: \"What is #digitaltrust? To address the new era of digital trust, BSI has expanded its consulting practice beyond just #cybersecurity to take on broader questions around digital",
+              "ISO 9001:2015 - Your transition journey with BSI - YouTube"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0-ou9Li5jcpuUg-AF7Lln8U8zb71D6SQbaxYYqqrv8LjCcY6m",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSDFa0K-QyY7EiuJLOO52uDXbNd962Jvq_kv7iW_h8823GLhFmV",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzVJY93kNCalTJhDda2K6zTpyRfBEjT93Y4lhgvwl4lfWpnsSK",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh2IdWSTCtDCt4Cm13YAZ3MAb6syt7wDTB8UKwOhCMBoqtI_rR",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS5LxhAQN44FnFfPx4U9O012sRrvN88IEciSTSi7lyjq7t7d8Gp"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1013_1_d51259fd94fd881344c9.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1013_2_9f33aa1bc376fe667821.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1013_3_843f2dde714c588d0892.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1013_4_523979b549c7690b6377.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1013_5_61ff710295da9565cfaa.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1406,
+          "returned_text_sha256": "38b59f1ee0f8de30cfa7e5e211ef7055233e063c60d6e3e9c75ac72260a2e8b7"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results suggest that the logo in the question is associated with \"BSI.\" The logo is consistently shown with the text \"bsi\" and is often accompanied by additional text such as \"BSI Group\" and \"BSI Ltd.\" Given this information, it is likely that the logo represents the \"BSI Group.\" To confirm this, a text search might be necessary to gather more information about the company.</reason>\n<text_search>What company does the BSI Group logo represent?</text_search>",
+        "response_sha256": "26e74551e348cc8ffd8c6ec955709e3013f46b1b6e019b470156ad8c0f3b76bf",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "What company does the BSI Group logo represent?",
+        "input_tokens": 1738,
+        "output_tokens": 107,
+        "generation_seconds": 1.803,
+        "query": "What company does the BSI Group logo represent?",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "What company does the BSI Group logo represent?",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/931d4c521a4ad4b1016b970bb405e9a4859d7e65b9af2a2932f796e52325995e.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 4,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 48000,
+              "failures": [
+                {
+                  "rank": 5,
+                  "title": "BSI - LinkedIn",
+                  "url": "https://www.linkedin.com/company/bsi",
+                  "error": "RuntimeError: Jina Reader failed (HTTP 403)"
+                }
+              ]
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 4,
+              "num_summaries": 4,
+              "cache_hits": 0,
+              "api_calls": 4,
+              "total_input_tokens": 13691,
+              "total_output_tokens": 402,
+              "total_tokens": 14093,
+              "total_generation_seconds": 13.228791,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "BSI Logos Trademarks and Linking Policy",
+                "url": "https://www.bsigroup.com/en-US/legal/bsi-logos/",
+                "snippet": "The British Standards Institution (BSI, a company incorporated by Royal Charter), performs the National Standards Body (NSB) activity in the UK. BSI, together ..."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "BSI: Accelerating Progress Towards a Sustainable World",
+                "url": "https://www.bsigroup.com/en-US/",
+                "snippet": "The British Standards Institution (BSI, a company incorporated by Royal Charter), performs the National Standards Body (NSB) activity in the UK."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "BSI Group - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/BSI_Group",
+                "snippet": "The British Standards Institution (BSI) is the national standards body of the United Kingdom. BSI produces technical standards on a wide range of products ..."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "About BSI - Your Partner in Progress",
+                "url": "https://www.bsigroup.com/en-US/about-bsi/",
+                "snippet": "The British Standards Institution (BSI, a company incorporated by Royal Charter), performs the National Standards Body (NSB) activity in the UK."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "BSI - LinkedIn",
+                "url": "https://www.linkedin.com/company/bsi",
+                "snippet": "We are a business improvement and standards company that partners with more than 77,500 clients globally across multiple industry sectors."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "BSI Logos Trademarks and Linking Policy",
+                "url": "https://www.bsigroup.com/en-US/legal/bsi-logos/",
+                "snippet": "The British Standards Institution (BSI, a company incorporated by Royal Charter), performs the National Standards Body (NSB) activity in the UK. BSI, together ...",
+                "full_characters": 61318,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/18968b3b5cd252b64566642c0eefb75129f2e7b44594780a1e0dbb9431820086.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "BSI: Accelerating Progress Towards a Sustainable World",
+                "url": "https://www.bsigroup.com/en-US/",
+                "snippet": "The British Standards Institution (BSI, a company incorporated by Royal Charter), performs the National Standards Body (NSB) activity in the UK.",
+                "full_characters": 71525,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/e978f13e21ae8ce98dbdcdadb292667f376676b44242b0422176d3f50ab5f6ab.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "BSI Group - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/BSI_Group",
+                "snippet": "The British Standards Institution (BSI) is the national standards body of the United Kingdom. BSI produces technical standards on a wide range of products ...",
+                "full_characters": 31172,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/414060e99c1aa6a4bcf59008b4de1e60b9c3997e12e3d4742838f279ba06e2cb.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "About BSI - Your Partner in Progress",
+                "url": "https://www.bsigroup.com/en-US/about-bsi/",
+                "snippet": "The British Standards Institution (BSI, a company incorporated by Royal Charter), performs the National Standards Body (NSB) activity in the UK.",
+                "full_characters": 69869,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/fd05a833d3c709455d32329e1db102adf0d86b2283602a4f4e57a3a71632a4a8.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "BSI Logos Trademarks and Linking Policy",
+                "url": "https://www.bsigroup.com/en-US/legal/bsi-logos/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/18968b3b5cd252b64566642c0eefb75129f2e7b44594780a1e0dbb9431820086.md",
+                "full_characters": 61318,
+                "returned_characters": 12000,
+                "jina_content_sha256": "e5641051244d816bea2fbbac71a89bbc8bcf56965c4a4344292be21e9231ab55",
+                "jina_input_characters": 12000,
+                "public_input_signature": "15c5e5ac331a01c1e671d5e4ea9562d3751d3ec9eaa6af19ef13e6afa9feb947",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/15c5e5ac331a01c1e671d5e4ea9562d3751d3ec9eaa6af19ef13e6afa9feb947.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The BSI Group logo represents the British Standards Institution (BSI).  \n- BSI is a company incorporated by Royal Charter.  \n- BSI performs the National Standards Body (NSB) activity in the UK.  \n- The BSI Group operates in areas such as quality management, cybersecurity, sustainability, and supply chain management.  \n- BSI provides services like certification verification and standards development.  \n- The company offers expertise in digital trust, health and safety, innovation, and environmental management.",
+                "input_tokens": 3434,
+                "output_tokens": 102,
+                "total_tokens": 3536,
+                "finish_reason": "stop",
+                "generation_seconds": 3.35041,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "BSI: Accelerating Progress Towards a Sustainable World",
+                "url": "https://www.bsigroup.com/en-US/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/e978f13e21ae8ce98dbdcdadb292667f376676b44242b0422176d3f50ab5f6ab.md",
+                "full_characters": 71525,
+                "returned_characters": 12000,
+                "jina_content_sha256": "b11c30f02eea8a9d52498223d1193ce2085ea439620726053c68fa628390da46",
+                "jina_input_characters": 12000,
+                "public_input_signature": "91d3fb4ebec1d4de154b3d5ed33163135c6687ca6908ae75251632ef67b7c9ee",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/91d3fb4ebec1d4de154b3d5ed33163135c6687ca6908ae75251632ef67b7c9ee.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The BSI Group logo represents the British Standards Institution (BSI).  \n- BSI is a company incorporated by Royal Charter.  \n- It serves as the National Standards Body (NSB) in the UK.  \n- BSI provides services in quality management, environmental management, cybersecurity, and more.  \n- The organization supports sustainability, digital trust, and supply chain resilience.  \n- BSI offers certifications and standards-based solutions for various industries.",
+                "input_tokens": 3411,
+                "output_tokens": 92,
+                "total_tokens": 3503,
+                "finish_reason": "stop",
+                "generation_seconds": 3.080719,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "BSI Group - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/BSI_Group",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/414060e99c1aa6a4bcf59008b4de1e60b9c3997e12e3d4742838f279ba06e2cb.md",
+                "full_characters": 31172,
+                "returned_characters": 12000,
+                "jina_content_sha256": "9acf933e2ee6e7abde54a224c02a8f27eea818d9c93ef0c48a8ecb5f98229341",
+                "jina_input_characters": 12000,
+                "public_input_signature": "046b88446730195666a06e545fe949737a96de5208c47d63979671660a342a95",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/046b88446730195666a06e545fe949737a96de5208c47d63979671660a342a95.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The BSI Group logo represents the British Standards Institution (BSI).\n- BSI is the national standards body of the United Kingdom.\n- It produces technical standards and provides certification services for products and management systems.\n- BSI operates in 195 countries and is one of the world's largest certification bodies.\n- The organization was founded in 1901 and is headquartered in London.\n- BSI is known for its Kitemark certification symbol, which indicates products meet specific standards.",
+                "input_tokens": 3429,
+                "output_tokens": 102,
+                "total_tokens": 3531,
+                "finish_reason": "stop",
+                "generation_seconds": 3.347998,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "About BSI - Your Partner in Progress",
+                "url": "https://www.bsigroup.com/en-US/about-bsi/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/fd05a833d3c709455d32329e1db102adf0d86b2283602a4f4e57a3a71632a4a8.md",
+                "full_characters": 69869,
+                "returned_characters": 12000,
+                "jina_content_sha256": "099508610616dd414898737cbf373d264ee233ace5a9c362cb5e3185d6fb02c4",
+                "jina_input_characters": 12000,
+                "public_input_signature": "28847533bc7c26e3d16a48fe824695c8a09828bea699bd7d188d43fabd0bf392",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/28847533bc7c26e3d16a48fe824695c8a09828bea699bd7d188d43fabd0bf392.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The BSI Group logo represents the British Standards Institution (BSI).  \n- BSI is a company incorporated by Royal Charter.  \n- It performs the National Standards Body (NSB) activity in the UK.  \n- BSI provides services related to quality management, environmental management, and other standards.  \n- The organization offers expertise in digital trust, health and safety, innovation, quality, supply chain, and sustainability.  \n- BSI operates in various industries, including energy, government, and the built environment.",
+                "input_tokens": 3417,
+                "output_tokens": 106,
+                "total_tokens": 3523,
+                "finish_reason": "stop",
+                "generation_seconds": 3.449664,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.0056,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 3821,
+          "returned_text_sha256": "495dcf8c37355f34600107a3ca16b9bcade8c866436ac5d019a1e2180cc99e67"
+        }
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": null,
+    "terminal_status": "text_search_hard_failure",
+    "hard_failures": [
+      {
+        "stage": "text_search_jina_qwen",
+        "round": 2,
+        "error": "RuntimeError: Text/Search/Reader/Qwen top-5 contract failed"
+      }
+    ],
+    "total_turns": 2,
+    "action_sequence": [
+      "image_search",
+      "text_search"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": false,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": false,
+      "count_incomplete_reasons": [
+        "round_2_qwen_status_missing"
+      ],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 11
+    },
+    "mmsearch_input_tokens": 2690,
+    "mmsearch_output_tokens": 185,
+    "mmsearch_generation_seconds": 3.081,
+    "case_seconds": 25.022,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": false,
+  "eval_index": 17,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16481.72,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_17_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:48:14.153604+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69224, 28029",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69224",
+            "memory_free_mib": "28029"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "49646",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "225955",
+            "used_gpu_memory_mib": "19564",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 225955,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 19786629120,
+            "max_memory_allocated_bytes": 17282335744,
+            "max_memory_reserved_bytes": 19786629120
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.00323,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.675,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2594",
+  "source_split": "train",
+  "source_row_index": 2594,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is the founder of the building in the image?",
+  "reward_model": {
+    "ground_truth": "Enchin",
+    "candidate_answers": [
+      "Enchin"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/030_fvqa_train_2594.png",
+  "image_width": 532,
+  "image_height": 800,
+  "source_image_sha256": "483730cf1ab5639e22293333a11854bb468291cbab2da2bd5840e6f3002973ea",
+  "normalized_png_sha256": "1594b5e775d96670eac112c73fc93b9dd68e4bdddc3615655858b315b386895e",
+  "eval_index": 30,
+  "selection_rank_sha256": "00cdeea35b1e6539d4fcb0e82b63c57cee9db30224b342c5f100cd4aca4732ab",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

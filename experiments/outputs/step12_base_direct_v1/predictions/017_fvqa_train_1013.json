@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 17,
+  "data_id": "fvqa_train_1013",
+  "category": "search_free",
+  "source_row_index": 1013,
+  "selection_rank_sha256": "022d85d02fa2b3eeec5f2da0060c8405e5857cedaea776bb8779b197f1f6742c",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/017_fvqa_train_1013.png",
+      "bytes": 50224,
+      "sha256": "ec5077f70611719f44af201a788d24c658fa5c1c7af35e034271a5757e2c37a2"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/017_fvqa_train_1013.json",
+      "bytes": 886,
+      "sha256": "c991e3b9bafb731aa259ac85484c4b450f7643da6610d50b8232a89b850017ff"
+    },
+    "image_width": 788,
+    "image_height": 672,
+    "question": "What company does this logo represent?"
+  },
+  "result": {
+    "response_text": "<answer>BSI Group</answer>",
+    "answer": "BSI Group",
+    "parser_mode": "answer_tags",
+    "ground_truth": "BSI Group",
+    "strict_exact_match": true,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 624,
+    "output_tokens": 10,
+    "generation_seconds": 0.244244,
+    "case_seconds": 0.273459,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17521704960,
+    "cuda_peak_memory_allocated_bytes": 16846899712,
+    "cuda_peak_memory_reserved_bytes": 17521704960
+  },
+  "credentials_recorded": false
+}

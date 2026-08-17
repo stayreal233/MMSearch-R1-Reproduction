@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1072",
+  "source_split": "train",
+  "source_row_index": 1072,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the name of the software shown in the image?",
+  "reward_model": {
+    "ground_truth": "HyperCard",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/045_fvqa_train_1072.png",
+  "image_width": 1002,
+  "image_height": 672,
+  "source_image_sha256": "2fd7e164b6ffa3a7a3657c2e575d631bf237ca3438b8c126cf8eb303d7f191fe",
+  "normalized_png_sha256": "2fd7e164b6ffa3a7a3657c2e575d631bf237ca3438b8c126cf8eb303d7f191fe",
+  "eval_index": 45,
+  "selection_rank_sha256": "0502935546f25fae1ad42096bfe12a9e4802c365000ce208a7de4e2ef048e289",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

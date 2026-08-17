@@ -1,0 +1,28 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4498",
+  "source_split": "train",
+  "source_row_index": 4498,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "How much revenue did the company shown on the left report for 2024?",
+  "reward_model": {
+    "ground_truth": "97.7 billion",
+    "candidate_answers": [
+      "$97.7 billion",
+      "$ 97.7 billion",
+      "97.7 billion$",
+      "97.7 billion $"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/012_fvqa_train_4498.png",
+  "image_width": 906,
+  "image_height": 462,
+  "source_image_sha256": "5f3311255b979858f51e5d70c552bbbc3267b569a60019778f98c02e3796d863",
+  "normalized_png_sha256": "5f3311255b979858f51e5d70c552bbbc3267b569a60019778f98c02e3796d863",
+  "eval_index": 12,
+  "selection_rank_sha256": "0045491d828fcebd7ddadb53a546bf577f9436a0bbd08cf57fc2e4576ed82191",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

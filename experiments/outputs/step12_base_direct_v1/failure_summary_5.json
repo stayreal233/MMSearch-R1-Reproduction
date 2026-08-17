@@ -1,0 +1,62 @@
+{
+  "schema_version": "mmsearch.step12.base-failure-summary.v1",
+  "evaluated": 5,
+  "failure_count": 5,
+  "failure_rate_percent": 100.0,
+  "failure_layer_counts": {
+    "base_final_answer": 5
+  },
+  "failures": [
+    {
+      "eval_index": 1,
+      "data_id": "fvqa_train_4724",
+      "category": "search_free",
+      "answer": "Hershey's",
+      "ground_truth": "Best Buy Co., Inc. (BBY)",
+      "parser_mode": "answer_tags",
+      "layer": "base_final_answer",
+      "rationale": "Base emitted a direct answer but strict Exact Match is false; no upstream tool layer exists."
+    },
+    {
+      "eval_index": 2,
+      "data_id": "fvqa_train_2759",
+      "category": "search_required",
+      "answer": "The Tagus River",
+      "ground_truth": "Tagus River",
+      "parser_mode": "plain_text_fallback",
+      "layer": "base_final_answer",
+      "rationale": "Base emitted a direct answer but strict Exact Match is false; no upstream tool layer exists."
+    },
+    {
+      "eval_index": 3,
+      "data_id": "fvqa_train_3141",
+      "category": "search_free",
+      "answer": "Pope Julius II",
+      "ground_truth": "Julius II",
+      "parser_mode": "plain_text_fallback",
+      "layer": "base_final_answer",
+      "rationale": "Base emitted a direct answer but strict Exact Match is false; no upstream tool layer exists."
+    },
+    {
+      "eval_index": 4,
+      "data_id": "fvqa_train_1580",
+      "category": "search_required",
+      "answer": "Mycenaean",
+      "ground_truth": "orontid",
+      "parser_mode": "plain_text_fallback",
+      "layer": "base_final_answer",
+      "rationale": "Base emitted a direct answer but strict Exact Match is false; no upstream tool layer exists."
+    },
+    {
+      "eval_index": 5,
+      "data_id": "fvqa_train_1696",
+      "category": "search_free",
+      "answer": "달이 뜨는 밤",
+      "ground_truth": "River Where the Moon Rises",
+      "parser_mode": "answer_tags",
+      "layer": "base_final_answer",
+      "rationale": "Base emitted a direct answer but strict Exact Match is false; no upstream tool layer exists."
+    }
+  ],
+  "credentials_recorded": false
+}

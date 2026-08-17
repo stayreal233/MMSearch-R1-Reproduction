@@ -1,0 +1,26 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3969",
+  "source_split": "train",
+  "source_row_index": 3969,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "where is the highest point of this mountain?",
+  "reward_model": {
+    "ground_truth": "Sveti Jure",
+    "candidate_answers": [
+      "Mt Sveti Jure",
+      "Sveti Jure"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/006_fvqa_train_3969.png",
+  "image_width": 800,
+  "image_height": 600,
+  "source_image_sha256": "70ffadcd661f6dadcb8a4e64b4005acc4bd3cb28f0fe9866f2f5be182fa62cc3",
+  "normalized_png_sha256": "dc00fbae25644b7d961de2ff38b0847515be09d489db34f9d3bc71e99f207c4c",
+  "eval_index": 6,
+  "selection_rank_sha256": "002e067b67d6e066453c19b176246790feb35ba9c0134de9e8a3abe9df9aacad",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

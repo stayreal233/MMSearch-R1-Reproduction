@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "selection_rule": "User-approved controlled Step-10 completion; A/D/Failure natural, B/C fixed interventions; no correctness-based selection.",
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "seed": 0,
+  "cases": {
+    "A": {
+      "meta_file": "case_a.json",
+      "selection_rule": "Pre-fixed first official search_free train row.",
+      "execution_mode": "natural",
+      "claim_scope": "natural_policy",
+      "intervention": {
+        "applied": false
+      }
+    },
+    "B": {
+      "meta_file": "case_b.json",
+      "selection_rule": "First search_required candidate in the immutable v2 scan; fixed independent of correctness before controlled execution.",
+      "execution_mode": "controlled_image_then_answer",
+      "claim_scope": "controlled_tool_integration_only",
+      "candidate_number": 1,
+      "candidate_scan_sha256": "671f0231569179d75feef665f8efed64db39df4c465a99699406618dc76b6b55",
+      "natural_action_sequence": [
+        "answer"
+      ],
+      "natural_exact_match": true,
+      "intervention": {
+        "controller_injected_action": "image_search",
+        "after_tool_allowed_action": "answer",
+        "ground_truth_used": false
+      }
+    },
+    "C": {
+      "meta_file": "case_c.json",
+      "selection_rule": "Second search_required candidate in the immutable v2 scan; fixed independent of correctness before controlled execution.",
+      "execution_mode": "controlled_text_then_answer",
+      "claim_scope": "controlled_tool_integration_only",
+      "candidate_number": 2,
+      "candidate_scan_sha256": "4dc14a795cd0b09894de91e4c88f550693c08d33e8460103c7bfcfa817412908",
+      "natural_action_sequence": [
+        "answer"
+      ],
+      "natural_exact_match": true,
+      "intervention": {
+        "controller_injected_action": "text_search",
+        "controller_query_policy": "exact_original_question",
+        "after_tool_allowed_action": "answer",
+        "ground_truth_used": false
+      }
+    },
+    "D": {
+      "meta_file": "case_d.json",
+      "selection_rule": "Pre-fixed natural Mixed case with completed Step-9 Qwen3 evidence.",
+      "execution_mode": "natural",
+      "claim_scope": "natural_policy",
+      "candidate_number": 5,
+      "candidate_scan_sha256": "88543644ef7aade8cdb06aac0ff077b21b6ee629698b15e3ea0f63fed83c67c0",
+      "natural_action_sequence": [
+        "image_search",
+        "text_search",
+        "answer"
+      ],
+      "natural_exact_match": true,
+      "intervention": {
+        "applied": false
+      }
+    },
+    "Failure": {
+      "meta_file": "failure.json",
+      "selection_rule": "First independent answered strict-EM-false record in the immutable natural scan.",
+      "execution_mode": "natural",
+      "claim_scope": "natural_policy",
+      "candidate_number": 8,
+      "candidate_scan_sha256": "7c4ec00fc07afb329d1a8c2102f290220681122ac360ef7300456e4567db760b",
+      "natural_action_sequence": [
+        "answer"
+      ],
+      "natural_exact_match": false,
+      "intervention": {
+        "applied": false
+      }
+    }
+  },
+  "natural_negative_evidence": {
+    "manifest": {
+      "path": "/root/autodl-tmp/mmsearch_step10_v2/step10_candidate_selection_v2.json",
+      "bytes": 2053415,
+      "sha256": "a512d87f3dd24fc5a2714f58589a846f00d494132e678cc2479fd5410751b17d"
+    },
+    "status": "failed_selection_not_found_within_limit",
+    "scanned_search_required_count": 512,
+    "route_counts": {
+      "answer": 116,
+      "mixed": 396,
+      "image_only": 0,
+      "text_only": 0
+    },
+    "v1_prefix_replay_pass": true
+  },
+  "controlled_protocol": {
+    "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step10_controlled_route_protocol.json",
+    "bytes": 6251,
+    "sha256": "f18ac1cdb69e035243079c56b5abc4806609ada4d522e19ed0336d744ad5c48f"
+  },
+  "selected_ids": {
+    "A": "fvqa_train_0",
+    "B": "fvqa_train_6",
+    "C": "fvqa_train_9",
+    "D": "fvqa_train_17",
+    "Failure": "fvqa_train_32"
+  },
+  "output_artifacts": {
+    "A": {
+      "data_id": "fvqa_train_0",
+      "image": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_a.png",
+        "bytes": 77652,
+        "sha256": "8de703e42a884ffe502348bab28ad95ca490cf096d0965cded6100aa01398990"
+      },
+      "metadata": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_a.json",
+        "bytes": 697,
+        "sha256": "c24e28b04eebee40dc196527526651f9ceedf115e988040b2e57b8d4639cc36a"
+      }
+    },
+    "B": {
+      "data_id": "fvqa_train_6",
+      "image": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_b.png",
+        "bytes": 468182,
+        "sha256": "60b56271ee8197e81b3092f13f381e5cae94a7ec3939d9a3fc364dcabfb7dc53"
+      },
+      "metadata": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_b.json",
+        "bytes": 724,
+        "sha256": "404af4cde5fbc655faca35b3faee342b6da30f332a2e640eac33565a5be00656"
+      }
+    },
+    "C": {
+      "data_id": "fvqa_train_9",
+      "image": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_c.png",
+        "bytes": 1435211,
+        "sha256": "85311f3cc146886e520035a2faba5c61c5a7b99386fcd1a71f758c4a71d6e3fd"
+      },
+      "metadata": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_c.json",
+        "bytes": 729,
+        "sha256": "14123b0153abe8be8b61e81ee76bde67b2dd0d7de14af69d605fc6a69cb4035c"
+      }
+    },
+    "D": {
+      "data_id": "fvqa_train_17",
+      "image": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_d.png",
+        "bytes": 442691,
+        "sha256": "eaf433b233424ea4559f63e75cdedab22ece4a8f77caca1e15b9b531bd6994ad"
+      },
+      "metadata": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_d.json",
+        "bytes": 756,
+        "sha256": "7fdfaedf470049f2e3a940e3fded9377d6b81ebd59a867a3045182e48612fd3b"
+      }
+    },
+    "Failure": {
+      "data_id": "fvqa_train_32",
+      "image": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/failure.png",
+        "bytes": 923068,
+        "sha256": "57fa324f8ce32783ea8ee660ceeee7f5dc1e7f7e68e69cb05447ab36cb253419"
+      },
+      "metadata": {
+        "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/failure.json",
+        "bytes": 746,
+        "sha256": "fed1637575ee6e8317cccfe544f8a8070cd15635247a7a82587f5db94fdd07c7"
+      }
+    }
+  },
+  "checks": {
+    "controlled_protocol_pinned_before_execution": true,
+    "natural_512_negative_result_preserved": true,
+    "natural_manifest_sha256_verified": true,
+    "natural_route_and_strict_em_counts_recomputed": true,
+    "five_unique_fixed_ids": true,
+    "parquet_rows_and_sha256_verified": true,
+    "B_C_selection_independent_of_correctness": true,
+    "B_C_claim_scope_controlled_only": true,
+    "credentials_read": false,
+    "network_used": false,
+    "model_inference_used": false
+  },
+  "credentials_recorded": false
+}

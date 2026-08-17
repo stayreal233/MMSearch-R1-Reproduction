@@ -1,0 +1,542 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "00c4d1d6f9d627ee336af42a52077f0ad402c332b61e4d511c1d3360d3a1470f",
+    "eval_index": 28
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_3748",
+    "source_split": "train",
+    "source_row_index": 3748,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What is the parent peak of this mountain?",
+    "candidate_answers": [
+      "Beinn Nibheis",
+      "Ben Nevis"
+    ],
+    "ground_truth": "Ben Nevis",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/028_fvqa_train_3748.png",
+      "width": 800,
+      "height": 532,
+      "png_sha256": "1f39487638f9b799ffad15816fefd81cfbd2dc6351752a4409450a49eb3b74f6",
+      "source_sha256": "f536817e4b9ea6457e544a95d09d1d11b0fa127a69404db6a89d1d659038f3b4"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a mountain landscape with a lake and a path. To determine the parent peak, we need to identify the main mountain in the background and its parent peak. However, the image does not provide enough information to identify the specific mountain or its parent peak. Therefore, I will need to use the image search tool to identify the mountain and its parent peak.</reason>\n<search><img></search>",
+        "response_sha256": "e5fb96e4273ea124aa78f6ed9769f438429a5d823e5f6b8cf52a644abb9af16c",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 955,
+        "output_tokens": 85,
+        "generation_seconds": 1.369,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_3748",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "Waterfall Fairy Glen Sefton Park Liverpool Stock Photo 1331189165 | Shutterstock",
+              "File:A tangle of rocks - geograph.org.uk - 437463.jpg - Wikimedia Commons",
+              "File:Y Llethr from Rhinog Fach.JPG - Wikimedia Commons",
+              "Coniston Old Man : r/UKhiking",
+              "Old Man Of Coniston\" Images – Browse 253 Stock Photos, Vectors, and Video | Adobe Stock"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTYsQmul7RU5jDF632uYyUThFBswBSt6X2aWOsI8Y5h-iLtkJy1",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT2KXsHam3hk6Tn5eLr_743Hj4Lf7uWZqny2jPhvjA5UTFFAwQy",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF69ChGM4faqN511NyNfFLkKCh3YDB5-SLrXQNjSakhVIbgqlh",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS4YKsZzFZDNoAZq8hsuCLIvYofloVnnW2k_l1PwOvIwDngYqfp",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTy4Dr6PR3MqVXPJ8Ec3BsEMxGavYpz-RjwGdFLoO_n6tC_MWGl"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3748_1_3457e2d6f2ac2740197f.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3748_2_be848d65aa0bb431effb.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3748_3_937423a80d53c10a837b.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3748_4_1d62b2092763472b7df3.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3748_5_24770d264a24e7979551.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1319,
+          "returned_text_sha256": "a2631f0276666fe5e45c1310172c440af7f6f1f6b191f2035d67afd8ec67a896"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results do not provide enough information to identify the specific mountain or its parent peak. Therefore, a text search is needed to find the information about the mountain and its parent peak.</reason>\n<text_search>What is the parent peak of Coniston Old Man</text_search>",
+        "response_sha256": "2feaf1689d2545c20462e3df261dfba124b8142a942ea6f5c0600bae2e7c138d",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "What is the parent peak of Coniston Old Man",
+        "input_tokens": 1763,
+        "output_tokens": 61,
+        "generation_seconds": 1.107,
+        "query": "What is the parent peak of Coniston Old Man",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "What is the parent peak of Coniston Old Man",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/53bfab9d67a2428780380d59e7cefc7344449fede25aadfec5e0437c427ddfea.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 41302,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 13329,
+              "total_output_tokens": 478,
+              "total_tokens": 13807,
+              "total_generation_seconds": 15.110035,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "Old Man of Coniston",
+                "url": "https://en.wikipedia.org/wiki/Old_Man_of_Coniston",
+                "snippet": "It is at least 2,632.62 feet (802.42 m) high, Parent range Lake District, How at 802 m (2,631 ft), which makes the Old Man the highest point in the Furness ..."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "The Ultimate Guide to Climbing the Old Man of Coniston",
+                "url": "https://www.roamwithross.com/guides/lake-district/old-man-of-coniston-hike-guide",
+                "snippet": "Starting at the Walna Scar car park, follow the Walna Scar track, passing the Trover bridge and heading up towards the first summit, Brown Pike."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "Old Man of Coniston Hike | 6.5 Miles",
+                "url": "https://thewanderingwildflower.co.uk/old-man-coniston-hike/",
+                "snippet": "The Old Man of Coniston is the 12th highest peak in England and well worth a climb. This 6.5 mile walk also includes Brim Fell and Low Water, as ..."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Old Man of Coniston - All You SHOULD Know Before ...",
+                "url": "https://www.tripadvisor.com/Attraction_Review-g186323-d1045346-Reviews-Old_Man_of_Coniston-Coniston_Lake_District_Cumbria_England.html",
+                "snippet": "The first section of the most direct route to the top of the Old Man of Coniston is relatively gentle. The hardest part is really the last km or so when you ..."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Old Man of Coniston (10.3km)",
+                "url": "https://justanormalmum.home.blog/2023/02/20/old-man-of-coniston-10-3km/",
+                "snippet": "Distance – 10.3km not an easy walk for little ones, includes some scrambling. · Highest Point – 802m Old Man of Coniston, 778m Dow Crag, 682m ..."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "Old Man of Coniston",
+                "url": "https://en.wikipedia.org/wiki/Old_Man_of_Coniston",
+                "snippet": "It is at least 2,632.62 feet (802.42 m) high, Parent range Lake District, How at 802 m (2,631 ft), which makes the Old Man the highest point in the Furness ...",
+                "full_characters": 22921,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/08b304e1c04c4b869aa5804d3f54b7046f7f28181771a5f744c825606fb8eb56.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "The Ultimate Guide to Climbing the Old Man of Coniston",
+                "url": "https://www.roamwithross.com/guides/lake-district/old-man-of-coniston-hike-guide",
+                "snippet": "Starting at the Walna Scar car park, follow the Walna Scar track, passing the Trover bridge and heading up towards the first summit, Brown Pike.",
+                "full_characters": 19591,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/c134493038709b8f896d593a3b7785654f690b291abb83ce0dce0fc0b214f31b.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "Old Man of Coniston Hike | 6.5 Miles",
+                "url": "https://thewanderingwildflower.co.uk/old-man-coniston-hike/",
+                "snippet": "The Old Man of Coniston is the 12th highest peak in England and well worth a climb. This 6.5 mile walk also includes Brim Fell and Low Water, as ...",
+                "full_characters": 14791,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/ba73b9056035e5a13e4ff0a59706e873260b3d06664ab6b14e4ae515a313914e.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "Old Man of Coniston - All You SHOULD Know Before ...",
+                "url": "https://www.tripadvisor.com/Attraction_Review-g186323-d1045346-Reviews-Old_Man_of_Coniston-Coniston_Lake_District_Cumbria_England.html",
+                "snippet": "The first section of the most direct route to the top of the Old Man of Coniston is relatively gentle. The hardest part is really the last km or so when you ...",
+                "full_characters": 291,
+                "returned_characters": 291,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/5582b7ed0a4dc4478a78f20fec599709022d86b83446c1dc7202d848438b6a8a.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Old Man of Coniston (10.3km)",
+                "url": "https://justanormalmum.home.blog/2023/02/20/old-man-of-coniston-10-3km/",
+                "snippet": "Distance – 10.3km not an easy walk for little ones, includes some scrambling. · Highest Point – 802m Old Man of Coniston, 778m Dow Crag, 682m ...",
+                "full_characters": 5011,
+                "returned_characters": 5011,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/900d09a04bbdc9685c8870820a13be06850b9603496a352f22e7652223fdbf09.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "Old Man of Coniston",
+                "url": "https://en.wikipedia.org/wiki/Old_Man_of_Coniston",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/08b304e1c04c4b869aa5804d3f54b7046f7f28181771a5f744c825606fb8eb56.md",
+                "full_characters": 22921,
+                "returned_characters": 12000,
+                "jina_content_sha256": "57b16eea78fde0cd44ea0e26cbea1ae3e14ce5f8fb360ddcafabc84279b0a07e",
+                "jina_input_characters": 12000,
+                "public_input_signature": "79589627a3418c56a4bc2a30383a09f985bd5517bddc20911f57e2bfb4272217",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/79589627a3418c56a4bc2a30383a09f985bd5517bddc20911f57e2bfb4272217.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The parent range of Coniston Old Man is the Lake District.\n- It is part of the Southern Fells within the Lake District.\n- Coniston Old Man is the highest point in the Furness Fells.\n- The peak is also referred to as the Old Man of Coniston.\n- It lies in the historic county of Lancashire, now in Cumbria, England.\n- The mountain is part of the watershed between Coniston Water and the Duddon Valley.",
+                "input_tokens": 3655,
+                "output_tokens": 98,
+                "total_tokens": 3753,
+                "finish_reason": "stop",
+                "generation_seconds": 3.288165,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "The Ultimate Guide to Climbing the Old Man of Coniston",
+                "url": "https://www.roamwithross.com/guides/lake-district/old-man-of-coniston-hike-guide",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/c134493038709b8f896d593a3b7785654f690b291abb83ce0dce0fc0b214f31b.md",
+                "full_characters": 19591,
+                "returned_characters": 12000,
+                "jina_content_sha256": "fbd1f2cdc75d12c68dc46b14c62c2919b7b86b27af099b223f0db7f9e00ea599",
+                "jina_input_characters": 12000,
+                "public_input_signature": "e1f6eb265ba174cc9e8cebc3c5585f0f475027bff1be4454bc9e0df4bb357199",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/e1f6eb265ba174cc9e8cebc3c5585f0f475027bff1be4454bc9e0df4bb357199.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Old Man of Coniston is a fell in the Lake District, standing at 803 meters (2,634 feet).\n- It is part of a group of fells in the Coniston area, including Brown Pike, Buck Pike, Dow Crag, and Swirl How.\n- The article describes multiple hiking routes to the summit, including one via Brown Pike.\n- Brown Pike is mentioned as a nearby and earlier summit on the ridge route to the Old Man of Coniston.\n- The page does not explicitly state that Brown Pike is the parent peak of the Old Man of Coniston.\n- No direct mention of a \"parent peak\" relationship is made in the content.",
+                "input_tokens": 3593,
+                "output_tokens": 142,
+                "total_tokens": 3735,
+                "finish_reason": "stop",
+                "generation_seconds": 4.43222,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "Old Man of Coniston Hike | 6.5 Miles",
+                "url": "https://thewanderingwildflower.co.uk/old-man-coniston-hike/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/ba73b9056035e5a13e4ff0a59706e873260b3d06664ab6b14e4ae515a313914e.md",
+                "full_characters": 14791,
+                "returned_characters": 12000,
+                "jina_content_sha256": "d3b66662214cdf93908cc25a4d354d67683f8feb02e6fc8a7af04f69e6e7cbfb",
+                "jina_input_characters": 12000,
+                "public_input_signature": "85d4725ce6ee40bb47c05f53fc02ad181fc986d1e8d7cf1e340bb4d2bf8385e6",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/85d4725ce6ee40bb47c05f53fc02ad181fc986d1e8d7cf1e340bb4d2bf8385e6.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Old Man of Coniston is the 12th highest peak in England.\n- It is located to the north-east of Coniston Water and has an elevation of 803 meters.\n- The hike includes nearby peaks such as Brim Fell and Low Water.\n- The route involves abandoned slate mines that have been worked since the 13th Century.\n- The Old Man of Coniston is part of a circular walk in the Lake District.\n- The article does not mention a specific \"parent peak\" of the Old Man of Coniston.",
+                "input_tokens": 3815,
+                "output_tokens": 114,
+                "total_tokens": 3929,
+                "finish_reason": "stop",
+                "generation_seconds": 3.743582,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "Old Man of Coniston - All You SHOULD Know Before ...",
+                "url": "https://www.tripadvisor.com/Attraction_Review-g186323-d1045346-Reviews-Old_Man_of_Coniston-Coniston_Lake_District_Cumbria_England.html",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/5582b7ed0a4dc4478a78f20fec599709022d86b83446c1dc7202d848438b6a8a.md",
+                "full_characters": 291,
+                "returned_characters": 291,
+                "jina_content_sha256": "0e359ade1cf9366dec911e0f3854bc98929dcd38162d99f9de8f22096d433778",
+                "jina_input_characters": 291,
+                "public_input_signature": "ad2d7e8ee0c3c3f0b6991d0e63e3b64bdefd8a23da0bfc24982d8cbb7bd5782a",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/ad2d7e8ee0c3c3f0b6991d0e63e3b64bdefd8a23da0bfc24982d8cbb7bd5782a.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "The provided webpage does not contain information about the parent peak of Coniston Old Man.",
+                "input_tokens": 360,
+                "output_tokens": 18,
+                "total_tokens": 378,
+                "finish_reason": "stop",
+                "generation_seconds": 0.531808,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Old Man of Coniston (10.3km)",
+                "url": "https://justanormalmum.home.blog/2023/02/20/old-man-of-coniston-10-3km/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/900d09a04bbdc9685c8870820a13be06850b9603496a352f22e7652223fdbf09.md",
+                "full_characters": 5011,
+                "returned_characters": 5011,
+                "jina_content_sha256": "7be873a1ca668073f37d382e527456f7a3eb9aeab9b4745e3231108002e6270f",
+                "jina_input_characters": 5011,
+                "public_input_signature": "0a1594212122736e61d59a3693a05abb3bb18dd3f463a8b939b9a32df106e143",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/0a1594212122736e61d59a3693a05abb3bb18dd3f463a8b939b9a32df106e143.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Old Man of Coniston is a mountain in the English Lake District.\n- Its highest point is 802 meters.\n- The page mentions nearby peaks such as Dow Crag (778m) and Brown Pike (682m), but does not identify a specific parent peak.\n- The walk includes scrambling and is recommended for experienced hikers.\n- The route starts from Walna Scar Car Park and offers various return options.\n- No direct information about a parent peak is provided in the content.",
+                "input_tokens": 1906,
+                "output_tokens": 106,
+                "total_tokens": 2012,
+                "finish_reason": "stop",
+                "generation_seconds": 3.11426,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003755,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 4359,
+          "returned_text_sha256": "92c94aa334659740e84ac101cf114ccabe75c2ab58246441a227e7958e23d43a"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the parent range of Coniston Old Man is the Lake District. The Old Man of Coniston is the highest point in the Furness Fells, and it is part of the Southern Fells within the Lake District. The search results do not provide information about a specific parent peak, but the parent range is the Lake District.</reason>\n<answer>Lake District</answer>",
+        "response_sha256": "fe355a5e20b28ba8edae9bee7c95b9523b623b44be78b8c9e750e2c69deaf6f1",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Lake District",
+        "input_tokens": 3162,
+        "output_tokens": 84,
+        "generation_seconds": 1.5
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "Lake District",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 5880,
+    "mmsearch_output_tokens": 230,
+    "mmsearch_generation_seconds": 3.976,
+    "case_seconds": 30.953,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 28,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16988.17,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_28_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:54:31.373612+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69200, 28053",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69200",
+            "memory_free_mib": "28053"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "50384",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "229170",
+            "used_gpu_memory_mib": "18802",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 229170,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 18987614208,
+            "max_memory_allocated_bytes": 17813391872,
+            "max_memory_reserved_bytes": 18987614208
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002974,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.743,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

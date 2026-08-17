@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_783",
+  "source_split": "train",
+  "source_row_index": 783,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What does the acronym \"LBMA\" stand for?",
+  "reward_model": {
+    "ground_truth": "London Bullion Market Association",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/013_fvqa_train_783.png",
+  "image_width": 367,
+  "image_height": 672,
+  "source_image_sha256": "0375ec8abad8b63b6012263c51da68cfef0766ed095096dbac9aeb36a0de0774",
+  "normalized_png_sha256": "0375ec8abad8b63b6012263c51da68cfef0766ed095096dbac9aeb36a0de0774",
+  "eval_index": 13,
+  "selection_rank_sha256": "02042c837b481f374aa5fc72a61c81ccfa2b60b086d4c2aecfc55300b5c2564e",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

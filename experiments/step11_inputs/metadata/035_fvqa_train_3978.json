@@ -1,0 +1,25 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3978",
+  "source_split": "train",
+  "source_row_index": 3978,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is the main building contractor of this building?",
+  "reward_model": {
+    "ground_truth": "Thomas Cubitt",
+    "candidate_answers": [
+      "Thomas Cubitt"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/035_fvqa_train_3978.png",
+  "image_width": 800,
+  "image_height": 451,
+  "source_image_sha256": "7ffc467a64256e5b11e17b2a3a6fcdcddf0c1148988ec1607b0fa9e6a025a40b",
+  "normalized_png_sha256": "0d4aa1c5f901a9a7319bda608bd06b02b1f7b0c8e374dc2b38ef209df205cfe1",
+  "eval_index": 35,
+  "selection_rank_sha256": "03d9250439690a4e60af422acc00d4d902faa9efb77572f88792d8141f599cfa",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

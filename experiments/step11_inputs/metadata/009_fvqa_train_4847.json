@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4847",
+  "source_split": "train",
+  "source_row_index": 4847,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Between the opening at 9:30 AM and the close at 4:00 PM on the day shown in the image, which had a smaller price increase: the company in the image or Dollar Tree Inc. (DLTR) during the same time period?",
+  "reward_model": {
+    "ground_truth": "Gap",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/009_fvqa_train_4847.png",
+  "image_width": 1062,
+  "image_height": 603,
+  "source_image_sha256": "582753940e03c53698ced33c63c2444baf1ffe60744214f4dec67d45f7deee8d",
+  "normalized_png_sha256": "582753940e03c53698ced33c63c2444baf1ffe60744214f4dec67d45f7deee8d",
+  "eval_index": 9,
+  "selection_rank_sha256": "018018e9c586bb6ce8d1d4c8851ae455cc140a4df03a53627f8d5d1f130aca46",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

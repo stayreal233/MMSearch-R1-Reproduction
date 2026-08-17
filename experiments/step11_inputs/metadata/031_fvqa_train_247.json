@@ -1,0 +1,26 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_247",
+  "source_split": "train",
+  "source_row_index": 247,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the previous crossing of this river (crossed by the bridge) on the upstream?",
+  "reward_model": {
+    "ground_truth": "Swing Bridge",
+    "candidate_answers": [
+      "Swing Bridge",
+      "Newcastle Swing Bridge"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/031_fvqa_train_247.png",
+  "image_width": 640,
+  "image_height": 479,
+  "source_image_sha256": "e58f82a5051ebd093777b328ff160b55aa1ff903e7d4febdd8d67c162f19459b",
+  "normalized_png_sha256": "14c6ddf692a790e9bb01947ccf48dded4a0d7d084bbf25ddae58260c2c75fe3c",
+  "eval_index": 31,
+  "selection_rank_sha256": "036d8e354ce097440ed79c124faa03c17431f743a6315ba1e7e3ef43ba8ab70b",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

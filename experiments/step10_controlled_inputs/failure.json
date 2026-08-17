@@ -1,0 +1,21 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_32",
+  "source_split": "train",
+  "source_row_index": 32,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Which road, railway or canal does this place carry?",
+  "reward_model": {
+    "ground_truth": "Llangollen Canal",
+    "candidate_answers": [
+      "Llangollen Canal"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/failure.png",
+  "image_width": 800,
+  "image_height": 600,
+  "source_image_sha256": "d5666ba6f958e9411f4af3b8bb960bf214d6d8a55ba4349a02a6728f0e92dcf3",
+  "normalized_png_sha256": "57fa324f8ce32783ea8ee660ceeee7f5dc1e7f7e68e69cb05447ab36cb253419"
+}

@@ -1,0 +1,545 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "003b56bb94e83cc5fc19b5ae00a9e18fd7d4f75579488f464de3c542d6752069",
+    "eval_index": 10
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_2791",
+    "source_split": "train",
+    "source_row_index": 2791,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What is this building dedicated to?",
+    "candidate_answers": [
+      "Mohammad Ali Jinnah",
+      "Baba-e-Qaum",
+      "Muhammad Ali Jinnah",
+      "Quaid-e-Azam",
+      "Mohammed Ali Jinnah"
+    ],
+    "ground_truth": "Mohammad Ali Jinnah",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/010_fvqa_train_2791.png",
+      "width": 800,
+      "height": 600,
+      "png_sha256": "f1122fb8d81713a7c2f1fe595bc2b079864dbf3ce784cab2d9c51d5bae774782",
+      "source_sha256": "78573c20419e848c191d1e1a83d91e14df83c4d79570f68928f104fcf5af4890"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a large, ornate building with a flagpole in front, which suggests it might be a significant historical or governmental building. However, without additional context or text in the image, it's difficult to determine the exact dedication of the building. I will use the image search tool to gather more information.</reason>\n<search><img></search>",
+        "response_sha256": "c0b78bdd32a821c1f5b49587bedb6a03e5cfbdbec9061820ae07989e27321580",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 942,
+        "output_tokens": 75,
+        "generation_seconds": 1.22,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_2791",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "File:Quaid-e-Azam House of founder of Pakistan Mohammad Ali Jinnah & his sister Fatima Jinnah 09.jpg - Wikimedia Commons",
+              "Jinnah family - Wikipedia",
+              "File:Quaid E Azam House and the Pakistani Flag.jpg - Wikimedia Commons",
+              "File:House of founder of Pakistan Mohammad Ali Jinnah & his sister Fatima Jinnah 02.jpg - Wikimedia Commons",
+              "File:Quaid-e-Azam House.jpg - Wikimedia Commons"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQhTQEnbu5Zm5IckRJur0zD_rPBDWnmmdHf7qc-4pxRwxm5Cw2y",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSqPStgOCGyQ6rhytJ3Z62r-ya7bCWoPVE9A8l5Qb9wNYqRAQWX",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQsW40OQYadZf6l2AED699eIZ7_x9LBIGCCqvAs-Yr_B0xNufGG",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT7Q-G11qXWI631KelDvpZP5NvKaAnz0jAp5tdIsTHG6kUeApkj",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQRGQqJmxLABTyPkU4D_CO9GiBYlAViHI2yB6HZt8ZDk4_cizB2"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2791_1_f8d98e1384e3ca48e959.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2791_2_9213886d2f3f2a74f51d.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2791_3_d106db34b95b5547f445.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2791_4_bcd5d45b88a95ec14f19.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2791_5_2eaeba2bb4dcca03f764.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1365,
+          "returned_text_sha256": "6627a0b1de8ce16366be916b478136a2d84191ecf7597376da0f5685637c9bcc"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results suggest that the building in the image is known as the \"Quaid-e-Azam House.\" The name \"Quaid-e-Azam\" is a title given to Muhammad Ali Jinnah, the founder of Pakistan. Therefore, the building is likely dedicated to Muhammad Ali Jinnah. To confirm this, a text search is needed to gather more information about the building and its dedication.</reason>\n<text_search>What is Quaid-e-Azam House dedicated to</text_search>",
+        "response_sha256": "564610c685b957f0b100af573b75186a4e2e3f6798862aaa63f0633cf4a3dcf7",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "What is Quaid-e-Azam House dedicated to",
+        "input_tokens": 1737,
+        "output_tokens": 108,
+        "generation_seconds": 1.797,
+        "query": "What is Quaid-e-Azam House dedicated to",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "What is Quaid-e-Azam House dedicated to",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/2949244f9d6ee274a3e18a39f8fd3042a942ecc8229b135ce8e6a6cc6ddda654.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 38233,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 16822,
+              "total_output_tokens": 533,
+              "total_tokens": 17355,
+              "total_generation_seconds": 17.426659,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "Quaid-e-Azam House - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Quaid-e-Azam_House",
+                "snippet": "The Quaid-e-Azam House, also known as Flagstaff House, is a house museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "Quaid-e-Azam House The Quaid-e-Azam House, also known ...",
+                "url": "https://www.facebook.com/md.nuruzzaman.905655/posts/quaid-e-azam-house-the-quaid-e-azam-house-also-known-as-flagstaff-house-is-a-hou/669812878910958/",
+                "snippet": "Quaid-e-Azam House The Quaid-e-Azam House, also known as Flagstaff House, is a house museum dedicated to the personal life of Muhammad Ali ..."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "Quaid-e-Azam House Museum - All You SHOULD Know Before Going ...",
+                "url": "https://www.tripadvisor.com/Attraction_Review-g295414-d7258658-Reviews-Quaid_e_Azam_House_Museum-Karachi_Sindh_Province.html",
+                "snippet": "Located in the heart of Karachi, A comfortable;e small house by the standards of the day, it nevertheless shows how the founder of the country lived his life."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Our Heritage of Pakistan journey closes in Karachi. Quaid-e-Azam ...",
+                "url": "https://www.facebook.com/UBLUnitedBankLtd/posts/our-heritage-of-pakistan-journey-closes-in-karachiquaid-e-azam-house-museum-was-/1494817476019945/",
+                "snippet": "The Quaid-e-Azam House, also known as Flagstaff House, is a house museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan. Located in Karachi, Sindh, Pakistan, it was designed by British architect Moses Somake."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Quaid E Azam House Museum - VisitSilkRoad",
+                "url": "https://visitsilkroad.org/destination/quaid-e-azam-house-museum/",
+                "snippet": "The Quaid-e-Azam House, also known as Flagstaff House, is a museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "Quaid-e-Azam House - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Quaid-e-Azam_House",
+                "snippet": "The Quaid-e-Azam House, also known as Flagstaff House, is a house museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan.",
+                "full_characters": 65998,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/fcd402bec6921ac364b23045f995a85a0596e647295fb9731ff30a547708ed4d.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "Quaid-e-Azam House The Quaid-e-Azam House, also known ...",
+                "url": "https://www.facebook.com/md.nuruzzaman.905655/posts/quaid-e-azam-house-the-quaid-e-azam-house-also-known-as-flagstaff-house-is-a-hou/669812878910958/",
+                "snippet": "Quaid-e-Azam House The Quaid-e-Azam House, also known as Flagstaff House, is a house museum dedicated to the personal life of Muhammad Ali ...",
+                "full_characters": 1952,
+                "returned_characters": 1952,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/a131dfbc353b260c6d46b88bc2136c6e3724ce5ee043dc9c3b386ed82a20f651.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "Quaid-e-Azam House Museum - All You SHOULD Know Before Going ...",
+                "url": "https://www.tripadvisor.com/Attraction_Review-g295414-d7258658-Reviews-Quaid_e_Azam_House_Museum-Karachi_Sindh_Province.html",
+                "snippet": "Located in the heart of Karachi, A comfortable;e small house by the standards of the day, it nevertheless shows how the founder of the country lived his life.",
+                "full_characters": 281,
+                "returned_characters": 281,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/aa7c06906eba84fd8681b425d3a1bb2fda5a106ed0c8c9520d4de5926d8442b0.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "Our Heritage of Pakistan journey closes in Karachi. Quaid-e-Azam ...",
+                "url": "https://www.facebook.com/UBLUnitedBankLtd/posts/our-heritage-of-pakistan-journey-closes-in-karachiquaid-e-azam-house-museum-was-/1494817476019945/",
+                "snippet": "The Quaid-e-Azam House, also known as Flagstaff House, is a house museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan. Located in Karachi, Sindh, Pakistan, it was designed by British architect Moses Somake.",
+                "full_characters": 17835,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/9363470d64773bbfede4ad20ea6ae4346aa8cadfff77484ddd227e9d74e8fcbf.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Quaid E Azam House Museum - VisitSilkRoad",
+                "url": "https://visitsilkroad.org/destination/quaid-e-azam-house-museum/",
+                "snippet": "The Quaid-e-Azam House, also known as Flagstaff House, is a museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan.",
+                "full_characters": 20223,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/00fecf1403ff6de77512750a8cdc5d04e838efbb2357d76ebb080eadab016d17.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "Quaid-e-Azam House - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Quaid-e-Azam_House",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/fcd402bec6921ac364b23045f995a85a0596e647295fb9731ff30a547708ed4d.md",
+                "full_characters": 65998,
+                "returned_characters": 12000,
+                "jina_content_sha256": "8f0e21dd465c5ae08ea42435275c8b2fa59117fec9e8af6816961d0c66e4cae2",
+                "jina_input_characters": 12000,
+                "public_input_signature": "65528306622bfd91b0ab221da24bb4638e60f2cc4c6d0c85d29a954db157171d",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/65528306622bfd91b0ab221da24bb4638e60f2cc4c6d0c85d29a954db157171d.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Quaid-e-Azam House is a house museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan.\n- It is also known as Flagstaff House.\n- The house is located in Karachi, Sindh, Pakistan.\n- Jinnah lived there from 1944 until his death in 1948.\n- The building was acquired by the Pakistani government in 1985 and converted into a museum.\n- It was designed by British architect Moses Somake.",
+                "input_tokens": 4157,
+                "output_tokens": 107,
+                "total_tokens": 4264,
+                "finish_reason": "stop",
+                "generation_seconds": 3.659106,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "Quaid-e-Azam House The Quaid-e-Azam House, also known ...",
+                "url": "https://www.facebook.com/md.nuruzzaman.905655/posts/quaid-e-azam-house-the-quaid-e-azam-house-also-known-as-flagstaff-house-is-a-hou/669812878910958/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/a131dfbc353b260c6d46b88bc2136c6e3724ce5ee043dc9c3b386ed82a20f651.md",
+                "full_characters": 1952,
+                "returned_characters": 1952,
+                "jina_content_sha256": "e0738bca38d3d224ea3f621d4a222e7b453f2b38f4805887ef8e462f5e39f9d2",
+                "jina_input_characters": 1952,
+                "public_input_signature": "d67b3032a38681fccae4d9754138918a687b9b1a63a171d1be9754ad3f7545c9",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/d67b3032a38681fccae4d9754138918a687b9b1a63a171d1be9754ad3f7545c9.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Quaid-e-Azam House, also known as Flagstaff House, is a house museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan.  \n- It is located in Karachi, Sindh, Pakistan.  \n- The house was designed by British architect Moses Somake.  \n- Jinnah lived there from 1944 until his death in 1948.  \n- The Pakistani government acquired the house in 1985 and converted it into a museum.  \n- The building is made of Gizri sandstone and is owned by the Government of Pakistan.",
+                "input_tokens": 942,
+                "output_tokens": 128,
+                "total_tokens": 1070,
+                "finish_reason": "stop",
+                "generation_seconds": 3.48176,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "Quaid-e-Azam House Museum - All You SHOULD Know Before Going ...",
+                "url": "https://www.tripadvisor.com/Attraction_Review-g295414-d7258658-Reviews-Quaid_e_Azam_House_Museum-Karachi_Sindh_Province.html",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/aa7c06906eba84fd8681b425d3a1bb2fda5a106ed0c8c9520d4de5926d8442b0.md",
+                "full_characters": 281,
+                "returned_characters": 281,
+                "jina_content_sha256": "f944afb941fb99be05954f996f54e06cf787098b51710d244c807a94c574e036",
+                "jina_input_characters": 281,
+                "public_input_signature": "ab37ec9fd2c8bf393137adea0f138657915fc778e0b1978420da3650fd8bd59f",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/ab37ec9fd2c8bf393137adea0f138657915fc778e0b1978420da3650fd8bd59f.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Quaid-e-Azam House is a museum located in Karachi.  \n- It is dedicated to the founder of Pakistan.  \n- The house shows how the founder of the country lived.  \n- It is a small, historic house in the heart of Karachi.  \n- The site is reviewed on Tripadvisor as a historical attraction.  \n- The house reflects the lifestyle of Pakistan's founding leader.",
+                "input_tokens": 363,
+                "output_tokens": 82,
+                "total_tokens": 445,
+                "finish_reason": "stop",
+                "generation_seconds": 2.189287,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "Our Heritage of Pakistan journey closes in Karachi. Quaid-e-Azam ...",
+                "url": "https://www.facebook.com/UBLUnitedBankLtd/posts/our-heritage-of-pakistan-journey-closes-in-karachiquaid-e-azam-house-museum-was-/1494817476019945/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/9363470d64773bbfede4ad20ea6ae4346aa8cadfff77484ddd227e9d74e8fcbf.md",
+                "full_characters": 17835,
+                "returned_characters": 12000,
+                "jina_content_sha256": "30738934c272c0e52909c93af59677570d8e19becf4eee34572a00033be61748",
+                "jina_input_characters": 12000,
+                "public_input_signature": "27e6ad0d49e7f270980972d1e7e2a0289058f79d21cc9ec6bdfe713e0aacd342",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/27e6ad0d49e7f270980972d1e7e2a0289058f79d21cc9ec6bdfe713e0aacd342.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Quaid-e-Azam House is a museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan.\n- It is also known as Flagstaff House.\n- The house is located in Karachi, Sindh, Pakistan.\n- It was designed by British architect Moses Somake.\n- The museum preserves Jinnah's personal belongings and memories.\n- It serves as a symbol of his life and leadership, connecting generations with the vision that shaped Pakistan.",
+                "input_tokens": 7287,
+                "output_tokens": 97,
+                "total_tokens": 7384,
+                "finish_reason": "stop",
+                "generation_seconds": 4.147869,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Quaid E Azam House Museum - VisitSilkRoad",
+                "url": "https://visitsilkroad.org/destination/quaid-e-azam-house-museum/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/00fecf1403ff6de77512750a8cdc5d04e838efbb2357d76ebb080eadab016d17.md",
+                "full_characters": 20223,
+                "returned_characters": 12000,
+                "jina_content_sha256": "80cb7cc7a2aabf40a486a77c2b307e80b0109979482342fe1601940d0e30f952",
+                "jina_input_characters": 12000,
+                "public_input_signature": "c345518d3006b458ef77132fb85a7572d8b6509f1333773e267e2e7ddc3d1d63",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/c345518d3006b458ef77132fb85a7572d8b6509f1333773e267e2e7ddc3d1d63.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Quaid-e-Azam House is dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan.  \n- It is also known as Flagstaff House.  \n- The museum displays personal belongings of Jinnah, including two of his vintage cars.  \n- The house was Jinnah's residence from 1944 until his death in 1948.  \n- The Pakistani government acquired the building in 1985 and converted it into a museum.  \n- Free guided tours are available, and there is no entrance fee.",
+                "input_tokens": 4073,
+                "output_tokens": 119,
+                "total_tokens": 4192,
+                "finish_reason": "stop",
+                "generation_seconds": 3.948637,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003555,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 5024,
+          "returned_text_sha256": "49e714db3b1aa035ecfeb0dca6435bc508d31430169d0c3a1d18bb1ae0b9b79f"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the building in the image is the Quaid-e-Azam House, which is a house museum dedicated to the personal life of Muhammad Ali Jinnah, the founder of Pakistan. The information is consistent across multiple sources, confirming the dedication of the building.</reason>\n<answer>Muhammad Ali Jinnah</answer>",
+        "response_sha256": "5c35899f824d3ab2753a59b79fc1f5612f08851c1639c3649a3b120a62f55405",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Muhammad Ali Jinnah",
+        "input_tokens": 3383,
+        "output_tokens": 74,
+        "generation_seconds": 1.376
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "Muhammad Ali Jinnah",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 6062,
+    "mmsearch_output_tokens": 257,
+    "mmsearch_generation_seconds": 4.393,
+    "case_seconds": 33.609,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 10,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 17067.32,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_10_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:45:17.418148+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69204, 28049",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69204",
+            "memory_free_mib": "28049"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "49646",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "225955",
+            "used_gpu_memory_mib": "19544",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 225955,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 19765657600,
+            "max_memory_allocated_bytes": 17896383488,
+            "max_memory_reserved_bytes": 19765657600
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002234,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.675,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

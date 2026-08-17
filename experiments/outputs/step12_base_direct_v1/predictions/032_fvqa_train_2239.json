@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 32,
+  "data_id": "fvqa_train_2239",
+  "category": "search_required",
+  "source_row_index": 2239,
+  "selection_rank_sha256": "00cdf4b2ea13ad4455b247fcd2fe59f38267639ce340862976d59f8e816a03b4",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/032_fvqa_train_2239.png",
+      "bytes": 996133,
+      "sha256": "852494efae37a2d2c04499ff4d848b34930fbd1df596159eb38e9c18cd335789"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/032_fvqa_train_2239.json",
+      "bytes": 930,
+      "sha256": "90adc406a43bfc5c429b862a310d0e706b9801798e44efb2a4661cd2c29c2ba0"
+    },
+    "image_width": 800,
+    "image_height": 672,
+    "question": "What is the name of the event associated with this statue?"
+  },
+  "result": {
+    "response_text": "<answer>Statue of Liberty Day</answer>",
+    "answer": "Statue of Liberty Day",
+    "parser_mode": "answer_tags",
+    "ground_truth": "Strengthen the Arm of Liberty",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 625,
+    "output_tokens": 12,
+    "generation_seconds": 0.281347,
+    "case_seconds": 0.329069,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17404264448,
+    "cuda_peak_memory_allocated_bytes": 16847133696,
+    "cuda_peak_memory_reserved_bytes": 17404264448
+  },
+  "credentials_recorded": false
+}

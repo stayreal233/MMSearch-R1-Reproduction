@@ -1,0 +1,33 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3770",
+  "source_split": "train",
+  "source_row_index": 3770,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who occupies this building?",
+  "reward_model": {
+    "ground_truth": "Commerzbank",
+    "candidate_answers": [
+      "Commerzbank",
+      "CBK",
+      "Commerzbank Aktiengesellschaft",
+      "COBA",
+      "Commerz- and Disconto-Bank",
+      "Commerz- and Privatbank",
+      "CZB",
+      "Commerz- and Privat-Bank",
+      "Commerzbank AG"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/039_fvqa_train_3770.png",
+  "image_width": 476,
+  "image_height": 800,
+  "source_image_sha256": "df09d69b8b35df39d0a5499ce6e785cde59f81d25cbd504bce5b14d181e62541",
+  "normalized_png_sha256": "4a5f61100c3cf05a302c62dddc220a2565b7f75662f45186caff83919a4842e7",
+  "eval_index": 39,
+  "selection_rank_sha256": "0437cf7bd624d9d54bf62c2420f8878583d5076f0e952a225bee9f4b5c8a054c",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

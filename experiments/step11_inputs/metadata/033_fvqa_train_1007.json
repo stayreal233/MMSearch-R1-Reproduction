@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1007",
+  "source_split": "train",
+  "source_row_index": 1007,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What type of musical instrument is this?",
+  "reward_model": {
+    "ground_truth": "Hammond organ",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/033_fvqa_train_1007.png",
+  "image_width": 346,
+  "image_height": 336,
+  "source_image_sha256": "aa83f520f5d885c68e99186b4d3583c992b680fdf29621d842a737dc47536e19",
+  "normalized_png_sha256": "aa83f520f5d885c68e99186b4d3583c992b680fdf29621d842a737dc47536e19",
+  "eval_index": 33,
+  "selection_rank_sha256": "0379ec9a16d3f56ccd35697e91f610ea83c9ab41f8056795361ebf3c0a794bf8",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

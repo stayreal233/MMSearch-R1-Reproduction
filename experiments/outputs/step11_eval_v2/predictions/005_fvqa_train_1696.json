@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "00eaaad4b3c7867c652d82c65c42a0d5a5f0db3b04c6c0b34de6680f2ccc0e63",
+    "eval_index": 5
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_1696",
+    "source_split": "train",
+    "source_row_index": 1696,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What is the title of this drama?",
+    "candidate_answers": [],
+    "ground_truth": "River Where the Moon Rises",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/005_fvqa_train_1696.png",
+      "width": 264,
+      "height": 377,
+      "png_sha256": "62351893b0b4a3c88ae5ab66470b1f9391d4b4659bd6d52a74bcb0f04cd78e00",
+      "source_sha256": "62351893b0b4a3c88ae5ab66470b1f9391d4b4659bd6d52a74bcb0f04cd78e00"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image appears to be a poster for a Korean drama. The text at the bottom of the poster is written in Korean, and the title is likely the text at the bottom. The text reads \"달이 밝은 밤\" which translates to \"The Moonlight of the Night.\" The year \"2021.02\" suggests the release date. The visual style and the text suggest that this is the title of the drama.</reason>\n<answer>The Moonlight of the Night</answer>",
+        "response_sha256": "818245b60f798b4d9e3a8421ecdf304a090e3b593cb66ac7556fb6112d5d4a16",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "The Moonlight of the Night",
+        "input_tokens": 520,
+        "output_tokens": 107,
+        "generation_seconds": 1.642
+      }
+    ],
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "summarization_calls": 0,
+    "final_answer": "The Moonlight of the Night",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 1,
+    "action_sequence": [
+      "answer"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 0,
+      "serper_api_requests": 0,
+      "jina_network_requests": 0,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 0,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 0
+    },
+    "mmsearch_input_tokens": 520,
+    "mmsearch_output_tokens": 107,
+    "mmsearch_generation_seconds": 1.642,
+    "case_seconds": 1.664,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 5,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16014.98,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_5_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:40:48.114317+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 67380, 29873",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "67380",
+            "memory_free_mib": "29873"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "48948",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "224777",
+            "used_gpu_memory_mib": "18418",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 224777,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 18584961024,
+            "max_memory_allocated_bytes": 16792922624,
+            "max_memory_reserved_bytes": 18584961024
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002788,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.726,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1123",
+  "source_split": "train",
+  "source_row_index": 1123,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What type of aircraft is refueling the jet in the image?",
+  "reward_model": {
+    "ground_truth": "McDonnell Douglas KC-10 Extender",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/029_fvqa_train_1123.png",
+  "image_width": 1016,
+  "image_height": 672,
+  "source_image_sha256": "930612294318c7e175ce3fdfe1357245f6fb9db8b87eb2e651f1d6688c02f313",
+  "normalized_png_sha256": "930612294318c7e175ce3fdfe1357245f6fb9db8b87eb2e651f1d6688c02f313",
+  "eval_index": 29,
+  "selection_rank_sha256": "03699ab5eae64defb0caa9d62717a7b1f4fde6cb7eb725b159005ab4e9ee4083",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4614",
+  "source_split": "train",
+  "source_row_index": 4614,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Which disease led to the suspension of animal imports to the location marked in the image?",
+  "reward_model": {
+    "ground_truth": "Foot-and-mouth",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/037_fvqa_train_4614.png",
+  "image_width": 600,
+  "image_height": 328,
+  "source_image_sha256": "2ba6132af1a0e642dd22cd0ea42f445f329a9c56e5d747b599c00ced8ce31fe2",
+  "normalized_png_sha256": "2ba6132af1a0e642dd22cd0ea42f445f329a9c56e5d747b599c00ced8ce31fe2",
+  "eval_index": 37,
+  "selection_rank_sha256": "03f17476562832fd3bf57cd65c3993256c250c81a17fb035eb698c29f8f12447",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

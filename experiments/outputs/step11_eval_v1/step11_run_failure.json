@@ -1,0 +1,9 @@
+{
+  "schema_version": "mmsearch.step11.run-failure.v1",
+  "status": "failed",
+  "failed_at_utc": "2026-08-17T03:19:51.598296+00:00",
+  "stage": "example_1",
+  "eval_index": 1,
+  "error": "RuntimeError: example 1 did not satisfy healthy answered contract",
+  "credentials_recorded": false
+}

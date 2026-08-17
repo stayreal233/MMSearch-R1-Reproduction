@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "scanned_at_utc": "2026-08-16T12:51:09.595221+00:00",
+  "scope": "selected_qwen3_step9_outputs_caches_logs_and_manifests",
+  "secret_sources_checked": [
+    "SERPER_API_KEY"
+  ],
+  "secret_values_recorded": false,
+  "files_scanned": 11,
+  "total_bytes_scanned": 144683,
+  "exact_credential_matches": 0,
+  "matching_files": [],
+  "files": [
+    {
+      "path": "/root/autodl-tmp/logs/qwen3_summary_vllm.log",
+      "bytes": 82959,
+      "sha256": "34a9694f3844d0bdc5566d3eab41c250e01df46ab77e7d3f8d4218fae52cd449",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/qwen3_huggingface_revision.json",
+      "bytes": 7208,
+      "sha256": "0bfa3d41ba6ba19621911f19b1161f55cfd773290a55740a372c6b2be9e198da",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/qwen3_install_decision.json",
+      "bytes": 1879,
+      "sha256": "cb95f5dab8f1b67d8dab016974f1bb871ad246554465a170cf083bcaa7fd4cd9",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/qwen3_summary_versions.txt",
+      "bytes": 4922,
+      "sha256": "a8a6fb5567c40611b58bc9e2878a6f9cb32f7e81f75ba491e0bf352bd79f5233",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/qwen3_summary_smoke.json",
+      "bytes": 3135,
+      "sha256": "8768c255a90531bec2be6cd35c66158dcfc57c8d80a799beee186ec2821dde29",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/real_search_flow_qwen3_summary.json",
+      "bytes": 34916,
+      "sha256": "429d79e4ceb055a69c300e1ce6deac6b993670cb6952aeaec1b84ef6343ac929",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/090e37cc62aaa8d7dc58e95961bc31619bddaee25a8443b82a1ad13c5cbdc328.json",
+      "bytes": 1845,
+      "sha256": "53b7bba6286a2a05bdd7eec3112d04db82e9d9595268279b6f0e3346471b1489",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/3c9dfac45a57cc4eadd16e9c27c0cbd0fc33cdb9880e71498efa20944e8e8b67.json",
+      "bytes": 2114,
+      "sha256": "919a2907166704e72888564fd795072ca761393b6bb6a17946d8b5c2bdc2cb52",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/8bd408019a860254a9f4f43c764590e00ad1c803919be87f3b67e034b93b323b.json",
+      "bytes": 1840,
+      "sha256": "ab41e5bf0e962c564042900d46df6bb182426a01a13de04e31f4b541cb7f0395",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/b53bf3e5f5acb6989cca9956d3c6c3405ffda5699665e7bbf26b997197a4ad2c.json",
+      "bytes": 1839,
+      "sha256": "85e04ceedf1522db91c70a9feaf1accdb2c1357c7f79fc5c50e2ea72d99ad574",
+      "credential_match": false
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/f830c4af208b5996a6d2945d0f23969992c902f8d57edc13b192fee9ad693685.json",
+      "bytes": 2026,
+      "sha256": "62ea76146ff281c87113b7ef889ba629e2eac68e4e61e0f3a1f456cf6cf2316a",
+      "credential_match": false
+    }
+  ],
+  "pass": true
+}

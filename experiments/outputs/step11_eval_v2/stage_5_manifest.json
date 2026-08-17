@@ -1,0 +1,232 @@
+{
+  "schema_version": "mmsearch.step11.stage.v2",
+  "status": "passed_with_sample_failure_isolation",
+  "stage_target": 5,
+  "completed_at_utc": "2026-08-17T03:40:48.341142+00:00",
+  "protocol": {
+    "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step11_eval_protocol_v2.json",
+    "bytes": 4321,
+    "sha256": "d8d74572a8b369b37f44a66bc314d0e3c2e6bfef081122326a34e287ad92ff17"
+  },
+  "input_manifest": {
+    "path": "/root/autodl-tmp/mmsearch_step11_inputs/eval_manifest.json",
+    "bytes": 39827,
+    "sha256": "dbc28df74f3a1a0b87fd435255fda8ed73455dfe3a3d465dce9539fad37564ab"
+  },
+  "runner": {
+    "wrapper_v2": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step11_batch_eval_qwen3_v2.py",
+      "bytes": 17058,
+      "sha256": "7eb98fcd3aa98bdf83fcc92d9e5ff6b405a874c8b90b9cb163a4f326f715aca1"
+    },
+    "implementation": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step11_batch_eval_qwen3.py",
+      "bytes": 29609,
+      "sha256": "c217da46af089fcc709065b69d951c75ca425ac2b27ae64ea2f8b159fb5b086b"
+    }
+  },
+  "prediction_count": 5,
+  "prediction_records": [
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions/001_fvqa_train_4724.json",
+      "bytes": 24815,
+      "sha256": "3749742c05ab1918abc487e38c95c39bbdca9e65b8bdad2ab6eb544f105f473f",
+      "eval_index": 1
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions/002_fvqa_train_2759.json",
+      "bytes": 6305,
+      "sha256": "c40a9e31b3303011b7e1eb46563ca1078ffb20feddff99ad1ff03618a2dac2d1",
+      "eval_index": 2
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions/003_fvqa_train_3141.json",
+      "bytes": 26588,
+      "sha256": "f14cd6f970a43620bbad4e773e4b461211ad940ac20c399f67b7ffaa85825e34",
+      "eval_index": 3
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions/004_fvqa_train_1580.json",
+      "bytes": 28093,
+      "sha256": "bb9e7c122c5c7128c957efbc04d38a13d3d6821d10ce2938c875ea476a55ab98",
+      "eval_index": 4
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions/005_fvqa_train_1696.json",
+      "bytes": 6415,
+      "sha256": "3e3054a1368993326c16dde47b3490229f13d8bfaf640dd99a28e0d42f22fd65",
+      "eval_index": 5
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions_5.jsonl",
+      "bytes": 68711,
+      "sha256": "7a436b7e4c9e84628f21b4be48a3ae36a04f54de7efcb5ae00efe52d16d8ceba"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/metrics_5.json",
+      "bytes": 2020,
+      "sha256": "f76803e0b5a254ef55057633f97441b97a8a76f73de05a976d222b7df8ce940f"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/failure_summary_5.json",
+      "bytes": 2871,
+      "sha256": "99d4ce5b34a27373a46cbb9ef77e901fdbba9dc50c9e8377ac17028417a5af45"
+    }
+  ],
+  "metrics": {
+    "schema_version": "mmsearch.step11.metrics.v1",
+    "evaluated": 5,
+    "correct": 1,
+    "accuracy_percent": 20.0,
+    "image_search_calls": 3,
+    "text_search_calls": 3,
+    "total_search_calls": 6,
+    "search_ratio_percent": 60.0,
+    "average_turns": 1.8,
+    "route_counts": {
+      "answer": 2,
+      "image_search -> text_search": 2,
+      "image_search -> text_search -> answer": 1
+    },
+    "categories": {
+      "search_free": {
+        "count": 3,
+        "correct": 0,
+        "accuracy_percent": 0.0,
+        "total_search_calls": 4,
+        "search_ratio_percent": 66.6667,
+        "average_turns": 1.6667
+      },
+      "search_required": {
+        "count": 2,
+        "correct": 1,
+        "accuracy_percent": 50.0,
+        "total_search_calls": 2,
+        "search_ratio_percent": 50.0,
+        "average_turns": 2.0
+      }
+    },
+    "network_and_cache_totals": {
+      "external_network_requests": 33,
+      "thumbnail_network_attempts": 15,
+      "thumbnail_cache_hits": 0,
+      "serper_api_requests": 3,
+      "serper_cache_hits": 0,
+      "jina_network_requests": 15,
+      "jina_cache_hits": 0,
+      "local_qwen_completion_requests": 5,
+      "qwen_summary_requests": 5,
+      "qwen_summary_cache_hits": 0,
+      "tool_http_requests_total": 38
+    },
+    "infrastructure_failures": 2,
+    "non_answer_terminal_count": 2,
+    "network_count_incomplete": 2,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+    "search_ratio_definition": "sum(total_search_calls) / (N * 2) * 100",
+    "natural_policy_only": true,
+    "controlled_step10_B_C_excluded": true,
+    "sample_failure_isolation_enabled": true,
+    "sample_failure_count": 2,
+    "sample_failure_rate_percent": 40.0,
+    "healthy_answered_count": 3,
+    "healthy_answered_correct": 1,
+    "healthy_answered_accuracy_percent": 33.3333,
+    "end_to_end_failures_counted_in_denominator": true,
+    "component_failure_counts": {
+      "hard_stage:text_search_jina_qwen": 2,
+      "image_item_failures": 3,
+      "jina_page_failures": 2,
+      "qwen_summary_failures": 1,
+      "serper_component_failures": 0
+    }
+  },
+  "failure_summary_digest": {
+    "path": "/root/autodl-tmp/outputs/step11_eval_v2/failure_summary_5.json",
+    "bytes": 2871,
+    "sha256": "99d4ce5b34a27373a46cbb9ef77e901fdbba9dc50c9e8377ac17028417a5af45"
+  },
+  "qwen3_health_after_stage": {
+    "success": true,
+    "source": "qwen3_summary",
+    "status_code": 200,
+    "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+    "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+    "model_available": true,
+    "available_models": [
+      "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    ],
+    "latency_seconds": 0.00347,
+    "thinking_enabled": false
+  },
+  "gpu_snapshot_after_stage": {
+    "label": "step11_stage_5_complete_same_gpu",
+    "captured_at_utc": "2026-08-17T03:40:48.264277+00:00",
+    "nvidia_smi": {
+      "gpu_columns": [
+        "index",
+        "name",
+        "memory_total_mib",
+        "memory_used_mib",
+        "memory_free_mib"
+      ],
+      "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 67380, 29873",
+      "gpus": [
+        {
+          "index": "0",
+          "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+          "memory_total_mib": "97887",
+          "memory_used_mib": "67380",
+          "memory_free_mib": "29873"
+        }
+      ],
+      "compute_processes": [
+        {
+          "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+          "pid": "203748",
+          "used_gpu_memory_mib": "48948",
+          "owner": "summary_service"
+        },
+        {
+          "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+          "pid": "224777",
+          "used_gpu_memory_mib": "18418",
+          "owner": "mmsearch_current"
+        }
+      ]
+    },
+    "torch_process": {
+      "pid": 224777,
+      "cuda_initialized": true,
+      "cuda_visible_devices": "0",
+      "devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+          "memory_allocated_bytes": 16592889856,
+          "memory_reserved_bytes": 18584961024,
+          "max_memory_allocated_bytes": 16792922624,
+          "max_memory_reserved_bytes": 18584961024
+        }
+      ],
+      "current_device": 0
+    }
+  },
+  "serialized_evidence_scan": {
+    "files_scanned": 8,
+    "json_files_scanned": 7,
+    "text_files_scanned": 1,
+    "forbidden_json_key_paths": [],
+    "data_image_base64_matches": 0,
+    "long_base64_matches": 0,
+    "raw_jina_marker_matches": 0,
+    "authorization_marker_matches": 0,
+    "known_credential_value_matches": 0,
+    "pass": true
+  },
+  "ordinary_sample_failures_allowed": true,
+  "global_hard_failures": 0,
+  "credentials_recorded": false
+}

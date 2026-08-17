@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 6,
+  "data_id": "fvqa_train_3969",
+  "category": "search_required",
+  "source_row_index": 3969,
+  "selection_rank_sha256": "002e067b67d6e066453c19b176246790feb35ba9c0134de9e8a3abe9df9aacad",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/006_fvqa_train_3969.png",
+      "bytes": 845733,
+      "sha256": "dc00fbae25644b7d961de2ff38b0847515be09d489db34f9d3bc71e99f207c4c"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/006_fvqa_train_3969.json",
+      "bytes": 943,
+      "sha256": "e44e6b8ff7d8794c52c0ae60883236d03e1ff0de318437db93e0cd5a3f4fbf94"
+    },
+    "image_width": 800,
+    "image_height": 600,
+    "question": "where is the highest point of this mountain?"
+  },
+  "result": {
+    "response_text": "<answer>The highest point of this mountain is at the top of the image, where the slope appears to be steepest and most rugged.</answer>",
+    "answer": "The highest point of this mountain is at the top of the image, where the slope appears to be steepest and most rugged.",
+    "parser_mode": "answer_tags",
+    "ground_truth": "Sveti Jure",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 616,
+    "output_tokens": 32,
+    "generation_seconds": 1.158903,
+    "case_seconds": 1.264493,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17104371712,
+    "cuda_peak_memory_allocated_bytes": 16843538432,
+    "cuda_peak_memory_reserved_bytes": 17104371712
+  },
+  "credentials_recorded": false
+}

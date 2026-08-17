@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4082",
+  "source_split": "train",
+  "source_row_index": 4082,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Which university is one of the organizers of this conference?",
+  "reward_model": {
+    "ground_truth": "Yenepoya University",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/022_fvqa_train_4082.png",
+  "image_width": 1650,
+  "image_height": 635,
+  "source_image_sha256": "701373658f6ba43459b4e2559a1133f55e19cae16546ebb31886e79ee56a8eb4",
+  "normalized_png_sha256": "701373658f6ba43459b4e2559a1133f55e19cae16546ebb31886e79ee56a8eb4",
+  "eval_index": 22,
+  "selection_rank_sha256": "009ac0376317e405d810c14323316ae4c3c4e1a116a113fe092330102e01e562",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

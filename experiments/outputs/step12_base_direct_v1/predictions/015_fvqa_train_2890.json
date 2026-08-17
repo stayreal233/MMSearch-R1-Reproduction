@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 15,
+  "data_id": "fvqa_train_2890",
+  "category": "search_free",
+  "source_row_index": 2890,
+  "selection_rank_sha256": "021e01837485698e9f371c24acb855f96e0187905212bdde5223ffe9ba353059",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/015_fvqa_train_2890.png",
+      "bytes": 395330,
+      "sha256": "3b265ef8321357f48aaee8e4db26e88fd66a81d8c28079c6e7400913b0f901a2"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/015_fvqa_train_2890.json",
+      "bytes": 1168,
+      "sha256": "dc27accd1b72f6de48f43d76787d262f68a8a09deaef3fc21d65f573b78d37e9"
+    },
+    "image_width": 800,
+    "image_height": 600,
+    "question": "Which city or region does this lake locate in?"
+  },
+  "result": {
+    "response_text": "<answer>The lake is located in the Azores, Portugal.</answer>",
+    "answer": "The lake is located in the Azores, Portugal.",
+    "parser_mode": "answer_tags",
+    "ground_truth": "Azores",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 617,
+    "output_tokens": 16,
+    "generation_seconds": 0.323181,
+    "case_seconds": 0.362762,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17521704960,
+    "cuda_peak_memory_allocated_bytes": 16843914240,
+    "cuda_peak_memory_reserved_bytes": 17521704960
+  },
+  "credentials_recorded": false
+}

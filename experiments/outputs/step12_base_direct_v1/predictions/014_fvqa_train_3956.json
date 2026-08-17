@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 14,
+  "data_id": "fvqa_train_3956",
+  "category": "search_required",
+  "source_row_index": 3956,
+  "selection_rank_sha256": "00499ab75fb4f6dc5c74ba022c142212d166c7d8a36d2c4a6b845a5121b760ba",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/014_fvqa_train_3956.png",
+      "bytes": 573682,
+      "sha256": "1b1b46427af13e14b3766e39a58149afc8b7ca7678cb5a4a21983fafe3334ed2"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/014_fvqa_train_3956.json",
+      "bytes": 911,
+      "sha256": "f48a8b54c75a6d533a16f29fa159216ff17828b895b684ba000e0e0c1456b34c"
+    },
+    "image_width": 800,
+    "image_height": 599,
+    "question": "What is this mountain named after?"
+  },
+  "result": {
+    "response_text": "<answer> Monserrate</answer>",
+    "answer": "Monserrate",
+    "parser_mode": "answer_tags",
+    "ground_truth": "Montserrat",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 614,
+    "output_tokens": 10,
+    "generation_seconds": 0.236506,
+    "case_seconds": 0.28508,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17521704960,
+    "cuda_peak_memory_allocated_bytes": 16842786816,
+    "cuda_peak_memory_reserved_bytes": 17521704960
+  },
+  "credentials_recorded": false
+}

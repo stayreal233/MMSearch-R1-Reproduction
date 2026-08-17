@@ -1,0 +1,202 @@
+{
+  "schema_version": "mmsearch.step11.completion.v2",
+  "status": "passed_with_sample_failure_isolation",
+  "step": 11,
+  "completed_at_utc": "2026-08-17T04:03:14.844466+00:00",
+  "completed_examples": 50,
+  "protocol": {
+    "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step11_eval_protocol_v2.json",
+    "bytes": 4321,
+    "sha256": "d8d74572a8b369b37f44a66bc314d0e3c2e6bfef081122326a34e287ad92ff17"
+  },
+  "input_manifest": {
+    "path": "/root/autodl-tmp/mmsearch_step11_inputs/eval_manifest.json",
+    "bytes": 39827,
+    "sha256": "dbc28df74f3a1a0b87fd435255fda8ed73455dfe3a3d465dce9539fad37564ab"
+  },
+  "runner": {
+    "wrapper_v2": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step11_batch_eval_qwen3_v2.py",
+      "bytes": 17058,
+      "sha256": "7eb98fcd3aa98bdf83fcc92d9e5ff6b405a874c8b90b9cb163a4f326f715aca1"
+    },
+    "implementation": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step11_batch_eval_qwen3.py",
+      "bytes": 29609,
+      "sha256": "c217da46af089fcc709065b69d951c75ca425ac2b27ae64ea2f8b159fb5b086b"
+    }
+  },
+  "stages": {
+    "5": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/stage_5_manifest.json",
+      "bytes": 7800,
+      "sha256": "9ab2f11cbc762cf72594dcb5bc529a7278fa9259335d4f6aa32af616045fad0d"
+    },
+    "20": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/stage_20_manifest.json",
+      "bytes": 11436,
+      "sha256": "b7e97c7641b3987cda180453176fd00758ea4cec2ba4fc15b37796195d942b23"
+    },
+    "50": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/stage_50_manifest.json",
+      "bytes": 19100,
+      "sha256": "cb3926c330117c4254d3db8c6d869bbd4c51d1eea797d4963ee9e96769fa51ae"
+    }
+  },
+  "final_metrics": {
+    "schema_version": "mmsearch.step11.metrics.v1",
+    "evaluated": 50,
+    "correct": 20,
+    "accuracy_percent": 40.0,
+    "image_search_calls": 40,
+    "text_search_calls": 30,
+    "total_search_calls": 70,
+    "search_ratio_percent": 70.0,
+    "average_turns": 2.18,
+    "route_counts": {
+      "answer": 10,
+      "image_search": 4,
+      "image_search -> answer": 6,
+      "image_search -> text_search": 7,
+      "image_search -> text_search -> answer": 23
+    },
+    "categories": {
+      "search_free": {
+        "count": 25,
+        "correct": 9,
+        "accuracy_percent": 36.0,
+        "total_search_calls": 29,
+        "search_ratio_percent": 58.0,
+        "average_turns": 1.84
+      },
+      "search_required": {
+        "count": 25,
+        "correct": 11,
+        "accuracy_percent": 44.0,
+        "total_search_calls": 41,
+        "search_ratio_percent": 82.0,
+        "average_turns": 2.52
+      }
+    },
+    "network_and_cache_totals": {
+      "external_network_requests": 379,
+      "thumbnail_network_attempts": 199,
+      "thumbnail_cache_hits": 1,
+      "serper_api_requests": 30,
+      "serper_cache_hits": 0,
+      "jina_network_requests": 150,
+      "jina_cache_hits": 0,
+      "local_qwen_completion_requests": 120,
+      "qwen_summary_requests": 120,
+      "qwen_summary_cache_hits": 0,
+      "tool_http_requests_total": 499
+    },
+    "infrastructure_failures": 11,
+    "non_answer_terminal_count": 11,
+    "network_count_incomplete": 6,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+    "search_ratio_definition": "sum(total_search_calls) / (N * 2) * 100",
+    "natural_policy_only": true,
+    "controlled_step10_B_C_excluded": true,
+    "sample_failure_isolation_enabled": true,
+    "sample_failure_count": 11,
+    "sample_failure_rate_percent": 22.0,
+    "healthy_answered_count": 39,
+    "healthy_answered_correct": 20,
+    "healthy_answered_accuracy_percent": 51.2821,
+    "end_to_end_failures_counted_in_denominator": true,
+    "component_failure_counts": {
+      "hard_stage:image_search": 4,
+      "hard_stage:text_search_jina_qwen": 7,
+      "image_item_failures": 26,
+      "jina_page_failures": 6,
+      "qwen_summary_failures": 3,
+      "serper_component_failures": 0
+    }
+  },
+  "final_failure_summary": {
+    "path": "/root/autodl-tmp/outputs/step11_eval_v2/failure_summary.json",
+    "bytes": 18233,
+    "sha256": "386271d9c4e9f7e8b19b929c2bc87ed264a9db82bd78320b4badd52e4eff9c07"
+  },
+  "final_predictions": {
+    "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions.jsonl",
+    "bytes": 750316,
+    "sha256": "beda0f6a02f750b89a5a53cb9f39dcaac56dbe047e2fb1f4ecc01290d6ac48ff"
+  },
+  "state": {
+    "path": "/root/autodl-tmp/outputs/step11_eval_v2/state.json",
+    "bytes": 13747,
+    "sha256": "9885f17f47948d100adfa608a2e7e9471385fee3c2f304f47c77f08fdc3e8961"
+  },
+  "qwen3_health_after": {
+    "success": true,
+    "source": "qwen3_summary",
+    "status_code": 200,
+    "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+    "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+    "model_available": true,
+    "available_models": [
+      "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    ],
+    "latency_seconds": 0.002864,
+    "thinking_enabled": false
+  },
+  "gpu_snapshot_after": {
+    "label": "step11_stage_50_complete_same_gpu",
+    "captured_at_utc": "2026-08-17T04:03:14.462434+00:00",
+    "nvidia_smi": {
+      "gpu_columns": [
+        "index",
+        "name",
+        "memory_total_mib",
+        "memory_used_mib",
+        "memory_free_mib"
+      ],
+      "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 71202, 26051",
+      "gpus": [
+        {
+          "index": "0",
+          "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+          "memory_total_mib": "97887",
+          "memory_used_mib": "71202",
+          "memory_free_mib": "26051"
+        }
+      ],
+      "compute_processes": [
+        {
+          "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+          "pid": "203748",
+          "used_gpu_memory_mib": "50384",
+          "owner": "summary_service"
+        },
+        {
+          "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+          "pid": "229170",
+          "used_gpu_memory_mib": "20804",
+          "owner": "mmsearch_current"
+        }
+      ]
+    },
+    "torch_process": {
+      "pid": 229170,
+      "cuda_initialized": true,
+      "cuda_visible_devices": "0",
+      "devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+          "memory_allocated_bytes": 16592889856,
+          "memory_reserved_bytes": 21086863360,
+          "max_memory_allocated_bytes": 17720869888,
+          "max_memory_reserved_bytes": 21086863360
+        }
+      ],
+      "current_device": 0
+    }
+  },
+  "sample_failure_isolation_enabled": true,
+  "natural_policy_only": true,
+  "controlled_step10_B_C_excluded": true,
+  "credentials_recorded": false
+}

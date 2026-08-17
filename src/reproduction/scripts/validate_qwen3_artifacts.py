@@ -1,0 +1,534 @@
+#!/usr/bin/env python3
+"""Strictly validate the pinned Qwen3 download and record its environment."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.metadata
+import json
+import os
+import platform
+import re
+import shutil
+import struct
+import subprocess
+import sys
+import tempfile
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+MODEL_REPO = "Qwen/Qwen3-32B-FP8"
+EXPECTED_REVISION = "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+EXPECTED_FILE_COUNT = 17
+EXPECTED_TOTAL_BYTES = 34_338_579_454
+EXPECTED_INDEX_TOTAL_SIZE = 34_335_541_248
+HASH_CHUNK_BYTES = 16 * 1024 * 1024
+EXPECTED_FILES = {
+    ".gitattributes": 1_570,
+    "LICENSE": 11_343,
+    "README.md": 17_499,
+    "config.json": 896,
+    "generation_config.json": 214,
+    "merges.txt": 1_671_853,
+    "model-00001-of-00007.safetensors": 4_969_518_200,
+    "model-00002-of-00007.safetensors": 4_971_089_136,
+    "model-00003-of-00007.safetensors": 4_876_704_184,
+    "model-00004-of-00007.safetensors": 4_876_704_184,
+    "model-00005-of-00007.safetensors": 4_876_704_184,
+    "model-00006-of-00007.safetensors": 4_876_704_184,
+    "model-00007-of-00007.safetensors": 4_875_143_568,
+    "model.safetensors.index.json": 99_220,
+    "tokenizer.json": 11_422_654,
+    "tokenizer_config.json": 9_732,
+    "vocab.json": 2_776_833,
+}
+EXPECTED_SHARDS = tuple(
+    f"model-{number:05d}-of-00007.safetensors" for number in range(1, 8)
+)
+EXPECTED_SHARD_SHA256 = {
+    "model-00001-of-00007.safetensors": "da9c68c52d48dd8671566ae5e7068521fca20622c2663fcec9b57e7e2dbf9add",
+    "model-00002-of-00007.safetensors": "1343763a405e48de2b058ec46a015a4e449ecc5d72a277ac98b154c6645bb0bd",
+    "model-00003-of-00007.safetensors": "fbe4f078f9f5147609cce1a9cc669eddbaed618a4f9c741d744cb35e1d06d7f6",
+    "model-00004-of-00007.safetensors": "69fc087a0c4ec20b611b854c7d1ea4f0481d2088187fdb7b2232dc74ef879119",
+    "model-00005-of-00007.safetensors": "bbdd9ad55fa7e9df335985ed1ae99253d4e13c017e7b6e1d47b810157ace7bd2",
+    "model-00006-of-00007.safetensors": "d149ccf3d3c15cc0b207096f31a9cffd316d46af7eae6e6a46c1a1d768d2a0b9",
+    "model-00007-of-00007.safetensors": "7eba6f7914d4bf020d28886d6a17c039dfdb092d1ba6ca105ed7a4dae81b1edf",
+}
+
+
+def parse_args() -> argparse.Namespace:
+    repo_root = Path(__file__).resolve().parents[2]
+    parser = argparse.ArgumentParser(
+        description="Validate the exact pinned Qwen3-32B-FP8 local snapshot."
+    )
+    parser.add_argument(
+        "--model-dir",
+        type=Path,
+        default=Path("/root/autodl-tmp/models/Qwen3-32B-FP8"),
+    )
+    parser.add_argument("--expected-revision", default=EXPECTED_REVISION)
+    parser.add_argument(
+        "--revision-output",
+        type=Path,
+        default=repo_root / "reproduction/env/qwen3_huggingface_revision.json",
+    )
+    parser.add_argument(
+        "--versions-output",
+        type=Path,
+        default=repo_root / "reproduction/env/qwen3_summary_versions.txt",
+    )
+    return parser.parse_args()
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise RuntimeError(message)
+
+
+def load_json(path: Path) -> Any:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"Invalid JSON file: {path}: {type(exc).__name__}") from exc
+
+
+def atomic_write(path: Path, text: str, *, mode: int = 0o644) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_name: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary_name = handle.name
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary_name, mode)
+        os.replace(temporary_name, path)
+        directory_fd = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            os.fsync(directory_fd)
+        finally:
+            os.close(directory_fd)
+    finally:
+        if temporary_name is not None:
+            try:
+                Path(temporary_name).unlink()
+            except FileNotFoundError:
+                pass
+
+
+def validate_repository_files(model_dir: Path) -> list[dict[str, Any]]:
+    require(model_dir.is_dir(), f"Model directory does not exist: {model_dir}")
+    incomplete = sorted(
+        str(path.relative_to(model_dir))
+        for path in model_dir.rglob("*")
+        if ".incomplete" in path.name
+    )
+    require(not incomplete, f"Incomplete download artifacts remain: {incomplete}")
+
+    top_level_files = {
+        path.name: path for path in model_dir.iterdir() if path.is_file()
+    }
+    require(
+        set(top_level_files) == set(EXPECTED_FILES),
+        "Top-level repository file set differs from the pinned 17-file snapshot; "
+        f"missing={sorted(set(EXPECTED_FILES) - set(top_level_files))}, "
+        f"unexpected={sorted(set(top_level_files) - set(EXPECTED_FILES))}",
+    )
+    require(len(top_level_files) == EXPECTED_FILE_COUNT, "Repository file count mismatch")
+
+    records: list[dict[str, Any]] = []
+    for name in sorted(EXPECTED_FILES):
+        path = top_level_files[name]
+        require(not path.is_symlink(), f"Repository file must not be a symlink: {name}")
+        size = path.stat().st_size
+        require(
+            size == EXPECTED_FILES[name],
+            f"Size mismatch for {name}: expected {EXPECTED_FILES[name]}, got {size}",
+        )
+        records.append({"path": name, "bytes": size})
+
+    total_bytes = sum(record["bytes"] for record in records)
+    require(total_bytes == EXPECTED_TOTAL_BYTES, "Repository total byte count mismatch")
+    return records
+
+
+def validate_revision_metadata(model_dir: Path, revision: str) -> dict[str, Any]:
+    require(
+        re.fullmatch(r"[0-9a-f]{40}", revision) is not None,
+        "Expected revision must be a complete lowercase 40-character commit SHA",
+    )
+    cache_root = model_dir / ".cache/huggingface"
+    tree_path = cache_root / "trees" / f"{revision}.json"
+    tree = load_json(tree_path)
+    require(tree.get("format_version") == 1, "Unexpected Hugging Face tree format")
+    tree_files = tree.get("files")
+    require(isinstance(tree_files, dict), "Hugging Face tree manifest has no file map")
+    require(
+        set(tree_files) == set(EXPECTED_FILES),
+        "Hugging Face tree manifest does not describe the pinned file set",
+    )
+    for name, expected_size in EXPECTED_FILES.items():
+        entry = tree_files[name]
+        require(isinstance(entry, dict), f"Invalid tree entry for {name}")
+        require(entry.get("size") == expected_size, f"Tree size mismatch for {name}")
+
+    metadata_dir = cache_root / "download"
+    revisions: set[str] = set()
+    object_ids: dict[str, str] = {}
+    for name in EXPECTED_FILES:
+        metadata_path = metadata_dir / f"{name}.metadata"
+        require(metadata_path.is_file(), f"Missing download metadata for {name}")
+        lines = metadata_path.read_text(encoding="utf-8").splitlines()
+        require(len(lines) >= 2, f"Malformed download metadata for {name}")
+        revisions.add(lines[0].strip())
+        object_id = lines[1].strip()
+        require(object_id != "", f"Empty download metadata object ID for {name}")
+        if name in EXPECTED_SHARD_SHA256:
+            require(
+                object_id == EXPECTED_SHARD_SHA256[name],
+                f"LFS object ID mismatch for {name}",
+            )
+        object_ids[name] = object_id
+    require(
+        revisions == {revision},
+        f"Download metadata revision mismatch: {sorted(revisions)}",
+    )
+    return {
+        "tree_manifest": str(tree_path),
+        "download_metadata_files": len(EXPECTED_FILES),
+        "download_metadata_revision": revision,
+        "download_metadata_object_ids": object_ids,
+    }
+
+
+def read_safetensors_header(path: Path) -> tuple[dict[str, Any], dict[str, Any]]:
+    file_size = path.stat().st_size
+    with path.open("rb") as handle:
+        prefix = handle.read(8)
+        require(len(prefix) == 8, f"Truncated safetensors prefix: {path.name}")
+        header_bytes = struct.unpack("<Q", prefix)[0]
+        require(
+            2 <= header_bytes <= file_size - 8,
+            f"Invalid safetensors header length: {path.name}",
+        )
+        require(
+            header_bytes <= 128 * 1024 * 1024,
+            f"Unreasonably large safetensors header: {path.name}",
+        )
+        encoded_header = handle.read(header_bytes)
+    try:
+        header = json.loads(encoded_header.decode("utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"Invalid safetensors JSON header: {path.name}") from exc
+    require(isinstance(header, dict), f"Safetensors header is not an object: {path.name}")
+
+    data_bytes = file_size - 8 - header_bytes
+    tensor_entries = {
+        name: descriptor for name, descriptor in header.items() if name != "__metadata__"
+    }
+    require(tensor_entries, f"Safetensors shard has no tensors: {path.name}")
+    intervals: list[tuple[int, int, str]] = []
+    for name, descriptor in tensor_entries.items():
+        require(isinstance(name, str) and name, f"Invalid tensor name in {path.name}")
+        require(isinstance(descriptor, dict), f"Invalid tensor descriptor: {name}")
+        require(
+            isinstance(descriptor.get("dtype"), str) and descriptor["dtype"],
+            f"Invalid dtype for tensor {name}",
+        )
+        shape = descriptor.get("shape")
+        require(
+            isinstance(shape, list)
+            and all(
+                isinstance(item, int) and not isinstance(item, bool) and item >= 0
+                for item in shape
+            ),
+            f"Invalid shape for tensor {name}",
+        )
+        offsets = descriptor.get("data_offsets")
+        require(
+            isinstance(offsets, list)
+            and len(offsets) == 2
+            and all(
+                isinstance(item, int) and not isinstance(item, bool) for item in offsets
+            ),
+            f"Invalid data offsets for tensor {name}",
+        )
+        start, end = offsets
+        require(0 <= start <= end <= data_bytes, f"Out-of-bounds tensor {name}")
+        intervals.append((start, end, name))
+
+    intervals.sort()
+    cursor = 0
+    for start, end, name in intervals:
+        require(start == cursor, f"Gap or overlap before tensor {name} in {path.name}")
+        cursor = end
+    require(cursor == data_bytes, f"Unmapped data bytes remain in {path.name}")
+    summary = {
+        "path": path.name,
+        "file_bytes": file_size,
+        "header_bytes": header_bytes,
+        "data_bytes": data_bytes,
+        "tensor_count": len(tensor_entries),
+    }
+    return tensor_entries, summary
+
+
+def stream_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        while True:
+            chunk = handle.read(HASH_CHUNK_BYTES)
+            if not chunk:
+                break
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def validate_safetensors(model_dir: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    index_path = model_dir / "model.safetensors.index.json"
+    index = load_json(index_path)
+    metadata = index.get("metadata")
+    weight_map = index.get("weight_map")
+    require(isinstance(metadata, dict), "Safetensors index metadata is missing")
+    require(
+        metadata.get("total_size") == EXPECTED_INDEX_TOTAL_SIZE,
+        "Safetensors index total_size mismatch",
+    )
+    require(isinstance(weight_map, dict) and weight_map, "Safetensors weight_map is missing")
+    require(
+        set(weight_map.values()) == set(EXPECTED_SHARDS),
+        "Safetensors index does not reference exactly seven pinned shards",
+    )
+
+    all_tensor_names: set[str] = set()
+    shard_summaries: list[dict[str, Any]] = []
+    for shard_name in EXPECTED_SHARDS:
+        shard_path = model_dir / shard_name
+        entries, summary = read_safetensors_header(shard_path)
+        expected_names = {
+            tensor_name
+            for tensor_name, mapped_shard in weight_map.items()
+            if mapped_shard == shard_name
+        }
+        require(
+            set(entries) == expected_names,
+            f"Safetensors header/index tensor mismatch for {shard_name}",
+        )
+        duplicate_names = all_tensor_names.intersection(entries)
+        require(not duplicate_names, f"Duplicate tensors across shards: {sorted(duplicate_names)}")
+        all_tensor_names.update(entries)
+
+        actual_sha256 = stream_sha256(shard_path)
+        require(
+            actual_sha256 == EXPECTED_SHARD_SHA256[shard_name],
+            f"SHA-256 mismatch for {shard_name}: expected "
+            f"{EXPECTED_SHARD_SHA256[shard_name]}, got {actual_sha256}",
+        )
+        summary["sha256"] = actual_sha256
+        shard_summaries.append(summary)
+    require(all_tensor_names == set(weight_map), "Safetensors index has unmapped tensors")
+    return shard_summaries, {
+        "path": index_path.name,
+        "declared_tensor_bytes": metadata["total_size"],
+        "tensor_count": len(weight_map),
+        "referenced_shards": list(EXPECTED_SHARDS),
+    }
+
+
+def run_checked(command: list[str]) -> str:
+    completed = subprocess.run(
+        command,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        timeout=120,
+    )
+    output = completed.stdout.strip()
+    require(
+        completed.returncode == 0,
+        f"Command failed ({completed.returncode}): {command[0]}: {output[:500]}",
+    )
+    return output
+
+
+def collect_versions() -> str:
+    try:
+        import torch
+    except Exception as exc:
+        raise RuntimeError(f"Unable to import torch: {type(exc).__name__}: {exc}") from exc
+
+    try:
+        vllm_version = importlib.metadata.version("vllm")
+    except importlib.metadata.PackageNotFoundError as exc:
+        raise RuntimeError("vLLM is not installed in the validation environment") from exc
+    require(vllm_version == "0.27.1", f"Unexpected vLLM version: {vllm_version}")
+    require(
+        torch.__version__ == "2.13.0+cu130",
+        f"Unexpected torch version: {torch.__version__}",
+    )
+    require(
+        torch.version.cuda == "13.0",
+        f"Unexpected torch CUDA wheel: {torch.version.cuda}",
+    )
+    pip_list = run_checked([sys.executable, "-m", "pip", "list", "--format=freeze"])
+    pip_check = run_checked([sys.executable, "-m", "pip", "check"])
+    nvidia_smi = shutil.which("nvidia-smi")
+    require(nvidia_smi is not None, "nvidia-smi is not available")
+    gpu_query = run_checked(
+        [
+            nvidia_smi,
+            "--query-gpu=index,name,driver_version,memory.total,compute_cap",
+            "--format=csv,noheader,nounits",
+        ]
+    )
+    require(torch.cuda.is_available(), "torch cannot access CUDA")
+    device_count = torch.cuda.device_count()
+    require(device_count >= 1, "No CUDA device is visible")
+    architecture_list = torch.cuda.get_arch_list()
+    require(
+        "sm_120" in architecture_list,
+        f"Torch CUDA architecture list lacks sm_120: {architecture_list}",
+    )
+    gpu_lines = []
+    for index in range(device_count):
+        capability = torch.cuda.get_device_capability(index)
+        require(
+            capability == (12, 0),
+            f"Unexpected CUDA capability for device {index}: {capability}",
+        )
+        major, minor = capability
+        gpu_lines.append(
+            f"{index}: {torch.cuda.get_device_name(index)}; capability={major}.{minor}; "
+            f"total_memory_bytes={torch.cuda.get_device_properties(index).total_memory}"
+        )
+
+    generated_at = datetime.now(timezone.utc).isoformat()
+    sections = [
+        f"generated_at_utc={generated_at}",
+        f"model_repository={MODEL_REPO}",
+        f"model_revision={EXPECTED_REVISION}",
+        f"python_executable={sys.executable}",
+        f"python_version={platform.python_version()}",
+        f"platform={platform.platform()}",
+        f"torch_version={torch.__version__}",
+        f"torch_cuda_wheel={torch.version.cuda}",
+        f"torch_cuda_arch_list={','.join(architecture_list)}",
+        f"cudnn_version={torch.backends.cudnn.version()}",
+        f"vllm_version={vllm_version}",
+        "",
+        "[torch_cuda_devices]",
+        *gpu_lines,
+        "",
+        "[nvidia_smi_query]",
+        "columns=index,name,driver_version,memory.total_MiB,compute_capability",
+        gpu_query,
+        "",
+        "[pip_check]",
+        pip_check,
+        "",
+        "[pip_list_format_freeze]",
+        pip_list,
+        "",
+    ]
+    return "\n".join(sections)
+
+
+def main() -> None:
+    args = parse_args()
+    model_dir = args.model_dir.resolve()
+    revision = args.expected_revision.strip()
+    require(
+        revision == EXPECTED_REVISION,
+        f"This validator is pinned to revision {EXPECTED_REVISION}",
+    )
+    require(sum(EXPECTED_FILES.values()) == EXPECTED_TOTAL_BYTES, "Internal size table error")
+    require(len(EXPECTED_FILES) == EXPECTED_FILE_COUNT, "Internal file table error")
+    require(set(EXPECTED_SHARD_SHA256) == set(EXPECTED_SHARDS), "Internal hash table error")
+    require(HASH_CHUNK_BYTES >= 8 * 1024 * 1024, "Hash chunk size is too small")
+
+    files = validate_repository_files(model_dir)
+    revision_evidence = validate_revision_metadata(model_dir, revision)
+    shards, index = validate_safetensors(model_dir)
+    versions_text = collect_versions()
+    manifest = {
+        "schema_version": 1,
+        "validation_status": "passed",
+        "validated_at_utc": datetime.now(timezone.utc).isoformat(),
+        "model_repository": MODEL_REPO,
+        "resolved_revision": revision,
+        "model_dir": str(model_dir),
+        "file_count": len(files),
+        "total_bytes": sum(item["bytes"] for item in files),
+        "files": files,
+        "revision_evidence": revision_evidence,
+        "safetensors": {
+            "shard_count": len(shards),
+            "shards": shards,
+            "sha256_manifest": {
+                shard["path"]: shard["sha256"] for shard in shards
+            },
+            "index": index,
+        },
+        "checks": {
+            "no_incomplete_files": True,
+            "exact_file_set": True,
+            "exact_file_sizes": True,
+            "exact_total_bytes": True,
+            "all_download_metadata_at_pinned_revision": True,
+            "all_download_metadata_object_ids_nonempty": True,
+            "lfs_metadata_object_ids_match_pinned_sha256": True,
+            "seven_safetensors_headers_valid": True,
+            "seven_safetensors_sha256_match": True,
+            "safetensors_index_matches_headers": True,
+        },
+    }
+    atomic_write(
+        args.revision_output.resolve(),
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+    )
+    atomic_write(args.versions_output.resolve(), versions_text, mode=0o600)
+    print(
+        json.dumps(
+            {
+                "status": "passed",
+                "revision": revision,
+                "file_count": len(files),
+                "total_bytes": sum(item["bytes"] for item in files),
+                "safetensors_shards": len(shards),
+                "revision_output": str(args.revision_output.resolve()),
+                "versions_output": str(args.versions_output.resolve()),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(
+            json.dumps(
+                {
+                    "status": "failed",
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            file=sys.stderr,
+        )
+        raise SystemExit(2) from exc

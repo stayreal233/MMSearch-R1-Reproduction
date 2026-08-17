@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1013",
+  "source_split": "train",
+  "source_row_index": 1013,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What company does this logo represent?",
+  "reward_model": {
+    "ground_truth": "BSI Group",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/017_fvqa_train_1013.png",
+  "image_width": 788,
+  "image_height": 672,
+  "source_image_sha256": "ec5077f70611719f44af201a788d24c658fa5c1c7af35e034271a5757e2c37a2",
+  "normalized_png_sha256": "ec5077f70611719f44af201a788d24c658fa5c1c7af35e034271a5757e2c37a2",
+  "eval_index": 17,
+  "selection_rank_sha256": "022d85d02fa2b3eeec5f2da0060c8405e5857cedaea776bb8779b197f1f6742c",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

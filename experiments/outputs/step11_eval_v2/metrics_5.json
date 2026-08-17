@@ -1,0 +1,68 @@
+{
+  "schema_version": "mmsearch.step11.metrics.v1",
+  "evaluated": 5,
+  "correct": 1,
+  "accuracy_percent": 20.0,
+  "image_search_calls": 3,
+  "text_search_calls": 3,
+  "total_search_calls": 6,
+  "search_ratio_percent": 60.0,
+  "average_turns": 1.8,
+  "route_counts": {
+    "answer": 2,
+    "image_search -> text_search": 2,
+    "image_search -> text_search -> answer": 1
+  },
+  "categories": {
+    "search_free": {
+      "count": 3,
+      "correct": 0,
+      "accuracy_percent": 0.0,
+      "total_search_calls": 4,
+      "search_ratio_percent": 66.6667,
+      "average_turns": 1.6667
+    },
+    "search_required": {
+      "count": 2,
+      "correct": 1,
+      "accuracy_percent": 50.0,
+      "total_search_calls": 2,
+      "search_ratio_percent": 50.0,
+      "average_turns": 2.0
+    }
+  },
+  "network_and_cache_totals": {
+    "external_network_requests": 33,
+    "thumbnail_network_attempts": 15,
+    "thumbnail_cache_hits": 0,
+    "serper_api_requests": 3,
+    "serper_cache_hits": 0,
+    "jina_network_requests": 15,
+    "jina_cache_hits": 0,
+    "local_qwen_completion_requests": 5,
+    "qwen_summary_requests": 5,
+    "qwen_summary_cache_hits": 0,
+    "tool_http_requests_total": 38
+  },
+  "infrastructure_failures": 2,
+  "non_answer_terminal_count": 2,
+  "network_count_incomplete": 2,
+  "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+  "search_ratio_definition": "sum(total_search_calls) / (N * 2) * 100",
+  "natural_policy_only": true,
+  "controlled_step10_B_C_excluded": true,
+  "sample_failure_isolation_enabled": true,
+  "sample_failure_count": 2,
+  "sample_failure_rate_percent": 40.0,
+  "healthy_answered_count": 3,
+  "healthy_answered_correct": 1,
+  "healthy_answered_accuracy_percent": 33.3333,
+  "end_to_end_failures_counted_in_denominator": true,
+  "component_failure_counts": {
+    "hard_stage:text_search_jina_qwen": 2,
+    "image_item_failures": 3,
+    "jina_page_failures": 2,
+    "qwen_summary_failures": 1,
+    "serper_component_failures": 0
+  }
+}

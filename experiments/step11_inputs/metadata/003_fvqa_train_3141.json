@@ -1,0 +1,40 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3141",
+  "source_split": "train",
+  "source_row_index": 3141,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is the founder of the building in the image?",
+  "reward_model": {
+    "ground_truth": "Julius II",
+    "candidate_answers": [
+      "pape Jules II",
+      "paus Julius II",
+      "Iulius II",
+      "Julien de La Rovere",
+      "Giuliano Della Rovere",
+      "The Fearsome Pope",
+      "Julius II. Papst",
+      "Iulius PP. II",
+      "Pope Julius II",
+      "‏ papa Giulio‏ II",
+      "Papa Julio II",
+      "Julien de La Rovère",
+      "The Warrior Pope",
+      "Julius II",
+      "Giuliano della Rovere",
+      "Julien de, Cardinal La Rovère"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/003_fvqa_train_3141.png",
+  "image_width": 800,
+  "image_height": 450,
+  "source_image_sha256": "0fc26d744b708f0be3af2acd1522010b0f6e40f0212e0a3b6b39abea1c9085c9",
+  "normalized_png_sha256": "cd87a513e60492db1ac9d46b32ce642da03f776dbb5d96f2f723e9ca5705f425",
+  "eval_index": 3,
+  "selection_rank_sha256": "008cd23edb6ff9fbbe01bae1c04d6e350a5dc42041a55dbc4e90e3dd8fbfc128",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

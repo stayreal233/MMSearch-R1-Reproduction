@@ -1,0 +1,30 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3397",
+  "source_split": "train",
+  "source_row_index": 3397,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is the founder of the building in the image?",
+  "reward_model": {
+    "ground_truth": "Vikentiy Khvoyka",
+    "candidate_answers": [
+      "Vikentiy Viacheslavovych Khvoyka",
+      "Vikenty Khvoika",
+      "Vincenc Václav Chvojka",
+      "Čeněk Chvojka",
+      "Vikentiy Khvoyka",
+      "Vikentij Chvojka"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/044_fvqa_train_3397.png",
+  "image_width": 800,
+  "image_height": 600,
+  "source_image_sha256": "c94a938582df8b963348ebe87fa863e6ce87be9de5ef67f479249f5f5a2de40a",
+  "normalized_png_sha256": "d5d2d38485871a87317077c98819ca93e1ef4cb6ca0b60141e2b8bbb5b036b4d",
+  "eval_index": 44,
+  "selection_rank_sha256": "018cca0e4b83c16332641bcceaef1296e53c5ace2fd940822ab41da146947f06",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

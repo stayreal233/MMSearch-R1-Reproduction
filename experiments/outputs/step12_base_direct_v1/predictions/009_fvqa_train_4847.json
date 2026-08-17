@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 9,
+  "data_id": "fvqa_train_4847",
+  "category": "search_free",
+  "source_row_index": 4847,
+  "selection_rank_sha256": "018018e9c586bb6ce8d1d4c8851ae455cc140a4df03a53627f8d5d1f130aca46",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/009_fvqa_train_4847.png",
+      "bytes": 66606,
+      "sha256": "582753940e03c53698ced33c63c2444baf1ffe60744214f4dec67d45f7deee8d"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/009_fvqa_train_4847.json",
+      "bytes": 1045,
+      "sha256": "0b07fe050f3910bba0ec1343c3e25ec9b97f1998f4890575a37e581d87ce040e"
+    },
+    "image_width": 1062,
+    "image_height": 603,
+    "question": "Between the opening at 9:30 AM and the close at 4:00 PM on the day shown in the image, which had a smaller price increase: the company in the image or Dollar Tree Inc. (DLTR) during the same time period?"
+  },
+  "result": {
+    "response_text": "The company in the image",
+    "answer": "The company in the image",
+    "parser_mode": "plain_text_fallback",
+    "ground_truth": "Gap",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 680,
+    "output_tokens": 6,
+    "generation_seconds": 0.196021,
+    "case_seconds": 0.228348,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17521704960,
+    "cuda_peak_memory_allocated_bytes": 16869042176,
+    "cuda_peak_memory_reserved_bytes": 17521704960
+  },
+  "credentials_recorded": false
+}

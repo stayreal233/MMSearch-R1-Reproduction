@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 1,
+  "data_id": "fvqa_train_4724",
+  "category": "search_free",
+  "source_row_index": 4724,
+  "selection_rank_sha256": "000c1e37c71fc872e70218342ef255c3452d60b05611abb54a9a0cfdf2d75772",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/001_fvqa_train_4724.png",
+      "bytes": 130585,
+      "sha256": "a774841f1651e9461d259420c73ec5369afdbf2ffc2530d54e103a1e984f2501"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/001_fvqa_train_4724.json",
+      "bytes": 999,
+      "sha256": "cabfe3f4bbe74d969e3e0779a3481fbb5c7e5e1229d3118cd137e8c2945b6612"
+    },
+    "image_width": 1314,
+    "image_height": 672,
+    "question": "Comparing the stock price of the company shown in the image on April 7th with Hershey's stock price on the same day, which one is lower?"
+  },
+  "result": {
+    "response_text": "<answer>Hershey's</answer>",
+    "answer": "Hershey's",
+    "parser_mode": "answer_tags",
+    "ground_truth": "Best Buy Co., Inc. (BBY)",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 661,
+    "output_tokens": 10,
+    "generation_seconds": 0.882441,
+    "case_seconds": 0.987557,
+    "cuda_memory_allocated_bytes": 16593852416,
+    "cuda_memory_reserved_bytes": 17114857472,
+    "cuda_peak_memory_allocated_bytes": 16862456832,
+    "cuda_peak_memory_reserved_bytes": 17114857472
+  },
+  "credentials_recorded": false
+}

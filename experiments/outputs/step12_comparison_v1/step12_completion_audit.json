@@ -1,0 +1,42 @@
+{
+  "schema_version": "mmsearch.step12.completion-audit.v1",
+  "status": "passed",
+  "step": 12,
+  "prediction_files_verified": 50,
+  "fixed_input_order_verified": true,
+  "strict_em_recomputed_for_base": true,
+  "paired_outcomes_recomputed": true,
+  "base_external_tool_calls": 0,
+  "base_correct": 7,
+  "mmsearch_correct": 20,
+  "paired_outcomes": {
+    "base_only_correct": 2,
+    "both_correct": 5,
+    "both_wrong": 28,
+    "mmsearch_only_correct": 15
+  },
+  "accuracy_delta_points": 26.0,
+  "base_completion": {
+    "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/step12_base_completion_manifest.json",
+    "bytes": 4753,
+    "sha256": "359036672f80b6e4101c8ed4e64c5ca2fa5d3789e81c1d699c4be344c2ea0e07"
+  },
+  "comparison_completion": {
+    "path": "/root/autodl-tmp/outputs/step12_comparison_v1/step12_completion_manifest.json",
+    "bytes": 5704,
+    "sha256": "d5c415c1373780b715e847554aa02f48a6ab039b9988aae1b336213eba5bd821"
+  },
+  "serialized_evidence_scan": {
+    "files_scanned": 69,
+    "json_files_scanned": 60,
+    "text_files_scanned": 9,
+    "forbidden_json_key_paths": [],
+    "data_image_base64_matches": 0,
+    "long_base64_matches": 0,
+    "raw_jina_marker_matches": 0,
+    "authorization_marker_matches": 0,
+    "known_credential_value_matches": 0,
+    "pass": true
+  },
+  "credentials_recorded": false
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1078",
+  "source_split": "train",
+  "source_row_index": 1078,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the name of the group these characters belong to?",
+  "reward_model": {
+    "ground_truth": "musketeers",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/025_fvqa_train_1078.png",
+  "image_width": 1194,
+  "image_height": 672,
+  "source_image_sha256": "2c045aa3d73ed862781efd14d5c1cec67c4a75a0418287f3683a59ece7c68989",
+  "normalized_png_sha256": "2c045aa3d73ed862781efd14d5c1cec67c4a75a0418287f3683a59ece7c68989",
+  "eval_index": 25,
+  "selection_rank_sha256": "03534f7b8e5895333067824c8256d2f6db3805bdd088ea601fda5e5da8536d71",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

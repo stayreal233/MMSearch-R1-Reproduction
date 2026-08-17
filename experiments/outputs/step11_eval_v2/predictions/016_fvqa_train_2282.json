@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "00538570fd8c56ab8eee1a6c7fee161d4905daa69ebfcdd5ce972e184acc2b9a",
+    "eval_index": 16
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_2282",
+    "source_split": "train",
+    "source_row_index": 2282,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "In which year was this bridge retired from operational service?",
+    "candidate_answers": [
+      "1945",
+      "1944",
+      "1946"
+    ],
+    "ground_truth": "1945",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/016_fvqa_train_2282.png",
+      "width": 799,
+      "height": 532,
+      "png_sha256": "936b4b080c88cbfa8fe31aedf125b11f298efcccdbdbdfbac77e2de676319dd3",
+      "source_sha256": "f623ac4b32f60253ff73edeb9a3eb60fe5b856b7468dc1c742836bb69b2737c4"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a structure that appears to be an abandoned bridge or a bridge that is no longer in use. However, the image does not provide any text or additional information that would allow me to determine the year it was retired from operational service. Therefore, I need to perform a search to find this information.</reason>\n<search><img></search>",
+        "response_sha256": "45a2fbf0972c9395403330c6820d97419392cc667aac3865b1addc13c29804f6",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 957,
+        "output_tokens": 74,
+        "generation_seconds": 1.226,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_2282",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "Karniner Brücke | Dirk Lahrmann | Flickr",
+              "Fichier:Karnin, Lift bridge.JPG — Wikipédia",
+              "Karnin Lift Bridge - Wikipedia",
+              "Karnin Lift Bridge. Destroyed Historic Railway Bridge on Usedom Island near Karnin at Peenestrom River, Mecklenburg-Vorpommern, Germany Stock Photo - Alamy",
+              "War canoe hi-res stock photography and images - Page 9 - Alamy"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRSQSYW3goSceersRc4r5-0vZeYP7Ss6xQ4vKuQDtvayXMyd-LP",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWCgExQZ0lSehGQPuiLEhfkZwqg5A2R7fLeVBaFe5J0wfgEZaS",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0lAlsH2Znhhh42Dqgeqjzc-YzmyAdH7bdsmzzHQEmyVGSoozZ",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQErH2_QldUmlyU1ynkmqH4-hXzEFQD4gERGyVsM0fEUFtRirrM",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAMfb94vVy3F6PhD8n4R14EXH0a580qA1OpUrke_jZMgF_L9ff"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2282_1_82366d1df8e4c917e69f.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2282_2_b6bc28f72aa9abb758e9.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2282_3_4fa78b435ed8c3ffe571.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2282_4_fcd540ae688c4ea22402.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2282_5_78c9b607fa9cd7eb2c02.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1326,
+          "returned_text_sha256": "b452cc3cea245d9d4ed6f93f3dbd0813a5b633f4bf8e6113d33e31be8facd006"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results provide information about the Karnin Lift Bridge in Germany. To answer the user's question, I need to perform a text search to find the year the bridge was retired from operational service.</reason>\n<text_search>When was the Karnin Lift Bridge retired from operational service?</text_search>",
+        "response_sha256": "406c6b4f1792b6a9a9cfb4781677a54c0404864df10fc18e3689f0ab5905af0f",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "When was the Karnin Lift Bridge retired from operational service?",
+        "input_tokens": 1748,
+        "output_tokens": 65,
+        "generation_seconds": 1.176,
+        "query": "When was the Karnin Lift Bridge retired from operational service?",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "When was the Karnin Lift Bridge retired from operational service?",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/2f5ef062ece6a2972f1f8f943e38a259f45b67b43be4bcbe97ec8b8c6ac1365f.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 38668,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 15909,
+              "total_output_tokens": 454,
+              "total_tokens": 16363,
+              "total_generation_seconds": 13.992972,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "Karnin Lift Bridge - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Karnin_Lift_Bridge",
+                "snippet": "was opened in 1933 and destroyed in 1945. The lift bridge was built in 1932 and 1933 … is still in operation today."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "Karnin Vertical Lift Bridge in Usedom - Atlas Obscura",
+                "url": "https://www.atlasobscura.com/places/karnin-vertical-lift-bridge",
+                "snippet": "On April 28th, 1945 the bridge was destroyed by German troops, however only the ramps, but not the vertical lift part of the bridge, which is still in ..."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "Karnin lift bridge | Hidden Monuments | Exploring Industrial Heritage",
+                "url": "https://www.hiddenmonuments.com/germany/karnin-lift-bridge",
+                "snippet": "Constructed in 1933, the Karnin Lift Bridge is a railway bridge in Germany that allowed rail traffic to cross the Peenestrom River,"
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Karnin Lift Bridge : r/rustyrails - Reddit",
+                "url": "https://www.reddit.com/r/rustyrails/comments/1oshfds/karnin_lift_bridge/",
+                "snippet": "The fact that a 92 year old piece of infrastructure abandoned for 80 years is considered to be in restorable condition is itself a testament to ..."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Cormorans at Karnin Lift Bridge - Hubbrücke - Flickr",
+                "url": "https://www.flickr.com/photos/gake/51537386022/",
+                "snippet": "The Karnin Lift Bridge (German: Hubbrücke Karnin) is a railway bridge over the Peenestrom estuary in North Germany that was opened in 1933 and destroyed in 1945 ..."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "Karnin Lift Bridge - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Karnin_Lift_Bridge",
+                "snippet": "was opened in 1933 and destroyed in 1945. The lift bridge was built in 1932 and 1933 … is still in operation today.",
+                "full_characters": 14563,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/99010597f340d7e0d6ae5cbfb98c52e5812103e1d57802a7b3b79cc5d253d288.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "Karnin Vertical Lift Bridge in Usedom - Atlas Obscura",
+                "url": "https://www.atlasobscura.com/places/karnin-vertical-lift-bridge",
+                "snippet": "On April 28th, 1945 the bridge was destroyed by German troops, however only the ramps, but not the vertical lift part of the bridge, which is still in ...",
+                "full_characters": 40190,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/5c7be44a20046943fe969e360b796f2d8cf10021baa8699fa568b82e81af9b63.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "Karnin lift bridge | Hidden Monuments | Exploring Industrial Heritage",
+                "url": "https://www.hiddenmonuments.com/germany/karnin-lift-bridge",
+                "snippet": "Constructed in 1933, the Karnin Lift Bridge is a railway bridge in Germany that allowed rail traffic to cross the Peenestrom River,",
+                "full_characters": 2162,
+                "returned_characters": 2162,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/d013ab537ce4d906c72b80cefec4ae35cf3fa23e843be13b2de9484d14e46783.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "Karnin Lift Bridge : r/rustyrails - Reddit",
+                "url": "https://www.reddit.com/r/rustyrails/comments/1oshfds/karnin_lift_bridge/",
+                "snippet": "The fact that a 92 year old piece of infrastructure abandoned for 80 years is considered to be in restorable condition is itself a testament to ...",
+                "full_characters": 506,
+                "returned_characters": 506,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/3cd6b8dcacef8da833e6cbb0d1b5b6970048ade61e28d20abedc081f964dc3cc.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Cormorans at Karnin Lift Bridge - Hubbrücke - Flickr",
+                "url": "https://www.flickr.com/photos/gake/51537386022/",
+                "snippet": "The Karnin Lift Bridge (German: Hubbrücke Karnin) is a railway bridge over the Peenestrom estuary in North Germany that was opened in 1933 and destroyed in 1945 ...",
+                "full_characters": 26914,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/59c11b1b23bb1e46dd9808c15150dfd7ef9e7f0bc1f421480836125a8ae94cdf.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "Karnin Lift Bridge - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Karnin_Lift_Bridge",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/99010597f340d7e0d6ae5cbfb98c52e5812103e1d57802a7b3b79cc5d253d288.md",
+                "full_characters": 14563,
+                "returned_characters": 12000,
+                "jina_content_sha256": "c239259eae32bb99daef90ed353e857945898e933498c3845e6682150547a89f",
+                "jina_input_characters": 12000,
+                "public_input_signature": "84aa875f22103859b4dea96f0d1fa9b5011bdd9b0234ded10697fed1fb82e769",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/84aa875f22103859b4dea96f0d1fa9b5011bdd9b0234ded10697fed1fb82e769.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Karnin Lift Bridge was opened in 1933.\n- It was destroyed on 28 April 1945 during the Second World War.\n- The bridge was retired from operational service in 1945 when it was blown up by the Wehrmacht.\n- The lifting section remains as a technical monument in the Peenestrom.\n- Post-war, the railway link and bridge were not rebuilt.\n- Current efforts focus on reconstructing the railway and reactivating the bridge.",
+                "input_tokens": 3852,
+                "output_tokens": 107,
+                "total_tokens": 3959,
+                "finish_reason": "stop",
+                "generation_seconds": 3.30634,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "Karnin Vertical Lift Bridge in Usedom - Atlas Obscura",
+                "url": "https://www.atlasobscura.com/places/karnin-vertical-lift-bridge",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/5c7be44a20046943fe969e360b796f2d8cf10021baa8699fa568b82e81af9b63.md",
+                "full_characters": 40190,
+                "returned_characters": 12000,
+                "jina_content_sha256": "7281ff3a23076cb70109fe8a283c1c38fb5123ae28b1138676ecd40179a4af61",
+                "jina_input_characters": 12000,
+                "public_input_signature": "d1ae796b0ffba0a8681e7efa3f7180c5908827cbfedf2e943d02815219e4677c",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/d1ae796b0ffba0a8681e7efa3f7180c5908827cbfedf2e943d02815219e4677c.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Karnin Vertical Lift Bridge was destroyed by German troops on April 28th, 1945.\n- Only the ramps were destroyed; the vertical lift part of the bridge remains.\n- The bridge is now a historical remnant in the Peene River on Usedom, Germany.\n- No specific retirement date is mentioned, but destruction in 1945 likely ended its operational service.\n- The bridge is noted as a historical site rather than an active structure.",
+                "input_tokens": 5424,
+                "output_tokens": 99,
+                "total_tokens": 5523,
+                "finish_reason": "stop",
+                "generation_seconds": 3.338958,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "Karnin lift bridge | Hidden Monuments | Exploring Industrial Heritage",
+                "url": "https://www.hiddenmonuments.com/germany/karnin-lift-bridge",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/d013ab537ce4d906c72b80cefec4ae35cf3fa23e843be13b2de9484d14e46783.md",
+                "full_characters": 2162,
+                "returned_characters": 2162,
+                "jina_content_sha256": "7f3fd9e8e4629df65fbb941771df169139c7466bc19bef07af1e3fa332a66216",
+                "jina_input_characters": 2162,
+                "public_input_signature": "4c0e39e9af28b0eda8164bae921711b6310b3ffd8903ac8f6f708b98fab92bd9",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/4c0e39e9af28b0eda8164bae921711b6310b3ffd8903ac8f6f708b98fab92bd9.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Karnin Lift Bridge was constructed in 1933.\n- It is a railway bridge in Germany that allowed rail traffic to cross the Peenestrom River.\n- The webpage does not provide information on when the bridge was retired from operational service.\n- Access to additional details, including historical context, requires membership on the website.\n- The site offers practical information for planning visits, but this is restricted to members.\n- The page includes images of the bridge and related industrial heritage content.",
+                "input_tokens": 783,
+                "output_tokens": 101,
+                "total_tokens": 884,
+                "finish_reason": "stop",
+                "generation_seconds": 2.746858,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "Karnin Lift Bridge : r/rustyrails - Reddit",
+                "url": "https://www.reddit.com/r/rustyrails/comments/1oshfds/karnin_lift_bridge/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/3cd6b8dcacef8da833e6cbb0d1b5b6970048ade61e28d20abedc081f964dc3cc.md",
+                "full_characters": 506,
+                "returned_characters": 506,
+                "jina_content_sha256": "94cb7766fba41bb5bfb9d3668919f03f9643c1b40711a72ef6336bef0e84c22a",
+                "jina_input_characters": 506,
+                "public_input_signature": "2587d436e07c1b071ce21772fcd4e618aaa2dfada315156a54ab02c790072bc4",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/2587d436e07c1b071ce21772fcd4e618aaa2dfada315156a54ab02c790072bc4.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The webpage is a Reddit post about the Karnin Lift Bridge.  \n- It mentions the bridge is 92 years old and has been abandoned for 80 years.  \n- No specific retirement date for the Karnin Lift Bridge is provided.  \n- The page is blocked due to a 403 Forbidden error.  \n- The content is from the subreddit r/rustyrails, which focuses on abandoned or decommissioned infrastructure.  \n- The page does not directly answer when the bridge was retired from service.",
+                "input_tokens": 390,
+                "output_tokens": 108,
+                "total_tokens": 498,
+                "finish_reason": "stop",
+                "generation_seconds": 2.864425,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Cormorans at Karnin Lift Bridge - Hubbrücke - Flickr",
+                "url": "https://www.flickr.com/photos/gake/51537386022/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/59c11b1b23bb1e46dd9808c15150dfd7ef9e7f0bc1f421480836125a8ae94cdf.md",
+                "full_characters": 26914,
+                "returned_characters": 12000,
+                "jina_content_sha256": "5d077fe10fce8eca02d78bd227a86e6ec1cea49f360aa1638ab40b0980d0efa7",
+                "jina_input_characters": 12000,
+                "public_input_signature": "767a3ba9b24f31259c9fac6a1de57b6ddcd772fa302e8853163ebb7ee58beba9",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/767a3ba9b24f31259c9fac6a1de57b6ddcd772fa302e8853163ebb7ee58beba9.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Karnin Lift Bridge was opened in 1933.\n- It was destroyed in 1945.\n- No specific date for retirement from operational service is mentioned.",
+                "input_tokens": 5460,
+                "output_tokens": 39,
+                "total_tokens": 5499,
+                "finish_reason": "stop",
+                "generation_seconds": 1.736391,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003611,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 4195,
+          "returned_text_sha256": "2f743afba1e830ef61e74e29678dae6acfb79749fdcd3d1ef701f6215c999891"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the Karnin Lift Bridge was destroyed in 1945 and was retired from operational service in the same year. The information is consistent across multiple sources, suggesting that the bridge was retired in 1945.</reason>\n<answer>1945</answer>",
+        "response_sha256": "a5326779c44c66183990a1b1694e8f07bc29bcc5c45511fd07a0195547ee3f8a",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "1945",
+        "input_tokens": 3038,
+        "output_tokens": 65,
+        "generation_seconds": 1.232
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "1945",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": true,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 5743,
+    "mmsearch_output_tokens": 204,
+    "mmsearch_generation_seconds": 3.634,
+    "case_seconds": 33.16,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 16,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16945.43,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_16_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:47:49.016325+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69224, 28029",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69224",
+            "memory_free_mib": "28029"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "49646",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "225955",
+            "used_gpu_memory_mib": "19564",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 225955,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 19786629120,
+            "max_memory_allocated_bytes": 17768571392,
+            "max_memory_reserved_bytes": 19786629120
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002436,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.675,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

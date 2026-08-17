@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4848",
+  "source_split": "train",
+  "source_row_index": 4848,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "For the date 04/01/2025 shown in the image, which company has lower closing prices: the company in the image or Amazon (AMZN)?",
+  "reward_model": {
+    "ground_truth": "SUNation Energy, Inc.",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/023_fvqa_train_4848.png",
+  "image_width": 775,
+  "image_height": 470,
+  "source_image_sha256": "fa21a767dc9f989fddb90906c11ea5db1e19d3ee6abf285b2d39cac71258c275",
+  "normalized_png_sha256": "fa21a767dc9f989fddb90906c11ea5db1e19d3ee6abf285b2d39cac71258c275",
+  "eval_index": 23,
+  "selection_rank_sha256": "029ab38f30129032f24b88efdba6325d361b2b30e7268b4f4053a216a9243745",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

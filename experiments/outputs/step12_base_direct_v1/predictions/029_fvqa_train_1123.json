@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 29,
+  "data_id": "fvqa_train_1123",
+  "category": "search_free",
+  "source_row_index": 1123,
+  "selection_rank_sha256": "03699ab5eae64defb0caa9d62717a7b1f4fde6cb7eb725b159005ab4e9ee4083",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/029_fvqa_train_1123.png",
+      "bytes": 1188601,
+      "sha256": "930612294318c7e175ce3fdfe1357245f6fb9db8b87eb2e651f1d6688c02f313"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/029_fvqa_train_1123.json",
+      "bytes": 928,
+      "sha256": "4e411a07934c605d5785e861dffaef8de1d7a4090e02425828e0a68c1a5b83b9"
+    },
+    "image_width": 1016,
+    "image_height": 672,
+    "question": "What type of aircraft is refueling the jet in the image?"
+  },
+  "result": {
+    "response_text": "<answer>KC-10 Extender</answer>",
+    "answer": "KC-10 Extender",
+    "parser_mode": "answer_tags",
+    "ground_truth": "McDonnell Douglas KC-10 Extender",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 631,
+    "output_tokens": 13,
+    "generation_seconds": 0.296273,
+    "case_seconds": 0.347251,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17404264448,
+    "cuda_peak_memory_allocated_bytes": 16849565696,
+    "cuda_peak_memory_reserved_bytes": 17404264448
+  },
+  "credentials_recorded": false
+}

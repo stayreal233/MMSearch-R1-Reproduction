@@ -1,0 +1,546 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "018cca0e4b83c16332641bcceaef1296e53c5ace2fd940822ab41da146947f06",
+    "eval_index": 44
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_3397",
+    "source_split": "train",
+    "source_row_index": 3397,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "Who is the founder of the building in the image?",
+    "candidate_answers": [
+      "Vikentiy Viacheslavovych Khvoyka",
+      "Vikenty Khvoika",
+      "Vincenc Václav Chvojka",
+      "Čeněk Chvojka",
+      "Vikentiy Khvoyka",
+      "Vikentij Chvojka"
+    ],
+    "ground_truth": "Vikentiy Khvoyka",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/044_fvqa_train_3397.png",
+      "width": 800,
+      "height": 600,
+      "png_sha256": "d5d2d38485871a87317077c98819ca93e1ef4cb6ca0b60141e2b8bbb5b036b4d",
+      "source_sha256": "c94a938582df8b963348ebe87fa863e6ce87be9de5ef67f479249f5f5a2de40a"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a building with a classical architectural style, which is likely a government or institutional building. However, there is no visible text or signage in the image that provides information about the founder of the building. Without additional context or information, it's not possible to determine the founder of this building.</reason>\n<search><img></search>",
+        "response_sha256": "7a6a99fd8ede3b9c2afdb47041716a41f2fa425a02dd9d2fe032fdc8408d406b",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 946,
+        "output_tokens": 72,
+        "generation_seconds": 1.175,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_3397",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "Museums in Kyiv - Wikipedia",
+              "attractions Eastern Europe, Europe - Lonely Planet",
+              "File:Kiev History Museum.jpg - Wikimedia Commons",
+              "attractions Ukraine, Eastern Europe - Lonely Planet",
+              "47 мест, которые стоит посетить в Киеве"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ_Y_4VR6oGUWBjeopRRon6wCFfV7iEIm1vX4qa_XnZunpzXQl3",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh9oob_2k7S9terSVfeT5WxJ1WNNqc3T8vxMfKrfGVfUCVLY0Y",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRHzR2djxxCVYSqhROYbNlKr_yS4hTnATFXcg3tRHuJtrPZMVpH",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDa4RQlZMI5ZbD7F2dwCyz_rhg-hFvO8Cqr3stBMIDdiXWxmTv",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSRuQBaU9N-MYtr2Sk6_eYfsAlveSNIvF8SOYSTSHxdsEJm6D5P"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3397_1_da949f44d80cfe025d5f.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3397_2_2e476be60bfaae287582.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3397_3_fd3b0a8b02a79102c6aa.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3397_4_0adcc6ed9d5a93b17d20.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3397_5_b23536312c0c51cca2c5.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1211,
+          "returned_text_sha256": "a8d11b253bc9c3c85e6211b8a742ec934858bf5e578921959676349c6d23dcb5"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results suggest that the building in the image is likely the National Museum of Ukraine. To answer the user's question, we need to perform a text search to find information about the founder of this museum.</reason>\n<text_search>Who is the founder of the National Museum of Ukraine</text_search>",
+        "response_sha256": "8344dd6f030de61e3774dc4fbbfe6544c20e3de861fee03469e4748671db3529",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "Who is the founder of the National Museum of Ukraine",
+        "input_tokens": 1701,
+        "output_tokens": 66,
+        "generation_seconds": 1.175,
+        "query": "Who is the founder of the National Museum of Ukraine",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "Who is the founder of the National Museum of Ukraine",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/03611cd33ab345f100a46af8412041898ed9f02c3c96c8cbc695308968c51dd8.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 34115,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 12290,
+              "total_output_tokens": 549,
+              "total_tokens": 12839,
+              "total_generation_seconds": 16.151508,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "National Museum of the History of Ukraine - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/National_Museum_of_the_History_of_Ukraine",
+                "snippet": "It is one of the leading museums in Ukraine. It holds about 800,000 items in its collection, and usually has approximately 22,000 items on permanent display."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "National Museum of the History of Ukraine",
+                "url": "https://nmiu.org/en",
+                "snippet": "The National Museum of the Ukraine's History illustrates Ukraine's history from ancient times and is one of the leading museums of Ukraine."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "National Museum of the History of Ukraine in the Second World War",
+                "url": "https://europeanmuseumacademy.eu/national-museum-of-the-history-of-ukraine-in-the-second-world-war/",
+                "snippet": "Established in 1981, the museum stands on the hills overlooking the Dnipro River, and is marked by one of Kyiv's most recognisable landmarks:"
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "National Museum of History of Ukraine | Museum Portal",
+                "url": "https://museum-portal.com/en/museums/89_national-museum-of-history-of-ukraine",
+                "snippet": "The museum was founded in 1899 as the Museum of Antiquities and Arts. It was built in 1937-1939 according to the project of the famous architect Yosyp Karakis."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "By National Museum of the History of Ukraine - Google Arts & Culture",
+                "url": "https://artsandculture.google.com/partner/national-museum-of-the-history-of-ukraine",
+                "snippet": "This building is the former arts school designed by architect Joseph Karakis. The Treasury of the National Museum of the History of Ukraine is the branch of ..."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "National Museum of the History of Ukraine - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/National_Museum_of_the_History_of_Ukraine",
+                "snippet": "It is one of the leading museums in Ukraine. It holds about 800,000 items in its collection, and usually has approximately 22,000 items on permanent display.",
+                "full_characters": 34705,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/862e5114ffa0edef94c88e7fe44cf4faf81e3e62db57fd69b8ba2d9058ff49b9.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "National Museum of the History of Ukraine",
+                "url": "https://nmiu.org/en",
+                "snippet": "The National Museum of the Ukraine's History illustrates Ukraine's history from ancient times and is one of the leading museums of Ukraine.",
+                "full_characters": 10127,
+                "returned_characters": 10127,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/61907fc7b45022faf8508916d8c1623c516085f91a99a0c173a2c46421fd3791.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "National Museum of the History of Ukraine in the Second World War",
+                "url": "https://europeanmuseumacademy.eu/national-museum-of-the-history-of-ukraine-in-the-second-world-war/",
+                "snippet": "Established in 1981, the museum stands on the hills overlooking the Dnipro River, and is marked by one of Kyiv's most recognisable landmarks:",
+                "full_characters": 2377,
+                "returned_characters": 2377,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/f52bd156e7198c3b582a361ff2f3b01ce2b80638f8099bd01bfca79e05c3edc8.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "National Museum of History of Ukraine | Museum Portal",
+                "url": "https://museum-portal.com/en/museums/89_national-museum-of-history-of-ukraine",
+                "snippet": "The museum was founded in 1899 as the Museum of Antiquities and Arts. It was built in 1937-1939 according to the project of the famous architect Yosyp Karakis.",
+                "full_characters": 7858,
+                "returned_characters": 7858,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/d9f6e05309d2d49ded0eb0f9f19315ffce63aef9b527bffed5756dc53fc6a9ab.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "By National Museum of the History of Ukraine - Google Arts & Culture",
+                "url": "https://artsandculture.google.com/partner/national-museum-of-the-history-of-ukraine",
+                "snippet": "This building is the former arts school designed by architect Joseph Karakis. The Treasury of the National Museum of the History of Ukraine is the branch of ...",
+                "full_characters": 1753,
+                "returned_characters": 1753,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/f9575c05cd7475b772c7d45fbf1c5cad8709e0fc96f64f6375fc388e330ab567.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "National Museum of the History of Ukraine - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/National_Museum_of_the_History_of_Ukraine",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/862e5114ffa0edef94c88e7fe44cf4faf81e3e62db57fd69b8ba2d9058ff49b9.md",
+                "full_characters": 34705,
+                "returned_characters": 12000,
+                "jina_content_sha256": "629847558e35c6ea3bf4b168ac1cd6e61865c70511b15b05fd1f35ef29cd47bd",
+                "jina_input_characters": 12000,
+                "public_input_signature": "848af123fb0668d6e00498880d579ca1f60fff902719ce589dc879e07fce5147",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/848af123fb0668d6e00498880d579ca1f60fff902719ce589dc879e07fce5147.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The National Museum of the History of Ukraine was established in 1899 as the Museum of Antiquities and Arts.\n- It was initially housed in a building designed by architect Vladyslav Horodetsky.\n- Mykola Biliashivsky was the first museum director, starting in 1902 and playing a key role in forming the museum's collections.\n- The museum was originally supported by patrons like the Tereshchenko and Khanenko families.\n- In 1904, it was officially opened as the Emperor Nicholas II Kyiv Art, Industry and Science Museum.\n- The founder or initiator is not explicitly named in the text, but the museum was established by Kyiv residents who raised funds for it.",
+                "input_tokens": 3988,
+                "output_tokens": 154,
+                "total_tokens": 4142,
+                "finish_reason": "stop",
+                "generation_seconds": 4.583103,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "National Museum of the History of Ukraine",
+                "url": "https://nmiu.org/en",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/61907fc7b45022faf8508916d8c1623c516085f91a99a0c173a2c46421fd3791.md",
+                "full_characters": 10127,
+                "returned_characters": 10127,
+                "jina_content_sha256": "a1fec74b36966fd596403b2d2db930af08b62d00a011b51613a997ffb31e05fb",
+                "jina_input_characters": 10127,
+                "public_input_signature": "aac3fab715623abf6c93461236596139a5f63d83901fcc5b5b3f773cc302f312",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/aac3fab715623abf6c93461236596139a5f63d83901fcc5b5b3f773cc302f312.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "The provided webpage does not mention the founder of the National Museum of Ukraine.",
+                "input_tokens": 4148,
+                "output_tokens": 16,
+                "total_tokens": 4164,
+                "finish_reason": "stop",
+                "generation_seconds": 0.936613,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "National Museum of the History of Ukraine in the Second World War",
+                "url": "https://europeanmuseumacademy.eu/national-museum-of-the-history-of-ukraine-in-the-second-world-war/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/f52bd156e7198c3b582a361ff2f3b01ce2b80638f8099bd01bfca79e05c3edc8.md",
+                "full_characters": 2377,
+                "returned_characters": 2377,
+                "jina_content_sha256": "0f24da714c3b7237c62e9af1b9dac18c7847e5ddf89eb43ef95ee74a57c23cc8",
+                "jina_input_characters": 2377,
+                "public_input_signature": "12387e4df53c8755421bf25b8a9dee65a2ee0a3f12473bb1966729501875fc6e",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/12387e4df53c8755421bf25b8a9dee65a2ee0a3f12473bb1966729501875fc6e.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The National Museum of the History of Ukraine in the Second World War is located in Kyiv, Ukraine.\n- It was established in 1981.\n- The museum is known for its landmark, the Motherland Statue monument.\n- It focuses on Ukraine's experience during the Second World War.\n- The museum houses over 400,000 objects related to the war.\n- The founder of the museum is not mentioned in the provided content.",
+                "input_tokens": 738,
+                "output_tokens": 95,
+                "total_tokens": 833,
+                "finish_reason": "stop",
+                "generation_seconds": 2.586684,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "National Museum of History of Ukraine | Museum Portal",
+                "url": "https://museum-portal.com/en/museums/89_national-museum-of-history-of-ukraine",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/d9f6e05309d2d49ded0eb0f9f19315ffce63aef9b527bffed5756dc53fc6a9ab.md",
+                "full_characters": 7858,
+                "returned_characters": 7858,
+                "jina_content_sha256": "2de53d5fb94d76eecc287277ca33df830170809323f6d6a6157fd3e64ebd1d34",
+                "jina_input_characters": 7858,
+                "public_input_signature": "3ea0d7f55c809f9727510e19f93425e2cab70d3e1fed4bcae3e991e1777f87b9",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/3ea0d7f55c809f9727510e19f93425e2cab70d3e1fed4bcae3e991e1777f87b9.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The National Museum of History of Ukraine was founded in 1899 as the Museum of Antiquities and Arts.  \n- It was originally supported by donations from the Tereshchenko and Khanenko patron families.  \n- The museum's current building was constructed between 1937 and 1939 based on the design of architect Yosyp Karakis.  \n- The founder is not explicitly named in the provided content.  \n- The museum contains over 700,000 exhibits, spanning historical, ethnographic, and artistic collections.  \n- It has played a significant role in Ukrainian national education and cultural preservation.",
+                "input_tokens": 2771,
+                "output_tokens": 135,
+                "total_tokens": 2906,
+                "finish_reason": "stop",
+                "generation_seconds": 4.073472,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "By National Museum of the History of Ukraine - Google Arts & Culture",
+                "url": "https://artsandculture.google.com/partner/national-museum-of-the-history-of-ukraine",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/f9575c05cd7475b772c7d45fbf1c5cad8709e0fc96f64f6375fc388e330ab567.md",
+                "full_characters": 1753,
+                "returned_characters": 1753,
+                "jina_content_sha256": "1bb98abbd42fda0e59aef0f04dc70ee048ecbf87458c74eaf1bc5eb8be07a4c9",
+                "jina_input_characters": 1753,
+                "public_input_signature": "c0d3821c60e08dfe82b934029cc974ea641ce76b50227721a319fb706dd8eec4",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/c0d3821c60e08dfe82b934029cc974ea641ce76b50227721a319fb706dd8eec4.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The National Museum of the History of Ukraine was established in 1899.\n- The museum has been located in Kyiv, moving through various buildings under different names.\n- Since May 1944, it has been situated on Volodymyrska Street in a building formerly designed as an arts school by architect Joseph Karakis.\n- The museum's collection includes over 800,000 items, spanning from ancient times to the present.\n- The museum's Treasury, a branch located at Kyiv-Pechersk Lavra, holds over 56,000 exhibits of gold, silver, and gemstones.\n- The founder of the museum is not mentioned in the provided content.",
+                "input_tokens": 645,
+                "output_tokens": 149,
+                "total_tokens": 794,
+                "finish_reason": "stop",
+                "generation_seconds": 3.971636,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003934,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 4797,
+          "returned_text_sha256": "9611e253612315699e525db7bfbeac1578571282b559aa2fffa85268c33e5b1c"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the National Museum of the History of Ukraine was established in 1899. However, the founder of the museum is not explicitly mentioned in the provided content. To answer the user's question, we need to perform a text search to find information about the founder of the National Museum of the History of Ukraine.</reason>\n<answer>Mykola Biliashivsky</answer>",
+        "response_sha256": "23706425778c7d6dac591b13fef6d3482d01e5a1c6b4906aca12cb14d39d6eec",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Mykola Biliashivsky",
+        "input_tokens": 3073,
+        "output_tokens": 87,
+        "generation_seconds": 1.54
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "Mykola Biliashivsky",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 5720,
+    "mmsearch_output_tokens": 225,
+    "mmsearch_generation_seconds": 3.89,
+    "case_seconds": 31.015,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 44,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16955.44,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_44_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T04:00:46.469934+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 71202, 26051",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "71202",
+            "memory_free_mib": "26051"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "50384",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "229170",
+            "used_gpu_memory_mib": "20804",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 229170,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 21086863360,
+            "max_memory_allocated_bytes": 17779072512,
+            "max_memory_reserved_bytes": 21086863360
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002543,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.743,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

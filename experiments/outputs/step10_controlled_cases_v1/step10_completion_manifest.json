@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "step": 10,
+  "completed_at_utc": "2026-08-17T02:20:44.734142+00:00",
+  "selection_manifest": {
+    "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/selection_manifest.json",
+    "bytes": 7030,
+    "sha256": "b03e14d6f2dc99d6cc744f7f21ffa1a159bed44f99bd2adc443a5cd400b6bb29"
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train",
+    "controlled_protocol": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step10_controlled_route_protocol.json",
+      "bytes": 6251,
+      "sha256": "f18ac1cdb69e035243079c56b5abc4806609ada4d522e19ed0336d744ad5c48f"
+    },
+    "natural_negative_evidence": {
+      "path": "/root/autodl-tmp/mmsearch_step10_v2/step10_candidate_selection_v2.json",
+      "bytes": 2053415,
+      "sha256": "a512d87f3dd24fc5a2714f58589a846f00d494132e678cc2479fd5410751b17d",
+      "scanned_search_required_count": 512,
+      "natural_image_only_count": 0,
+      "natural_text_only_count": 0
+    }
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "shared_runtime": {
+    "mmsearch_load_seconds": 4.564,
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "mmsearch_gpu_residency": {
+      "hf_device_map": {
+        "": "0"
+      },
+      "parameter_devices": [
+        "cuda:0"
+      ],
+      "fully_gpu_resident": true
+    },
+    "summary_health_before": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.0039,
+      "thinking_enabled": false
+    },
+    "summary_health_after": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002398,
+      "thinking_enabled": false
+    },
+    "summary_service_root_pid": 203574,
+    "gpu_snapshots": [
+      {
+        "label": "step10_summary_service_only",
+        "captured_at_utc": "2026-08-17T02:19:58.736619+00:00",
+        "nvidia_smi": {
+          "gpu_columns": [
+            "index",
+            "name",
+            "memory_total_mib",
+            "memory_used_mib",
+            "memory_free_mib"
+          ],
+          "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 46059, 51194",
+          "gpus": [
+            {
+              "index": "0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+              "memory_total_mib": "97887",
+              "memory_used_mib": "46059",
+              "memory_free_mib": "51194"
+            }
+          ],
+          "compute_processes": [
+            {
+              "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+              "pid": "203748",
+              "used_gpu_memory_mib": "46050",
+              "owner": "summary_service"
+            }
+          ]
+        },
+        "torch_process": {
+          "pid": 204277,
+          "cuda_initialized": false,
+          "cuda_visible_devices": "0",
+          "devices": []
+        }
+      },
+      {
+        "label": "step10_mmsearch_loaded_same_gpu",
+        "captured_at_utc": "2026-08-17T02:20:03.399385+00:00",
+        "nvidia_smi": {
+          "gpu_columns": [
+            "index",
+            "name",
+            "memory_total_mib",
+            "memory_used_mib",
+            "memory_free_mib"
+          ],
+          "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 62434, 34819",
+          "gpus": [
+            {
+              "index": "0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+              "memory_total_mib": "97887",
+              "memory_used_mib": "62434",
+              "memory_free_mib": "34819"
+            }
+          ],
+          "compute_processes": [
+            {
+              "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+              "pid": "203748",
+              "used_gpu_memory_mib": "46050",
+              "owner": "summary_service"
+            },
+            {
+              "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+              "pid": "204277",
+              "used_gpu_memory_mib": "16370",
+              "owner": "mmsearch_current"
+            }
+          ]
+        },
+        "torch_process": {
+          "pid": 204277,
+          "cuda_initialized": true,
+          "cuda_visible_devices": "0",
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+              "memory_allocated_bytes": 16584369664,
+              "memory_reserved_bytes": 16588472320,
+              "max_memory_allocated_bytes": 16584369664,
+              "max_memory_reserved_bytes": 16588472320
+            }
+          ],
+          "current_device": 0
+        }
+      },
+      {
+        "label": "step10_suite_complete_same_gpu",
+        "captured_at_utc": "2026-08-17T02:20:44.720208+00:00",
+        "nvidia_smi": {
+          "gpu_columns": [
+            "index",
+            "name",
+            "memory_total_mib",
+            "memory_used_mib",
+            "memory_free_mib"
+          ],
+          "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 66428, 30825",
+          "gpus": [
+            {
+              "index": "0",
+              "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+              "memory_total_mib": "97887",
+              "memory_used_mib": "66428",
+              "memory_free_mib": "30825"
+            }
+          ],
+          "compute_processes": [
+            {
+              "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+              "pid": "203748",
+              "used_gpu_memory_mib": "47386",
+              "owner": "summary_service"
+            },
+            {
+              "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+              "pid": "204277",
+              "used_gpu_memory_mib": "19028",
+              "owner": "mmsearch_current"
+            }
+          ]
+        },
+        "torch_process": {
+          "pid": 204277,
+          "cuda_initialized": true,
+          "cuda_visible_devices": "0",
+          "devices": [
+            {
+              "index": 0,
+              "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+              "memory_allocated_bytes": 16592889856,
+              "memory_reserved_bytes": 19224592384,
+              "max_memory_allocated_bytes": 16967572992,
+              "max_memory_reserved_bytes": 19224592384
+            }
+          ],
+          "current_device": 0
+        }
+      }
+    ]
+  },
+  "case_artifacts": [
+    {
+      "path": "/root/autodl-tmp/outputs/step10_controlled_cases_v1/case_A_search_free.json",
+      "bytes": 7659,
+      "sha256": "d364308d0ecebd5a59bf5212faefd9bc53efae97bae969bb0927929c654c83e8",
+      "case_label": "A",
+      "case_type": "search_free",
+      "data_id": "fvqa_train_0",
+      "action_sequence": [
+        "answer"
+      ],
+      "path_pass": true,
+      "exact_match": true,
+      "tool_infrastructure_success": true
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step10_controlled_cases_v1/case_B_image_search.json",
+      "bytes": 11070,
+      "sha256": "f8bc1a73de79f79c349a80db9532f2421e1bc7989274cf4d7244321ec6336195",
+      "case_label": "B",
+      "case_type": "image_search",
+      "data_id": "fvqa_train_6",
+      "action_sequence": [
+        "image_search",
+        "answer"
+      ],
+      "path_pass": true,
+      "exact_match": true,
+      "tool_infrastructure_success": true
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step10_controlled_cases_v1/case_C_text_search.json",
+      "bytes": 27311,
+      "sha256": "96dfb0f20d05b2b86312dd406a547b5c86a7c3a01b25c9468876d8b89dcae46a",
+      "case_label": "C",
+      "case_type": "text_search",
+      "data_id": "fvqa_train_9",
+      "action_sequence": [
+        "text_search",
+        "answer"
+      ],
+      "path_pass": true,
+      "exact_match": false,
+      "tool_infrastructure_success": true
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step10_controlled_cases_v1/case_D_mixed_search.json",
+      "bytes": 30050,
+      "sha256": "048850a912d344d5cf76183b9ca265ad67ce3c67d27b3a53649aca21632a7ad4",
+      "case_label": "D",
+      "case_type": "mixed_search",
+      "data_id": "fvqa_train_17",
+      "action_sequence": [
+        "image_search",
+        "text_search",
+        "answer"
+      ],
+      "path_pass": true,
+      "exact_match": true,
+      "tool_infrastructure_success": true
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step10_controlled_cases_v1/failure_case.json",
+      "bytes": 8425,
+      "sha256": "9f1f431dbc3c767078a8dd8e1a3f8575a2b838a023d67dfb5ebbf5052a89af3e",
+      "case_label": "Failure",
+      "case_type": "failure",
+      "data_id": "fvqa_train_32",
+      "action_sequence": [
+        "answer"
+      ],
+      "path_pass": null,
+      "exact_match": false,
+      "tool_infrastructure_success": true
+    }
+  ],
+  "cases_markdown": {
+    "path": "/root/autodl-tmp/outputs/step10_controlled_cases_v1/cases.md",
+    "bytes": 1627,
+    "sha256": "b78b6106dcf9c98b6d2c41d0bda7245f4d89b9d96831a8e59002acbc7e947d84"
+  },
+  "representative_paths": {
+    "A": {
+      "expected": [
+        "answer"
+      ],
+      "actual": [
+        "answer"
+      ],
+      "path_pass": true,
+      "exact_match": true
+    },
+    "B": {
+      "expected": [
+        "image_search",
+        "answer"
+      ],
+      "actual": [
+        "image_search",
+        "answer"
+      ],
+      "path_pass": true,
+      "exact_match": true
+    },
+    "C": {
+      "expected": [
+        "text_search",
+        "answer"
+      ],
+      "actual": [
+        "text_search",
+        "answer"
+      ],
+      "path_pass": true,
+      "exact_match": false
+    },
+    "D": {
+      "expected": [
+        "image_search",
+        "text_search",
+        "answer"
+      ],
+      "actual": [
+        "image_search",
+        "text_search",
+        "answer"
+      ],
+      "path_pass": true,
+      "exact_match": true
+    }
+  },
+  "failure_case": {
+    "data_id": "fvqa_train_32",
+    "actual_action_sequence": [
+      "answer"
+    ],
+    "terminal_status": "answered",
+    "exact_match": false,
+    "tool_infrastructure_success": true,
+    "analysis": {
+      "layer": "final_answer",
+      "rationale": "A final answer was emitted and strict normalized Exact Match is false; upstream causality is not inferred.",
+      "evidence_paths": [
+        "$.final_answer",
+        "$.ground_truth",
+        "$.exact_match",
+        "$.tool_infrastructure_success"
+      ],
+      "infrastructure_failure": false,
+      "terminal_status": "answered",
+      "actual_action_sequence": [
+        "answer"
+      ],
+      "exact_match": false
+    },
+    "capture_pass": true
+  },
+  "producer_checks": {
+    "case_artifact_count": 5,
+    "representative_path_pass_count": 4,
+    "required_representative_path_count": 4,
+    "failure_capture_valid": true,
+    "serialized_evidence_scan": {
+      "files_scanned": 6,
+      "json_files_scanned": 5,
+      "text_files_scanned": 1,
+      "forbidden_json_key_paths": [],
+      "data_image_base64_matches": 0,
+      "long_base64_matches": 0,
+      "raw_jina_marker_matches": 0,
+      "authorization_marker_matches": 0,
+      "known_credential_value_matches": 0,
+      "pass": true
+    },
+    "natural_negative_result_preserved": true,
+    "controlled_B_C_not_claimed_as_natural": true,
+    "controlled_B_C_excluded_from_search_ratio": true
+  },
+  "credentials_recorded": false,
+  "completion_scope": "engineering_path_coverage_with_controlled_B_C; natural policy B/C remain unobserved",
+  "natural_policy_result": {
+    "status": "incomplete_four_route_coverage",
+    "scanned_search_required_count": 512,
+    "natural_route_counts": {
+      "answer": 116,
+      "mixed": 396,
+      "image_only": 0,
+      "text_only": 0
+    },
+    "manifest": {
+      "path": "/root/autodl-tmp/mmsearch_step10_v2/step10_candidate_selection_v2.json",
+      "sha256": "a512d87f3dd24fc5a2714f58589a846f00d494132e678cc2479fd5410751b17d"
+    }
+  },
+  "case_semantics": {
+    "A": "natural_model_policy",
+    "B": "controlled_tool_integration_only",
+    "C": "controlled_tool_integration_only",
+    "D": "natural_model_policy",
+    "Failure": "natural_model_policy"
+  }
+}

@@ -1,0 +1,36 @@
+# Python & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Environments & Packages
+.env
+.venv
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Large Model Weights & Data Cache
+*.bin
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+*.h5
+*.onnx
+models/
+cache/
+*.tar.gz
+*.tar.xz
+*.zip
+
+# Logs and runtime traces
+*.log
+.vscode/
+.idea/
+.DS_Store

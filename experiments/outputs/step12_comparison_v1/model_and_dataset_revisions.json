@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "dataset": {
+    "repo_id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "base": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5"
+  },
+  "mmsearch": {
+    "repo_id": "lmms-lab/MMSearch-R1-7B",
+    "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46"
+  },
+  "summarizer": {
+    "repo_id": "Qwen/Qwen3-32B-FP8",
+    "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+  },
+  "main_git_commit": "3727c76dda2fc0ea9df16a9f770946d039e6f09b",
+  "verl_git_commit": "8e9e73723fd1cc729bedb3bbcf915060afbda91d",
+  "pip_check": "No broken requirements found.",
+  "credentials_recorded": false
+}

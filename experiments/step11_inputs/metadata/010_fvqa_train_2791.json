@@ -1,0 +1,29 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2791",
+  "source_split": "train",
+  "source_row_index": 2791,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is this building dedicated to?",
+  "reward_model": {
+    "ground_truth": "Mohammad Ali Jinnah",
+    "candidate_answers": [
+      "Mohammad Ali Jinnah",
+      "Baba-e-Qaum",
+      "Muhammad Ali Jinnah",
+      "Quaid-e-Azam",
+      "Mohammed Ali Jinnah"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/010_fvqa_train_2791.png",
+  "image_width": 800,
+  "image_height": 600,
+  "source_image_sha256": "78573c20419e848c191d1e1a83d91e14df83c4d79570f68928f104fcf5af4890",
+  "normalized_png_sha256": "f1122fb8d81713a7c2f1fe595bc2b079864dbf3ce784cab2d9c51d5bae774782",
+  "eval_index": 10,
+  "selection_rank_sha256": "003b56bb94e83cc5fc19b5ae00a9e18fd7d4f75579488f464de3c542d6752069",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

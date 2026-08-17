@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4216",
+  "source_split": "train",
+  "source_row_index": 4216,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Does the new virus in bat pose a threat to public that was identified by scientist in 2025 from the institute of the red area on the map?",
+  "reward_model": {
+    "ground_truth": "no",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/041_fvqa_train_4216.png",
+  "image_width": 1194,
+  "image_height": 672,
+  "source_image_sha256": "8e281d8aa53308fe87c9da1ebc8ff4a932820d63bd2867c2e1a6fe9e27eeaeda",
+  "normalized_png_sha256": "8e281d8aa53308fe87c9da1ebc8ff4a932820d63bd2867c2e1a6fe9e27eeaeda",
+  "eval_index": 41,
+  "selection_rank_sha256": "044e374de7acb8df853aa397f8bc77460a9a48c7c4741ef35010cfc3315b6f0a",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

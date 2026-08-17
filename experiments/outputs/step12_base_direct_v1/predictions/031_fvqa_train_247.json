@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 31,
+  "data_id": "fvqa_train_247",
+  "category": "search_free",
+  "source_row_index": 247,
+  "selection_rank_sha256": "036d8e354ce097440ed79c124faa03c17431f743a6315ba1e7e3ef43ba8ab70b",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/031_fvqa_train_247.png",
+      "bytes": 342386,
+      "sha256": "14c6ddf692a790e9bb01947ccf48dded4a0d7d084bbf25ddae58260c2c75fe3c"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/031_fvqa_train_247.json",
+      "bytes": 990,
+      "sha256": "c8537e293f502b7744fcb4f0842b62bce486ca0984e8c6e6e0e5f7da6ad4ba06"
+    },
+    "image_width": 640,
+    "image_height": 479,
+    "question": "What is the previous crossing of this river (crossed by the bridge) on the upstream?"
+  },
+  "result": {
+    "response_text": "The previous crossing of the Tyne River on the upstream side is the Swing Bridge.",
+    "answer": "The previous crossing of the Tyne River on the upstream side is the Swing Bridge.",
+    "parser_mode": "plain_text_fallback",
+    "ground_truth": "Swing Bridge",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 477,
+    "output_tokens": 18,
+    "generation_seconds": 0.35205,
+    "case_seconds": 0.379111,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17404264448,
+    "cuda_peak_memory_allocated_bytes": 16786020352,
+    "cuda_peak_memory_reserved_bytes": 17404264448
+  },
+  "credentials_recorded": false
+}

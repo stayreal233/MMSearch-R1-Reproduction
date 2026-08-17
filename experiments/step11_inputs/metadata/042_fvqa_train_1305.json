@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1305",
+  "source_split": "train",
+  "source_row_index": 1305,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Where is this coastal city located?",
+  "reward_model": {
+    "ground_truth": "Ceuta",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/042_fvqa_train_1305.png",
+  "image_width": 1008,
+  "image_height": 672,
+  "source_image_sha256": "a1062444289ae87b45669ffef1f86828d45f57aa0b5ed15e0fd1c68c4dcb072c",
+  "normalized_png_sha256": "a1062444289ae87b45669ffef1f86828d45f57aa0b5ed15e0fd1c68c4dcb072c",
+  "eval_index": 42,
+  "selection_rank_sha256": "01494f91dd24fa182c88a9dfaef83c508a99d8fb0aa849e32e261b3e43b2f781",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

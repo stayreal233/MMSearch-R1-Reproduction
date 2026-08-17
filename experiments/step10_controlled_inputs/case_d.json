@@ -1,0 +1,22 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_17",
+  "source_split": "train",
+  "source_row_index": 17,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Which historic county does this building belong to?",
+  "reward_model": {
+    "ground_truth": "Cheshire",
+    "candidate_answers": [
+      "Cheshire",
+      "County of Chester"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_d.png",
+  "image_width": 800,
+  "image_height": 533,
+  "source_image_sha256": "4b5080a196e7f1b256be56330e5e943f1fdd7f51665f272aff0505a1d80a3fcf",
+  "normalized_png_sha256": "eaf433b233424ea4559f63e75cdedab22ece4a8f77caca1e15b9b531bd6994ad"
+}

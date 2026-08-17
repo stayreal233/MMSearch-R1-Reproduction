@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "010a2872c3e9e0f38e2100babe894b28e72099697ca3ab9b0ca5ef4ce138c6dd",
+    "eval_index": 40
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_529",
+    "source_split": "train",
+    "source_row_index": 529,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "Who is the person in the image known for their work in classic films?",
+    "candidate_answers": [],
+    "ground_truth": "Joan Carroll",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/040_fvqa_train_529.png",
+      "width": 533,
+      "height": 672,
+      "png_sha256": "76e14cdfda50de8a45f9ddd86a4ea0a0679376c23330980d918a6a03909fc8ac",
+      "source_sha256": "76e14cdfda50de8a45f9ddd86a4ea0a0679376c23330980d918a6a03909fc8ac"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a young girl with a serious expression, wearing a beret. However, the image does not provide enough context to identify the person or their work in classic films. Therefore, I cannot confidently answer the question based on the image alone.</reason>\n<search><img></search>",
+        "response_sha256": "5b9b9dc3b6091eff5946e7267364ab3ddc325a905a8cbcf1bd9f1546e322fb13",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 866,
+        "output_tokens": 62,
+        "generation_seconds": 1.017,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_529",
+            "requested": 5,
+            "num_images": 4,
+            "cache_hits": 0,
+            "titles": [
+              "Joan Carroll",
+              "Joan Carroll Movies List | Rotten Tomatoes | Rotten Tomatoes",
+              "Joan Carroll - Biografía y Filmografía",
+              "LMP15-167 1940s Adorable Child Actress Joan Carroll Orig 8\"x 10\" Negative | eBay"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSKg5h1CQEl1NCbgEv4Bogq4c9EjICL4SSqqp4kBLIxCA7J3Eay",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRRNlh9oyy8vpQ5iftySlwORLL4kmTufIYD1mTSPZFB41EZhn4b",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQxEaLI9snv0xCm8eIlFWN9kuODa2SaqbdrigHYdyDcI3ISprA4",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTeiUYFTn4ExaCdxwNWBXo0D0CIvOvAB5kcVuok_vGerJTXfCWh"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_529_2_9e37fb88ba58a640ebf9.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_529_3_ee3d2c859d466011e8cf.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_529_4_d2c9fe2c69b7b1f855b4.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_529_5_6d311b6817e1da2403c7.png"
+            ],
+            "failures": [
+              {
+                "index": 0,
+                "title": "The Bells of St. Mary's (1945) - “Cast” credits - IMDb",
+                "source": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRxLEUQBPTRQcfWbOJVNsdQDPapXkZhLUD9bw0DUDfx42r9quWj",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRxLEUQBPTRQcfWbOJVNsdQDPapXkZhLUD9bw0DUDfx42r9quWj"
+              }
+            ]
+          },
+          "returned_text_characters": 1004,
+          "returned_text_sha256": "d73a5695e7d2f2a70b5aa1b22b169d8871b42a73917e016e475b07f362c4a9c9"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results suggest that the person in the image is likely \"Joan Carroll.\" To answer the user's question, a text search is needed to gather more information about Joan Carroll and her work in classic films.</reason>\n<text_search>Who is Joan Carroll and what are her works in classic films</text_search>",
+        "response_sha256": "92bfa824e4ccdd6216662bec42c35db23c27aae9dede7898d649b0b64f1b451a",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "Who is Joan Carroll and what are her works in classic films",
+        "input_tokens": 1549,
+        "output_tokens": 69,
+        "generation_seconds": 1.197,
+        "query": "Who is Joan Carroll and what are her works in classic films",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "Who is Joan Carroll and what are her works in classic films",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/8d523225715175cdd8e0007a1efbc21d569fbfde814fd820d1737da7608dcb65.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 54420,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 20405,
+              "total_output_tokens": 834,
+              "total_tokens": 21239,
+              "total_generation_seconds": 25.818702,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "Joan Carroll (January 18, 1931 – November 16, 2016) was a child ...",
+                "url": "https://www.facebook.com/HollywoodPageOfDeath/posts/joan-carroll-january-18-1931-november-16-2016-was-a-child-actress-who-appeared-i/3518295281625396/",
+                "snippet": "Six-year-old Joan made her film debut in “Walking Down Broadway” (1938). She played the role of Sunny, and changed her name from Felt to Carroll ..."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "Joan Carroll - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Joan_Carroll",
+                "snippet": "Joan Carroll was an American child actress who appeared in films until retiring in 1950. Joan Carroll. Carroll in Laddie (1940) with Tim Holt. Born."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "Joan Carroll, Child Star Who Appeared With Ethel Merman and ...",
+                "url": "https://playbill.com/article/joan-carroll-child-star-who-appeared-with-ethel-merman-and-judy-garland-has-died",
+                "snippet": "including Two Sisters, Walking Down Broadway, One Mile From Heaven, and Primrose Path, role of Agnes Smith, The Bells of St. Mary's (1945),"
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Joan Carroll of Meet Me in St. Louis (1944) Passes On",
+                "url": "http://laurasmiscmusings.blogspot.com/2016/12/joan-carroll-of-meet-me-in-st-louis.html",
+                "snippet": "Carroll's eight-year film career began in 1937, with credits including LADDIE (1940), PRIMROSE PATH (1940), and her last film, THE BELL'S OF ST ..."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Forgotten Child Star Joan Carroll Buried at the Santa Clara Mission ...",
+                "url": "https://www.youtube.com/watch?v=JHRsE6D8-Kk",
+                "snippet": "Joan Carroll was a child movie star for just a brief time and even had paper dolls and coloring books made with her image."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "Joan Carroll (January 18, 1931 – November 16, 2016) was a child ...",
+                "url": "https://www.facebook.com/HollywoodPageOfDeath/posts/joan-carroll-january-18-1931-november-16-2016-was-a-child-actress-who-appeared-i/3518295281625396/",
+                "snippet": "Six-year-old Joan made her film debut in “Walking Down Broadway” (1938). She played the role of Sunny, and changed her name from Felt to Carroll ...",
+                "full_characters": 7668,
+                "returned_characters": 7668,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/d49d101c8f2549bfff174c832f0321940e4c4cbeaddda77c932b07bcdd0468a3.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "Joan Carroll - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Joan_Carroll",
+                "snippet": "Joan Carroll was an American child actress who appeared in films until retiring in 1950. Joan Carroll. Carroll in Laddie (1940) with Tim Holt. Born.",
+                "full_characters": 10752,
+                "returned_characters": 10752,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/94374e9d0676b5539423a8c72160461604d16e8605919fa04a05823503924293.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "Joan Carroll, Child Star Who Appeared With Ethel Merman and ...",
+                "url": "https://playbill.com/article/joan-carroll-child-star-who-appeared-with-ethel-merman-and-judy-garland-has-died",
+                "snippet": "including Two Sisters, Walking Down Broadway, One Mile From Heaven, and Primrose Path, role of Agnes Smith, The Bells of St. Mary's (1945),",
+                "full_characters": 14652,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/4b8daa5a233c44728af55ad88ff6744f2987d2f54ea26f4f6da3b1228c06171c.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "Joan Carroll of Meet Me in St. Louis (1944) Passes On",
+                "url": "http://laurasmiscmusings.blogspot.com/2016/12/joan-carroll-of-meet-me-in-st-louis.html",
+                "snippet": "Carroll's eight-year film career began in 1937, with credits including LADDIE (1940), PRIMROSE PATH (1940), and her last film, THE BELL'S OF ST ...",
+                "full_characters": 30082,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/298cb6e2360a61aa318a264091e4c0999ebb1a519d089bf65eed1c9268b7744e.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Forgotten Child Star Joan Carroll Buried at the Santa Clara Mission ...",
+                "url": "https://www.youtube.com/watch?v=JHRsE6D8-Kk",
+                "snippet": "Joan Carroll was a child movie star for just a brief time and even had paper dolls and coloring books made with her image.",
+                "full_characters": 17457,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/7e98cfb5391135e0eefe0b8a238b72df91b39e02c28be1d023e83ea31631fcb7.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "Joan Carroll (January 18, 1931 – November 16, 2016) was a child ...",
+                "url": "https://www.facebook.com/HollywoodPageOfDeath/posts/joan-carroll-january-18-1931-november-16-2016-was-a-child-actress-who-appeared-i/3518295281625396/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/d49d101c8f2549bfff174c832f0321940e4c4cbeaddda77c932b07bcdd0468a3.md",
+                "full_characters": 7668,
+                "returned_characters": 7668,
+                "jina_content_sha256": "fcc8c272b0ce5458fc7c0a3736d091ad1377142f5cca1dc5047ff788cf2c0f9c",
+                "jina_input_characters": 7668,
+                "public_input_signature": "60dcb051a867b28b885c259c76dbd4bb0bd819686e92d5d5bfed42cec938829f",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/60dcb051a867b28b885c259c76dbd4bb0bd819686e92d5d5bfed42cec938829f.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Joan Carroll was a child actress born on January 18, 1931, and died on November 16, 2016.  \n- She made her film debut at age six in *Walking Down Broadway* (1938) as Sunny.  \n- She appeared in films from 1936 to 1945, including *Primrose Path* (1940), where she won a Critics Award.  \n- She starred in the Broadway musical *Panama Hattie* (1940–1942), becoming the first child star to lead a Broadway show from Hollywood.  \n- She appeared in *Meet Me In St. Louis* (1944) and *The Bells of St. Mary's* (1945), playing a troubled teenager.  \n- She retired from acting after *The Bells of St. Mary's* and later lived in Puerto Vallarta, Mexico.",
+                "input_tokens": 4293,
+                "output_tokens": 205,
+                "total_tokens": 4498,
+                "finish_reason": "stop",
+                "generation_seconds": 6.290631,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "Joan Carroll - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/Joan_Carroll",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/94374e9d0676b5539423a8c72160461604d16e8605919fa04a05823503924293.md",
+                "full_characters": 10752,
+                "returned_characters": 10752,
+                "jina_content_sha256": "e5d64fe525342348c3c9d113184b72ff4e90a532ea6635971f414f18eb07ac1d",
+                "jina_input_characters": 10752,
+                "public_input_signature": "a5ccb0ac28103dec23586df4a986b224836e518f2bd26cecfe1e7bf933dbb378",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/a5ccb0ac28103dec23586df4a986b224836e518f2bd26cecfe1e7bf933dbb378.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Joan Carroll was an American child actress born on January 18, 1931, in Elizabeth, New Jersey.\n- She began her film career in 1936 and was active until retiring in 1950.\n- She appeared in classic films such as *Meet Me in St. Louis* (1944) and *The Bells of St. Mary's* (1945).\n- She also starred in *Primrose Path* (1940) and *Obliging Young Lady* (1941), and was the first child star to lead a Broadway musical, *Panama Hattie* (1940–1942).\n- She was known for her singing and tap-dancing skills, trained at the Fanchon and Marco Dancing School in Hollywood.\n- Joan Carroll died on November 16, 2016, in Puerto Vallarta, Mexico, at the age of 85.",
+                "input_tokens": 3841,
+                "output_tokens": 209,
+                "total_tokens": 4050,
+                "finish_reason": "stop",
+                "generation_seconds": 6.280501,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "Joan Carroll, Child Star Who Appeared With Ethel Merman and ...",
+                "url": "https://playbill.com/article/joan-carroll-child-star-who-appeared-with-ethel-merman-and-judy-garland-has-died",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/4b8daa5a233c44728af55ad88ff6744f2987d2f54ea26f4f6da3b1228c06171c.md",
+                "full_characters": 14652,
+                "returned_characters": 12000,
+                "jina_content_sha256": "5b20ea0f347fcc2ca242d99144aa03ed942bb35df83806f713b511d0a2077159",
+                "jina_input_characters": 12000,
+                "public_input_signature": "9b32e66e7913390751d0d546c2758dc3b68344c45634b788465889620d79fd39",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/9b32e66e7913390751d0d546c2758dc3b68344c45634b788465889620d79fd39.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Joan Carroll was a child star active in the 1940s in both film and Broadway.  \n- She appeared in films such as *Two Sisters*, *Walking Down Broadway*, *One Mile From Heaven*, and *Primrose Path*.  \n- She played the role of Agnes Smith in the 1944 film *Meet Me in St. Louis*, alongside Judy Garland.  \n- She had a more prominent role in *The Bells of St. Mary’s* (1945), opposite Bing Crosby and Ingrid Bergman.  \n- She made her Broadway debut in 1940 in the Cole Porter musical *Panama Hattie*, starring Ethel Merman.  \n- She retired from acting after *The Bells of St. Mary’s*, married in 1951, and raised four children.",
+                "input_tokens": 4088,
+                "output_tokens": 177,
+                "total_tokens": 4265,
+                "finish_reason": "stop",
+                "generation_seconds": 5.19868,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "Joan Carroll of Meet Me in St. Louis (1944) Passes On",
+                "url": "http://laurasmiscmusings.blogspot.com/2016/12/joan-carroll-of-meet-me-in-st-louis.html",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/298cb6e2360a61aa318a264091e4c0999ebb1a519d089bf65eed1c9268b7744e.md",
+                "full_characters": 30082,
+                "returned_characters": 12000,
+                "jina_content_sha256": "00fc0e4db6ec8dcf7ec7ea44ad625be233cd00f3d9661938bda5afd41cb4148e",
+                "jina_input_characters": 12000,
+                "public_input_signature": "56df9069d275b0aeed781edac2a3f28d3a4aab105e86533f053223c20016f5e0",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/56df9069d275b0aeed781edac2a3f28d3a4aab105e86533f053223c20016f5e0.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Joan Carroll was an actress known for her role in the classic film *Meet Me in St. Louis* (1944).  \n- She began her film career in 1937 and had an eight-year film career.  \n- Some of her film credits include *Laddie* (1940) and *Primrose Path* (1940).  \n- Her last film was *The Bells of St.** (year not specified in the text).  \n- The blog post announces her passing and reflects on her contributions to classic cinema.  \n- She is remembered for her work in classic films and her role in *Meet Me in St. Louis*.",
+                "input_tokens": 3594,
+                "output_tokens": 143,
+                "total_tokens": 3737,
+                "finish_reason": "stop",
+                "generation_seconds": 4.479496,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Forgotten Child Star Joan Carroll Buried at the Santa Clara Mission ...",
+                "url": "https://www.youtube.com/watch?v=JHRsE6D8-Kk",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/7e98cfb5391135e0eefe0b8a238b72df91b39e02c28be1d023e83ea31631fcb7.md",
+                "full_characters": 17457,
+                "returned_characters": 12000,
+                "jina_content_sha256": "1e25f7c75fa0b55c29ad388e82f5301b5bdbed5406bf053116c24b4b67aeb2a7",
+                "jina_input_characters": 12000,
+                "public_input_signature": "3bd2785106230212d6a3f03594a4579d3ffddc694ada9cfaa3131238365d62a5",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/3bd2785106230212d6a3f03594a4579d3ffddc694ada9cfaa3131238365d62a5.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Joan Carroll was a child movie star during a brief period in her early life.\n- She appeared in films with notable stars such as Bing Crosby, Ingrid Bergman, and Judy Garland.\n- She also performed on stage with Ethel Merman.\n- Her image was used in paper dolls and coloring books, indicating her popularity as a child star.\n- She left Hollywood in her 20s and faded into obscurity.\n- Joan Carroll is buried at the Santa Clara Mission Cemetery.",
+                "input_tokens": 4589,
+                "output_tokens": 100,
+                "total_tokens": 4689,
+                "finish_reason": "stop",
+                "generation_seconds": 3.569394,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003772,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 5444,
+          "returned_text_sha256": "529e4c2b67e1f31c446b8abf1e5f2af783e42ec88c02d650a77dfee074be8578"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results provide information about Joan Carroll, who was a child actress known for her work in classic films. The images and summaries in the search results confirm that the person in the image is likely Joan Carroll.</reason>\n<answer>Joan Carroll</answer>",
+        "response_sha256": "65ec363b563865abfdc3f49734e5d66c9742d98098836ad0c1edeb1795fad273",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Joan Carroll",
+        "input_tokens": 3403,
+        "output_tokens": 56,
+        "generation_seconds": 1.089
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "Joan Carroll",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": true,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 5818,
+    "mmsearch_output_tokens": 187,
+    "mmsearch_generation_seconds": 3.303,
+    "case_seconds": 49.984,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 40,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 17072.43,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_40_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:59:21.418367+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 70188, 27065",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "70188",
+            "memory_free_mib": "27065"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "50384",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "229170",
+            "used_gpu_memory_mib": "19790",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 229170,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 20023607296,
+            "max_memory_allocated_bytes": 17901742592,
+            "max_memory_reserved_bytes": 20023607296
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002702,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.743,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

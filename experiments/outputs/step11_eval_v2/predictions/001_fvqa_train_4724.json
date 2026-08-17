@@ -1,0 +1,526 @@
+{
+  "schema_version": 1,
+  "status": "failed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "000c1e37c71fc872e70218342ef255c3452d60b05611abb54a9a0cfdf2d75772",
+    "eval_index": 1
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_4724",
+    "source_split": "train",
+    "source_row_index": 4724,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "Comparing the stock price of the company shown in the image on April 7th with Hershey's stock price on the same day, which one is lower?",
+    "candidate_answers": [],
+    "ground_truth": "Best Buy Co., Inc. (BBY)",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/001_fvqa_train_4724.png",
+      "width": 1314,
+      "height": 672,
+      "png_sha256": "a774841f1651e9461d259420c73ec5369afdbf2ffc2530d54e103a1e984f2501",
+      "source_sha256": "a774841f1651e9461d259420c73ec5369afdbf2ffc2530d54e103a1e984f2501"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a stock price chart for Best Buy Co., Inc. (BBY) on April 7, 2025. However, the image does not provide the stock price of Hershey's for the same day. Therefore, I cannot directly compare the two stock prices without additional information.</reason>\n<search><img></search>",
+        "response_sha256": "3ce60d5c81db0f55e32fa6984d9c69c9a75ced24fcc88ec43fc7b666d1b7e83b",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 989,
+        "output_tokens": 74,
+        "generation_seconds": 1.849,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_4724",
+            "requested": 5,
+            "num_images": 4,
+            "cache_hits": 0,
+            "titles": [
+              "ER605 (TL-R605) - incorrect data of send\\receive via SNMP (MIB wanted) - Business Community",
+              "The Negative Equity (NAV) Conundrum - by James Emanuel",
+              "January 2024 Austin Multi Family Real Estate Price Report | Invest",
+              "Fact Check: No proof Trump sold $2.3B in Truth Social stock before April 2 tariffs announcement"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ8laqrr2G_bllPM3Wsg3DXG0vSbEw2e5YbtYw4gSRv520FzhqX",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJizEis9nopxTKChAX4Xegj54q2_dvxh-nGXmdFlBl-tKG5Mm9",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQeuOQOhHBQuHny8cmaOEj9ahonxVUNSyMSj8NYhrXJmEfacNPX",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQTjmvNN3oCfwXJI_FRTMhLjcTJGAcdG7X2P5dFluqBBvIJgioo"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4724_1_ba3b4b4a444b32a8b6b9.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4724_2_aacc2f07598166b2b870.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4724_3_bedd075778e99fd819f5.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4724_5_e73b72f23b8c4f39373e.png"
+            ],
+            "failures": [
+              {
+                "index": 3,
+                "title": "Grace Mary Guastella, Realtor",
+                "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc-A3r0IOSNKdES-LJvmLLUWhD7PHoJabtgWrd-AwIAGWSsjVh",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc-A3r0IOSNKdES-LJvmLLUWhD7PHoJabtgWrd-AwIAGWSsjVh"
+              }
+            ]
+          },
+          "returned_text_characters": 1120,
+          "returned_text_sha256": "933abca5d9a01f05e3ba92eb56e63b2ed2cfb2a5b59b3d5f728c4d40536d9ff0"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results do not provide the stock price of Hershey's for April 7, 2025. Therefore, a text search is needed to find the stock price of Hershey's for that specific date.</reason>\n<text_search>Stock price of Hershey's on April 7, 2025</text_search>",
+        "response_sha256": "a18b1ca2be1d4e7c5b9b5ab82b7fd4b06650563476b23605f5920ea9c19c3e41",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "Stock price of Hershey's on April 7, 2025",
+        "input_tokens": 1720,
+        "output_tokens": 75,
+        "generation_seconds": 1.395,
+        "query": "Stock price of Hershey's on April 7, 2025",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "Stock price of Hershey's on April 7, 2025",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/7b1ac5ed5ed31a34a9a05f90e1bb63cdf2a30c496a9162dcf9c3963f97dc67f5.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 4,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 25356,
+              "failures": [
+                {
+                  "rank": 4,
+                  "title": "Hershey - 46 Year Stock Price History | HSY",
+                  "url": "https://www.macrotrends.net/stocks/charts/HSY/hershey/stock-price-history",
+                  "error": "RuntimeError: Jina Reader failed (HTTP 403)"
+                }
+              ]
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 4,
+              "num_summaries": 3,
+              "cache_hits": 0,
+              "api_calls": 4,
+              "total_input_tokens": 5977,
+              "total_output_tokens": 346,
+              "total_tokens": 6323,
+              "total_generation_seconds": 10.320053,
+              "failures": [
+                {
+                  "rank": 1,
+                  "title": "The Hershey Company (HSY)",
+                  "url": "https://finance.yahoo.com/quote/HSY/history/",
+                  "error": "Qwen3 summary endpoint returned HTTP 400"
+                }
+              ],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "The Hershey Company (HSY)",
+                "url": "https://finance.yahoo.com/quote/HSY/history/",
+                "snippet": "The Hershey Company (HSY) ; Oct 8, 2025, 194.49, 196.59 ; Oct 7, 2025, 195.99, 197.12 ; Oct 6, 2025, 195.40, 196.05 ; Oct 3, 2025, 189.00, 195.34 ..."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "Historic Price Lookup | The Hershey Company",
+                "url": "https://hershey.gcs-web.com/stock-information/historic-price-lookup",
+                "snippet": "$182.75 1,375,270 1:1 $181.07 $182.88 $180.21 NOTE: The Closing Price, Day's High, Day's Low, and Day's Volume have been adjusted. Minimum 15 minutes delayed."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "HSY Stock Price Quote",
+                "url": "https://www.morningstar.com/stocks/xnys/hsy/quote",
+                "snippet": "See the latest The Hershey Co stock price. Close Price $184.67 Day Range $183.56–185.95 52-Week Range $161.43–239.48"
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Hershey - 46 Year Stock Price History | HSY",
+                "url": "https://www.macrotrends.net/stocks/charts/HSY/hershey/stock-price-history",
+                "snippet": "Chart ; 2025-07-24, 177.16 ; 2025-07-23, 176.514 ; 2025-07-22, 175.031 ; 2025-07-21, 170.272."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Hershey Co. (HSY) Stock Price Today",
+                "url": "https://www.wsj.com/market-data/quotes/HSY",
+                "snippet": "Hershey Co.HSY (U.S.: NYSE) AT CLOSE 4:00 PM EDT 08/13/26 $186.12USD 1.891.03% Volume1,075,969 AFTER HOURS 7:56 PM EDT 08/13/26 $187.000.880.47% Range184.94 ..."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "The Hershey Company (HSY)",
+                "url": "https://finance.yahoo.com/quote/HSY/history/",
+                "snippet": "The Hershey Company (HSY) ; Oct 8, 2025, 194.49, 196.59 ; Oct 7, 2025, 195.99, 197.12 ; Oct 6, 2025, 195.40, 196.05 ; Oct 3, 2025, 189.00, 195.34 ...",
+                "full_characters": 19405,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/89fef1623f79a18f1e9ac42c2c65b259ff9e1bf5090c9fc71d4876a8dc8e78f0.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "Historic Price Lookup | The Hershey Company",
+                "url": "https://hershey.gcs-web.com/stock-information/historic-price-lookup",
+                "snippet": "$182.75 1,375,270 1:1 $181.07 $182.88 $180.21 NOTE: The Closing Price, Day's High, Day's Low, and Day's Volume have been adjusted. Minimum 15 minutes delayed.",
+                "full_characters": 1165,
+                "returned_characters": 1165,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/47b8a206b88511d2a68199a505ef1638b5648cb3cd7b004a689027807b73e1d4.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "HSY Stock Price Quote",
+                "url": "https://www.morningstar.com/stocks/xnys/hsy/quote",
+                "snippet": "See the latest The Hershey Co stock price. Close Price $184.67 Day Range $183.56–185.95 52-Week Range $161.43–239.48",
+                "full_characters": 23005,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/603a73555832fe460e85d1bd88b0b9ef8e16dcb7ff4ae879d1b58b18d5cd5dc5.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Hershey Co. (HSY) Stock Price Today",
+                "url": "https://www.wsj.com/market-data/quotes/HSY",
+                "snippet": "Hershey Co.HSY (U.S.: NYSE) AT CLOSE 4:00 PM EDT 08/13/26 $186.12USD 1.891.03% Volume1,075,969 AFTER HOURS 7:56 PM EDT 08/13/26 $187.000.880.47% Range184.94 ...",
+                "full_characters": 191,
+                "returned_characters": 191,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/1e3fde6e6e652dc9d0d644805418317869f76ad7bdc04d100dc8229dddedfb68.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "The Hershey Company (HSY)",
+                "url": "https://finance.yahoo.com/quote/HSY/history/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/89fef1623f79a18f1e9ac42c2c65b259ff9e1bf5090c9fc71d4876a8dc8e78f0.md",
+                "full_characters": 19405,
+                "returned_characters": 12000,
+                "jina_content_sha256": "b9411bed8c1864e79908858869d063e782ba554a07fbc974ecafcd5487ab4613",
+                "jina_input_characters": 12000,
+                "public_input_signature": "21930769c307858e631fcc8278ac1149c83976af6f1108c3c8fd328ec84ba412",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/21930769c307858e631fcc8278ac1149c83976af6f1108c3c8fd328ec84ba412.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "",
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "total_tokens": 0,
+                "finish_reason": null,
+                "generation_seconds": 0.021755,
+                "thinking_enabled": false,
+                "error": "Qwen3 summary endpoint returned HTTP 400",
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "Historic Price Lookup | The Hershey Company",
+                "url": "https://hershey.gcs-web.com/stock-information/historic-price-lookup",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/47b8a206b88511d2a68199a505ef1638b5648cb3cd7b004a689027807b73e1d4.md",
+                "full_characters": 1165,
+                "returned_characters": 1165,
+                "jina_content_sha256": "9f2a35c2e5c9688b4fd928eadcf8c0002e1a6e02fdd0e6fccce8c985c6624ca5",
+                "jina_input_characters": 1165,
+                "public_input_signature": "372c1f25b89babea42a0df753c3c018e2867da8c835f13f9f6c30a10599d978f",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/372c1f25b89babea42a0df753c3c018e2867da8c835f13f9f6c30a10599d978f.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "The webpage does not contain the stock price of Hershey's on April 7, 2025. It provides historical stock prices for The Hershey Company for dates in August 2026, which is after the requested date.",
+                "input_tokens": 782,
+                "output_tokens": 51,
+                "total_tokens": 833,
+                "finish_reason": "stop",
+                "generation_seconds": 1.462172,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "HSY Stock Price Quote",
+                "url": "https://www.morningstar.com/stocks/xnys/hsy/quote",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/603a73555832fe460e85d1bd88b0b9ef8e16dcb7ff4ae879d1b58b18d5cd5dc5.md",
+                "full_characters": 23005,
+                "returned_characters": 12000,
+                "jina_content_sha256": "8be7a345075828b4aad45ccc570e8e2450b2d9178ffc3464bf49a4df77ca0ff1",
+                "jina_input_characters": 12000,
+                "public_input_signature": "f7a5b4423a698176c62111bf563ed299df9ab6be8df29b0acac06a232f528d57",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/f7a5b4423a698176c62111bf563ed299df9ab6be8df29b0acac06a232f528d57.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The webpage shows a delayed stock price of $184.22 for The Hershey Co (HSY) as of August 14, 2026.\n- The close price mentioned is $184.67, with a day range of $183.56–$185.95.\n- The 52-week stock price range is $161.43–$239.48.\n- No specific stock price for April 7, 2025, is provided on this page.\n- The data is not current for the requested date and is based on a future date (August 2026).\n- The page does not contain the stock price of Hershey's on April 7, 2025.",
+                "input_tokens": 4829,
+                "output_tokens": 171,
+                "total_tokens": 5000,
+                "finish_reason": "stop",
+                "generation_seconds": 5.544171,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Hershey Co. (HSY) Stock Price Today",
+                "url": "https://www.wsj.com/market-data/quotes/HSY",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/1e3fde6e6e652dc9d0d644805418317869f76ad7bdc04d100dc8229dddedfb68.md",
+                "full_characters": 191,
+                "returned_characters": 191,
+                "jina_content_sha256": "6649edae4be6606f877df5a46e099f7e2db6f341eabfd0c01b8bc8620c750d85",
+                "jina_input_characters": 191,
+                "public_input_signature": "0bddfb35b1e139bb5207f41ff1e6002420d679fd55aeb049c735564da7afdc9c",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/0bddfb35b1e139bb5207f41ff1e6002420d679fd55aeb049c735564da7afdc9c.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The webpage shows Hershey Co. (HSY) stock data for August 13, 2026, not April 7, 2025.\n- The closing stock price on that date was $186.12.\n- After-hours trading showed a price of $187.00.\n- The stock had a range of $184.94 to an unspecified high for the day.\n- No data is provided for April 7, 2025.\n- The page may require CAPTCHA and is from an untrusted source.",
+                "input_tokens": 366,
+                "output_tokens": 124,
+                "total_tokens": 490,
+                "finish_reason": "stop",
+                "generation_seconds": 3.291955,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.002244,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 2769,
+          "returned_text_sha256": "0cac77375305758eda8f11dfd4fc0734ac5758604ad16a7555e81042c26e9f7e"
+        }
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": null,
+    "terminal_status": "text_search_hard_failure",
+    "hard_failures": [
+      {
+        "stage": "text_search_jina_qwen",
+        "round": 2,
+        "error": "RuntimeError: Text/Search/Reader/Qwen top-5 contract failed"
+      }
+    ],
+    "total_turns": 2,
+    "action_sequence": [
+      "image_search",
+      "text_search"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": false,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": false,
+      "count_incomplete_reasons": [
+        "round_2_qwen_status_missing"
+      ],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 11
+    },
+    "mmsearch_input_tokens": 2709,
+    "mmsearch_output_tokens": 149,
+    "mmsearch_generation_seconds": 3.244,
+    "case_seconds": 26.353,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": false,
+  "eval_index": 1,
+  "evaluation_semantics": "natural_model_policy_sample_tool_failure",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16473.09,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_1_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:19:51.591635+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 65538, 31715",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "65538",
+            "memory_free_mib": "31715"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "47844",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "219718",
+            "used_gpu_memory_mib": "17680",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 219718,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592974336,
+            "memory_reserved_bytes": 17811111936,
+            "max_memory_allocated_bytes": 17273285120,
+            "max_memory_reserved_bytes": 17811111936
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.001754,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.949,
+    "hf_device_map": {
+      "": "0"
+    }
+  },
+  "v2_import": {
+    "source": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v1/predictions/001_fvqa_train_4724.json",
+      "bytes": 24447,
+      "sha256": "534863c9b57e9fd0f9f966bef1cbc80fd9e53551fa8c822773934eea6b1a359e"
+    },
+    "reexecuted": false,
+    "reason": "user-approved sample-level failure isolation; no network retry"
+  }
+}

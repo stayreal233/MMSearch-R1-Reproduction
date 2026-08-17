@@ -1,0 +1,64 @@
+{
+  "mode": "official_placeholder_tools_with_corrected_message_history",
+  "model_path": "/root/autodl-tmp/models/MMSearch-R1-7B",
+  "attention_implementation": "sdpa",
+  "parameter_dtype": "torch.bfloat16",
+  "load_seconds": 4.823,
+  "peak_gpu_memory_mib": 16184.78,
+  "image_search_limit": 1,
+  "text_search_limit": 1,
+  "max_rounds": 3,
+  "cases": [
+    {
+      "data_id": "fvqa_train_0",
+      "category": "search_free",
+      "question": "What is the name of the system shown in the image?",
+      "ground_truth": "namus",
+      "image": "/root/autodl-tmp/mmsearch_demo/search_free.png",
+      "rounds": [
+        {
+          "round": 1,
+          "response": "<reason>The image shows a logo with the text \"National Missing and Unidentified Persons System\" and the acronym \"NamUs.\" The logo also features silhouettes of three people. The text and the acronym are clear and provide enough information to identify the system shown in the image.</reason>\n<answer>NamUs</answer>",
+          "has_reason": true,
+          "action": "answer",
+          "input_tokens": 561,
+          "output_tokens": 68,
+          "generation_seconds": 1.714
+        }
+      ],
+      "image_search_calls": 0,
+      "text_search_calls": 0,
+      "final_answer": "NamUs",
+      "terminal_status": "answered",
+      "total_turns": 1,
+      "exact_match": true,
+      "control_flow_pass": true
+    },
+    {
+      "data_id": "fvqa_train_6",
+      "category": "search_required",
+      "question": "What is the location of this building?",
+      "ground_truth": "Rubjerg Knude",
+      "image": "/root/autodl-tmp/mmsearch_demo/search_required.png",
+      "rounds": [
+        {
+          "round": 1,
+          "response": "<reason>The image shows the Rubjerg Knude Lighthouse, which is a well-known landmark located in Denmark. The paraglider and the landscape also help in identifying the location. The Rubjerg Knude Lighthouse is situated on a cliff in the Rubjerg Knude National Park, which is in the Hjørring Municipality in the region of Nordjylland (North Jutland) in Denmark.</reason>\n<answer>Rubjerg Knude</answer>",
+          "has_reason": true,
+          "action": "answer",
+          "input_tokens": 954,
+          "output_tokens": 101,
+          "generation_seconds": 1.641
+        }
+      ],
+      "image_search_calls": 0,
+      "text_search_calls": 0,
+      "final_answer": "Rubjerg Knude",
+      "terminal_status": "answered",
+      "total_turns": 1,
+      "exact_match": true,
+      "control_flow_pass": false
+    }
+  ],
+  "all_control_flows_pass": false
+}

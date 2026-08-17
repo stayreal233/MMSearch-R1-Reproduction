@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 18,
+  "data_id": "fvqa_train_904",
+  "category": "search_required",
+  "source_row_index": 904,
+  "selection_rank_sha256": "00592bdca14dd51f403b74f907fc16fe8aa9ca717b2536accde2ba5e28fdd1fa",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/018_fvqa_train_904.png",
+      "bytes": 3574,
+      "sha256": "4b382006a176be01ef4c2fd6184df3bcfb870c0c47b0bf5715d754cc7a0a4e69"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/018_fvqa_train_904.json",
+      "bytes": 937,
+      "sha256": "d1ce36d569d7a8426b8ea5ca7e1a0d6b5a10fb27849e19dbd60a405fe2e1213b"
+    },
+    "image_width": 360,
+    "image_height": 123,
+    "question": "What is the term used to describe the connection between multiple nodes in this diagram?"
+  },
+  "result": {
+    "response_text": "<answer>Network</answer>",
+    "answer": "Network",
+    "parser_mode": "answer_tags",
+    "ground_truth": "hyperedge",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 135,
+    "output_tokens": 8,
+    "generation_seconds": 0.15087,
+    "case_seconds": 0.154232,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17521704960,
+    "cuda_peak_memory_allocated_bytes": 16645477376,
+    "cuda_peak_memory_reserved_bytes": 17521704960
+  },
+  "credentials_recorded": false
+}

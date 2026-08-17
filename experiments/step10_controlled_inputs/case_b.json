@@ -1,0 +1,21 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_6",
+  "source_split": "train",
+  "source_row_index": 6,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the location of this building?",
+  "reward_model": {
+    "ground_truth": "Rubjerg Knude",
+    "candidate_answers": [
+      "Rubjerg Knude"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_b.png",
+  "image_width": 531,
+  "image_height": 800,
+  "source_image_sha256": "6a72eda37c87b01359e299c88edb3a0c1a003287995917b131d4068e5af004b8",
+  "normalized_png_sha256": "60b56271ee8197e81b3092f13f381e5cae94a7ec3939d9a3fc364dcabfb7dc53"
+}

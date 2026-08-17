@@ -1,0 +1,356 @@
+#!/usr/bin/env python3
+"""Validate and launch the pinned local Qwen3 vLLM service in the background."""
+
+from __future__ import annotations
+
+import json
+import os
+import signal
+import socket
+import subprocess
+import sys
+import tempfile
+import time
+import urllib.error
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+MODEL_DIR = Path("/root/autodl-tmp/models/Qwen3-32B-FP8")
+PYTHON = Path("/root/autodl-tmp/envs/qwen3_summary/bin/python")
+VLLM = Path("/root/autodl-tmp/envs/qwen3_summary/bin/vllm")
+VALIDATOR = Path(__file__).resolve().with_name("validate_qwen3_artifacts.py")
+LOG_PATH = Path("/root/autodl-tmp/logs/qwen3_summary_vllm.log")
+PID_PATH = Path("/root/autodl-tmp/logs/qwen3_summary_vllm.pid")
+HOST = "127.0.0.1"
+PORT = 8001
+READINESS_URL = f"http://{HOST}:{PORT}/v1/models"
+READINESS_TIMEOUT_SECONDS = 900.0
+READINESS_BACKOFF_SECONDS = 2.0
+READINESS_REQUEST_TIMEOUT_SECONDS = 5.0
+TERMINATION_GRACE_SECONDS = 10.0
+MAX_READINESS_RESPONSE_BYTES = 1024 * 1024
+
+
+def pid_is_alive(pid: int) -> bool:
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def reject_existing_process() -> None:
+    if PID_PATH.exists():
+        raw_pid = PID_PATH.read_text(encoding="utf-8").strip()
+        try:
+            pid = int(raw_pid)
+        except ValueError as exc:
+            raise RuntimeError(f"Refusing to overwrite malformed PID file: {PID_PATH}") from exc
+        if pid_is_alive(pid):
+            raise RuntimeError(f"Qwen3 PID file points to a live process: pid={pid}")
+
+    try:
+        with socket.create_connection((HOST, PORT), timeout=0.25):
+            pass
+    except OSError:
+        pass
+    else:
+        raise RuntimeError(f"Refusing to launch: {HOST}:{PORT} already accepts connections")
+
+    own_pids = {os.getpid(), os.getppid()}
+    for proc_dir in Path("/proc").glob("[0-9]*"):
+        try:
+            pid = int(proc_dir.name)
+            if pid in own_pids:
+                continue
+            command = (proc_dir / "cmdline").read_bytes().replace(b"\x00", b" ").decode(
+                "utf-8", errors="replace"
+            )
+        except (OSError, ValueError):
+            continue
+        if str(MODEL_DIR) in command and (
+            "vllm" in command.lower() or "api_server" in command.lower()
+        ):
+            raise RuntimeError(f"Refusing to launch: matching live vLLM process pid={pid}")
+
+
+def sanitized_environment() -> dict[str, str]:
+    environment = dict(os.environ)
+    sensitive_names = {
+        name
+        for name in environment
+        if name.upper().endswith("_API_KEY")
+        or "TOKEN" in name.upper()
+        or "PASSWORD" in name.upper()
+        or "SECRET" in name.upper()
+    }
+    for name in sensitive_names:
+        environment.pop(name, None)
+    environment.update(
+        {
+            "CUDA_VISIBLE_DEVICES": "0",
+            "HF_HOME": "/root/autodl-tmp/cache/huggingface",
+            "HF_HUB_OFFLINE": "1",
+            "TRANSFORMERS_OFFLINE": "1",
+            "DO_NOT_TRACK": "1",
+            "VLLM_NO_USAGE_STATS": "1",
+            "VLLM_USE_DEEP_GEMM": "0",
+            "VLLM_USE_FLASHINFER_SAMPLER": "0",
+        }
+    )
+    return environment
+
+
+def atomic_write_pid(pid: int) -> None:
+    PID_PATH.parent.mkdir(parents=True, exist_ok=True)
+    temporary_name: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="ascii",
+            dir=PID_PATH.parent,
+            prefix=f".{PID_PATH.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary_name = handle.name
+            handle.write(f"{pid}\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary_name, 0o644)
+        os.replace(temporary_name, PID_PATH)
+    finally:
+        if temporary_name is not None:
+            try:
+                Path(temporary_name).unlink()
+            except FileNotFoundError:
+                pass
+
+
+def response_has_target_model(payload: Any, target_model: str) -> bool:
+    if not isinstance(payload, dict):
+        return False
+    models = payload.get("data")
+    if not isinstance(models, list):
+        return False
+    return any(
+        isinstance(model, dict) and model.get("id") == target_model
+        for model in models
+    )
+
+
+def wait_until_ready(process: subprocess.Popen[bytes]) -> float:
+    started = time.monotonic()
+    deadline = started + READINESS_TIMEOUT_SECONDS
+    target_model = str(MODEL_DIR.resolve())
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+    last_failure = "endpoint has not returned the target model"
+
+    while True:
+        return_code = process.poll()
+        if return_code is not None:
+            raise RuntimeError(
+                f"vLLM exited during startup with code {return_code}; inspect {LOG_PATH}"
+            )
+
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError(
+                "vLLM readiness timed out after "
+                f"{READINESS_TIMEOUT_SECONDS:.0f} seconds ({last_failure}); inspect {LOG_PATH}"
+            )
+
+        try:
+            request = urllib.request.Request(READINESS_URL, method="GET")
+            with opener.open(
+                request,
+                timeout=min(READINESS_REQUEST_TIMEOUT_SECONDS, remaining),
+            ) as response:
+                body = response.read(MAX_READINESS_RESPONSE_BYTES + 1)
+                if len(body) > MAX_READINESS_RESPONSE_BYTES:
+                    raise RuntimeError("readiness response exceeds size limit")
+            payload = json.loads(body.decode("utf-8"))
+            if response_has_target_model(payload, target_model):
+                if process.poll() is not None:
+                    raise RuntimeError(
+                        "vLLM exited while its readiness response was being checked; "
+                        f"inspect {LOG_PATH}"
+                    )
+                return time.monotonic() - started
+            last_failure = "valid JSON did not list the target model"
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            last_failure = type(exc).__name__
+        except (UnicodeError, json.JSONDecodeError):
+            last_failure = "endpoint returned invalid JSON"
+        except RuntimeError as exc:
+            last_failure = str(exc)
+
+        sleep_seconds = min(READINESS_BACKOFF_SECONDS, max(0.0, deadline - time.monotonic()))
+        if sleep_seconds:
+            time.sleep(sleep_seconds)
+
+
+def process_group_exists(process_group_id: int) -> bool:
+    try:
+        os.killpg(process_group_id, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def terminate_launched_process_group(process: subprocess.Popen[bytes], process_group_id: int) -> None:
+    # Popen used start_new_session=True, so this PGID belongs only to this launch.
+    if process_group_id != process.pid:
+        raise RuntimeError("Refusing to signal an unexpected process group")
+    try:
+        os.killpg(process_group_id, signal.SIGTERM)
+    except ProcessLookupError:
+        return
+
+    deadline = time.monotonic() + TERMINATION_GRACE_SECONDS
+    while time.monotonic() < deadline:
+        if not process_group_exists(process_group_id):
+            return
+        time.sleep(0.25)
+
+    try:
+        os.killpg(process_group_id, signal.SIGKILL)
+    except ProcessLookupError:
+        pass
+    try:
+        process.wait(timeout=2.0)
+    except subprocess.TimeoutExpired:
+        pass
+
+
+def main() -> None:
+    reject_existing_process()
+    if not PYTHON.is_file() or not VLLM.is_file():
+        raise RuntimeError("Pinned qwen3_summary environment is incomplete")
+    subprocess.run(
+        [str(PYTHON), str(VALIDATOR)],
+        cwd=REPO_ROOT,
+        check=True,
+        env=sanitized_environment(),
+    )
+
+    command = [
+        str(VLLM),
+        "serve",
+        str(MODEL_DIR),
+        "--host",
+        HOST,
+        "--port",
+        str(PORT),
+        "--max-model-len",
+        "8192",
+        "--gpu-memory-utilization",
+        "0.48",
+        "--max-num-seqs",
+        "1",
+        "--linear-backend",
+        "cutlass",
+        "--default-chat-template-kwargs",
+        '{"enable_thinking":false}',
+    ]
+    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    launch_time = datetime.now(timezone.utc).isoformat()
+    process: subprocess.Popen[bytes] | None = None
+    process_group_id: int | None = None
+    try:
+        with LOG_PATH.open("ab", buffering=0) as log_handle:
+            log_handle.write(
+                (
+                    f"\n[{launch_time}] starting pinned Qwen3 summary service; "
+                    "host=127.0.0.1 port=8001 max_model_len=8192 "
+                    "gpu_memory_utilization=0.48 max_num_seqs=1 "
+                    "linear_backend=cutlass deep_gemm=false "
+                    "flashinfer_sampler=false default_enable_thinking=false\n"
+                ).encode("utf-8")
+            )
+            process = subprocess.Popen(
+                command,
+                cwd=REPO_ROOT,
+                env=sanitized_environment(),
+                stdin=subprocess.DEVNULL,
+                stdout=log_handle,
+                stderr=subprocess.STDOUT,
+                start_new_session=True,
+                close_fds=True,
+            )
+            process_group_id = process.pid
+            actual_process_group_id = os.getpgid(process.pid)
+            if actual_process_group_id != process_group_id:
+                raise RuntimeError("Launched vLLM did not create its own process group")
+            readiness_seconds = wait_until_ready(process)
+
+        atomic_write_pid(process.pid)
+    except BaseException:
+        if process is not None and process_group_id is not None:
+            terminate_launched_process_group(process, process_group_id)
+        raise
+
+    print(
+        json.dumps(
+            {
+                "status": "ready",
+                "readiness_seconds": round(readiness_seconds, 3),
+                "pid": process.pid,
+                "base_url": f"http://{HOST}:{PORT}/v1",
+                "model": str(MODEL_DIR),
+                "log": str(LOG_PATH),
+                "pid_file": str(PID_PATH),
+                "default_enable_thinking": False,
+                "launch_parameters": {
+                    "max_model_len": 8192,
+                    "gpu_memory_utilization": 0.48,
+                    "max_num_seqs": 1,
+                    "linear_backend": "cutlass",
+                    "deep_gemm": False,
+                    "flashinfer_sampler": False,
+                },
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except subprocess.CalledProcessError as exc:
+        print(
+            json.dumps(
+                {
+                    "status": "failed_validation",
+                    "returncode": exc.returncode,
+                },
+                indent=2,
+            ),
+            file=sys.stderr,
+        )
+        raise SystemExit(2) from exc
+    except Exception as exc:
+        print(
+            json.dumps(
+                {
+                    "status": "failed",
+                    "error_type": type(exc).__name__,
+                    "error": str(exc),
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            file=sys.stderr,
+        )
+        raise SystemExit(2) from exc
+

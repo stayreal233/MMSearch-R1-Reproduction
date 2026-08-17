@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1692",
+  "source_split": "train",
+  "source_row_index": 1692,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What historical event is associated with this brewery?",
+  "reward_model": {
+    "ground_truth": "London Beer Flood",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/008_fvqa_train_1692.png",
+  "image_width": 800,
+  "image_height": 587,
+  "source_image_sha256": "efc85966677df1b91d78734d2ed38526e86ab90d49f168138ee74ac897c9af61",
+  "normalized_png_sha256": "efc85966677df1b91d78734d2ed38526e86ab90d49f168138ee74ac897c9af61",
+  "eval_index": 8,
+  "selection_rank_sha256": "003287bb8d0b1c5ea5df90f4e7ec7ad4d16f4b0e0829f95a06176521f5d80241",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

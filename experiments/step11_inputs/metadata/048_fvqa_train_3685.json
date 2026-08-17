@@ -1,0 +1,28 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3685",
+  "source_split": "train",
+  "source_row_index": 3685,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is the architect of this building?",
+  "reward_model": {
+    "ground_truth": "Pietro Antonio Solari",
+    "candidate_answers": [
+      "pietro lombardi",
+      "Pietro Antonio Solari",
+      "pietro solari genannt lombardi",
+      "Pietro Solari gen. Lombardi"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/048_fvqa_train_3685.png",
+  "image_width": 498,
+  "image_height": 800,
+  "source_image_sha256": "275785046c73ea516f93db75fb4b0f14e64b840b3d2064a466b9de2e82cb1c8d",
+  "normalized_png_sha256": "43d78da284fa23e1d7a73d9a28ee87197b2bbcee236cc6d599cca7e5f78e5d75",
+  "eval_index": 48,
+  "selection_rank_sha256": "019e20a9bed74e050e9a2a1af94afd8bfe33608fbbcf3114e8836a015d9c570e",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

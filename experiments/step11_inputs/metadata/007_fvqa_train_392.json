@@ -1,0 +1,26 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_392",
+  "source_split": "train",
+  "source_row_index": 392,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is the architect of this building?",
+  "reward_model": {
+    "ground_truth": "Santiago Calatrava",
+    "candidate_answers": [
+      "Santiago Calatrava",
+      "Santiago Calatrava Valls"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/007_fvqa_train_392.png",
+  "image_width": 597,
+  "image_height": 800,
+  "source_image_sha256": "d028b1575edcfb923e2ed06fb0319a22ce1065cc2edb9362c4b1c8f0100be995",
+  "normalized_png_sha256": "317e3e7bf339448294ce39496be8fb71578245cd2afa487584a480b71129e0ac",
+  "eval_index": 7,
+  "selection_rank_sha256": "0127a55f935573c3ef0ffcee2c9eec9f76c7593ba90c8581161dda13d99c8af3",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

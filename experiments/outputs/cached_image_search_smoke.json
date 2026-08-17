@@ -1,0 +1,69 @@
+{
+  "data_id": "fvqa_train_17",
+  "returned_text": "[Image Search Results] Official FVQA cached Google Lens results, ranked by relevance:\n1. image: <|vision_start|><|image_pad|><|vision_end|>\ntitle: Fireworks displays across Wokingham borough and beyond 2018 – Wokingham.Today\nthumbnail_url: https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT1suBd5FUH7CJRQyZNyX7RcmjZ2Iq39ZUfBcypZx2wpKDPs6dy\n2. image: <|vision_start|><|image_pad|><|vision_end|>\ntitle: Gymi's Speed Shop (@gymis_speed_shop) • Instagram photos and videos\nthumbnail_url: https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRE06a83VRz5BjpyMyh-VGWzr_o9nmBgzVxH7PAkeb26NBdMuQu\n3. image: <|vision_start|><|image_pad|><|vision_end|>\ntitle: OnkelPit | Flickr\nthumbnail_url: https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcScQryPY6B8SVC2BWseENQFC7x4sFpWozGbmrdYZ-cw5eXvKztE\n4. image: <|vision_start|><|image_pad|><|vision_end|>\ntitle: 102_1432 | whirlwindZOR | Flickr\nthumbnail_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQotMI4O5pIv3u-Fvebirb6brPC9KWZ70CkblJH2EIzxA8Ta0j9\n",
+  "tool_stat": {
+    "success": true,
+    "source": "fvqa_official_image_search_cache",
+    "data_id": "fvqa_train_17",
+    "requested": 5,
+    "num_images": 4,
+    "cache_hits": 0,
+    "titles": [
+      "Fireworks displays across Wokingham borough and beyond 2018 – Wokingham.Today",
+      "Gymi's Speed Shop (@gymis_speed_shop) • Instagram photos and videos",
+      "OnkelPit | Flickr",
+      "102_1432 | whirlwindZOR | Flickr"
+    ],
+    "thumbnail_urls": [
+      "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT1suBd5FUH7CJRQyZNyX7RcmjZ2Iq39ZUfBcypZx2wpKDPs6dy",
+      "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRE06a83VRz5BjpyMyh-VGWzr_o9nmBgzVxH7PAkeb26NBdMuQu",
+      "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcScQryPY6B8SVC2BWseENQFC7x4sFpWozGbmrdYZ-cw5eXvKztE",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQotMI4O5pIv3u-Fvebirb6brPC9KWZ70CkblJH2EIzxA8Ta0j9"
+    ],
+    "local_thumbnail_paths": [
+      "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_1_15ae5c853929f700d17e.png",
+      "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_2_c65af28ba13560a62e4e.png",
+      "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_3_5606bde9dc83326784da.png",
+      "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_4_70873c37952935d2792e.png"
+    ],
+    "failures": [
+      {
+        "index": 4,
+        "title": "Claudio Mele | Flickr",
+        "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcCVaK0TuHUbwtyJdsdW-jBqIbbNjQdTLjbvoVsjBXM3vYFtR",
+        "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcCVaK0TuHUbwtyJdsdW-jBqIbbNjQdTLjbvoVsjBXM3vYFtR"
+      }
+    ]
+  },
+  "images": [
+    {
+      "width": 225,
+      "height": 225,
+      "mode": "RGB",
+      "local_path": "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_1_15ae5c853929f700d17e.png",
+      "sha256": "a6093f43743ef12f9d9a96492e334985726ded3827ebdfbffc84e64d5ec86189"
+    },
+    {
+      "width": 225,
+      "height": 225,
+      "mode": "RGB",
+      "local_path": "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_2_c65af28ba13560a62e4e.png",
+      "sha256": "2d020489fd32e92b48653faadb41ab28e22a5309c0c8b575425c71b096b1066a"
+    },
+    {
+      "width": 252,
+      "height": 200,
+      "mode": "RGB",
+      "local_path": "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_3_5606bde9dc83326784da.png",
+      "sha256": "54cc0566641b55fb38a41b76b52e73b70af5c56f79e2e3a928fae8ac9870a59c"
+    },
+    {
+      "width": 259,
+      "height": 194,
+      "mode": "RGB",
+      "local_path": "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_4_70873c37952935d2792e.png",
+      "sha256": "750ccfb4d2defef1d9249794729a22f55d8b629386ba0742651a68d39ed74d88"
+    }
+  ],
+  "pass": true
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2076",
+  "source_split": "train",
+  "source_row_index": 2076,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the name of the series these characters are from?",
+  "reward_model": {
+    "ground_truth": "Toradora!",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/020_fvqa_train_2076.png",
+  "image_width": 471,
+  "image_height": 672,
+  "source_image_sha256": "81a253843ac8aa7aa4f906ad061ba7d01ebe152c6ee0bfd8808633795ade953c",
+  "normalized_png_sha256": "81a253843ac8aa7aa4f906ad061ba7d01ebe152c6ee0bfd8808633795ade953c",
+  "eval_index": 20,
+  "selection_rank_sha256": "005c1f554f51b6948cd2226b4f23ef0eaf80786a57e1f66419d8b4c8731be4c7",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

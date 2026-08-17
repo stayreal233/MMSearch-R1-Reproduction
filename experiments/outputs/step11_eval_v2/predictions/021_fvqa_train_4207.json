@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "status": "failed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "0272ffc6734c0f22cad92ae11c62c9ddfbc834cd232254df04f8047703add8db",
+    "eval_index": 21
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_4207",
+    "source_split": "train",
+    "source_row_index": 4207,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "How many people were killed by the fiery crash of an air ambulance on the street of the orange area on the map in 2025?",
+    "candidate_answers": [],
+    "ground_truth": "7",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/021_fvqa_train_4207.png",
+      "width": 452,
+      "height": 360,
+      "png_sha256": "90ea727809d58df8a2d5333f5ce2e94815f2d67db998045cc82cdde6afb02311",
+      "source_sha256": "90ea727809d58df8a2d5333f5ce2e94815f2d67db998045cc82cdde6afb02311"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a map of the United States with a single state highlighted in orange. However, the question asks about a specific event that occurred in 2025, which is not visible in the image. Additionally, the image does not provide any information about an air ambulance crash or the number of people killed. Therefore, I cannot confidently answer the question based on the image alone.</reason>\n<search><img></search>",
+        "response_sha256": "f5fa64760c28513214cf6f5868e4a32c0bfa35d86e4cfc33f79ac5eaf29f6696",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 633,
+        "output_tokens": 90,
+        "generation_seconds": 2.032,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_4207",
+            "requested": 5,
+            "num_images": 4,
+            "cache_hits": 0,
+            "titles": [
+              "Mapa vectorial de los Estados Unidos con el mapa de Virginia prominente | Vector Premium",
+              "File:America East Conference Locations.png - Wikimedia Commons",
+              "A Quarter of Problematic Pot Users Have Anxiety Disorders | Duke Health",
+              "Metro Atlantic Athletic Conference – Wikipedia"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTy6HbPo3LdoipftP1OVTVvk9GCkDCF4eqBqzUNT_OOLsBQqkZ8",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSdtbnIujRXqcAi5vJwGkU6L6WiqId_n_f-7pkbtG-lFRxVT-Yg",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL4TTfg3lK5RxFNezieJtvfb3UY0vr6dtZNKvzwFCI9ReXaVu9",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSam3XCuNeYz5LsLeRNe7dWDZ86v7jGNWdo3Rp4s_nNUhUmXTnt"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4207_1_e26a150e5dc9e54c9caa.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4207_2_86e5f7e5324eabab5786.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4207_4_1d5cdeabe43f8d68a0a8.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4207_5_cf59bae822918dff7bb3.png"
+            ],
+            "failures": [
+              {
+                "index": 2,
+                "title": "Pennsylvania Medicare: Medicare Advantage Plans in Pennsylvania",
+                "source": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRkuP95serUrOF-vwdobLANaQQUPj9mzQljwKC-_4AtcQzZ5hvW",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRkuP95serUrOF-vwdobLANaQQUPj9mzQljwKC-_4AtcQzZ5hvW"
+              }
+            ]
+          },
+          "returned_text_characters": 1081,
+          "returned_text_sha256": "c96a8675fbef2a12085e053ebb6a32edecdbe859da1411568e8bd492a0675f69"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results do not provide any information about a specific event that occurred in 2025, such as a fiery crash of an air ambulance. Therefore, a text search is needed to find the information required to answer the user's question.</reason>\n<text_search>How many people were killed by the fiery crash of an air ambulance on the street of Virginia in 2025</text_search>",
+        "response_sha256": "1077325414524f4a8b74e61e4919d33f94883ac4dea1bfedf975514a438c5d82",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "How many people were killed by the fiery crash of an air ambulance on the street of Virginia in 2025",
+        "input_tokens": 1348,
+        "output_tokens": 88,
+        "generation_seconds": 1.44,
+        "query": "How many people were killed by the fiery crash of an air ambulance on the street of Virginia in 2025",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "How many people were killed by the fiery crash of an air ambulance on the street of Virginia in 2025",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/2528ecdcca4c645ba471ee25e9fcb88367e6dea35707a431015139796f413ae8.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 60000,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 4,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 18021,
+              "total_output_tokens": 453,
+              "total_tokens": 18474,
+              "total_generation_seconds": 15.661901,
+              "failures": [
+                {
+                  "rank": 4,
+                  "title": "Four people died when an air ambulance crashed into a ...",
+                  "url": "https://www.facebook.com/KOBTV/posts/four-people-died-when-an-air-ambulance-crashed-into-a-mountain-while-the-militar/1447489097528965/",
+                  "error": "Qwen3 summary endpoint returned HTTP 400"
+                }
+              ],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "A person in a car was the seventh fatal victim of the fiery ...",
+                "url": "https://www.facebook.com/fox5sandiego/posts/a-person-in-a-car-was-the-seventh-fatal-victim-of-the-fiery-crash-of-an-air-ambu/1188398922885123/",
+                "snippet": "Those killed include six people on the medical transport jet, including a child, and a person on the ground who was inside a vehicle. At least ..."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "2025 Potomac River mid-air collision",
+                "url": "https://en.wikipedia.org/wiki/2025_Potomac_River_mid-air_collision",
+                "snippet": "All 67 people aboard both aircraft were killed in the crash, 64 passengers and crew on the airliner and the three crew of the helicopter."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "FAA Statements on Aviation Accidents and Incidents",
+                "url": "https://www.faa.gov/newsroom/statements/accident_incidents",
+                "snippet": "An American AA-1 crashed in a field in Kearneysville, West Virginia, Two people were on board each aircraft. We don't yet know how many people were on board."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Four people died when an air ambulance crashed into a ...",
+                "url": "https://www.facebook.com/KOBTV/posts/four-people-died-when-an-air-ambulance-crashed-into-a-mountain-while-the-militar/1447489097528965/",
+                "snippet": "Four people died when an air ambulance crashed into a mountain while the military was jamming GPS. Federal reports warned it would happen ..."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "NPS Incident Reports - Blue Ridge Parkway",
+                "url": "https://npshistory.com/morningreport/incidents/blri.htm",
+                "snippet": "Three persons were killed yesterday when an ambulance helicopter crashed on Fisher's Peak in Carroll County, Va.,"
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "A person in a car was the seventh fatal victim of the fiery ...",
+                "url": "https://www.facebook.com/fox5sandiego/posts/a-person-in-a-car-was-the-seventh-fatal-victim-of-the-fiery-crash-of-an-air-ambu/1188398922885123/",
+                "snippet": "Those killed include six people on the medical transport jet, including a child, and a person on the ground who was inside a vehicle. At least ...",
+                "full_characters": 14214,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/0b48a5cb56b2a8fdf586880dddd69cc276d99d2c2ff83465d8b3d9e1a98fd065.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "2025 Potomac River mid-air collision",
+                "url": "https://en.wikipedia.org/wiki/2025_Potomac_River_mid-air_collision",
+                "snippet": "All 67 people aboard both aircraft were killed in the crash, 64 passengers and crew on the airliner and the three crew of the helicopter.",
+                "full_characters": 164894,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/911e055503de058347fee6ffc5903c7b3dd01d864c2e3acac1082620cec029c8.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "FAA Statements on Aviation Accidents and Incidents",
+                "url": "https://www.faa.gov/newsroom/statements/accident_incidents",
+                "snippet": "An American AA-1 crashed in a field in Kearneysville, West Virginia, Two people were on board each aircraft. We don't yet know how many people were on board.",
+                "full_characters": 480288,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/18e1e3f94486e6db305a58b7624250ba4acc41e1d322243833cdb7dd91e92cef.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "Four people died when an air ambulance crashed into a ...",
+                "url": "https://www.facebook.com/KOBTV/posts/four-people-died-when-an-air-ambulance-crashed-into-a-mountain-while-the-militar/1447489097528965/",
+                "snippet": "Four people died when an air ambulance crashed into a mountain while the military was jamming GPS. Federal reports warned it would happen ...",
+                "full_characters": 27136,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/6732370c88b4db562632ac9482aab664aae227406a4adf96b943d10742dae6a1.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "NPS Incident Reports - Blue Ridge Parkway",
+                "url": "https://npshistory.com/morningreport/incidents/blri.htm",
+                "snippet": "Three persons were killed yesterday when an ambulance helicopter crashed on Fisher's Peak in Carroll County, Va.,",
+                "full_characters": 482048,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/58b524809d11ee1ab54834a6fafdfa34ea6efd1b675d5f332c55e6b3bda06c83.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "A person in a car was the seventh fatal victim of the fiery ...",
+                "url": "https://www.facebook.com/fox5sandiego/posts/a-person-in-a-car-was-the-seventh-fatal-victim-of-the-fiery-crash-of-an-air-ambu/1188398922885123/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/0b48a5cb56b2a8fdf586880dddd69cc276d99d2c2ff83465d8b3d9e1a98fd065.md",
+                "full_characters": 14214,
+                "returned_characters": 12000,
+                "jina_content_sha256": "2fe0770e568d3d4465fe6f5f8387c64a05d37fa63f86015f62bc7a0f3b144be6",
+                "jina_input_characters": 12000,
+                "public_input_signature": "6208322dc29c9181e3deadc62a0bad3973dd7c85acd81a9c8581e36f608f62d2",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/6208322dc29c9181e3deadc62a0bad3973dd7c85acd81a9c8581e36f608f62d2.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The fiery crash of an air ambulance in 2025 resulted in 7 fatalities.\n- Six of the victims were on the medical transport jet, including a child.\n- One person on the ground, who was inside a vehicle, was also killed.\n- The crash occurred on a busy street in Philadelphia.\n- At least 19 people were injured in the crash.\n- The incident is under investigation to determine the cause of the crash.",
+                "input_tokens": 7675,
+                "output_tokens": 92,
+                "total_tokens": 7767,
+                "finish_reason": "stop",
+                "generation_seconds": 4.10421,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "2025 Potomac River mid-air collision",
+                "url": "https://en.wikipedia.org/wiki/2025_Potomac_River_mid-air_collision",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/911e055503de058347fee6ffc5903c7b3dd01d864c2e3acac1082620cec029c8.md",
+                "full_characters": 164894,
+                "returned_characters": 12000,
+                "jina_content_sha256": "ac42d4254361a2fca586215c64d357250da53c58d3710b3e381dde74eb566a40",
+                "jina_input_characters": 12000,
+                "public_input_signature": "9bcf1a79ba443bf74aac0e164fdeb5d44189cb6a464a25cd86386e7e08e8626e",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/9bcf1a79ba443bf74aac0e164fdeb5d44189cb6a464a25cd86386e7e08e8626e.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The crash occurred on January 29, 2025, over the Potomac River in Washington, D.C.\n- It involved American Airlines Flight 5342 and a U.S. Army Sikorsky UH-60L Black Hawk helicopter.\n- All 67 people aboard both aircraft were killed.\n- 64 fatalities were from the airliner (60 passengers and 4 crew).\n- 3 fatalities were from the helicopter crew.\n- The crash was due to a mid-air collision caused by FAA route design and oversight failures.",
+                "input_tokens": 3942,
+                "output_tokens": 119,
+                "total_tokens": 4061,
+                "finish_reason": "stop",
+                "generation_seconds": 3.916145,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "FAA Statements on Aviation Accidents and Incidents",
+                "url": "https://www.faa.gov/newsroom/statements/accident_incidents",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/18e1e3f94486e6db305a58b7624250ba4acc41e1d322243833cdb7dd91e92cef.md",
+                "full_characters": 480288,
+                "returned_characters": 12000,
+                "jina_content_sha256": "3ddac21cc9c07c14d00449ead91eafe1e5764b330b03651a440386392fb41f3d",
+                "jina_input_characters": 12000,
+                "public_input_signature": "b3cf46358e4b099c4ae8def28b1e5f51317ad3621a4011e33b21d4c451c61d67",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/b3cf46358e4b099c4ae8def28b1e5f51317ad3621a4011e33b21d4c451c61d67.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The webpage does not mention an air ambulance crash in Virginia in 2025.  \n- The closest incident is an American AA-1 crash in Kearneysville, West Virginia, on July 23, 2026, with two people on board.  \n- No fatalities or injuries are reported for that incident.  \n- The FAA is investigating the West Virginia crash.  \n- No other crashes in Virginia in 2025 are referenced in the provided content.  \n- The query's details do not match any of the incidents listed on the page.",
+                "input_tokens": 3266,
+                "output_tokens": 119,
+                "total_tokens": 3385,
+                "finish_reason": "stop",
+                "generation_seconds": 3.76222,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "Four people died when an air ambulance crashed into a ...",
+                "url": "https://www.facebook.com/KOBTV/posts/four-people-died-when-an-air-ambulance-crashed-into-a-mountain-while-the-militar/1447489097528965/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/6732370c88b4db562632ac9482aab664aae227406a4adf96b943d10742dae6a1.md",
+                "full_characters": 27136,
+                "returned_characters": 12000,
+                "jina_content_sha256": "87d8566d79f9f7fd5d2ffc2df1b2da92a4fa3080caa76400eafadfdb133fc678",
+                "jina_input_characters": 12000,
+                "public_input_signature": "79770a3368b56204b2ca6f6f855855262032ad9e42e8809418a1f86f2a7300dc",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/79770a3368b56204b2ca6f6f855855262032ad9e42e8809418a1f86f2a7300dc.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "",
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "total_tokens": 0,
+                "finish_reason": null,
+                "generation_seconds": 0.03982,
+                "thinking_enabled": false,
+                "error": "Qwen3 summary endpoint returned HTTP 400",
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "NPS Incident Reports - Blue Ridge Parkway",
+                "url": "https://npshistory.com/morningreport/incidents/blri.htm",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/58b524809d11ee1ab54834a6fafdfa34ea6efd1b675d5f332c55e6b3bda06c83.md",
+                "full_characters": 482048,
+                "returned_characters": 12000,
+                "jina_content_sha256": "29aa369b3c3123124329f871cdd0ca1c1a43411c9c7790821726bef0dc329cac",
+                "jina_input_characters": 12000,
+                "public_input_signature": "f97c00079e7e2ca833f6e7caa2821480456ed0a374d89cf18a7e2eda07bd8053",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/f97c00079e7e2ca833f6e7caa2821480456ed0a374d89cf18a7e2eda07bd8053.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- A helicopter crash occurred on Fisher's Peak in Carroll County, Virginia, in 1987.\n- The crash involved an ambulance helicopter en route from North Carolina to Virginia to transport a patient.\n- Three people were killed in the crash: the pilot and two nurses.\n- The crash happened due to the helicopter flying low in heavy fog and hitting a rock face.\n- The incident is unrelated to 2025, as it occurred in 1987.\n- There is no mention of a fiery crash on the streets of Virginia in 2025 in the provided content.",
+                "input_tokens": 3138,
+                "output_tokens": 123,
+                "total_tokens": 3261,
+                "finish_reason": "stop",
+                "generation_seconds": 3.839506,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003998,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 4139,
+          "returned_text_sha256": "973560b6f34aae4f3052a5bb6740a4f393e9e7a12b22eb142227ea4bad0523ef"
+        }
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": null,
+    "terminal_status": "text_search_hard_failure",
+    "hard_failures": [
+      {
+        "stage": "text_search_jina_qwen",
+        "round": 2,
+        "error": "RuntimeError: Text/Search/Reader/Qwen top-5 contract failed"
+      }
+    ],
+    "total_turns": 2,
+    "action_sequence": [
+      "image_search",
+      "text_search"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": false,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 1981,
+    "mmsearch_output_tokens": 178,
+    "mmsearch_generation_seconds": 3.472,
+    "case_seconds": 34.121,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": false,
+  "eval_index": 21,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16326.02,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_21_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:51:34.177283+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 67702, 29551",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "67702",
+            "memory_free_mib": "29551"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "50384",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "229170",
+            "used_gpu_memory_mib": "17304",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 229170,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 17416847360,
+            "max_memory_allocated_bytes": 17119071744,
+            "max_memory_reserved_bytes": 17416847360
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.003137,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.743,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

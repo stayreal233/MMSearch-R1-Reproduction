@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 7,
+  "data_id": "fvqa_train_392",
+  "category": "search_free",
+  "source_row_index": 392,
+  "selection_rank_sha256": "0127a55f935573c3ef0ffcee2c9eec9f76c7593ba90c8581161dda13d99c8af3",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/007_fvqa_train_392.png",
+      "bytes": 688200,
+      "sha256": "317e3e7bf339448294ce39496be8fb71578245cd2afa487584a480b71129e0ac"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/007_fvqa_train_392.json",
+      "bytes": 957,
+      "sha256": "c55bbf5d3752e7a82d8d8a63b58d6562ad425cc695ab1fce8a1c2d8991a4be97"
+    },
+    "image_width": 597,
+    "image_height": 800,
+    "question": "Who is the architect of this building?"
+  },
+  "result": {
+    "response_text": "The architect of this building is Johan Celsing.",
+    "answer": "The architect of this building is Johan Celsing.",
+    "parser_mode": "plain_text_fallback",
+    "ground_truth": "Santiago Calatrava",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 615,
+    "output_tokens": 11,
+    "generation_seconds": 0.25304,
+    "case_seconds": 0.312608,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17104371712,
+    "cuda_peak_memory_allocated_bytes": 16843162624,
+    "cuda_peak_memory_reserved_bytes": 17104371712
+  },
+  "credentials_recorded": false
+}

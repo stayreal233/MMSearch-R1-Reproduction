@@ -1,0 +1,223 @@
+#!/usr/bin/env python3
+"""Strictly scan selected step-9 artifacts without recording credential values."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import re
+import tempfile
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+CHUNK_BYTES = 8 * 1024 * 1024
+SCOPE = "selected_qwen3_step9_outputs_caches_logs_and_manifests"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--target", action="append", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    return parser.parse_args()
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise RuntimeError(message)
+
+
+def load_secrets() -> list[tuple[str, bytes]]:
+    serper = os.environ.get("SERPER_API_KEY")
+    require(isinstance(serper, str) and bool(serper), "SERPER_API_KEY is not set")
+    require("\n" not in serper and "\r" not in serper, "SERPER_API_KEY is malformed")
+    values = [("SERPER_API_KEY", serper.encode("utf-8"))]
+    summarizer = os.environ.get("SUMMARIZER_API_KEY")
+    if isinstance(summarizer, str) and summarizer and summarizer != "EMPTY":
+        require(
+            "\n" not in summarizer and "\r" not in summarizer,
+            "SUMMARIZER_API_KEY is malformed",
+        )
+        values.append(("SUMMARIZER_API_KEY", summarizer.encode("utf-8")))
+    return values
+
+
+def path_contains_secret(path: Path, secrets: list[tuple[str, bytes]]) -> bool:
+    encoded_path = os.fsencode(path)
+    return any(secret in encoded_path for _, secret in secrets)
+
+
+def safe_error(exc: BaseException, secrets: list[tuple[str, bytes]]) -> str:
+    message = f"{type(exc).__name__}: {exc}"
+    decoded = sorted(
+        (
+            secret.decode("utf-8", errors="ignore")
+            for _, secret in secrets
+            if secret
+        ),
+        key=len,
+        reverse=True,
+    )
+    for secret in decoded:
+        if secret:
+            message = message.replace(secret, "[REDACTED]")
+    message = re.sub(r"(?i)bearer\s+\S+", "Bearer [REDACTED]", message)
+    return message[:500]
+
+
+def collect_files(
+    targets: list[Path], secrets: list[tuple[str, bytes]]
+) -> list[Path]:
+    files: set[Path] = set()
+    for raw_target in targets:
+        require(
+            not path_contains_secret(raw_target, secrets),
+            "Scan target path contains credential material",
+        )
+        require(not raw_target.is_symlink(), "Refusing a symlink scan target")
+        target = raw_target.resolve(strict=True)
+        require(
+            not path_contains_secret(target, secrets),
+            "Resolved scan target path contains credential material",
+        )
+        if target.is_file():
+            files.add(target)
+            continue
+        require(target.is_dir(), "Unsupported scan target type")
+        for path in target.rglob("*"):
+            require(
+                not path_contains_secret(path, secrets),
+                "A path inside the scan target contains credential material",
+            )
+            require(not path.is_symlink(), "Refusing a symlink inside scan target")
+            if path.is_file():
+                resolved = path.resolve(strict=True)
+                require(
+                    not path_contains_secret(resolved, secrets),
+                    "A resolved path contains credential material",
+                )
+                files.add(resolved)
+    require(bool(files), "No files were selected for credential scanning")
+    return sorted(files, key=str)
+
+
+def scan_file(path: Path, secrets: list[tuple[str, bytes]]) -> dict[str, Any]:
+    require(
+        not path_contains_secret(path, secrets),
+        "A selected file path contains credential material",
+    )
+    digest = hashlib.sha256()
+    matched = False
+    max_keep = max(len(secret) for _, secret in secrets) - 1
+    overlap = b""
+    total = 0
+    with path.open("rb") as handle:
+        while True:
+            chunk = handle.read(CHUNK_BYTES)
+            if not chunk:
+                break
+            total += len(chunk)
+            digest.update(chunk)
+            window = overlap + chunk
+            if any(secret in window for _, secret in secrets):
+                matched = True
+            overlap = chunk[-max_keep:] if max_keep else b""
+    return {
+        "path": str(path),
+        "bytes": total,
+        "sha256": digest.hexdigest(),
+        "credential_match": matched,
+    }
+
+
+def atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_name: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary_name = handle.name
+            os.fchmod(handle.fileno(), 0o600)
+            json.dump(payload, handle, ensure_ascii=False, indent=2)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary_name, path)
+    finally:
+        if temporary_name is not None:
+            try:
+                Path(temporary_name).unlink()
+            except FileNotFoundError:
+                pass
+
+
+def main() -> None:
+    args = parse_args()
+    secrets = load_secrets()
+    require(
+        not path_contains_secret(args.output, secrets),
+        "Output path contains credential material",
+    )
+    records = [scan_file(path, secrets) for path in collect_files(args.target, secrets)]
+    matches = [record["path"] for record in records if record["credential_match"]]
+    payload = {
+        "schema_version": 2,
+        "scanned_at_utc": datetime.now(timezone.utc).isoformat(),
+        "scope": SCOPE,
+        "secret_sources_checked": [name for name, _ in secrets],
+        "secret_values_recorded": False,
+        "files_scanned": len(records),
+        "total_bytes_scanned": sum(record["bytes"] for record in records),
+        "exact_credential_matches": len(matches),
+        "matching_files": matches,
+        "files": records,
+        "pass": not matches,
+    }
+    output = args.output.resolve()
+    require(
+        not path_contains_secret(output, secrets),
+        "Resolved output path contains credential material",
+    )
+    atomic_write_json(output, payload)
+    print(
+        json.dumps(
+            {
+                "status": "passed" if not matches else "failed",
+                "files_scanned": len(records),
+                "exact_credential_matches": len(matches),
+                "output": str(output),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+    if matches:
+        raise SystemExit(2)
+
+
+if __name__ == "__main__":
+    secrets_for_errors: list[tuple[str, bytes]] = []
+    try:
+        secrets_for_errors = load_secrets()
+        main()
+    except SystemExit:
+        raise
+    except Exception as exc:
+        print(
+            json.dumps(
+                {"status": "failed", "error": safe_error(exc, secrets_for_errors)},
+                ensure_ascii=False,
+                indent=2,
+            ),
+            file=__import__("sys").stderr,
+        )
+        raise SystemExit(2) from exc

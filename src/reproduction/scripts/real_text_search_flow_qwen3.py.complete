@@ -1,0 +1,498 @@
+#!/usr/bin/env python3
+"""Run the cached-image / Serper / Jina / Qwen3 MMSearch-R1 flow."""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+import torch
+from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
+
+from placeholder_control_flow import (
+    assistant_message,
+    classify_response,
+    generate_response,
+    image_search_result_message,
+    image_to_data_uri,
+    load_prompt,
+    normalize_answer,
+    text_search_result_message,
+)
+from reproduction.mmsearch_tools.cached_image_search import FVQACachedImageSearch
+from reproduction.mmsearch_tools.qwen3_summarizer import Qwen3Summarizer
+from reproduction.mmsearch_tools.real_text_search import SerperJinaTextSearch
+
+TOP_K = 5
+MAX_CHARS_PER_PAGE = 12_000
+SUMMARY_MAX_TOKENS = 512
+SUMMARY_MODEL_REPO = "Qwen/Qwen3-32B-FP8"
+SUMMARY_MODEL_REVISION = "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+DEFAULT_SUMMARY_MODEL = "/root/autodl-tmp/models/Qwen3-32B-FP8"
+DEFAULT_SUMMARY_BASE_URL = "http://127.0.0.1:8001/v1"
+FORBIDDEN_FIELDS = {
+    "api_key", "authorization", "body", "content", "headers", "input_text",
+    "messages", "page_content", "page_text", "prompt", "raw_content",
+    "request_body", "response_body", "webpage_content",
+}
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model-path", type=Path, required=True)
+    parser.add_argument("--sample-meta", type=Path, required=True)
+    parser.add_argument("--cache-pickle", type=Path, required=True)
+    parser.add_argument("--thumbnail-cache-dir", type=Path, required=True)
+    parser.add_argument("--serper-cache-dir", type=Path, required=True)
+    parser.add_argument("--jina-cache-dir", type=Path, required=True)
+    parser.add_argument("--summary-cache-dir", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--top-k", type=int, default=TOP_K)
+    parser.add_argument("--max-chars-per-page", type=int, default=MAX_CHARS_PER_PAGE)
+    parser.add_argument("--max-new-tokens", type=int, default=512)
+    parser.add_argument(
+        "--summary-base-url", "--base-url", dest="summary_base_url",
+        default=DEFAULT_SUMMARY_BASE_URL,
+    )
+    parser.add_argument("--summary-model", default=DEFAULT_SUMMARY_MODEL)
+    return parser.parse_args()
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise RuntimeError(message)
+
+
+def has_reason(response: str) -> bool:
+    return re.search(r"<reason>.*?</reason>", response, flags=re.DOTALL) is not None
+
+
+def public_metadata(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {
+            str(key): public_metadata(item)
+            for key, item in value.items()
+            if str(key).casefold() not in FORBIDDEN_FIELDS
+        }
+    if isinstance(value, (list, tuple)):
+        return [public_metadata(item) for item in value]
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    return str(value)
+
+
+def atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_name: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=path.parent,
+            prefix=f".{path.name}.", suffix=".tmp", delete=False,
+        ) as handle:
+            temporary_name = handle.name
+            json.dump(payload, handle, ensure_ascii=False, indent=2)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary_name, 0o600)
+        os.replace(temporary_name, path)
+    finally:
+        if temporary_name is not None:
+            try:
+                Path(temporary_name).unlink()
+            except FileNotFoundError:
+                pass
+
+
+def nvidia_smi_csv(query: str) -> str:
+    completed = subprocess.run(
+        ["nvidia-smi", query, "--format=csv,noheader,nounits"],
+        check=True, capture_output=True, text=True, timeout=30,
+    )
+    return completed.stdout.strip()
+
+
+def csv_records(columns: list[str], raw_csv: str) -> list[dict[str, str]]:
+    records = []
+    for row in csv.reader(raw_csv.splitlines(), skipinitialspace=True):
+        if len(row) == len(columns):
+            records.append(dict(zip(columns, (item.strip() for item in row))))
+    return records
+
+
+def gpu_snapshot(label: str) -> dict[str, Any]:
+    gpu_columns = [
+        "index", "uuid", "name", "memory_total_mib",
+        "memory_used_mib", "memory_free_mib",
+    ]
+    process_columns = ["gpu_uuid", "pid", "used_gpu_memory_mib"]
+    gpu_csv = nvidia_smi_csv(
+        "--query-gpu=index,uuid,name,memory.total,memory.used,memory.free"
+    )
+    process_csv = nvidia_smi_csv(
+        "--query-compute-apps=gpu_uuid,pid,used_gpu_memory"
+    )
+    torch_process: dict[str, Any] = {
+        "pid": os.getpid(),
+        "cuda_initialized": torch.cuda.is_initialized(),
+        "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
+        "devices": [],
+    }
+    if torch.cuda.is_initialized():
+        torch_process["current_device"] = torch.cuda.current_device()
+        torch_process["devices"] = [
+            {
+                "index": index,
+                "name": torch.cuda.get_device_name(index),
+                "memory_allocated_bytes": torch.cuda.memory_allocated(index),
+                "memory_reserved_bytes": torch.cuda.memory_reserved(index),
+                "max_memory_allocated_bytes": torch.cuda.max_memory_allocated(index),
+                "max_memory_reserved_bytes": torch.cuda.max_memory_reserved(index),
+            }
+            for index in range(torch.cuda.device_count())
+        ]
+    return {
+        "label": label,
+        "captured_at_utc": datetime.now(timezone.utc).isoformat(),
+        "nvidia_smi": {
+            "gpu_columns": gpu_columns,
+            "gpu_csv": gpu_csv,
+            "gpus": csv_records(gpu_columns, gpu_csv),
+            "compute_process_columns": process_columns,
+            "compute_process_csv": process_csv,
+            "compute_processes": csv_records(process_columns, process_csv),
+        },
+        "torch_process": torch_process,
+    }
+
+
+def process_gpu_uuids(snapshot: dict[str, Any], pid: int) -> set[str]:
+    return {
+        item["gpu_uuid"]
+        for item in snapshot["nvidia_smi"]["compute_processes"]
+        if item.get("pid") == str(pid)
+    }
+
+
+def other_process_gpu_uuids(snapshot: dict[str, Any], pid: int) -> set[str]:
+    return {
+        item["gpu_uuid"]
+        for item in snapshot["nvidia_smi"]["compute_processes"]
+        if item.get("pid") != str(pid)
+    }
+
+
+def valid_text_status(status: dict[str, Any]) -> bool:
+    search = status.get("search", {})
+    reader = status.get("reader", {})
+    summary = status.get("summary", {})
+    return (
+        status.get("success") is True
+        and search.get("num_results") == TOP_K
+        and reader.get("requested") == TOP_K
+        and reader.get("num_documents") == TOP_K
+        and reader.get("failures") == []
+        and summary.get("success") is True
+        and summary.get("requested") == TOP_K
+        and summary.get("num_summaries") == TOP_K
+        and summary.get("failures") == []
+        and summary.get("thinking_enabled") is False
+    )
+
+
+def public_summarizer_config(summarizer: Qwen3Summarizer, cache_dir: Path) -> dict[str, Any]:
+    return {
+        "cache_dir": str(cache_dir),
+        "model": summarizer.model,
+        "model_repo": summarizer.model_repo,
+        "model_revision": summarizer.model_revision,
+        "max_input_chars": summarizer.max_input_chars,
+        "max_tokens": summarizer.max_tokens,
+        "timeout_seconds": summarizer.timeout_seconds,
+        "temperature": summarizer.temperature,
+        "seed": summarizer.seed,
+        "thinking_enabled": summarizer.enable_thinking,
+        "prompt_version": summarizer.prompt_version,
+        "cache_schema": summarizer.cache_schema,
+    }
+
+
+def main() -> None:
+    args = parse_args()
+    require(args.top_k == TOP_K, "top_k is pinned to 5")
+    require(
+        args.max_chars_per_page == MAX_CHARS_PER_PAGE,
+        "max_chars_per_page is pinned to 12000",
+    )
+
+    summarizer = Qwen3Summarizer(
+        args.summary_cache_dir.resolve(),
+        base_url=args.summary_base_url,
+        model=args.summary_model,
+        model_repo=SUMMARY_MODEL_REPO,
+        model_revision=SUMMARY_MODEL_REVISION,
+        api_key=None,
+        max_input_chars=MAX_CHARS_PER_PAGE,
+        max_tokens=SUMMARY_MAX_TOKENS,
+        timeout_seconds=120,
+    )
+    summary_health = summarizer.health_check()
+    require(summary_health.get("success") is True, "Qwen3 health check failed")
+    require(
+        summary_health.get("model_available") is True,
+        "Pinned Qwen3 model is unavailable from /v1/models",
+    )
+    require(
+        summary_health.get("thinking_enabled") is False,
+        "Qwen3 health check did not prove Thinking=false",
+    )
+    service_snapshot = gpu_snapshot("summary_service_only")
+    current_pid = os.getpid()
+    require(
+        not process_gpu_uuids(service_snapshot, current_pid),
+        "MMSearch process already owns GPU memory in service-only snapshot",
+    )
+    service_gpu_uuids = other_process_gpu_uuids(service_snapshot, current_pid)
+    require(service_gpu_uuids, "No Qwen3 summary-service GPU process was observed")
+
+    sample = json.loads(args.sample_meta.read_text(encoding="utf-8"))
+    question = sample["question"]
+    image_path = Path(sample["image"])
+    ground_truth = sample["reward_model"]["ground_truth"]
+    round_1_prompt = load_prompt("round_1_user_prompt_qwenvl.pkl").replace(
+        "<image>", ""
+    ).strip()
+    after_image_search_prompt = load_prompt("after_image_search_prompt_qwenvl.pkl")
+    after_text_search_prompt = load_prompt("after_text_search_prompt_qwenvl.pkl")
+    messages = [{
+        "role": "user",
+        "content": [
+            {
+                "type": "text",
+                "text": f"{round_1_prompt}\nQuestion: {question}\nImage: ",
+            },
+            {
+                "type": "image",
+                "image": image_to_data_uri(image_path),
+                "max_pixels": 672 * 672,
+            },
+        ],
+    }]
+
+    torch.manual_seed(0)
+    load_started = time.monotonic()
+    model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+        args.model_path,
+        torch_dtype=torch.bfloat16,
+        device_map="auto",
+        attn_implementation="sdpa",
+        local_files_only=True,
+        low_cpu_mem_usage=True,
+    )
+    model.eval()
+    processor = AutoProcessor.from_pretrained(
+        args.model_path, local_files_only=True, use_fast=False,
+    )
+    load_seconds = time.monotonic() - load_started
+    model_snapshot = gpu_snapshot("mmsearch_model_loaded_same_gpu")
+    model_gpu_uuids = process_gpu_uuids(model_snapshot, current_pid)
+    require(model_gpu_uuids, "MMSearch model did not appear in nvidia-smi")
+    require(
+        model_gpu_uuids == service_gpu_uuids,
+        "MMSearch and Qwen3 service are not resident on the same GPU set",
+    )
+
+    trace: dict[str, Any] = {
+        "data_id": sample["data_id"],
+        "category": sample["category"],
+        "question": question,
+        "ground_truth": ground_truth,
+        "image": str(image_path),
+        "rounds": [],
+        "image_search_calls": 0,
+        "text_search_calls": 0,
+        "summarization_calls": 0,
+        "final_answer": None,
+        "terminal_status": None,
+    }
+    response, input_tokens, output_tokens, seconds = generate_response(
+        model, processor, messages, args.max_new_tokens
+    )
+    action, _ = classify_response(response)
+    first_round = {
+        "round": 1, "response": response, "has_reason": has_reason(response),
+        "action": action, "input_tokens": input_tokens,
+        "output_tokens": output_tokens, "generation_seconds": round(seconds, 3),
+    }
+    trace["rounds"].append(first_round)
+    print(f"round 1: {action}\n{response}")
+
+    if action != "image_search":
+        trace["terminal_status"] = "first_round_did_not_request_image_search"
+    else:
+        messages.append(assistant_message(response))
+        image_search = FVQACachedImageSearch(
+            args.cache_pickle, args.thumbnail_cache_dir, top_k=TOP_K
+        )
+        image_text, images, image_stat = image_search(sample["data_id"])
+        trace["image_search_calls"] = 1
+        first_round["tool"] = {
+            "type": "fvqa_official_image_search_cache",
+            "returned_text": image_text,
+            "status": public_metadata(image_stat),
+        }
+        messages.append(image_search_result_message(
+            images, image_stat["titles"], question, after_image_search_prompt
+        ))
+
+        response, input_tokens, output_tokens, seconds = generate_response(
+            model, processor, messages, args.max_new_tokens
+        )
+        action, payload = classify_response(response)
+        second_round: dict[str, Any] = {
+            "round": 2, "response": response, "has_reason": has_reason(response),
+            "action": action, "input_tokens": input_tokens,
+            "output_tokens": output_tokens, "generation_seconds": round(seconds, 3),
+        }
+        trace["rounds"].append(second_round)
+        print(f"round 2: {action}\n{response}")
+
+        if action != "text_search":
+            trace["terminal_status"] = f"second_round_not_text_search:{action}"
+        else:
+            query = payload or ""
+            second_round["query"] = query
+            text_search = SerperJinaTextSearch(
+                args.serper_cache_dir,
+                args.jina_cache_dir,
+                top_k=TOP_K,
+                max_chars_per_page=MAX_CHARS_PER_PAGE,
+                summarizer=summarizer,
+            )
+            text, text_stat = text_search(query)
+            trace["text_search_calls"] = 1
+            trace["summarization_calls"] = 1
+            second_round["tool"] = {
+                "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+                "status": public_metadata(text_stat),
+                "returned_text": text,
+            }
+            messages.append(assistant_message(response))
+            messages.append(text_search_result_message(
+                text, question, after_text_search_prompt
+            ))
+
+            response, input_tokens, output_tokens, seconds = generate_response(
+                model, processor, messages, args.max_new_tokens
+            )
+            action, payload = classify_response(response)
+            third_round = {
+                "round": 3, "response": response, "has_reason": has_reason(response),
+                "action": action, "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "generation_seconds": round(seconds, 3),
+            }
+            trace["rounds"].append(third_round)
+            print(f"round 3: {action}\n{response}")
+            if action == "answer":
+                trace["final_answer"] = payload
+                trace["terminal_status"] = "answered"
+            else:
+                trace["terminal_status"] = f"third_round_not_answer:{action}"
+
+    complete_snapshot = gpu_snapshot("flow_complete_same_gpu")
+    require(
+        process_gpu_uuids(complete_snapshot, current_pid) == service_gpu_uuids,
+        "Flow-complete GPU residency no longer matches summary service GPU set",
+    )
+    trace["total_turns"] = len(trace["rounds"])
+    trace["action_sequence"] = [item["action"] for item in trace["rounds"]]
+    trace["exact_match"] = (
+        normalize_answer(trace["final_answer"]) == normalize_answer(ground_truth)
+        if trace["final_answer"] is not None else False
+    )
+    text_status = (
+        trace["rounds"][1].get("tool", {}).get("status", {})
+        if len(trace["rounds"]) >= 2 else {}
+    )
+    passed = (
+        trace["action_sequence"] == ["image_search", "text_search", "answer"]
+        and trace["image_search_calls"] == 1
+        and trace["text_search_calls"] == 1
+        and trace["summarization_calls"] == 1
+        and trace["terminal_status"] == "answered"
+        and trace["exact_match"]
+        and all(item["has_reason"] for item in trace["rounds"])
+        and valid_text_status(text_status)
+    )
+    trace["control_flow_pass"] = passed
+    result = {
+        "mode": "cached_image_search_plus_serper_dev_plus_jina_plus_qwen3_summary",
+        "model_path": str(args.model_path),
+        "attention_implementation": model.config._attn_implementation,
+        "parameter_dtype": str(next(model.parameters()).dtype),
+        "load_seconds": round(load_seconds, 3),
+        "peak_gpu_memory_mib": round(torch.cuda.max_memory_allocated() / 1024**2, 2),
+        "top_k": TOP_K,
+        "max_chars_per_page": MAX_CHARS_PER_PAGE,
+        "summarizer": {
+            "config": public_summarizer_config(
+                summarizer, args.summary_cache_dir.resolve()
+            ),
+            "health": public_metadata(summary_health),
+        },
+        "gpu_memory_snapshots": [
+            service_snapshot, model_snapshot, complete_snapshot
+        ],
+        "trace": trace,
+        "pass": passed,
+    }
+    encoded = json.dumps(result, ensure_ascii=False)
+    for name in ("SERPER_API_KEY", "SUMMARIZER_API_KEY"):
+        secret = os.environ.get(name)
+        require(not secret or secret not in encoded, f"Output contains {name}")
+    atomic_write_json(args.output.resolve(), result)
+    print(json.dumps({
+        "action_sequence": trace["action_sequence"],
+        "final_answer": trace["final_answer"],
+        "ground_truth": ground_truth,
+        "exact_match": trace["exact_match"],
+        "summarization_calls": trace["summarization_calls"],
+        "peak_gpu_memory_mib": result["peak_gpu_memory_mib"],
+        "output": str(args.output.resolve()),
+        "pass": passed,
+    }, ensure_ascii=False, indent=2))
+    if not passed:
+        raise SystemExit(2)
+
+
+def safe_error(exc: BaseException) -> str:
+    message = f"{type(exc).__name__}: {exc}"
+    for name in ("SERPER_API_KEY", "SUMMARIZER_API_KEY"):
+        secret = os.environ.get(name)
+        if secret:
+            message = message.replace(secret, "[REDACTED]")
+    return re.sub(r"(?i)bearer\s+\S+", "Bearer [REDACTED]", message)[:500]
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception as exc:
+        print(json.dumps(
+            {"status": "failed", "error": safe_error(exc)},
+            ensure_ascii=False, indent=2,
+        ), file=sys.stderr)
+        raise SystemExit(2) from exc

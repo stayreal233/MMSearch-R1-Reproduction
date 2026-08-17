@@ -1,0 +1,29 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2759",
+  "source_split": "train",
+  "source_row_index": 2759,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "what has this bridge crossed over?",
+  "reward_model": {
+    "ground_truth": "Tagus River",
+    "candidate_answers": [
+      "Tajo",
+      "Tejo",
+      "Tagus River",
+      "Tajo River",
+      "Tejo River"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/002_fvqa_train_2759.png",
+  "image_width": 599,
+  "image_height": 800,
+  "source_image_sha256": "bf4ba03e89dc0507933219030787a14c98e7d2e8c3ad44f450a8d0e5b166b472",
+  "normalized_png_sha256": "13f45e07e794248e2757adbabe0ac447596cda16ad1d9071e0070744b1f79b44",
+  "eval_index": 2,
+  "selection_rank_sha256": "000a557092f6381ecb0633f51c8eeece829e4cc5da1a4ba28d0f4ef88bc2e133",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

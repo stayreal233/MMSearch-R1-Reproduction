@@ -1,0 +1,129 @@
+{
+  "schema_version": "mmsearch.step12.base-completion.v1",
+  "status": "passed",
+  "step": 12,
+  "scope": "Base Direct Answer sub-experiment",
+  "completed_at_utc": "2026-08-17T04:58:54.485708+00:00",
+  "completed_examples": 50,
+  "static": {
+    "protocol": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step12_base_comparison_protocol.json",
+      "bytes": 5559,
+      "sha256": "3a80ee1fe4685cde68335a1ad336a3cf6f8f970a71f9664f6f66e22ee3d651f5"
+    },
+    "revision_metadata": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step12_base_huggingface_revision.json",
+      "bytes": 1923,
+      "sha256": "fb8c62723161017c615f95e48e5cb9a21d3c841c9eac0dd12e5fb29414b42a48"
+    },
+    "artifact_validation": {
+      "path": "/root/autodl-tmp/outputs/step12_base_artifact_validation.json",
+      "bytes": 4755,
+      "sha256": "bac53be73dbd7ff14b6b92030475ad452cf04577438df61502d87c8a320c482a"
+    },
+    "input_manifest": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/eval_manifest.json",
+      "bytes": 39827,
+      "sha256": "dbc28df74f3a1a0b87fd435255fda8ed73455dfe3a3d465dce9539fad37564ab"
+    },
+    "mmsearch_reference": {
+      "completion_manifest": {
+        "path": "/root/autodl-tmp/outputs/step11_eval_v2/step11_completion_manifest.json",
+        "bytes": 6820,
+        "sha256": "f2747c945a022d578e3d053e7112a05937b0267894dc03b6f74adeabefe2ad87"
+      },
+      "predictions": {
+        "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions.jsonl",
+        "bytes": 750316,
+        "sha256": "beda0f6a02f750b89a5a53cb9f39dcaac56dbe047e2fb1f4ecc01290d6ac48ff"
+      },
+      "metrics": {
+        "path": "/root/autodl-tmp/outputs/step11_eval_v2/metrics.json",
+        "bytes": 2135,
+        "sha256": "ec7c289417defc57ddd5a731e6bd1a2cb0a498013d281df863ad0aaccc5f0445"
+      }
+    },
+    "runner": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step12_base_direct_eval.py",
+      "bytes": 28435,
+      "sha256": "308b693cce8bd96dfb97f92e7762fd79adc3be745550d15623f438a85410e9c6"
+    }
+  },
+  "stages": {
+    "5": {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/stage_5_manifest.json",
+      "bytes": 7586,
+      "sha256": "5044c641118dd4be0607aaba31ee3642d626b0118905580e3e95cc1557733c3c"
+    },
+    "20": {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/stage_20_manifest.json",
+      "bytes": 11224,
+      "sha256": "3967a69eb94e282b8b4dd2d8c99035e988bef603ad2735f6c5e600139c60c287"
+    },
+    "50": {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/stage_50_manifest.json",
+      "bytes": 19082,
+      "sha256": "603a95ed0b682642ea2ab49b259f49118e0586727d19fc4a7c0c5eb17f53bb55"
+    }
+  },
+  "final_predictions": {
+    "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions.jsonl",
+    "bytes": 94395,
+    "sha256": "c1a96773652e8ac378157188d9733e1e1ff207e2a388dece6b126a9b3271b980"
+  },
+  "final_metrics": {
+    "schema_version": "mmsearch.step12.base-metrics.v1",
+    "evaluated": 50,
+    "correct": 7,
+    "accuracy_percent": 14.0,
+    "categories": {
+      "search_free": {
+        "count": 25,
+        "correct": 7,
+        "accuracy_percent": 28.0,
+        "search_calls": 0,
+        "search_ratio_percent": 0.0,
+        "average_generation_seconds": 0.293612
+      },
+      "search_required": {
+        "count": 25,
+        "correct": 0,
+        "accuracy_percent": 0.0,
+        "search_calls": 0,
+        "search_ratio_percent": 0.0,
+        "average_generation_seconds": 0.276741
+      }
+    },
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "total_search_calls": 0,
+    "search_ratio_percent": 0.0,
+    "average_generation_seconds": 0.285177,
+    "median_generation_seconds": 0.235119,
+    "total_generation_seconds": 14.258826,
+    "total_input_tokens": 26480,
+    "total_output_tokens": 552,
+    "parser_mode_counts": {
+      "answer_tags": 24,
+      "plain_text_fallback": 26
+    },
+    "empty_response_count": 0,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+    "execution_mode": "direct_answer_no_tools",
+    "external_tool_calls": 0
+  },
+  "final_failure_summary": {
+    "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/failure_summary.json",
+    "bytes": 17099,
+    "sha256": "e109779b8bab4edfadd7852fecd6fc995d38785bde5f84c075d91901d4ab764c"
+  },
+  "state": {
+    "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/state.json",
+    "bytes": 14881,
+    "sha256": "d7c2621791121049de5de36d0d2805fe4e2da6c2aac9768e9f65c769678774d9"
+  },
+  "base_fully_gpu_resident": true,
+  "qwen3_service_root_pid_unchanged": 203574,
+  "unexpected_external_tool_calls": 0,
+  "credentials_recorded": false
+}

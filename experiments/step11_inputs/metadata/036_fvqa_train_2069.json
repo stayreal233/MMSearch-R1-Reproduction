@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2069",
+  "source_split": "train",
+  "source_row_index": 2069,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the name of the group shown in the image?",
+  "reward_model": {
+    "ground_truth": "arditi",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/036_fvqa_train_2069.png",
+  "image_width": 640,
+  "image_height": 433,
+  "source_image_sha256": "efe436b417730fb609c1a854f89c990c8f6981bb7e8d0155a514aa37e67fcea0",
+  "normalized_png_sha256": "efe436b417730fb609c1a854f89c990c8f6981bb7e8d0155a514aa37e67fcea0",
+  "eval_index": 36,
+  "selection_rank_sha256": "00fb5ab7538089366655d67bdf5c0c8406e634cf0a6e57a390a4a19a4f9a7563",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

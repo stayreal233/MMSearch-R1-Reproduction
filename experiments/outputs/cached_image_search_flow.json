@@ -1,0 +1,95 @@
+{
+  "mode": "fvqa_official_cached_image_search",
+  "accepted_cache_degradation": {
+    "requested": 5,
+    "minimum_required": 1,
+    "actual": 4,
+    "failures": [
+      {
+        "index": 4,
+        "title": "Claudio Mele | Flickr",
+        "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcCVaK0TuHUbwtyJdsdW-jBqIbbNjQdTLjbvoVsjBXM3vYFtR",
+        "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcCVaK0TuHUbwtyJdsdW-jBqIbbNjQdTLjbvoVsjBXM3vYFtR"
+      }
+    ]
+  },
+  "model_path": "/root/autodl-tmp/models/MMSearch-R1-7B",
+  "attention_implementation": "sdpa",
+  "parameter_dtype": "torch.bfloat16",
+  "load_seconds": 4.387,
+  "peak_gpu_memory_mib": 16453.44,
+  "trace": {
+    "data_id": "fvqa_train_17",
+    "category": "search_required",
+    "question": "Which historic county does this building belong to?",
+    "ground_truth": "Cheshire",
+    "image": "/root/autodl-tmp/mmsearch_demo/search_required_trigger.png",
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a large structure that resembles the Lovell Telescope at the Jodrell Bank Observatory in Cheshire, England. The presence of fireworks and a crowd suggests a celebration or event. However, the image does not provide enough information to determine the specific historic county the building belongs to. The image does not contain any text or additional context that would help identify the county.</reason>\n<search><img></search>",
+        "has_reason": true,
+        "action": "image_search",
+        "input_tokens": 955,
+        "output_tokens": 87,
+        "generation_seconds": 2.067,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "returned_text": "[Image Search Results] Official FVQA cached Google Lens results, ranked by relevance:\n1. image: <|vision_start|><|image_pad|><|vision_end|>\ntitle: Fireworks displays across Wokingham borough and beyond 2018 – Wokingham.Today\nthumbnail_url: https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT1suBd5FUH7CJRQyZNyX7RcmjZ2Iq39ZUfBcypZx2wpKDPs6dy\n2. image: <|vision_start|><|image_pad|><|vision_end|>\ntitle: Gymi's Speed Shop (@gymis_speed_shop) • Instagram photos and videos\nthumbnail_url: https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRE06a83VRz5BjpyMyh-VGWzr_o9nmBgzVxH7PAkeb26NBdMuQu\n3. image: <|vision_start|><|image_pad|><|vision_end|>\ntitle: OnkelPit | Flickr\nthumbnail_url: https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcScQryPY6B8SVC2BWseENQFC7x4sFpWozGbmrdYZ-cw5eXvKztE\n4. image: <|vision_start|><|image_pad|><|vision_end|>\ntitle: 102_1432 | whirlwindZOR | Flickr\nthumbnail_url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQotMI4O5pIv3u-Fvebirb6brPC9KWZ70CkblJH2EIzxA8Ta0j9\n",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_17",
+            "requested": 5,
+            "num_images": 4,
+            "cache_hits": 4,
+            "titles": [
+              "Fireworks displays across Wokingham borough and beyond 2018 – Wokingham.Today",
+              "Gymi's Speed Shop (@gymis_speed_shop) • Instagram photos and videos",
+              "OnkelPit | Flickr",
+              "102_1432 | whirlwindZOR | Flickr"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT1suBd5FUH7CJRQyZNyX7RcmjZ2Iq39ZUfBcypZx2wpKDPs6dy",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRE06a83VRz5BjpyMyh-VGWzr_o9nmBgzVxH7PAkeb26NBdMuQu",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcScQryPY6B8SVC2BWseENQFC7x4sFpWozGbmrdYZ-cw5eXvKztE",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQotMI4O5pIv3u-Fvebirb6brPC9KWZ70CkblJH2EIzxA8Ta0j9"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_1_15ae5c853929f700d17e.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_2_c65af28ba13560a62e4e.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_3_5606bde9dc83326784da.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_17_4_70873c37952935d2792e.png"
+            ],
+            "failures": [
+              {
+                "index": 4,
+                "title": "Claudio Mele | Flickr",
+                "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcCVaK0TuHUbwtyJdsdW-jBqIbbNjQdTLjbvoVsjBXM3vYFtR",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAcCVaK0TuHUbwtyJdsdW-jBqIbbNjQdTLjbvoVsjBXM3vYFtR"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results do not provide any information about the historic county the building belongs to. The image shows fireworks and a large structure, but there is no text or additional context that would help identify the county. Therefore, a text search is needed to answer the user's question.</reason>\n<text_search>Which historic county does the Lovell Telescope at Jodrell Bank Observatory belong to?</text_search>",
+        "has_reason": true,
+        "action": "text_search",
+        "input_tokens": 1656,
+        "output_tokens": 85,
+        "generation_seconds": 1.493,
+        "query": "Which historic county does the Lovell Telescope at Jodrell Bank Observatory belong to?"
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 0,
+    "final_answer": null,
+    "terminal_status": "awaiting_real_text_search",
+    "total_turns": 2,
+    "exact_match": null,
+    "control_flow_pass": true
+  },
+  "pass": true
+}

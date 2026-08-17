@@ -1,0 +1,542 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "036d8e354ce097440ed79c124faa03c17431f743a6315ba1e7e3ef43ba8ab70b",
+    "eval_index": 31
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_247",
+    "source_split": "train",
+    "source_row_index": 247,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What is the previous crossing of this river (crossed by the bridge) on the upstream?",
+    "candidate_answers": [
+      "Swing Bridge",
+      "Newcastle Swing Bridge"
+    ],
+    "ground_truth": "Swing Bridge",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/031_fvqa_train_247.png",
+      "width": 640,
+      "height": 479,
+      "png_sha256": "14c6ddf692a790e9bb01947ccf48dded4a0d7d084bbf25ddae58260c2c75fe3c",
+      "source_sha256": "e58f82a5051ebd093777b328ff160b55aa1ff903e7d4febdd8d67c162f19459b"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows the Tyne Bridge in Newcastle, England. To answer the question, we need to identify the previous crossing of the River Tyne upstream from the Tyne Bridge. However, the image does not provide enough information to determine the exact previous crossing. Therefore, I will need to use the image search tool to find this information.</reason>\n<search><img></search>",
+        "response_sha256": "61e5bf8db608ae155d4ba4c491d32baba0dccc726460cdea3a432d991e1f9d74",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 805,
+        "output_tokens": 80,
+        "generation_seconds": 1.258,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_247",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "Newcastle upon Tyne - Age-Friendly World",
+              "Air Steril WR30 | Air Steril WRX | North East",
+              "File:The Tyne Bridge 2.jpg - Wikipedia",
+              "The Common Good and Society - Caritas Social Action Network - CSAN",
+              "Tyne, Swing and High level bridges | Dom Townshend | Flickr"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSGgUYn-RRODDXeqUdhRYqMrX3-EacVDhiSZsWLDjgFFmWBwGof",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSKBnCEIJyfF4PAbhjZiRzX16aY6t-IR1nh242GKw6Ps5MRkhon",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRjWQI9gc-tpdeWLYUtddVU6oD9qHAvC3rVk_xWk7UqJ4IA6wMp",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSp77hfptjWu0JhNetytAS6m07cXDQveRuKfX-dfoLA5lAgWbAn",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgi_KnUXtE7V8PysCndGce8dCh85QO5C7usrpcfx-C_Hby5e_m"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_247_1_26055e86096cf80ae960.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_247_2_1c09f8b6699acfbcb102.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_247_3_54c4aa5b829c23fe9d5d.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_247_4_b5f17cbd958014894781.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_247_5_06ea4989292fcaa172fe.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1244,
+          "returned_text_sha256": "8fa4d6e005d8bbfaa4a1756234a4f2c2eea8140ef862736db3c87790cef9da15"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results provide additional information about the Tyne Bridge and the River Tyne. To answer the user's question, we need to know the previous crossing of the River Tyne upstream from the Tyne Bridge. A text search is necessary to find this information.</reason>\n<text_search>What is the previous crossing of the River Tyne upstream from the Tyne Bridge?</text_search>",
+        "response_sha256": "5846cb74d14f3b9740f30199aff03eda8dac78a646ca3e7ffc514d1e6c619f95",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "What is the previous crossing of the River Tyne upstream from the Tyne Bridge?",
+        "input_tokens": 1584,
+        "output_tokens": 83,
+        "generation_seconds": 1.404,
+        "query": "What is the previous crossing of the River Tyne upstream from the Tyne Bridge?",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "What is the previous crossing of the River Tyne upstream from the Tyne Bridge?",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/9425646b37f5f61d0d6d5b977a7592135c436cdab22e5c3829c7b457d5da5168.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 31137,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 11008,
+              "total_output_tokens": 631,
+              "total_tokens": 11639,
+              "total_generation_seconds": 18.239598,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "List of crossings of the River Tyne",
+                "url": "https://en.wikipedia.org/wiki/List_of_crossings_of_the_River_Tyne",
+                "snippet": "This article lists the crossings of the River Tyne, heading upstream from the North Sea. Contents. 1 Tyne; 2 North Tyne; 3 South Tyne; 4 References. Tyne."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "Welcome to the next River in our 60 second series...the Tyne ...",
+                "url": "https://www.facebook.com/inlandwaterwaysassociation/videos/welcome-to-the-next-river-in-our-60-second-seriesthe-tyneflowing-through-both-be/1457759212385966/",
+                "snippet": "„Five bridges cross the Tyne, Experience the beauty of the Newcastle upon Tyne riverside, where stunning views, iconic bridges … views the ..."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "Tyne Crossings: Connecting Tyneside Through Engineering",
+                "url": "https://www.ice.org.uk/what-is-civil-engineering/infrastructure-projects/tyne-crossings",
+                "snippet": "Famous engineer Robert Stephenson's High Level Bridge was the first to span the Tyne Gorge in 1850. The Gateshead Millennium Bridge was the most recent in 2001."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Evolution of River Tyne Bridges History",
+                "url": "https://www.facebook.com/fb-answers/evolution-of-river-tyne-bridges-history/",
+                "snippet": "Crossing the Tyne started with the Romans around AD 120 on the site of today's Swing Bridge, followed by a medieval stone bridge built in the late 12th century."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Tyneside Bridges",
+                "url": "https://www.bridgesonthetyne.co.uk/tyneside.html",
+                "snippet": "First the High Level Bridge, giving the river its first railway crossing, Further upstream are bridges at Scotswood and Newburn, the old Chain Bridge at ..."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "List of crossings of the River Tyne",
+                "url": "https://en.wikipedia.org/wiki/List_of_crossings_of_the_River_Tyne",
+                "snippet": "This article lists the crossings of the River Tyne, heading upstream from the North Sea. Contents. 1 Tyne; 2 North Tyne; 3 South Tyne; 4 References. Tyne.",
+                "full_characters": 83422,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/16031e897ca44df683b1a5c37aeb43f88abc90569405fc3d50e1ec20fee824db.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "Welcome to the next River in our 60 second series...the Tyne ...",
+                "url": "https://www.facebook.com/inlandwaterwaysassociation/videos/welcome-to-the-next-river-in-our-60-second-seriesthe-tyneflowing-through-both-be/1457759212385966/",
+                "snippet": "„Five bridges cross the Tyne, Experience the beauty of the Newcastle upon Tyne riverside, where stunning views, iconic bridges … views the ...",
+                "full_characters": 3162,
+                "returned_characters": 3162,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/bbc1844c01a4d4c70dbb90f38f64c12db52ac85692027362b307b18ae3745f7d.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "Tyne Crossings: Connecting Tyneside Through Engineering",
+                "url": "https://www.ice.org.uk/what-is-civil-engineering/infrastructure-projects/tyne-crossings",
+                "snippet": "Famous engineer Robert Stephenson's High Level Bridge was the first to span the Tyne Gorge in 1850. The Gateshead Millennium Bridge was the most recent in 2001.",
+                "full_characters": 57452,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/558211f7ad4d2c9b05d70f3fbc53ef36614738861611ef849065a25270e08d53.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "Evolution of River Tyne Bridges History",
+                "url": "https://www.facebook.com/fb-answers/evolution-of-river-tyne-bridges-history/",
+                "snippet": "Crossing the Tyne started with the Romans around AD 120 on the site of today's Swing Bridge, followed by a medieval stone bridge built in the late 12th century.",
+                "full_characters": 226,
+                "returned_characters": 226,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/a4c82d3e5abdbd6c4775226da31406b5ca37ce8d04e46e8a045cf07ac8649b10.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Tyneside Bridges",
+                "url": "https://www.bridgesonthetyne.co.uk/tyneside.html",
+                "snippet": "First the High Level Bridge, giving the river its first railway crossing, Further upstream are bridges at Scotswood and Newburn, the old Chain Bridge at ...",
+                "full_characters": 3749,
+                "returned_characters": 3749,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/41170da502344776481310a26d7c9437b010f76acd704eb9a55c577c00c82525.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "List of crossings of the River Tyne",
+                "url": "https://en.wikipedia.org/wiki/List_of_crossings_of_the_River_Tyne",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/16031e897ca44df683b1a5c37aeb43f88abc90569405fc3d50e1ec20fee824db.md",
+                "full_characters": 83422,
+                "returned_characters": 12000,
+                "jina_content_sha256": "1ea9de99b6955b1664808b314880f7da94c3b52d894ca2b88f80d9d705eb38b6",
+                "jina_input_characters": 12000,
+                "public_input_signature": "7087aca1537dbb8a33cfaa8eb3817e776e222ecb4f980c1c0b52d1270f24f61e",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/7087aca1537dbb8a33cfaa8eb3817e776e222ecb4f980c1c0b52d1270f24f61e.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Tyne Bridge is listed in the table of River Tyne crossings.\n- The crossing immediately upstream from the Tyne Bridge is the Swing Bridge.\n- The Swing Bridge was built on 15 June 1876.\n- The Swing Bridge carries an unclassified road.\n- The Swing Bridge is located on Tyneside.\n- The Tyne Bridge is located at coordinates 54°58′5″N 1°36′23″W, while the Swing Bridge is at 54°58′2″N 1°36′28″W.",
+                "input_tokens": 4268,
+                "output_tokens": 127,
+                "total_tokens": 4395,
+                "finish_reason": "stop",
+                "generation_seconds": 3.899267,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "Welcome to the next River in our 60 second series...the Tyne ...",
+                "url": "https://www.facebook.com/inlandwaterwaysassociation/videos/welcome-to-the-next-river-in-our-60-second-seriesthe-tyneflowing-through-both-be/1457759212385966/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/bbc1844c01a4d4c70dbb90f38f64c12db52ac85692027362b307b18ae3745f7d.md",
+                "full_characters": 3162,
+                "returned_characters": 3162,
+                "jina_content_sha256": "a3fcaa3ce007010348c6befc8d11cadf76d44ef23a1afdf8bf9b0d11ef26c3a0",
+                "jina_input_characters": 3162,
+                "public_input_signature": "4e2b9bd145e7469dc6c2baef48aca4b3309e06a67bd5c4810a3d70249dce9741",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/4e2b9bd145e7469dc6c2baef48aca4b3309e06a67bd5c4810a3d70249dce9741.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The webpage mentions five bridges crossing the River Tyne.  \n- It highlights the Tyne Bridge as an iconic structure in Newcastle.  \n- No specific name or details of the bridge immediately upstream from the Tyne Bridge are provided.  \n- The content is promotional and does not list the bridges in order.  \n- The source is a Facebook post from the Inland Waterways Association.  \n- The information is not sufficient to identify the previous crossing upstream from the Tyne Bridge.",
+                "input_tokens": 1849,
+                "output_tokens": 98,
+                "total_tokens": 1947,
+                "finish_reason": "stop",
+                "generation_seconds": 2.893404,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "Tyne Crossings: Connecting Tyneside Through Engineering",
+                "url": "https://www.ice.org.uk/what-is-civil-engineering/infrastructure-projects/tyne-crossings",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/558211f7ad4d2c9b05d70f3fbc53ef36614738861611ef849065a25270e08d53.md",
+                "full_characters": 57452,
+                "returned_characters": 12000,
+                "jina_content_sha256": "20d27dfc84c58a99b4b78fe2ffeaac2ebca8503c300241404349301a2e6ff242",
+                "jina_input_characters": 12000,
+                "public_input_signature": "3a5e2248cf009b15dcb3b0abc0b5576253b9e17bb8d5d7e1a56bb2c95e3133d1",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/3a5e2248cf009b15dcb3b0abc0b5576253b9e17bb8d5d7e1a56bb2c95e3133d1.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The High Level Bridge, designed by Robert Stephenson, was the first to span the Tyne Gorge in 1850.\n- The Tyne Bridge is a notable crossing downstream from the High Level Bridge.\n- The Gateshead Millennium Bridge is the most recent crossing, completed in 2001.\n- The webpage does not explicitly name the crossing immediately upstream from the Tyne Bridge.\n- The Tyne has multiple crossings, with the High Level Bridge being the earliest mentioned in the text.\n- No further details about crossings between the High Level Bridge and the Tyne Bridge are provided.",
+                "input_tokens": 3411,
+                "output_tokens": 123,
+                "total_tokens": 3534,
+                "finish_reason": "stop",
+                "generation_seconds": 3.91239,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "Evolution of River Tyne Bridges History",
+                "url": "https://www.facebook.com/fb-answers/evolution-of-river-tyne-bridges-history/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/a4c82d3e5abdbd6c4775226da31406b5ca37ce8d04e46e8a045cf07ac8649b10.md",
+                "full_characters": 226,
+                "returned_characters": 226,
+                "jina_content_sha256": "107dd9fee775018712e1cb38a96b40cda43e63c2f4d082778029326d81ee1a15",
+                "jina_input_characters": 226,
+                "public_input_signature": "4b797ddf85ec70f16d658b5ad0f0915bdc5def05669803defc577694dd5b6f88",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/4b797ddf85ec70f16d658b5ad0f0915bdc5def05669803defc577694dd5b6f88.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The first known crossing of the River Tyne was built by the Romans around AD 120, at the site of today's Swing Bridge.  \n- A medieval stone bridge was constructed at the same location in the late 12th century.  \n- The Swing Bridge is upstream from the Tyne Bridge.  \n- No other specific bridge is mentioned as being upstream of the Tyne Bridge and built before the Swing Bridge.  \n- The information does not mention any other crossing upstream from the Tyne Bridge prior to the Swing Bridge.  \n- The Tyne Bridge itself is a more recent structure, built in the 20th century.",
+                "input_tokens": 316,
+                "output_tokens": 133,
+                "total_tokens": 449,
+                "finish_reason": "stop",
+                "generation_seconds": 3.512577,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Tyneside Bridges",
+                "url": "https://www.bridgesonthetyne.co.uk/tyneside.html",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/41170da502344776481310a26d7c9437b010f76acd704eb9a55c577c00c82525.md",
+                "full_characters": 3749,
+                "returned_characters": 3749,
+                "jina_content_sha256": "dcb775532c32f871c4a83ca45ba4cfa15baf1d73bf2809c10f2f37bdf8acb61a",
+                "jina_input_characters": 3749,
+                "public_input_signature": "027da8bb37bec6234eede75cea66d3b2d3d501f1c7a1c6135cc8d3de195042dd",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/027da8bb37bec6234eede75cea66d3b2d3d501f1c7a1c6135cc8d3de195042dd.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Tyne Bridge is one of several bridges over the River Tyne between Newcastle and Gateshead.\n- Upstream from the Tyne Bridge, the next bridge is the High Level Bridge, which was the first railway crossing over the Tyne and opened in 1849/50.\n- Further upstream from the High Level Bridge are bridges at Scotswood and Newburn.\n- The old Chain Bridge at Scotswood is mentioned as one of the oldest bridges in the area, replaced in 1967.\n- The Redheugh Bridge, the King Edward Bridge, and the Swing Bridge are also located upstream from the Tyne Bridge.\n- The High Level Bridge is the most immediate crossing upstream from the Tyne Bridge.",
+                "input_tokens": 1164,
+                "output_tokens": 150,
+                "total_tokens": 1314,
+                "finish_reason": "stop",
+                "generation_seconds": 4.02196,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003478,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 5157,
+          "returned_text_sha256": "2a0bbb9ff223c8a269da0f91f52a92446b10438bc4b35850b9e29969abd624ec"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the previous crossing of the River Tyne upstream from the Tyne Bridge is the High Level Bridge. The High Level Bridge was the first to span the Tyne Gorge and was built in 1850.</reason>\n<answer>High Level Bridge</answer>",
+        "response_sha256": "e5d79242a1bbc168b2692fc8ef83085883ed9b1b4744b685ab5aebf1c25f3c68",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "High Level Bridge",
+        "input_tokens": 3127,
+        "output_tokens": 63,
+        "generation_seconds": 1.173
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "High Level Bridge",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 5516,
+    "mmsearch_output_tokens": 226,
+    "mmsearch_generation_seconds": 3.835,
+    "case_seconds": 43.094,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 31,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16969.96,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_31_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:55:54.050790+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69200, 28053",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69200",
+            "memory_free_mib": "28053"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "50384",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "229170",
+            "used_gpu_memory_mib": "18802",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 229170,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 18987614208,
+            "max_memory_allocated_bytes": 17794297856,
+            "max_memory_reserved_bytes": 18987614208
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002766,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.743,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

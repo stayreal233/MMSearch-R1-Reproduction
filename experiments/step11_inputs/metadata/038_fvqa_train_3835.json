@@ -1,0 +1,26 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3835",
+  "source_split": "train",
+  "source_row_index": 3835,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Which diocese does this building belong to?",
+  "reward_model": {
+    "ground_truth": "Diocese of Tarlac",
+    "candidate_answers": [
+      "Diocese of Tarlac",
+      "Roman Catholic Diocese of Tarlac"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/038_fvqa_train_3835.png",
+  "image_width": 800,
+  "image_height": 600,
+  "source_image_sha256": "2ed4d0bf464590188e2674ae5c10bb0d1ca11d4a0b29348ecccf3bad5e2d7cf5",
+  "normalized_png_sha256": "4bd78b37c7ed08b4c677365a1134b82c36a3ee2425a12ed65ee81c43866511e0",
+  "eval_index": 38,
+  "selection_rank_sha256": "00fc15cb70febdd573ddd001385c32690587f261b3c90163eca33b6dcfb9c5b2",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

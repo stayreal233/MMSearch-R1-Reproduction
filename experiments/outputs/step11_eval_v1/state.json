@@ -1,0 +1,37 @@
+{
+  "schema_version": "mmsearch.step11.state.v1",
+  "status": "in_progress",
+  "protocol": {
+    "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step11_eval_protocol.json",
+    "bytes": 4905,
+    "sha256": "f2fc533b824c65d5102fc10dbaebe0c3069242b00f9178c1417f6f0935c6000e"
+  },
+  "input_manifest": {
+    "path": "/root/autodl-tmp/mmsearch_step11_inputs/eval_manifest.json",
+    "bytes": 39827,
+    "sha256": "dbc28df74f3a1a0b87fd435255fda8ed73455dfe3a3d465dce9539fad37564ab"
+  },
+  "runner": {
+    "wrapper": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step11_batch_eval_qwen3_run.py",
+      "bytes": 2709,
+      "sha256": "e96582e4bbb08415bec16d756b9f322f082f96026eb02ef0793a56f57cff5cea"
+    },
+    "implementation": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step11_batch_eval_qwen3.py",
+      "bytes": 29609,
+      "sha256": "c217da46af089fcc709065b69d951c75ca425ac2b27ae64ea2f8b159fb5b086b"
+    }
+  },
+  "completed_count": 1,
+  "predictions": [
+    {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v1/predictions/001_fvqa_train_4724.json",
+      "bytes": 24447,
+      "sha256": "534863c9b57e9fd0f9f966bef1cbc80fd9e53551fa8c822773934eea6b1a359e",
+      "eval_index": 1
+    }
+  ],
+  "stages": {},
+  "credentials_recorded": false
+}

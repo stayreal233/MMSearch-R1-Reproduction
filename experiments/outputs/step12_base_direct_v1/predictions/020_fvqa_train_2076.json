@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 20,
+  "data_id": "fvqa_train_2076",
+  "category": "search_required",
+  "source_row_index": 2076,
+  "selection_rank_sha256": "005c1f554f51b6948cd2226b4f23ef0eaf80786a57e1f66419d8b4c8731be4c7",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/020_fvqa_train_2076.png",
+      "bytes": 293531,
+      "sha256": "81a253843ac8aa7aa4f906ad061ba7d01ebe152c6ee0bfd8808633795ade953c"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/020_fvqa_train_2076.json",
+      "bytes": 909,
+      "sha256": "cfe941141104d44baf114223c3a9130c404625fb468366af0ce251250b412a2d"
+    },
+    "image_width": 471,
+    "image_height": 672,
+    "question": "What is the name of the series these characters are from?"
+  },
+  "result": {
+    "response_text": "<answer>Yes Man</answer>",
+    "answer": "Yes Man",
+    "parser_mode": "answer_tags",
+    "ground_truth": "Toradora!",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 487,
+    "output_tokens": 9,
+    "generation_seconds": 0.20555,
+    "case_seconds": 0.23781,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17521704960,
+    "cuda_peak_memory_allocated_bytes": 16790853120,
+    "cuda_peak_memory_reserved_bytes": 17521704960
+  },
+  "credentials_recorded": false
+}

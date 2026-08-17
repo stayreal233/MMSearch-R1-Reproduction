@@ -1,0 +1,26 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3825",
+  "source_split": "train",
+  "source_row_index": 3825,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who designed this place?",
+  "reward_model": {
+    "ground_truth": "Stefan Klajbor",
+    "candidate_answers": [
+      "Stefan Jan Klajbor",
+      "Stefan Klajbor"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/046_fvqa_train_3825.png",
+  "image_width": 800,
+  "image_height": 412,
+  "source_image_sha256": "8d04cf6df052df17665c65aa715875fe97f94b3b74601faa40280812531e866c",
+  "normalized_png_sha256": "756f02bc3d829aa279903219511cd732fbd26a883302506349e346f7855ab4f8",
+  "eval_index": 46,
+  "selection_rank_sha256": "01985f7b3df42a598f4b8a2d0a672553875203acd3c86ee5c34f666a678f4699",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

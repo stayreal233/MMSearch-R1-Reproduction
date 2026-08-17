@@ -1,0 +1,71 @@
+{
+  "schema_version": "mmsearch.step11.metrics.v1",
+  "evaluated": 50,
+  "correct": 20,
+  "accuracy_percent": 40.0,
+  "image_search_calls": 40,
+  "text_search_calls": 30,
+  "total_search_calls": 70,
+  "search_ratio_percent": 70.0,
+  "average_turns": 2.18,
+  "route_counts": {
+    "answer": 10,
+    "image_search": 4,
+    "image_search -> answer": 6,
+    "image_search -> text_search": 7,
+    "image_search -> text_search -> answer": 23
+  },
+  "categories": {
+    "search_free": {
+      "count": 25,
+      "correct": 9,
+      "accuracy_percent": 36.0,
+      "total_search_calls": 29,
+      "search_ratio_percent": 58.0,
+      "average_turns": 1.84
+    },
+    "search_required": {
+      "count": 25,
+      "correct": 11,
+      "accuracy_percent": 44.0,
+      "total_search_calls": 41,
+      "search_ratio_percent": 82.0,
+      "average_turns": 2.52
+    }
+  },
+  "network_and_cache_totals": {
+    "external_network_requests": 379,
+    "thumbnail_network_attempts": 199,
+    "thumbnail_cache_hits": 1,
+    "serper_api_requests": 30,
+    "serper_cache_hits": 0,
+    "jina_network_requests": 150,
+    "jina_cache_hits": 0,
+    "local_qwen_completion_requests": 120,
+    "qwen_summary_requests": 120,
+    "qwen_summary_cache_hits": 0,
+    "tool_http_requests_total": 499
+  },
+  "infrastructure_failures": 11,
+  "non_answer_terminal_count": 11,
+  "network_count_incomplete": 6,
+  "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+  "search_ratio_definition": "sum(total_search_calls) / (N * 2) * 100",
+  "natural_policy_only": true,
+  "controlled_step10_B_C_excluded": true,
+  "sample_failure_isolation_enabled": true,
+  "sample_failure_count": 11,
+  "sample_failure_rate_percent": 22.0,
+  "healthy_answered_count": 39,
+  "healthy_answered_correct": 20,
+  "healthy_answered_accuracy_percent": 51.2821,
+  "end_to_end_failures_counted_in_denominator": true,
+  "component_failure_counts": {
+    "hard_stage:image_search": 4,
+    "hard_stage:text_search_jina_qwen": 7,
+    "image_item_failures": 26,
+    "jina_page_failures": 6,
+    "qwen_summary_failures": 3,
+    "serper_component_failures": 0
+  }
+}

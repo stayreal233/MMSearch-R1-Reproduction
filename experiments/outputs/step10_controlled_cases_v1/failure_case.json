@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "status": "expected_failure_captured",
+  "case_label": "Failure",
+  "case_type": "failure",
+  "selection": {
+    "selection_rule": "First independent answered strict-EM-false record in the immutable natural scan.",
+    "candidate_number": 8,
+    "candidate_scan_sha256": "7c4ec00fc07afb329d1a8c2102f290220681122ac360ef7300456e4567db760b",
+    "selected_metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/failure.json",
+      "bytes": 746,
+      "sha256": "fed1637575ee6e8317cccfe544f8a8070cd15635247a7a82587f5db94fdd07c7",
+      "meta_key": null
+    },
+    "execution_mode": "natural",
+    "claim_scope": "natural_policy",
+    "intervention": {
+      "applied": false
+    },
+    "natural_action_sequence": [
+      "answer"
+    ],
+    "natural_exact_match": false
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_32",
+    "source_split": "train",
+    "source_row_index": 32,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "Which road, railway or canal does this place carry?",
+    "candidate_answers": [
+      "Llangollen Canal"
+    ],
+    "ground_truth": "Llangollen Canal",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/failure.png",
+      "width": 800,
+      "height": 600,
+      "png_sha256": "57fa324f8ce32783ea8ee660ceeee7f5dc1e7f7e68e69cb05447ab36cb253419",
+      "source_sha256": "d5666ba6f958e9411f4af3b8bb960bf214d6d8a55ba4349a02a6728f0e92dcf3"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a viaduct, which is typically associated with railways. The structure's design and the presence of a single track or multiple tracks on top of the viaduct are characteristic features of railway viaducts. There are no visible signs of a road or canal passing through this structure. Therefore, it is likely that this viaduct carries a railway.</reason>\n<answer>Railway</answer>",
+        "response_sha256": "ea07d56f84f4c98ee07d11d7fa3a106602872921f214baf81f071b0cf4d01855",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Railway",
+        "input_tokens": 946,
+        "output_tokens": 88,
+        "generation_seconds": 1.43
+      }
+    ],
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "summarization_calls": 0,
+    "final_answer": "Railway",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 1,
+    "action_sequence": [
+      "answer"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 0,
+      "serper_api_requests": 0,
+      "jina_network_requests": 0,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 0,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 0
+    },
+    "mmsearch_input_tokens": 946,
+    "mmsearch_output_tokens": 88,
+    "mmsearch_generation_seconds": 1.43,
+    "case_seconds": 1.52,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": true,
+    "failure_analysis": {
+      "layer": "final_answer",
+      "rationale": "A final answer was emitted and strict normalized Exact Match is false; upstream causality is not inferred.",
+      "evidence_paths": [
+        "$.final_answer",
+        "$.ground_truth",
+        "$.exact_match",
+        "$.tool_infrastructure_success"
+      ],
+      "infrastructure_failure": false,
+      "terminal_status": "answered",
+      "actual_action_sequence": [
+        "answer"
+      ],
+      "exact_match": false
+    },
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "case_semantics": {
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false,
+    "claim_scope": "natural_policy"
+  },
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16181.54,
+    "gpu_snapshot_after_case": {
+      "label": "step10_case_Failure_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T02:20:44.642963+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 66428, 30825",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "66428",
+            "memory_free_mib": "30825"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "47386",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "204277",
+            "used_gpu_memory_mib": "19028",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 204277,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 19224592384,
+            "max_memory_allocated_bytes": 16967572992,
+            "max_memory_reserved_bytes": 19224592384
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_case": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002901,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16"
+  },
+  "summarizer": {
+    "service_launch_contract": {
+      "host": "127.0.0.1",
+      "port": 8001,
+      "max_model_len": 8192,
+      "gpu_memory_utilization": 0.48,
+      "linear_backend": "cutlass",
+      "deep_gemm": false,
+      "flashinfer_sampler_enabled": false,
+      "sampling_backend": "native",
+      "max_num_seqs": 1,
+      "default_chat_template_enable_thinking": false,
+      "vllm_version": "0.27.1",
+      "torch_version": "2.13.0+cu130",
+      "torch_cuda": "13.0"
+    },
+    "config": {
+      "cache_dir": "/root/autodl-tmp/search_cache/qwen3_summary",
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_repo": "Qwen/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "max_input_chars": 12000,
+      "max_tokens": 512,
+      "timeout_seconds": 120.0,
+      "temperature": 0,
+      "seed": 0,
+      "thinking_enabled": false,
+      "prompt_version": "qwen3_web_summary_v1",
+      "cache_schema": "mmsearch.qwen3_summary.v1"
+    }
+  }
+}

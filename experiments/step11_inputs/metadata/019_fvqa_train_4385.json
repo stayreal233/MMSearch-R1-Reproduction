@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4385",
+  "source_split": "train",
+  "source_row_index": 4385,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "In which city were the Summer Olympics held the year this product was created?",
+  "reward_model": {
+    "ground_truth": "Beijing",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/019_fvqa_train_4385.png",
+  "image_width": 102,
+  "image_height": 104,
+  "source_image_sha256": "881e4e2f2c04cc718f09120757ea99f4b7eaddac646a607ea7c37721f4bc8043",
+  "normalized_png_sha256": "881e4e2f2c04cc718f09120757ea99f4b7eaddac646a607ea7c37721f4bc8043",
+  "eval_index": 19,
+  "selection_rank_sha256": "0245c6daca565c357c734b6b7999f16688ab13a03e1be3ad700420d225fbc099",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

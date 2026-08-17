@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 10,
+  "data_id": "fvqa_train_2791",
+  "category": "search_required",
+  "source_row_index": 2791,
+  "selection_rank_sha256": "003b56bb94e83cc5fc19b5ae00a9e18fd7d4f75579488f464de3c542d6752069",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/010_fvqa_train_2791.png",
+      "bytes": 873714,
+      "sha256": "f1122fb8d81713a7c2f1fe595bc2b079864dbf3ce784cab2d9c51d5bae774782"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/010_fvqa_train_2791.json",
+      "bytes": 1031,
+      "sha256": "5e8bf82b17ec4b58af50a0cbcf8dbfe3cc569ee8e00981fdfd122d827640230e"
+    },
+    "image_width": 800,
+    "image_height": 600,
+    "question": "What is this building dedicated to?"
+  },
+  "result": {
+    "response_text": "<answer>The building is dedicated to the Quaid-e-Azam House Museum.</answer>",
+    "answer": "The building is dedicated to the Quaid-e-Azam House Museum.",
+    "parser_mode": "answer_tags",
+    "ground_truth": "Mohammad Ali Jinnah",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 614,
+    "output_tokens": 20,
+    "generation_seconds": 0.383398,
+    "case_seconds": 0.424317,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17521704960,
+    "cuda_peak_memory_allocated_bytes": 16842786816,
+    "cuda_peak_memory_reserved_bytes": 17521704960
+  },
+  "credentials_recorded": false
+}

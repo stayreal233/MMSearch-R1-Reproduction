@@ -1,0 +1,19 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_9",
+  "source_split": "train",
+  "source_row_index": 9,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the name of the organization that uses this chamber?",
+  "reward_model": {
+    "ground_truth": "New Zealand Parliament",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_c.png",
+  "image_width": 1276,
+  "image_height": 672,
+  "source_image_sha256": "85311f3cc146886e520035a2faba5c61c5a7b99386fcd1a71f758c4a71d6e3fd",
+  "normalized_png_sha256": "85311f3cc146886e520035a2faba5c61c5a7b99386fcd1a71f758c4a71d6e3fd"
+}

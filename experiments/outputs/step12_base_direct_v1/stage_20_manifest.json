@@ -1,0 +1,312 @@
+{
+  "schema_version": "mmsearch.step12.base-stage.v1",
+  "status": "passed",
+  "stage_target": 20,
+  "completed_at_utc": "2026-08-17T04:58:20.211634+00:00",
+  "static": {
+    "protocol": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step12_base_comparison_protocol.json",
+      "bytes": 5559,
+      "sha256": "3a80ee1fe4685cde68335a1ad336a3cf6f8f970a71f9664f6f66e22ee3d651f5"
+    },
+    "revision_metadata": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step12_base_huggingface_revision.json",
+      "bytes": 1923,
+      "sha256": "fb8c62723161017c615f95e48e5cb9a21d3c841c9eac0dd12e5fb29414b42a48"
+    },
+    "artifact_validation": {
+      "path": "/root/autodl-tmp/outputs/step12_base_artifact_validation.json",
+      "bytes": 4755,
+      "sha256": "bac53be73dbd7ff14b6b92030475ad452cf04577438df61502d87c8a320c482a"
+    },
+    "input_manifest": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/eval_manifest.json",
+      "bytes": 39827,
+      "sha256": "dbc28df74f3a1a0b87fd435255fda8ed73455dfe3a3d465dce9539fad37564ab"
+    },
+    "mmsearch_reference": {
+      "completion_manifest": {
+        "path": "/root/autodl-tmp/outputs/step11_eval_v2/step11_completion_manifest.json",
+        "bytes": 6820,
+        "sha256": "f2747c945a022d578e3d053e7112a05937b0267894dc03b6f74adeabefe2ad87"
+      },
+      "predictions": {
+        "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions.jsonl",
+        "bytes": 750316,
+        "sha256": "beda0f6a02f750b89a5a53cb9f39dcaac56dbe047e2fb1f4ecc01290d6ac48ff"
+      },
+      "metrics": {
+        "path": "/root/autodl-tmp/outputs/step11_eval_v2/metrics.json",
+        "bytes": 2135,
+        "sha256": "ec7c289417defc57ddd5a731e6bd1a2cb0a498013d281df863ad0aaccc5f0445"
+      }
+    },
+    "runner": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step12_base_direct_eval.py",
+      "bytes": 28435,
+      "sha256": "308b693cce8bd96dfb97f92e7762fd79adc3be745550d15623f438a85410e9c6"
+    }
+  },
+  "prediction_count": 20,
+  "prediction_records": [
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/001_fvqa_train_4724.json",
+      "bytes": 2276,
+      "sha256": "b9133ad3b442d52fd2cd25bdd833c812e824a518f36b70ffaca9b147e3b1ff2f",
+      "eval_index": 1
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/002_fvqa_train_2759.json",
+      "bytes": 2166,
+      "sha256": "7c46a03f3f9dde9e30764db0b640f5a7fbbb5edf6d568169457dfc771e566293",
+      "eval_index": 2
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/003_fvqa_train_3141.json",
+      "bytes": 2173,
+      "sha256": "d4f3cfe744bf3ad50420b58ad2a09d1dcc24efd0193c29ae1d1f89a16a10d01d",
+      "eval_index": 3
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/004_fvqa_train_1580.json",
+      "bytes": 2170,
+      "sha256": "db986b225b546d041c79395bcebc446ea2b080e39abf56df2152d1edcbbe3d09",
+      "eval_index": 4
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/005_fvqa_train_1696.json",
+      "bytes": 2189,
+      "sha256": "f336a5e931713cfb667b687e9921b087643dcb39135e176ee31e0e26b5b8a16c",
+      "eval_index": 5
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/006_fvqa_train_3969.json",
+      "bytes": 2391,
+      "sha256": "0f4a9cc3f1eb5373638428fe803ad1eb50dc26213a9dd7c6343657ebb7843416",
+      "eval_index": 6
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/007_fvqa_train_392.json",
+      "bytes": 2235,
+      "sha256": "c6207ca1f4a7fc1469a41923c7caede2dc7122cc369a4179d1738be6f8062bcf",
+      "eval_index": 7
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/008_fvqa_train_1692.json",
+      "bytes": 2204,
+      "sha256": "0f9851ae06efa8e9224e73ae8219a4c15ae4b7853d39d24f03d3caa5aac4c444",
+      "eval_index": 8
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/009_fvqa_train_4847.json",
+      "bytes": 2342,
+      "sha256": "ab30f458cea8367080c8c1273b5259d9f9eb8caa1dadc9f6f3bdfae81603995e",
+      "eval_index": 9
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/010_fvqa_train_2791.json",
+      "bytes": 2275,
+      "sha256": "0d52a5b696f27bff8848eb4156a454c1c94893ac07ff9422e90957da0f51d66f",
+      "eval_index": 10
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/011_fvqa_train_37.json",
+      "bytes": 2142,
+      "sha256": "45fa481b965c607195c1f25d7066badcf095cfbddc5c3f759c11d95048077bb8",
+      "eval_index": 11
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/012_fvqa_train_4498.json",
+      "bytes": 2210,
+      "sha256": "386d4c2edfc66265f5521dfaa55cbb46bd7cf3f4da40aaa42c0b667eb694f3f2",
+      "eval_index": 12
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/013_fvqa_train_783.json",
+      "bytes": 2222,
+      "sha256": "ed280172e9ffd0dc580ec949a34c398839ee2a975a9530a957d8f1c4d2607ac5",
+      "eval_index": 13
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/014_fvqa_train_3956.json",
+      "bytes": 2166,
+      "sha256": "6d9321a14abebb40f4ddd92794e38d72a29dfe489703e75bc6326068cb8a3943",
+      "eval_index": 14
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/015_fvqa_train_2890.json",
+      "bytes": 2239,
+      "sha256": "f6f2d939d5447d4fedccf855155824e81b3c6a852c50085ba378b20506b9e995",
+      "eval_index": 15
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/016_fvqa_train_2282.json",
+      "bytes": 2177,
+      "sha256": "2e95c1c80855ce213e9a8ef80d9a52ab30ceb9e60259f4ce21ff7f394faefa74",
+      "eval_index": 16
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/017_fvqa_train_1013.json",
+      "bytes": 2161,
+      "sha256": "bd82bd0e6e96c07e5de8046096669d5784f3700d5fcbbad00b7321229e8d9619",
+      "eval_index": 17
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/018_fvqa_train_904.json",
+      "bytes": 2205,
+      "sha256": "321cb8def6f5350bd33a78da246fbdc3308859c7c3a846930232b3845b33985d",
+      "eval_index": 18
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/019_fvqa_train_4385.json",
+      "bytes": 2189,
+      "sha256": "e3ea7f15e7455e40e60639a7a277fdafc96c47b020fac2753a09840d71ac2780",
+      "eval_index": 19
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions/020_fvqa_train_2076.json",
+      "bytes": 2179,
+      "sha256": "07b25973c30a01a4df4cfec7611288ad1fae4ec9d1f9964e2f917ae20671d73b",
+      "eval_index": 20
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions_20.jsonl",
+      "bytes": 37451,
+      "sha256": "0a274e8e75e33947230301cae8f582416a22883189ea07768d3c31a792dc3748"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/metrics_20.json",
+      "bytes": 1131,
+      "sha256": "4e7cc75d3d6f6f13d34ee863aa41dff605e30cd628a48438510707490e80f2b5"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/failure_summary_20.json",
+      "bytes": 6703,
+      "sha256": "d3f320c74a7bfd2143a6efed2fd372bf2750bd38c2accc13bb3b2c10a88c2e49"
+    }
+  ],
+  "metrics": {
+    "schema_version": "mmsearch.step12.base-metrics.v1",
+    "evaluated": 20,
+    "correct": 3,
+    "accuracy_percent": 15.0,
+    "categories": {
+      "search_free": {
+        "count": 10,
+        "correct": 3,
+        "accuracy_percent": 30.0,
+        "search_calls": 0,
+        "search_ratio_percent": 0.0,
+        "average_generation_seconds": 0.271575
+      },
+      "search_required": {
+        "count": 10,
+        "correct": 0,
+        "accuracy_percent": 0.0,
+        "search_calls": 0,
+        "search_ratio_percent": 0.0,
+        "average_generation_seconds": 0.305799
+      }
+    },
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "total_search_calls": 0,
+    "search_ratio_percent": 0.0,
+    "average_generation_seconds": 0.288687,
+    "median_generation_seconds": 0.221028,
+    "total_generation_seconds": 5.773745,
+    "total_input_tokens": 9900,
+    "total_output_tokens": 204,
+    "parser_mode_counts": {
+      "answer_tags": 12,
+      "plain_text_fallback": 8
+    },
+    "empty_response_count": 0,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+    "execution_mode": "direct_answer_no_tools",
+    "external_tool_calls": 0
+  },
+  "failure_summary": {
+    "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/failure_summary_20.json",
+    "bytes": 6703,
+    "sha256": "d3f320c74a7bfd2143a6efed2fd372bf2750bd38c2accc13bb3b2c10a88c2e49"
+  },
+  "model_load_seconds": 3.358984,
+  "base_fully_gpu_resident": true,
+  "base_hf_device_map": {
+    "": "0"
+  },
+  "gpu_snapshot": {
+    "label": "step12_base_stage_20_complete_joint_gpu",
+    "captured_at_utc": "2026-08-17T04:58:20.211575+00:00",
+    "nvidia_smi": {
+      "gpu_columns": [
+        "index",
+        "name",
+        "memory_total_mib",
+        "memory_used_mib",
+        "memory_free_mib"
+      ],
+      "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 67802, 29451",
+      "gpus": [
+        {
+          "index": "0",
+          "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+          "memory_total_mib": "97887",
+          "memory_used_mib": "67802",
+          "memory_free_mib": "29451"
+        }
+      ],
+      "compute_processes": [
+        {
+          "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+          "pid": "203748",
+          "used_gpu_memory_mib": "50384",
+          "owner": "summary_service"
+        },
+        {
+          "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+          "pid": "251105",
+          "used_gpu_memory_mib": "17404",
+          "owner": "mmsearch_current"
+        }
+      ]
+    },
+    "torch_process": {
+      "pid": 251105,
+      "cuda_initialized": true,
+      "cuda_visible_devices": "0",
+      "devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+          "memory_allocated_bytes": 16592889856,
+          "memory_reserved_bytes": 17521704960,
+          "max_memory_allocated_bytes": 16790853120,
+          "max_memory_reserved_bytes": 17521704960
+        }
+      ],
+      "current_device": 0
+    }
+  },
+  "unexpected_external_tool_calls": 0,
+  "offline_environment": {
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "serialized_evidence_scan": {
+    "files_scanned": 23,
+    "json_files_scanned": 22,
+    "text_files_scanned": 1,
+    "forbidden_json_key_paths": [],
+    "data_image_base64_matches": 0,
+    "long_base64_matches": 0,
+    "raw_jina_marker_matches": 0,
+    "authorization_marker_matches": 0,
+    "known_credential_value_matches": 0,
+    "pass": true
+  },
+  "credentials_recorded": false
+}

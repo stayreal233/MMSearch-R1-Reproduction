@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "005c1f554f51b6948cd2226b4f23ef0eaf80786a57e1f66419d8b4c8731be4c7",
+    "eval_index": 20
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_2076",
+    "source_split": "train",
+    "source_row_index": 2076,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What is the name of the series these characters are from?",
+    "candidate_answers": [],
+    "ground_truth": "Toradora!",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/020_fvqa_train_2076.png",
+      "width": 471,
+      "height": 672,
+      "png_sha256": "81a253843ac8aa7aa4f906ad061ba7d01ebe152c6ee0bfd8808633795ade953c",
+      "source_sha256": "81a253843ac8aa7aa4f906ad061ba7d01ebe152c6ee0bfd8808633795ade953c"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows characters from an anime series. The characters are dressed in school uniforms, and there are symbols above their heads, which are likely part of the series' branding. The style and the characters' design suggest that this is from a specific anime series. However, without additional context or a clear reference to the series name, it's challenging to identify the exact series.</reason>\n<search><img></search>",
+        "response_sha256": "acc122d741bb42cb4740a05c35ae84bb89d59219196f918080945d3117dc83e6",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 815,
+        "output_tokens": 87,
+        "generation_seconds": 1.399,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_2076",
+            "requested": 5,
+            "num_images": 4,
+            "cache_hits": 0,
+            "titles": [
+              "Akira Sengoku | Bleach Fan Fiction Wiki | Fandom",
+              "Ryuuji Takasu from Toradora!",
+              "Ryuuji Takasu (Toradora!) - Pictures - MyAnimeList.net",
+              "Hideaki ASABA | Anime-Planet"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcToVwQarIL1nz9NHBMPEjtqzSMLzQk1sBQDC1m8VxNO78BCGday",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQBM_con5bWq1ByYDH6jxa1ZvS_uUJO3nJz-r7FReNDVz4n0yAq",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvwKJzpZ6YXziNf4k3lAb8nTEX7VvCIYXqqsFk8wIfU9sr2YqD",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyrwAsY4o5EMxBA-lRHRhfmFkgR5ZxRg2NeHoBxTSdXO6xG0Z0"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2076_1_d52e0dd2b3eaf00c2e80.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2076_2_c88c2bab0351acda6895.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2076_3_1273c9ab935950a722df.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_2076_4_5ae4736d19bbd38773e0.png"
+            ],
+            "failures": [
+              {
+                "index": 4,
+                "title": "Ryuji - Anime: Toradora by Miu-Chan1515 on DeviantArt",
+                "source": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTGv-2_Qr74bZhJRr_LEhuSiDXAmuUIFskcW9Zz0NQjAKybpEeN",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTGv-2_Qr74bZhJRr_LEhuSiDXAmuUIFskcW9Zz0NQjAKybpEeN"
+              }
+            ]
+          },
+          "returned_text_characters": 972,
+          "returned_text_sha256": "cb9fae72ba62194b9c91c5f1c30fc7437be875899d9876fd93560d70e59efb0a"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results suggest that the characters in the image are from the anime series \"Toradora!\". The character Ryuuji Takasu is a prominent figure in this series. Given the context and the visual elements, it is likely that the series name is \"Toradora!\".</reason>\n<answer>Toradora!</answer>",
+        "response_sha256": "3314b581cc4837c00c856c3ca9858f18b9a9969eecf80530a3064bfad4f007d6",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Toradora!",
+        "input_tokens": 1484,
+        "output_tokens": 69,
+        "generation_seconds": 1.172
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 0,
+    "summarization_calls": 0,
+    "final_answer": "Toradora!",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 2,
+    "action_sequence": [
+      "image_search",
+      "answer"
+    ],
+    "exact_match": true,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 0,
+      "jina_network_requests": 0,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 5,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 5
+    },
+    "mmsearch_input_tokens": 2299,
+    "mmsearch_output_tokens": 156,
+    "mmsearch_generation_seconds": 2.571,
+    "case_seconds": 3.835,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 20,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16382.15,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_20_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:48:21.910508+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69224, 28029",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69224",
+            "memory_free_mib": "28029"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "49646",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "225955",
+            "used_gpu_memory_mib": "19564",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 225955,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 19786629120,
+            "max_memory_allocated_bytes": 17177929216,
+            "max_memory_reserved_bytes": 19786629120
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002854,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.675,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

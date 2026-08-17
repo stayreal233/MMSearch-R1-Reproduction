@@ -1,0 +1,11 @@
+{
+  "dataset_id": "lmms-lab/FVQA",
+  "dataset_revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+  "source_parquet": "/root/autodl-tmp/datasets/FVQA/fvqa_train.parquet",
+  "selection": "first row in parquet order for each target category",
+  "categories": [
+    "search_free",
+    "search_required"
+  ],
+  "metadata": "/root/autodl-tmp/mmsearch_demo/meta.json"
+}

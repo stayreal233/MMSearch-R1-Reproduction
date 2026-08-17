@@ -1,0 +1,41 @@
+{
+  "schema_version": "mmsearch.step12.base-metrics.v1",
+  "evaluated": 20,
+  "correct": 3,
+  "accuracy_percent": 15.0,
+  "categories": {
+    "search_free": {
+      "count": 10,
+      "correct": 3,
+      "accuracy_percent": 30.0,
+      "search_calls": 0,
+      "search_ratio_percent": 0.0,
+      "average_generation_seconds": 0.271575
+    },
+    "search_required": {
+      "count": 10,
+      "correct": 0,
+      "accuracy_percent": 0.0,
+      "search_calls": 0,
+      "search_ratio_percent": 0.0,
+      "average_generation_seconds": 0.305799
+    }
+  },
+  "image_search_calls": 0,
+  "text_search_calls": 0,
+  "total_search_calls": 0,
+  "search_ratio_percent": 0.0,
+  "average_generation_seconds": 0.288687,
+  "median_generation_seconds": 0.221028,
+  "total_generation_seconds": 5.773745,
+  "total_input_tokens": 9900,
+  "total_output_tokens": 204,
+  "parser_mode_counts": {
+    "answer_tags": 12,
+    "plain_text_fallback": 8
+  },
+  "empty_response_count": 0,
+  "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+  "execution_mode": "direct_answer_no_tools",
+  "external_tool_calls": 0
+}

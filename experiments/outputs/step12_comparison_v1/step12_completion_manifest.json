@@ -1,0 +1,160 @@
+{
+  "schema_version": "mmsearch.step12.completion.v1",
+  "status": "passed",
+  "step": 12,
+  "completed_at_utc": "2026-08-17T05:00:51.836530+00:00",
+  "scope": "Base Direct Answer versus MMSearch natural on-demand search on the same fixed 50 examples",
+  "protocol": {
+    "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step12_base_comparison_protocol.json",
+    "bytes": 5559,
+    "sha256": "3a80ee1fe4685cde68335a1ad336a3cf6f8f970a71f9664f6f66e22ee3d651f5"
+  },
+  "base_completion": {
+    "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/step12_base_completion_manifest.json",
+    "bytes": 4753,
+    "sha256": "359036672f80b6e4101c8ed4e64c5ca2fa5d3789e81c1d699c4be344c2ea0e07"
+  },
+  "mmsearch_completion": {
+    "path": "/root/autodl-tmp/outputs/step11_eval_v2/step11_completion_manifest.json",
+    "bytes": 6820,
+    "sha256": "f2747c945a022d578e3d053e7112a05937b0267894dc03b6f74adeabefe2ad87"
+  },
+  "base_predictions": {
+    "path": "/root/autodl-tmp/outputs/step12_base_direct_v1/predictions.jsonl",
+    "bytes": 94395,
+    "sha256": "c1a96773652e8ac378157188d9733e1e1ff207e2a388dece6b126a9b3271b980"
+  },
+  "mmsearch_predictions": {
+    "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions.jsonl",
+    "bytes": 750316,
+    "sha256": "beda0f6a02f750b89a5a53cb9f39dcaac56dbe047e2fb1f4ecc01290d6ac48ff"
+  },
+  "comparison_metrics": {
+    "schema_version": "mmsearch.step12.paired-comparison.v1",
+    "evaluated": 50,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+    "base": {
+      "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+      "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+      "mode": "direct_answer_no_tools",
+      "correct": 7,
+      "accuracy_percent": 14.0,
+      "search_calls": 0,
+      "search_ratio_percent": 0.0,
+      "average_generation_seconds": 0.285177,
+      "average_case_seconds": 0.323203
+    },
+    "mmsearch": {
+      "model": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "mode": "natural_on_demand_search",
+      "correct": 20,
+      "accuracy_percent": 40.0,
+      "search_calls": 70,
+      "search_ratio_percent": 70.0,
+      "average_generation_seconds": 2.95262,
+      "average_case_seconds": 22.2817,
+      "sample_tool_failure_count": 11
+    },
+    "mmsearch_minus_base_accuracy_points": 26.0,
+    "paired_outcomes": {
+      "both_correct": 5,
+      "base_only_correct": 2,
+      "mmsearch_only_correct": 15,
+      "both_wrong": 28
+    },
+    "categories": {
+      "search_free": {
+        "count": 25,
+        "base_correct": 7,
+        "base_accuracy_percent": 28.0,
+        "mmsearch_correct": 9,
+        "mmsearch_accuracy_percent": 36.0,
+        "mmsearch_minus_base_accuracy_points": 8.0,
+        "paired_outcomes": {
+          "base_only_correct": 2,
+          "both_correct": 5,
+          "both_wrong": 14,
+          "mmsearch_only_correct": 4
+        }
+      },
+      "search_required": {
+        "count": 25,
+        "base_correct": 0,
+        "base_accuracy_percent": 0.0,
+        "mmsearch_correct": 11,
+        "mmsearch_accuracy_percent": 44.0,
+        "mmsearch_minus_base_accuracy_points": 44.0,
+        "paired_outcomes": {
+          "both_wrong": 14,
+          "mmsearch_only_correct": 11
+        }
+      }
+    },
+    "fairness": {
+      "same_fixed_examples": true,
+      "same_images_questions_ground_truth_order": true,
+      "same_seed_do_sample_max_new_tokens_strict_em": true,
+      "base_has_tools": false,
+      "mmsearch_natural_tools": true,
+      "different_role_specific_prompts": true,
+      "controlled_step10_cases_excluded": true
+    }
+  },
+  "artifacts": [
+    {
+      "path": "/root/autodl-tmp/outputs/step12_comparison_v1/comparison_metrics.json",
+      "bytes": 2145,
+      "sha256": "4ec7fa191d8ef850f830d496b388de15a0f467539042f7a1d2dc918abe0be829"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_comparison_v1/success_failure_examples.json",
+      "bytes": 7861,
+      "sha256": "eec7ad0b10a6bf0983af982e77b35dd2f9b2aecd45e12c567ed63b631920336d"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_comparison_v1/model_and_dataset_revisions.json",
+      "bytes": 733,
+      "sha256": "eb382fb0c31ddc63270a87d11d06c7b115821f45b19be2d8168e02718610f76f"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_comparison_v1/paired_outcomes.jsonl",
+      "bytes": 25723,
+      "sha256": "032ad455d1e99fab487db72f836f5374d50b4825985d07a933889999a31a2c42"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_comparison_v1/final_report.md",
+      "bytes": 2124,
+      "sha256": "b7ac6ca763fb67be27c378769241f037b64f59156a00868a5a8f171dbbf75c7c"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_comparison_v1/pip_freeze.txt",
+      "bytes": 1501,
+      "sha256": "c40d7ba302fd6060e6d3bc3321b8b79a516491c91863ca999d560061b8f8472e"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_comparison_v1/gpu_info.txt",
+      "bytes": 136,
+      "sha256": "a92cd47b4f36a6e3586d74331010b0d2c79ab0795b75bc1105cf1d1e3ff54659"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/step12_comparison_v1/git_commit.txt",
+      "bytes": 130,
+      "sha256": "10a80e85d77b6df6e30ba2b2deb27fa706cd194ee7bdfc1a7b2c0729a8a4f324"
+    }
+  ],
+  "serialized_evidence_scan": {
+    "files_scanned": 8,
+    "json_files_scanned": 3,
+    "text_files_scanned": 5,
+    "forbidden_json_key_paths": [],
+    "data_image_base64_matches": 0,
+    "long_base64_matches": 0,
+    "raw_jina_marker_matches": 0,
+    "authorization_marker_matches": 0,
+    "known_credential_value_matches": 0,
+    "pass": true
+  },
+  "training_reproduction": false,
+  "credentials_recorded": false
+}

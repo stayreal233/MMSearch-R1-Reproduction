@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 45,
+  "data_id": "fvqa_train_1072",
+  "category": "search_free",
+  "source_row_index": 1072,
+  "selection_rank_sha256": "0502935546f25fae1ad42096bfe12a9e4802c365000ce208a7de4e2ef048e289",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/045_fvqa_train_1072.png",
+      "bytes": 344939,
+      "sha256": "2fd7e164b6ffa3a7a3657c2e575d631bf237ca3438b8c126cf8eb303d7f191fe"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/045_fvqa_train_1072.json",
+      "bytes": 901,
+      "sha256": "41f1b25147f7592ed457ca5f86debf05b4058df23f9f56ab51f164e675397b10"
+    },
+    "image_width": 1002,
+    "image_height": 672,
+    "question": "What is the name of the software shown in the image?"
+  },
+  "result": {
+    "response_text": "<answer>HyperCard</answer>",
+    "answer": "HyperCard",
+    "parser_mode": "answer_tags",
+    "ground_truth": "HyperCard",
+    "strict_exact_match": true,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 630,
+    "output_tokens": 9,
+    "generation_seconds": 0.230175,
+    "case_seconds": 0.266263,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17404264448,
+    "cuda_peak_memory_allocated_bytes": 16849189888,
+    "cuda_peak_memory_reserved_bytes": 17404264448
+  },
+  "credentials_recorded": false
+}

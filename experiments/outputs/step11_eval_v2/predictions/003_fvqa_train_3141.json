@@ -1,0 +1,527 @@
+{
+  "schema_version": 1,
+  "status": "failed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "008cd23edb6ff9fbbe01bae1c04d6e350a5dc42041a55dbc4e90e3dd8fbfc128",
+    "eval_index": 3
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_3141",
+    "source_split": "train",
+    "source_row_index": 3141,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "Who is the founder of the building in the image?",
+    "candidate_answers": [
+      "pape Jules II",
+      "paus Julius II",
+      "Iulius II",
+      "Julien de La Rovere",
+      "Giuliano Della Rovere",
+      "The Fearsome Pope",
+      "Julius II. Papst",
+      "Iulius PP. II",
+      "Pope Julius II",
+      "‏ papa Giulio‏ II",
+      "Papa Julio II",
+      "Julien de La Rovère",
+      "The Warrior Pope",
+      "Julius II",
+      "Giuliano della Rovere",
+      "Julien de, Cardinal La Rovère"
+    ],
+    "ground_truth": "Julius II",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/003_fvqa_train_3141.png",
+      "width": 800,
+      "height": 450,
+      "png_sha256": "cd87a513e60492db1ac9d46b32ce642da03f776dbb5d96f2f723e9ca5705f425",
+      "source_sha256": "0fc26d744b708f0be3af2acd1522010b0f6e40f0212e0a3b6b39abea1c9085c9"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows St. Peter's Basilica in Vatican City. The founder of this building is typically associated with Pope Julius II. However, the construction of the current basilica was initiated by Pope Julius II and completed by several popes and architects over the centuries. To provide a more accurate answer, I need to perform a search to confirm the exact founder.</reason>\n<search><img></search>",
+        "response_sha256": "496e984684422ae53dfbfd9fe74487882bd56d4adce8f7d8ef46bca424f2e64b",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 870,
+        "output_tokens": 84,
+        "generation_seconds": 1.372,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_3141",
+            "requested": 5,
+            "num_images": 4,
+            "cache_hits": 0,
+            "titles": [
+              "st. peters square, basilica, travel destinations, incidental people, built structure, travel, building exterior, vatican city, europe, tourism, italy, 5K HD Wallpaper",
+              "Peter's Basilica Italian Renaissance Church Vatican City — Stock Photo © AndreyPopov #308869700",
+              "Discovering St. Peter's Basilica",
+              "Vatican Treasure Private Tour 2025 - Rome"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRjD0VcsXhiJqRJPwK-J2J5URyHZKksEDnoJNwcnZO1RzSEc2q-",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT0emARYsCZXGwXFd9pIwWZoxvVbFayd-9Yw1bKb_pPVemxN5FD",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzOYl5O7wJXOvx6OVo_OG3wyAjKjdkDChPFReETD4Tg0L-eSmF",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTgXUUkziL8allkp8fIEcq6JjkosCN_srAvuxRWD5byqE0aNQAT"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3141_1_a43faf72cb655b6bcef2.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3141_3_f77a41a00fd8198c8c8e.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3141_4_d9ea7b55a53e7351c8f5.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_3141_5_dceb5c779a8a0bbd5cb4.png"
+            ],
+            "failures": [
+              {
+                "index": 1,
+                "title": "St. Peter's Basilica Pictures: View Photos & Images of St. Peter's Basilica",
+                "source": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRcHwhAJNW_LP5j9Iim8G-f3uxAMjNRWUnO_Y7Yojm57lFQgi9L",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRcHwhAJNW_LP5j9Iim8G-f3uxAMjNRWUnO_Y7Yojm57lFQgi9L"
+              }
+            ]
+          },
+          "returned_text_characters": 1148,
+          "returned_text_sha256": "41534b91497c079fb4ee282424da612d72324a5fdea0661ab43ead374847c764"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image shows St. Peter's Basilica in Vatican City. To answer the question about the founder of the building, I need to perform a text search to find the information about the founder of St. Peter's Basilica.</reason>\n<text_search>Who is the founder of St. Peter's Basilica?</text_search>",
+        "response_sha256": "2459db60bd4a5ff0ce6d4c1ca4f0ad9e9f5fd746d459adf65a78216ffb4d3704",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "Who is the founder of St. Peter's Basilica?",
+        "input_tokens": 1608,
+        "output_tokens": 70,
+        "generation_seconds": 1.249,
+        "query": "Who is the founder of St. Peter's Basilica?",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "Who is the founder of St. Peter's Basilica?",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/2ec3d0f7744cbdfccb5b9f4976d69956cf3fc9b8e77d2a560a696a6e9bb59917.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 4,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 28762,
+              "failures": [
+                {
+                  "rank": 2,
+                  "title": "St. Peter's Basilica | History, Architects, Relics, Art, & Facts",
+                  "url": "https://www.britannica.com/topic/Saint-Peters-Basilica",
+                  "error": "RuntimeError: Jina Reader failed (HTTP 403)"
+                }
+              ]
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 4,
+              "num_summaries": 4,
+              "cache_hits": 0,
+              "api_calls": 4,
+              "total_input_tokens": 9978,
+              "total_output_tokens": 580,
+              "total_tokens": 10558,
+              "total_generation_seconds": 16.749979,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "St. Peter's Basilica - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica",
+                "snippet": "It was initially planned in the 15th century by Pope Nicholas V and then Pope Julius II to replace the ageing Old St. Peter's Basilica, which was built in the ..."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "St. Peter's Basilica | History, Architects, Relics, Art, & Facts",
+                "url": "https://www.britannica.com/topic/Saint-Peters-Basilica",
+                "snippet": "Popes Nicholas V and Julius II conceived the idea of building the church, and construction began in 1506, with the first stone laid by Julius ..."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "The Dome - St. Peter's Basilica",
+                "url": "https://www.basilicasanpietro.va/en/san-pietro/the-dome",
+                "snippet": "The dome of Saint Peter's Basilica was conceived and built up to the drum by Michelangelo Buonarroti and brought to completion, after the death of the ..."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "The Story of Saint Peter's Basilica | Simple History - YouTube",
+                "url": "https://www.youtube.com/watch?v=2IhRcY6tVWo&vl=en",
+                "snippet": "St. Peter's Basilica in Vatican City is one of the largest and most important churches in the world. It was built in the 1500s over the tomb ..."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "St. Peter's Basilica: A Timeless Journey Through History and Faith -",
+                "url": "https://www.vaticangift.com/blog/the-vatican/st-peters-basilica-a-timeless-journey-through-history-and-faith",
+                "snippet": "The history of St. Peter's Basilica begins in the 4th century, when Emperor Constantine ordered the construction of a church over the believed burial site of ..."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "St. Peter's Basilica - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica",
+                "snippet": "It was initially planned in the 15th century by Pope Nicholas V and then Pope Julius II to replace the ageing Old St. Peter's Basilica, which was built in the ...",
+                "full_characters": 107741,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/af3cb20f4d7fba1258666957c5430a4037e6039f7a346fec3a423342adfedc86.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "The Dome - St. Peter's Basilica",
+                "url": "https://www.basilicasanpietro.va/en/san-pietro/the-dome",
+                "snippet": "The dome of Saint Peter's Basilica was conceived and built up to the drum by Michelangelo Buonarroti and brought to completion, after the death of the ...",
+                "full_characters": 2298,
+                "returned_characters": 2298,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/c272d91a56b2088df51f1b5b67505641b97fa98687b46adc5ecc5fd9b3235b98.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "The Story of Saint Peter's Basilica | Simple History - YouTube",
+                "url": "https://www.youtube.com/watch?v=2IhRcY6tVWo&vl=en",
+                "snippet": "St. Peter's Basilica in Vatican City is one of the largest and most important churches in the world. It was built in the 1500s over the tomb ...",
+                "full_characters": 18568,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/90ee820662a04e02e3d586acde54338bc6f75d6b03201cc93c602aa5ffe00159.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "St. Peter's Basilica: A Timeless Journey Through History and Faith -",
+                "url": "https://www.vaticangift.com/blog/the-vatican/st-peters-basilica-a-timeless-journey-through-history-and-faith",
+                "snippet": "The history of St. Peter's Basilica begins in the 4th century, when Emperor Constantine ordered the construction of a church over the believed burial site of ...",
+                "full_characters": 2464,
+                "returned_characters": 2464,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/d8884501d82e99feb1b5276356a0d76ca9307c791e414eec4e3b87093ddc7590.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "St. Peter's Basilica - Wikipedia",
+                "url": "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/af3cb20f4d7fba1258666957c5430a4037e6039f7a346fec3a423342adfedc86.md",
+                "full_characters": 107741,
+                "returned_characters": 12000,
+                "jina_content_sha256": "4fe1ea2022fc941cda49aead495cc908fc916dbb94abdc8488f657809699f77a",
+                "jina_input_characters": 12000,
+                "public_input_signature": "b6093935aad89be8e3347445184293e98b81c3f71ef4ca831bf33f4e3ef1bb62",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/b6093935aad89be8e3347445184293e98b81c3f71ef4ca831bf33f4e3ef1bb62.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- St. Peter's Basilica was initially planned in the 15th century by Pope Nicholas V and later Pope Julius II.\n- The current basilica was constructed to replace the Old St. Peter's Basilica, which was built in the 4th century by Emperor Constantine the Great.\n- Construction of the present basilica began on 18 April 1506 and was completed on 18 November 1626.\n- The basilica is traditionally believed to be built over the burial site of Saint Peter, the first Pope and one of Jesus's apostles.\n- The design and construction involved multiple architects, including Donato Bramante, Michelangelo, and Carlo Maderno.\n- The basilica is considered one of the holiest Catholic shrines and is a major pilgrimage site.",
+                "input_tokens": 3263,
+                "output_tokens": 167,
+                "total_tokens": 3430,
+                "finish_reason": "stop",
+                "generation_seconds": 5.070515,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "The Dome - St. Peter's Basilica",
+                "url": "https://www.basilicasanpietro.va/en/san-pietro/the-dome",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/c272d91a56b2088df51f1b5b67505641b97fa98687b46adc5ecc5fd9b3235b98.md",
+                "full_characters": 2298,
+                "returned_characters": 2298,
+                "jina_content_sha256": "65057d8dff04458e156859a66b1089f29a5766cbaaad8a6c26f8dd38e50da53d",
+                "jina_input_characters": 2298,
+                "public_input_signature": "ee8daf601de17d0999733d9e2ef88ccb87e4c361178a1e5bfac6aeca9a041b0a",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/ee8daf601de17d0999733d9e2ef88ccb87e4c361178a1e5bfac6aeca9a041b0a.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The dome of St. Peter's Basilica was conceived and built up to the drum by Michelangelo Buonarroti.\n- Giacomo della Porta completed the dome after Michelangelo's death, working with Domenico Fontana from 1588 to 1590.\n- The dome was completed in 22 months with the help of 800 laborers.\n- A gilded bronze sphere and cross, designed by Sebastiano Torrigiani, was placed on the dome in 1593.\n- Pope Sixtus V initiated the construction project, and Pope Clement VIII oversaw its completion.\n- The dome's mosaic decoration was directed by Marcello Provenzale between 1598 and 1613.",
+                "input_tokens": 872,
+                "output_tokens": 162,
+                "total_tokens": 1034,
+                "finish_reason": "stop",
+                "generation_seconds": 4.308306,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "The Story of Saint Peter's Basilica | Simple History - YouTube",
+                "url": "https://www.youtube.com/watch?v=2IhRcY6tVWo&vl=en",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/90ee820662a04e02e3d586acde54338bc6f75d6b03201cc93c602aa5ffe00159.md",
+                "full_characters": 18568,
+                "returned_characters": 12000,
+                "jina_content_sha256": "b00cf72268e18e43fa1cc053cd4f632182b0972098f1fe62f12e75fe7aa4a592",
+                "jina_input_characters": 12000,
+                "public_input_signature": "52dc3f9ea59119702f576b559799d149a32bbe9b3bdbaa7eb4c2c35e0b14408a",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/52dc3f9ea59119702f576b559799d149a32bbe9b3bdbaa7eb4c2c35e0b14408a.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- St. Peter's Basilica was built in the 1500s over the tomb of St. Peter, one of Jesus's apostles.\n- The basilica is located in Vatican City and is one of the largest and most important churches in the world.\n- Artists like Michelangelo and Bernini contributed to its design and artwork.\n- It is a symbol of the Catholic faith and attracts millions of visitors annually.\n- The page does not mention a specific individual founder of the basilica.\n- The content is from a YouTube video titled \"The Story of Saint Peter's Basilica | Simple History.\"",
+                "input_tokens": 5060,
+                "output_tokens": 124,
+                "total_tokens": 5184,
+                "finish_reason": "stop",
+                "generation_seconds": 3.948322,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "St. Peter's Basilica: A Timeless Journey Through History and Faith -",
+                "url": "https://www.vaticangift.com/blog/the-vatican/st-peters-basilica-a-timeless-journey-through-history-and-faith",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/d8884501d82e99feb1b5276356a0d76ca9307c791e414eec4e3b87093ddc7590.md",
+                "full_characters": 2464,
+                "returned_characters": 2464,
+                "jina_content_sha256": "5b384563c37ac35d56437495b812635aa54bd0e1c12c799d7d958db47d01f513",
+                "jina_input_characters": 2464,
+                "public_input_signature": "bb3716ff54f8002a22c76dd0f5ec4992ae73de901717d00cec6f6cd51c2c5ea8",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/bb3716ff54f8002a22c76dd0f5ec4992ae73de901717d00cec6f6cd51c2c5ea8.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- St. Peter's Basilica was originally commissioned by Emperor Constantine in the 4th century.  \n- The current structure was initiated in 1506 by Pope Julius II.  \n- Key architects involved in the new basilica included Donato Bramante, Michelangelo, Carlo Maderno, and Gian Lorenzo Bernini.  \n- The basilica is built over the believed burial site of Saint Peter, one of Jesus’s apostles.  \n- It serves as the burial site of numerous popes, including Saint Peter.  \n- The basilica is a major center of Catholic faith and hosts significant religious ceremonies.",
+                "input_tokens": 783,
+                "output_tokens": 127,
+                "total_tokens": 910,
+                "finish_reason": "stop",
+                "generation_seconds": 3.422836,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.00408,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 4601,
+          "returned_text_sha256": "909f52a186d193b2b9895e7b63857584e55370735de026c72363b0b3f02a569c"
+        }
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": null,
+    "terminal_status": "text_search_hard_failure",
+    "hard_failures": [
+      {
+        "stage": "text_search_jina_qwen",
+        "round": 2,
+        "error": "RuntimeError: Text/Search/Reader/Qwen top-5 contract failed"
+      }
+    ],
+    "total_turns": 2,
+    "action_sequence": [
+      "image_search",
+      "text_search"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": false,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": false,
+      "count_incomplete_reasons": [
+        "round_2_qwen_status_missing"
+      ],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 11
+    },
+    "mmsearch_input_tokens": 2478,
+    "mmsearch_output_tokens": 154,
+    "mmsearch_generation_seconds": 2.621,
+    "case_seconds": 29.102,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": false,
+  "eval_index": 3,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16429.76,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_3_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:40:07.741826+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 66000, 31253",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "66000",
+            "memory_free_mib": "31253"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "48326",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "224777",
+            "used_gpu_memory_mib": "17660",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 224777,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 17790140416,
+            "max_memory_allocated_bytes": 17227847680,
+            "max_memory_reserved_bytes": 17790140416
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.003229,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.726,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

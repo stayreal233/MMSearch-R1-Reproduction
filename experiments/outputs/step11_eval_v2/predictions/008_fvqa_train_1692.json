@@ -1,0 +1,539 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "003287bb8d0b1c5ea5df90f4e7ec7ad4d16f4b0e0829f95a06176521f5d80241",
+    "eval_index": 8
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_1692",
+    "source_split": "train",
+    "source_row_index": 1692,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What historical event is associated with this brewery?",
+    "candidate_answers": [],
+    "ground_truth": "London Beer Flood",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/008_fvqa_train_1692.png",
+      "width": 800,
+      "height": 587,
+      "png_sha256": "efc85966677df1b91d78734d2ed38526e86ab90d49f168138ee74ac897c9af61",
+      "source_sha256": "efc85966677df1b91d78734d2ed38526e86ab90d49f168138ee74ac897c9af61"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image appears to be a historical illustration of a brewery. The style and the presence of horse-drawn carriages suggest it might be from the 18th or 19th century. However, without specific details or text in the image, it's challenging to identify a particular historical event associated with this brewery. The image does not provide enough information to answer the question confidently.</reason>\n<search><img></search>",
+        "response_sha256": "1552c26af5884d98968681f09b3adc504c8ccc095fedd7656008932635c50300",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 964,
+        "output_tokens": 90,
+        "generation_seconds": 1.439,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_1692",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "The unbelievable time when London was flooded with over 2.5 million pints of beer - MyLondon",
+              "The tragic story of how 8 Londoners were killed by a tidal wave of beer - MyLondon",
+              "Bloomsbury | British History Online",
+              "United Kingdom | HistoryExtra - 7",
+              "लंदन बीयर की बाढ़ - जब लंदन की सड़कों पर आ गई 'बीयर की बाढ़', 8 लोगों की चली गई थी जान - 17 October story london beer flood tstsd - AajTak"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTe0-J1cYM0d6z_TUggcOxS-QFbtXRwM5fuIA7pMI7Avur52XFb",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQFIUCg_YXSdeT5AnEpi75D02-YAfjzBU4fI8ZdDZp0iLBCEhjm",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRL2M_yGBHMMAfhrnuT_KRLJJP-Vu-EcAmYhdREqjlg8lvPI5Uz",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRGpjEiILTHacQa4AIIqIBvv_6msdFKBfvAeyZRi8J09_Uc9Wwo",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxcKlSpOlaOP5gBoMgRCcVwM4r0iAaLpqz_CTnK3g76H2Bcutv"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1692_1_d70e3af154fb7e16a601.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1692_2_e13ba42466edfcb25cf2.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1692_3_71f91738127adad40b4e.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1692_4_3583511c461bc7fa5513.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1692_5_54653f166f2e4f91fd75.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1376,
+          "returned_text_sha256": "c3f0daddfcf3b4901f796d9d6445142fed5193e79b8ec3a2be188d8004bc6bf3"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results suggest that the image is related to a historical event involving a flood of beer in London. The most relevant information seems to be about the \"London Beer Flood.\" To answer the user's question, a text search is necessary to provide more information about this specific event.</reason>\n<text_search>London Beer Flood</text_search>",
+        "response_sha256": "634d90b0cb2266dfc1fb09e8a6b4512a8f3491a05530a8453616cc90075f6fa9",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "London Beer Flood",
+        "input_tokens": 1845,
+        "output_tokens": 73,
+        "generation_seconds": 1.281,
+        "query": "London Beer Flood",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "London Beer Flood",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/8c81a74baa526ee7b2e6f161a06f604757c1d41d2db8e8f20af58ecacc90e45b.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 28975,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 11350,
+              "total_output_tokens": 645,
+              "total_tokens": 11995,
+              "total_generation_seconds": 19.050225,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "London Beer Flood",
+                "url": "https://en.wikipedia.org/wiki/London_Beer_Flood",
+                "snippet": "The London Beer Flood was an accident at Meux & Co's Horse Shoe Brewery, London, on 17 October 1814. Eight people were killed,"
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "The London Beer Flood of 1814",
+                "url": "https://www.historic-uk.com/HistoryUK/HistoryofBritain/The-London-Beer-Flood-of-1814/",
+                "snippet": "On Monday 17th October 1814, a terrible disaster claimed the lives of at least 8 people. A bizarre industrial accident resulted in the release of a beer tsunami"
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "OTD in 1814, 8 people were killed in The London Beer ...",
+                "url": "https://www.reddit.com/r/beer/comments/1g5nuat/otd_in_1814_8_people_were_killed_in_the_london/",
+                "snippet": "8 people were killed in The London Beer Flood when up to 1.4 million litres of beer from a local brewery flooded nearby slums … 17 October 1814 ..."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Today is National Beer Day, so let us all remember that this ...",
+                "url": "https://www.facebook.com/tastinghistorywithmaxmiller/posts/today-is-national-beer-day-so-let-us-all-remember-that-this-delicious-brew-can-t/562886179158539/",
+                "snippet": "The London Beer Flood was an accident at Meux & Co's Horse Shoe Brewery, London, on 17 October 1814. Killing 8 people."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "The London Beer Flood",
+                "url": "https://www.thehistoryreader.com/world-history/the-london-beer-flood/",
+                "snippet": "As much as 323,000 imperial gallons were released. The force of the liquid destroyed the rear wall of the brewery that was 25 feet high and two and a half ..."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "London Beer Flood",
+                "url": "https://en.wikipedia.org/wiki/London_Beer_Flood",
+                "snippet": "The London Beer Flood was an accident at Meux & Co's Horse Shoe Brewery, London, on 17 October 1814. Eight people were killed,",
+                "full_characters": 46427,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/fd0eee829b0560b3987a5075c1a4f3bac1cf352f32eb0bc1b95d48a99c8b52e9.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "The London Beer Flood of 1814",
+                "url": "https://www.historic-uk.com/HistoryUK/HistoryofBritain/The-London-Beer-Flood-of-1814/",
+                "snippet": "On Monday 17th October 1814, a terrible disaster claimed the lives of at least 8 people. A bizarre industrial accident resulted in the release of a beer tsunami",
+                "full_characters": 4265,
+                "returned_characters": 4265,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/0cd773c16c81efa6ad6a0b8c6062e732a022aaa857cf0e9266cc40439c00d42c.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "OTD in 1814, 8 people were killed in The London Beer ...",
+                "url": "https://www.reddit.com/r/beer/comments/1g5nuat/otd_in_1814_8_people_were_killed_in_the_london/",
+                "snippet": "8 people were killed in The London Beer Flood when up to 1.4 million litres of beer from a local brewery flooded nearby slums … 17 October 1814 ...",
+                "full_characters": 528,
+                "returned_characters": 528,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/a5aea34983856348556aced65edcbe5b28eb4467c770ed16dcc1eb7dea20b0b1.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "Today is National Beer Day, so let us all remember that this ...",
+                "url": "https://www.facebook.com/tastinghistorywithmaxmiller/posts/today-is-national-beer-day-so-let-us-all-remember-that-this-delicious-brew-can-t/562886179158539/",
+                "snippet": "The London Beer Flood was an accident at Meux & Co's Horse Shoe Brewery, London, on 17 October 1814. Killing 8 people.",
+                "full_characters": 5611,
+                "returned_characters": 5611,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/0ce04767b6c82cf47a1f0bdc2e6df640cec20597531f5b82931ef19199cc251d.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "The London Beer Flood",
+                "url": "https://www.thehistoryreader.com/world-history/the-london-beer-flood/",
+                "snippet": "As much as 323,000 imperial gallons were released. The force of the liquid destroyed the rear wall of the brewery that was 25 feet high and two and a half ...",
+                "full_characters": 6571,
+                "returned_characters": 6571,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/6c9b5b1b5393f458f7d3b6352c23d60871e46a71d95b40b168b0efbaeb701e4d.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "London Beer Flood",
+                "url": "https://en.wikipedia.org/wiki/London_Beer_Flood",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/fd0eee829b0560b3987a5075c1a4f3bac1cf352f32eb0bc1b95d48a99c8b52e9.md",
+                "full_characters": 46427,
+                "returned_characters": 12000,
+                "jina_content_sha256": "875194b2e8b85c15b995a894460b41f2d79bed9d330d07df85ba0f6c2d501919",
+                "jina_input_characters": 12000,
+                "public_input_signature": "9af18fd9ffe655c5e9a00fafb384ec4cf841d3534160f92c4355511373acf5f3",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/9af18fd9ffe655c5e9a00fafb384ec4cf841d3534160f92c4355511373acf5f3.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The London Beer Flood occurred at Meux & Co's Horse Shoe Brewery in London on 17 October 1814.\n- A 22-foot-tall wooden vat of fermenting porter burst, releasing 128,000 to 323,000 imperial gallons of beer.\n- The flood destroyed the brewery's back wall and swept into the St Giles slum area, killing eight people.\n- Five of the victims were mourners at an Irish family's wake for a two-year-old boy.\n- The brewery nearly went bankrupt but received a rebate from HM Excise on the lost beer.\n- The accident led to the brewing industry phasing out large wooden vats.",
+                "input_tokens": 4131,
+                "output_tokens": 147,
+                "total_tokens": 4278,
+                "finish_reason": "stop",
+                "generation_seconds": 4.709953,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "The London Beer Flood of 1814",
+                "url": "https://www.historic-uk.com/HistoryUK/HistoryofBritain/The-London-Beer-Flood-of-1814/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/0cd773c16c81efa6ad6a0b8c6062e732a022aaa857cf0e9266cc40439c00d42c.md",
+                "full_characters": 4265,
+                "returned_characters": 4265,
+                "jina_content_sha256": "f28ff5e5e97e3572f6c7b390c7a4198177747d370bebce3c46edcf31b8125a4e",
+                "jina_input_characters": 4265,
+                "public_input_signature": "48d6472aac29429017b236b626f4739b98919e8ae6d8f7ad58c57d79e9c342ef",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/48d6472aac29429017b236b626f4739b98919e8ae6d8f7ad58c57d79e9c342ef.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The London Beer Flood occurred on 17th October 1814 in St Giles, London, killing at least 8 people.  \n- A 22-foot wooden fermentation tank at the Horse Shoe Brewery ruptured, releasing over 320,000 gallons of beer.  \n- The flood destroyed buildings, including collapsing two houses and part of the Tavistock Arms pub.  \n- A ninth person reportedly died days later from alcoholic poisoning after drinking the spilled beer.  \n- The brewery was not held legally responsible, as the disaster was ruled an \"Act of God.\"  \n- The incident led to the phasing out of wooden fermentation casks in favor of safer lined concrete vats.",
+                "input_tokens": 1331,
+                "output_tokens": 148,
+                "total_tokens": 1479,
+                "finish_reason": "stop",
+                "generation_seconds": 4.084442,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "OTD in 1814, 8 people were killed in The London Beer ...",
+                "url": "https://www.reddit.com/r/beer/comments/1g5nuat/otd_in_1814_8_people_were_killed_in_the_london/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/a5aea34983856348556aced65edcbe5b28eb4467c770ed16dcc1eb7dea20b0b1.md",
+                "full_characters": 528,
+                "returned_characters": 528,
+                "jina_content_sha256": "15308d4b88355c0d8db4af1598f567870e60315ca4db33ed4a42bfd97c323224",
+                "jina_input_characters": 528,
+                "public_input_signature": "9640d70e542e6976c6287976c137801fe164fc9bea40f70e7e0226a66526a21b",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/9640d70e542e6976c6287976c137801fe164fc9bea40f70e7e0226a66526a21b.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The London Beer Flood occurred on 17 October 1814.  \n- It resulted in the deaths of 8 people.  \n- Up to 1.4 million litres of beer flooded nearby slums.  \n- The incident originated from a local brewery.  \n- The event is noted in historical records and online discussions.  \n- The specific cause of the flood was not detailed in the provided content.",
+                "input_tokens": 427,
+                "output_tokens": 86,
+                "total_tokens": 513,
+                "finish_reason": "stop",
+                "generation_seconds": 2.300746,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "Today is National Beer Day, so let us all remember that this ...",
+                "url": "https://www.facebook.com/tastinghistorywithmaxmiller/posts/today-is-national-beer-day-so-let-us-all-remember-that-this-delicious-brew-can-t/562886179158539/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/0ce04767b6c82cf47a1f0bdc2e6df640cec20597531f5b82931ef19199cc251d.md",
+                "full_characters": 5611,
+                "returned_characters": 5611,
+                "jina_content_sha256": "f9c5824b9f14841975ac3d3ba71164fabab3bb263f4ff14661683f82d0e0c16c",
+                "jina_input_characters": 5611,
+                "public_input_signature": "0f5f73000651e07336546c27d72057920cc795458b7f3c9bd1928573d12282a5",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/0f5f73000651e07336546c27d72057920cc795458b7f3c9bd1928573d12282a5.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The London Beer Flood occurred at Meux & Co's Horse Shoe Brewery in London on 17 October 1814.\n- The disaster resulted in the deaths of 8 people.\n- A large volume of beer flooded the streets, causing destruction and loss of life.\n- The event is remembered as a tragic accident in London's history.\n- The flood is sometimes referenced in discussions about the potential dangers of beer storage and industrial accidents.\n- The incident is occasionally highlighted on National Beer Day as a cautionary historical event.",
+                "input_tokens": 3631,
+                "output_tokens": 108,
+                "total_tokens": 3739,
+                "finish_reason": "stop",
+                "generation_seconds": 3.544933,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "The London Beer Flood",
+                "url": "https://www.thehistoryreader.com/world-history/the-london-beer-flood/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/6c9b5b1b5393f458f7d3b6352c23d60871e46a71d95b40b168b0efbaeb701e4d.md",
+                "full_characters": 6571,
+                "returned_characters": 6571,
+                "jina_content_sha256": "32f18ef1c2f068a2880735dd1bc39456d5c3e92fb8649cc5c6f9cd599175de85",
+                "jina_input_characters": 6571,
+                "public_input_signature": "0740c3c5d0b67d5f1da189c25e6b18f6c451029d346bbd09034b89c192c9623f",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/0740c3c5d0b67d5f1da189c25e6b18f6c451029d346bbd09034b89c192c9623f.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The London Beer Flood occurred on October 17, 1814, at Meux & Co’s Horseshoe Brewery in London.  \n- A 22-foot-tall wooden vat burst, releasing up to 323,000 imperial gallons of porter.  \n- The flood destroyed the brewery’s rear wall and damaged nearby buildings, killing at least eight people, including several children.  \n- The disaster led to changes in the brewing industry, with large wooden tanks being replaced by lined concrete vessels.  \n- Meux & Co avoided compensation due to a coroner’s verdict of an “act of God,” but the company still incurred significant financial losses.  \n- The brewery site was later demolished and replaced by the Dominion Theatre.",
+                "input_tokens": 1830,
+                "output_tokens": 156,
+                "total_tokens": 1986,
+                "finish_reason": "stop",
+                "generation_seconds": 4.410151,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003827,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 5175,
+          "returned_text_sha256": "8eb93cbe71e97e289e1384cb67ebbc8fd1b73a32ea82e7a251dcb4a7a0622597"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the historical event associated with the brewery in the image is the London Beer Flood. The event occurred on October 17, 1814, at Meux & Co's Horse Shoe Brewery in London, resulting in the deaths of eight people. The flood was caused by the rupture of a 22-foot-tall wooden vat, releasing a large volume of beer that swept into the St Giles slum area.</reason>\n<answer>London Beer Flood</answer>",
+        "response_sha256": "fc3f6d2ba7476d2353a269e861eccad7f4c28ea279d1b21d6f2996bde358f9ff",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "London Beer Flood",
+        "input_tokens": 3424,
+        "output_tokens": 104,
+        "generation_seconds": 1.839
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "London Beer Flood",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": true,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 6233,
+    "mmsearch_output_tokens": 267,
+    "mmsearch_generation_seconds": 4.559,
+    "case_seconds": 33.415,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 8,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 17083.47,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_8_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:44:41.001772+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 68502, 28751",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "68502",
+            "memory_free_mib": "28751"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "48948",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "225955",
+            "used_gpu_memory_mib": "19540",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 225955,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 19761463296,
+            "max_memory_allocated_bytes": 17913319424,
+            "max_memory_reserved_bytes": 19761463296
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002585,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.675,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4207",
+  "source_split": "train",
+  "source_row_index": 4207,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "How many people were killed by the fiery crash of an air ambulance on the street of the orange area on the map in 2025?",
+  "reward_model": {
+    "ground_truth": "7",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/021_fvqa_train_4207.png",
+  "image_width": 452,
+  "image_height": 360,
+  "source_image_sha256": "90ea727809d58df8a2d5333f5ce2e94815f2d67db998045cc82cdde6afb02311",
+  "normalized_png_sha256": "90ea727809d58df8a2d5333f5ce2e94815f2d67db998045cc82cdde6afb02311",
+  "eval_index": 21,
+  "selection_rank_sha256": "0272ffc6734c0f22cad92ae11c62c9ddfbc834cd232254df04f8047703add8db",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

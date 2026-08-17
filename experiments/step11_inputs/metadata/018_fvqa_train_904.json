@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_904",
+  "source_split": "train",
+  "source_row_index": 904,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the term used to describe the connection between multiple nodes in this diagram?",
+  "reward_model": {
+    "ground_truth": "hyperedge",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/018_fvqa_train_904.png",
+  "image_width": 360,
+  "image_height": 123,
+  "source_image_sha256": "4b382006a176be01ef4c2fd6184df3bcfb870c0c47b0bf5715d754cc7a0a4e69",
+  "normalized_png_sha256": "4b382006a176be01ef4c2fd6184df3bcfb870c0c47b0bf5715d754cc7a0a4e69",
+  "eval_index": 18,
+  "selection_rank_sha256": "00592bdca14dd51f403b74f907fc16fe8aa9ca717b2536accde2ba5e28fdd1fa",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

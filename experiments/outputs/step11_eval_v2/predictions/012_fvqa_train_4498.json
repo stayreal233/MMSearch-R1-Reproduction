@@ -1,0 +1,511 @@
+{
+  "schema_version": 1,
+  "status": "failed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "0045491d828fcebd7ddadb53a546bf577f9436a0bbd08cf57fc2e4576ed82191",
+    "eval_index": 12
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_4498",
+    "source_split": "train",
+    "source_row_index": 4498,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "How much revenue did the company shown on the left report for 2024?",
+    "candidate_answers": [
+      "$97.7 billion",
+      "$ 97.7 billion",
+      "97.7 billion$",
+      "97.7 billion $"
+    ],
+    "ground_truth": "97.7 billion",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/012_fvqa_train_4498.png",
+      "width": 906,
+      "height": 462,
+      "png_sha256": "5f3311255b979858f51e5d70c552bbbc3267b569a60019778f98c02e3796d863",
+      "source_sha256": "5f3311255b979858f51e5d70c552bbbc3267b569a60019778f98c02e3796d863"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows two electric vehicles, one labeled \"Tesla\" and the other \"BYD.\" However, the image does not provide any information about the revenue reported by the company shown on the left for the year 2024. To answer the question, I would need to perform a search to find the revenue report for Tesla for the year 2024.</reason>\n<search><img></search>",
+        "response_sha256": "9ce672b8a2dab020a6fe2969413864a616f1f0d5c31ccd5395e3c3ba5da80981",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 925,
+        "output_tokens": 88,
+        "generation_seconds": 1.399,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_4498",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "مجارستان؛ میزبان احتمالی خودروساز چینی",
+              "File:2025 BYD Atto 3 Extended.jpg - Wikipedia",
+              "比亚迪元Plus - 维基百科，自由的百科全书",
+              "PTPAdmin 🤗 BYD BICOL BY NHEA 09482178568 nheabydbicol@gmail.com | Facebook",
+              "COVID-19 SME Sentiment Tracker"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRpxRMbSrCbjxep_vgk0Z5X9uKz6KJmoqnMYp4ez5QzJJ1SGmLP",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTUbGbQs1_aWRRLbHEFeuCfZrxazQNR09OMNUE5VStGXZMwokc3",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTXpKXQBZvX-_73r4Ks7HMQM41uX4MFRtRE5CHUtnaMl4wIcPM4",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR1ccXU9jvVGiwLvVVCChMFaYVCop-sUjqsYYJoRlsp75m7Z19y",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTCgePrbPRCJ_0WrW-zR2_jFp1jJnJ8O1tvR0Z_sgwdXoZc1eln"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4498_1_e4635d505c9a25fddeed.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4498_2_1bb4d88c17113255bb9b.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4498_3_687929b886ab21939a90.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4498_4_9253ff4e0e4c4a7e16c2.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4498_5_1e381b5f23bc3a16a044.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1206,
+          "returned_text_sha256": "a0b0686f77ca1e8a94386401aceab23097039e005151e82f0697f57b8331f78d"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results do not provide any information about the revenue reported by the company shown on the left for the year 2024. To answer the question, I need to perform a text search to find the revenue report for Tesla for the year 2024.</reason>\n<text_search>How much revenue did Tesla report for 2024</text_search>",
+        "response_sha256": "9e12e751c02d7578c00a5b925c6bdb56209caba2089679d48410d8dfd92ae337",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "How much revenue did Tesla report for 2024",
+        "input_tokens": 1737,
+        "output_tokens": 82,
+        "generation_seconds": 1.397,
+        "query": "How much revenue did Tesla report for 2024",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "How much revenue did Tesla report for 2024",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/ab3e91e78ada2d1eb8a56ecfbe8e9cd0d691228664f2a3a8335e87d2362d5ea9.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 4,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 24559,
+              "failures": [
+                {
+                  "rank": 1,
+                  "title": "Tesla Revenue 2012-2026 | TSLA | MacroTrends",
+                  "url": "https://www.macrotrends.net/stocks/charts/TSLA/tesla/revenue",
+                  "error": "RuntimeError: Jina Reader failed (HTTP 403)"
+                }
+              ]
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 4,
+              "num_summaries": 4,
+              "cache_hits": 0,
+              "api_calls": 4,
+              "total_input_tokens": 10198,
+              "total_output_tokens": 312,
+              "total_tokens": 10510,
+              "total_generation_seconds": 10.233014,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "Tesla Revenue 2012-2026 | TSLA | MacroTrends",
+                "url": "https://www.macrotrends.net/stocks/charts/TSLA/tesla/revenue",
+                "snippet": "Tesla annual revenue for 2024 was $97.69B, a 0.95% increase from 2023. Tesla annual revenue for 2023 was $96.773B, a 18.8% increase from 2022."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "Tesla Releases Fourth Quarter and Full Year 2024 Financial Results",
+                "url": "https://ir.tesla.com/press-release/tesla-releases-fourth-quarter-and-full-year-2024-financial-results",
+                "snippet": "Tesla has released its financial results for the fourth quarter and full year ended December 31, 2024. Tesla has released its financial results ..."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "Tesla (TSLA) - Revenue - Companies Market Cap",
+                "url": "https://companiesmarketcap.com/tesla/revenue/",
+                "snippet": "In 2025 the company made a revenue of $94.82 Billion USD a decrease over the revenue in the year 2024 that were of $97.69 Billion USD."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "tsla-20241231 - SEC.gov",
+                "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-20241231.htm",
+                "snippet": "In 2024, we recognized total revenues of $97.69 billion, representing an increase of $917 million compared to the prior year."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Tesla Full Year 2024 Analysis — A Review of Actual Performance & My ...",
+                "url": "https://medium.com/@nambos3rd/tesla-full-year-2024-analysis-a-review-of-actual-performance-my-financial-forecast-41ee70091b5a",
+                "snippet": "Tesla's revenue rose by only 1% to $97.6 billion in 2024 from $96.7 billion in 2023. Tesla's gross profit margins were 17.9% in 2024 and 18.2% ..."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 2,
+                "title": "Tesla Releases Fourth Quarter and Full Year 2024 Financial Results",
+                "url": "https://ir.tesla.com/press-release/tesla-releases-fourth-quarter-and-full-year-2024-financial-results",
+                "snippet": "Tesla has released its financial results for the fourth quarter and full year ended December 31, 2024. Tesla has released its financial results ...",
+                "full_characters": 465,
+                "returned_characters": 465,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/db69ccb0a0c64191b3d08a090905bd7d16036a799f4a62dc940ee5a0cd9790a8.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "Tesla (TSLA) - Revenue - Companies Market Cap",
+                "url": "https://companiesmarketcap.com/tesla/revenue/",
+                "snippet": "In 2025 the company made a revenue of $94.82 Billion USD a decrease over the revenue in the year 2024 that were of $97.69 Billion USD.",
+                "full_characters": 223,
+                "returned_characters": 223,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/6e4c866f2e4882997a9e5acdc7ff2de8aa5dc1427fb0df7f24c623aff5811484.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "tsla-20241231 - SEC.gov",
+                "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-20241231.htm",
+                "snippet": "In 2024, we recognized total revenues of $97.69 billion, representing an increase of $917 million compared to the prior year.",
+                "full_characters": 407579,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/bdbe997a54127fd27dce08092f08d8d32533f811f28f902d0f2da7aed934396a.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Tesla Full Year 2024 Analysis — A Review of Actual Performance & My ...",
+                "url": "https://medium.com/@nambos3rd/tesla-full-year-2024-analysis-a-review-of-actual-performance-my-financial-forecast-41ee70091b5a",
+                "snippet": "Tesla's revenue rose by only 1% to $97.6 billion in 2024 from $96.7 billion in 2023. Tesla's gross profit margins were 17.9% in 2024 and 18.2% ...",
+                "full_characters": 11871,
+                "returned_characters": 11871,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/ca6570f382877b4f1cec272a84878b24eadfcbe4c600c0838335a90764c6c308.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 2,
+                "title": "Tesla Releases Fourth Quarter and Full Year 2024 Financial Results",
+                "url": "https://ir.tesla.com/press-release/tesla-releases-fourth-quarter-and-full-year-2024-financial-results",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/db69ccb0a0c64191b3d08a090905bd7d16036a799f4a62dc940ee5a0cd9790a8.md",
+                "full_characters": 465,
+                "returned_characters": 465,
+                "jina_content_sha256": "29e0c4e8e70ee9e0e4ac04316d712181065cbc9315b79e4f3fb43c5a4873f4df",
+                "jina_input_characters": 465,
+                "public_input_signature": "424b94177a52f71ceace3777e6f7bf0ee7f40916318aa38ef1601bb07d04efe5",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/424b94177a52f71ceace3777e6f7bf0ee7f40916318aa38ef1601bb07d04efe5.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "The requested webpage is inaccessible due to a 403 Forbidden error. No revenue information for Tesla in 2024 is available from this source.",
+                "input_tokens": 433,
+                "output_tokens": 33,
+                "total_tokens": 466,
+                "finish_reason": "stop",
+                "generation_seconds": 0.919842,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "Tesla (TSLA) - Revenue - Companies Market Cap",
+                "url": "https://companiesmarketcap.com/tesla/revenue/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/6e4c866f2e4882997a9e5acdc7ff2de8aa5dc1427fb0df7f24c623aff5811484.md",
+                "full_characters": 223,
+                "returned_characters": 223,
+                "jina_content_sha256": "64c3f9312b256b071f345e1c50627da857fcf7de6768b75b1d858462b0034d65",
+                "jina_input_characters": 223,
+                "public_input_signature": "3754f1cbfc570353e31352a98f3c8ad3f10fcbf34705a29c719c8b1fb194691f",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/3754f1cbfc570353e31352a98f3c8ad3f10fcbf34705a29c719c8b1fb194691f.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The webpage mentions Tesla's 2024 revenue was $97.69 billion USD. \n- It also states that 2025 revenue decreased to $94.82 billion USD compared to 2024.",
+                "input_tokens": 310,
+                "output_tokens": 53,
+                "total_tokens": 363,
+                "finish_reason": "stop",
+                "generation_seconds": 1.437313,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "tsla-20241231 - SEC.gov",
+                "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828025003063/tsla-20241231.htm",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/bdbe997a54127fd27dce08092f08d8d32533f811f28f902d0f2da7aed934396a.md",
+                "full_characters": 407579,
+                "returned_characters": 12000,
+                "jina_content_sha256": "a275a2a23acb54a304c8d4cf35293847605da33acc000e8cba891fbce701fb3a",
+                "jina_input_characters": 12000,
+                "public_input_signature": "295d0f523554802bafa3d8d3c2802661ee27cb3db5724128d90e9aef3dc4e1f8",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/295d0f523554802bafa3d8d3c2802661ee27cb3db5724128d90e9aef3dc4e1f8.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Tesla reported total revenues of $97.69 billion for 2024.\n- This represents an increase of $917 million compared to the prior year.",
+                "input_tokens": 6025,
+                "output_tokens": 38,
+                "total_tokens": 6063,
+                "finish_reason": "stop",
+                "generation_seconds": 2.247091,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Tesla Full Year 2024 Analysis — A Review of Actual Performance & My ...",
+                "url": "https://medium.com/@nambos3rd/tesla-full-year-2024-analysis-a-review-of-actual-performance-my-financial-forecast-41ee70091b5a",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/ca6570f382877b4f1cec272a84878b24eadfcbe4c600c0838335a90764c6c308.md",
+                "full_characters": 11871,
+                "returned_characters": 11871,
+                "jina_content_sha256": "84eeda70544fc7a260c7c12cfdd462c2173b7e9cc1e15b92b8c10034c75f3ec6",
+                "jina_input_characters": 11871,
+                "public_input_signature": "06f9a9e92b3ede4ca7ccc0d54943d26a0ce0fcaaec971625371a6af0b9d047d1",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/06f9a9e92b3ede4ca7ccc0d54943d26a0ce0fcaaec971625371a6af0b9d047d1.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Tesla reported $97.6 billion in revenue for 2024, a 1% increase from $96.7 billion in 2023.  \n- Revenue from electric vehicles accounted for 85% of total revenue in 2024.  \n- Tesla’s gross profit margin was 17.9% in 2024, down slightly from 18.2% in 2023.  \n- Operating profit margin fell to 7.2% in 2024, compared to 9.2% in 2023.  \n- GAAP net income dropped by 53% to $7 billion in 2024 from $15 billion in 2023.  \n- Tesla’s energy segment revenue rose 67% to $10 billion in 2024.",
+                "input_tokens": 3430,
+                "output_tokens": 188,
+                "total_tokens": 3618,
+                "finish_reason": "stop",
+                "generation_seconds": 5.628768,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003952,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 3237,
+          "returned_text_sha256": "14a3e50f2a6e3410abc49f143a99111386e0112a700678630019d84c5fb1c7d4"
+        }
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": null,
+    "terminal_status": "text_search_hard_failure",
+    "hard_failures": [
+      {
+        "stage": "text_search_jina_qwen",
+        "round": 2,
+        "error": "RuntimeError: Text/Search/Reader/Qwen top-5 contract failed"
+      }
+    ],
+    "total_turns": 2,
+    "action_sequence": [
+      "image_search",
+      "text_search"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": false,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": false,
+      "count_incomplete_reasons": [
+        "round_2_qwen_status_missing"
+      ],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 11
+    },
+    "mmsearch_input_tokens": 2662,
+    "mmsearch_output_tokens": 170,
+    "mmsearch_generation_seconds": 2.796,
+    "case_seconds": 24.777,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": false,
+  "eval_index": 12,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16479.88,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_12_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:46:23.375422+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69224, 28029",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69224",
+            "memory_free_mib": "28029"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "49646",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "225955",
+            "used_gpu_memory_mib": "19564",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 225955,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 19786629120,
+            "max_memory_allocated_bytes": 17280407040,
+            "max_memory_reserved_bytes": 19786629120
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.003527,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.675,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

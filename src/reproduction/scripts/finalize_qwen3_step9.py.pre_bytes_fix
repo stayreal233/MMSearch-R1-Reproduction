@@ -1,0 +1,676 @@
+#!/usr/bin/env python3
+"""Strictly validate step-9 evidence and write a bounded completion manifest."""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import math
+import os
+import re
+import stat
+import tempfile
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+OUTPUT_ROOT = Path("/root/autodl-tmp/outputs")
+SUMMARY_CACHE_ROOT = Path("/root/autodl-tmp/search_cache/qwen3_summary")
+LOG_PATH = Path("/root/autodl-tmp/logs/qwen3_summary_vllm.log")
+PID_PATH = Path("/root/autodl-tmp/logs/qwen3_summary_vllm.pid")
+MANIFEST_PATH = OUTPUT_ROOT / "qwen3_step9_completion_manifest.json"
+MODEL_PATH = "/root/autodl-tmp/models/Qwen3-32B-FP8"
+MODEL_REPO = "Qwen/Qwen3-32B-FP8"
+EXPECTED_REVISION = "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+EXPECTED_TOTAL_BYTES = 34_338_579_454
+EXPECTED_CACHE_SCHEMA = "mmsearch.qwen3_summary.v1"
+EXPECTED_SCAN_SCOPE = "selected_qwen3_step9_outputs_caches_logs_and_manifests"
+HEX_SHA256_RE = re.compile(r"[0-9a-f]{64}\Z")
+CACHE_KEYS = {
+    "schema",
+    "public_input_signature",
+    "signature_input",
+    "summary",
+    "summary_sha256",
+    "usage",
+    "finish_reason",
+    "generation_seconds",
+    "created_at",
+    "cache_hit",
+}
+SIGNATURE_KEYS = {
+    "schema",
+    "query",
+    "title",
+    "url",
+    "snippet",
+    "jina_content_sha256",
+    "jina_input_characters",
+    "model_repo",
+    "model",
+    "model_revision",
+    "prompt_version",
+    "prompt_sha256",
+    "temperature",
+    "max_tokens",
+    "enable_thinking",
+    "seed",
+}
+USAGE_KEYS = {"input_tokens", "output_tokens", "total_tokens"}
+SCAN_KEYS = {
+    "schema_version",
+    "scanned_at_utc",
+    "scope",
+    "secret_sources_checked",
+    "secret_values_recorded",
+    "files_scanned",
+    "total_bytes_scanned",
+    "exact_credential_matches",
+    "matching_files",
+    "files",
+    "pass",
+}
+SCAN_FILE_KEYS = {"path", "bytes", "sha256", "credential_match"}
+FORBIDDEN_JSON_KEYS = {
+    "api_key",
+    "authorization",
+    "body",
+    "content",
+    "headers",
+    "input_text",
+    "messages",
+    "page_content",
+    "page_text",
+    "prompt",
+    "raw_content",
+    "request_body",
+    "response_body",
+    "webpage_content",
+}
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise RuntimeError(message)
+
+
+def sha256_bytes(value: bytes) -> str:
+    return hashlib.sha256(value).hexdigest()
+
+
+def sha256_text(value: str) -> str:
+    return sha256_bytes(value.encode("utf-8"))
+
+
+def canonical_json(value: dict[str, Any]) -> str:
+    return json.dumps(
+        value,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+
+
+def nonnegative_int(value: Any, name: str) -> int:
+    require(
+        isinstance(value, int) and not isinstance(value, bool) and value >= 0,
+        f"{name} is not a nonnegative integer",
+    )
+    return value
+
+
+def positive_int(value: Any, name: str) -> int:
+    result = nonnegative_int(value, name)
+    require(result > 0, f"{name} is not positive")
+    return result
+
+
+def parse_timezone_timestamp(value: Any, name: str) -> str:
+    require(isinstance(value, str), f"{name} is not a timestamp string")
+    try:
+        parsed = datetime.fromisoformat(value)
+    except ValueError as exc:
+        raise RuntimeError(f"{name} is not a valid ISO timestamp") from exc
+    require(parsed.tzinfo is not None, f"{name} has no timezone")
+    return value
+
+
+def read_snapshot(
+    path: Path,
+    *,
+    allow_empty: bool = False,
+    max_bytes: int | None = None,
+) -> tuple[bytes, dict[str, Any]]:
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(path, flags)
+    except OSError as exc:
+        raise RuntimeError(f"Cannot open a required regular file: {path}") from exc
+    try:
+        before = os.fstat(descriptor)
+        require(stat.S_ISREG(before.st_mode), f"Required path is not regular: {path}")
+        chunks: list[bytes] = []
+        total = 0
+        while True:
+            chunk = os.read(descriptor, 8 * 1024 * 1024)
+            if not chunk:
+                break
+            total += len(chunk)
+            if max_bytes is not None:
+                require(total <= max_bytes, f"File exceeds its safety limit: {path}")
+            chunks.append(chunk)
+        after = os.fstat(descriptor)
+    finally:
+        os.close(descriptor)
+    identity_before = (
+        before.st_dev,
+        before.st_ino,
+        before.st_size,
+        before.st_mtime_ns,
+        before.st_ctime_ns,
+    )
+    identity_after = (
+        after.st_dev,
+        after.st_ino,
+        after.st_size,
+        after.st_mtime_ns,
+        after.st_ctime_ns,
+    )
+    require(identity_before == identity_after, f"File changed while read: {path}")
+    data = b"".join(chunks)
+    require(len(data) == after.st_size, f"File size changed while read: {path}")
+    require(allow_empty or bool(data), f"Required file is empty: {path}")
+    return data, {
+        "path": str(path.resolve(strict=True)),
+        "bytes": len(data),
+        "sha256": sha256_bytes(data),
+    }
+
+
+def load_json_snapshot(
+    path: Path, *, max_bytes: int = 16 * 1024 * 1024
+) -> tuple[dict[str, Any], bytes, dict[str, Any]]:
+    data, record = read_snapshot(path, max_bytes=max_bytes)
+    try:
+        value = json.loads(data.decode("utf-8"))
+    except (UnicodeError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"Invalid JSON evidence: {path}") from exc
+    require(isinstance(value, dict), f"JSON evidence root is not an object: {path}")
+    return value, data, record
+
+
+def find_forbidden_keys(value: Any, prefix: str = "$") -> list[str]:
+    matches: list[str] = []
+    if isinstance(value, dict):
+        for key, item in value.items():
+            name = str(key)
+            child = f"{prefix}.{name}"
+            if name.casefold() in FORBIDDEN_JSON_KEYS:
+                matches.append(child)
+            matches.extend(find_forbidden_keys(item, child))
+    elif isinstance(value, list):
+        for index, item in enumerate(value):
+            matches.extend(find_forbidden_keys(item, f"{prefix}[{index}]"))
+    return matches
+
+
+def contains_text(value: Any, needle: str) -> bool:
+    if isinstance(value, str):
+        return needle in value
+    if isinstance(value, dict):
+        return any(contains_text(item, needle) for item in value.values())
+    if isinstance(value, list):
+        return any(contains_text(item, needle) for item in value)
+    return False
+
+
+def serialized_body_leaked(
+    body: str, payload: dict[str, Any], encoded: bytes
+) -> bool:
+    literal = body.encode("utf-8")
+    escaped = json.dumps(body, ensure_ascii=False)[1:-1].encode("utf-8")
+    return literal in encoded or escaped in encoded or contains_text(payload, body)
+
+
+def strict_ranks(items: Any, name: str) -> list[dict[str, Any]]:
+    require(isinstance(items, list) and len(items) == 5, f"{name} must have five items")
+    require(
+        all(isinstance(item, dict) for item in items),
+        f"{name} contains a non-object item",
+    )
+    require(
+        [item.get("rank") for item in items] == [1, 2, 3, 4, 5],
+        f"{name} ranks are not exactly 1..5",
+    )
+    return items
+
+
+def validate_cache(
+    path: Path,
+    trace: dict[str, Any],
+    document: dict[str, Any],
+    bounded_body: str,
+) -> tuple[dict[str, Any], bytes, dict[str, Any]]:
+    payload, encoded, record = load_json_snapshot(path, max_bytes=2 * 1024 * 1024)
+    require(set(payload) == CACHE_KEYS, "Summary cache top-level fields do not match v1")
+    require(payload.get("schema") == EXPECTED_CACHE_SCHEMA, "Summary cache schema mismatch")
+    signature = payload.get("public_input_signature")
+    require(
+        isinstance(signature, str) and HEX_SHA256_RE.fullmatch(signature) is not None,
+        "Summary cache public signature is invalid",
+    )
+    require(signature == trace.get("public_input_signature"), "Cache/trace signature mismatch")
+    require(path.name == f"{signature}.json", "Summary cache filename/signature mismatch")
+    signature_input = payload.get("signature_input")
+    require(isinstance(signature_input, dict), "Summary cache signature_input is not an object")
+    require(set(signature_input) == SIGNATURE_KEYS, "signature_input fields do not match v1")
+    require(
+        sha256_text(canonical_json(signature_input)) == signature,
+        "Summary cache canonical signature digest mismatch",
+    )
+    require(signature_input.get("schema") == EXPECTED_CACHE_SCHEMA, "Signature schema mismatch")
+    require(signature_input.get("model_repo") == MODEL_REPO, "Signature model repo mismatch")
+    require(signature_input.get("model") == MODEL_PATH, "Signature model path mismatch")
+    require(
+        signature_input.get("model_revision") == EXPECTED_REVISION,
+        "Signature model revision mismatch",
+    )
+    require(signature_input.get("enable_thinking") is False, "Thinking was enabled")
+    require(signature_input.get("max_tokens") == 512, "Summary max_tokens mismatch")
+    require(signature_input.get("temperature") == 0, "Summary temperature mismatch")
+    require(signature_input.get("seed") == 0, "Summary seed mismatch")
+    require(
+        signature_input.get("jina_input_characters") == len(bounded_body),
+        "Signature Jina character count mismatch",
+    )
+    require(
+        signature_input.get("jina_content_sha256") == sha256_text(bounded_body),
+        "Signature Jina content digest mismatch",
+    )
+    require(signature_input.get("url") == document.get("url"), "Signature Jina URL mismatch")
+    summary = payload.get("summary")
+    require(isinstance(summary, str) and bool(summary.strip()), "Summary cache text is empty")
+    require(summary == summary.strip(), "Summary cache text is not normalized")
+    require(payload.get("summary_sha256") == sha256_text(summary), "Summary digest mismatch")
+    require(summary == trace.get("summary"), "Cache/trace summary mismatch")
+    usage = payload.get("usage")
+    require(isinstance(usage, dict) and set(usage) == USAGE_KEYS, "Cache usage schema mismatch")
+    input_tokens = nonnegative_int(usage.get("input_tokens"), "cache input_tokens")
+    output_tokens = nonnegative_int(usage.get("output_tokens"), "cache output_tokens")
+    total_tokens = nonnegative_int(usage.get("total_tokens"), "cache total_tokens")
+    require(total_tokens >= input_tokens + output_tokens, "Cache token totals are inconsistent")
+    require(payload.get("finish_reason") in {"stop", "length"}, "Cache finish_reason is invalid")
+    generation = payload.get("generation_seconds")
+    require(
+        isinstance(generation, (int, float))
+        and not isinstance(generation, bool)
+        and math.isfinite(generation)
+        and generation >= 0,
+        "Cache generation_seconds is invalid",
+    )
+    parse_timezone_timestamp(payload.get("created_at"), "cache created_at")
+    require(payload.get("cache_hit") is False, "Cache provenance cache_hit must be false")
+    require(not find_forbidden_keys(payload), "Summary cache contains forbidden fields")
+    require(trace.get("rank") == document.get("rank"), "Summary/document rank mismatch")
+    require(trace.get("model_revision") == EXPECTED_REVISION, "Trace model revision mismatch")
+    require(trace.get("thinking_enabled") is False, "Trace Thinking setting mismatch")
+    require(trace.get("error") is None, "Summary trace records a failure")
+    require(
+        trace.get("returned_characters") == document.get("returned_characters"),
+        "Summary/document returned character count mismatch",
+    )
+    require(
+        trace.get("jina_content_sha256") == sha256_text(bounded_body),
+        "Summary trace Jina digest mismatch",
+    )
+    require(
+        trace.get("jina_input_characters") == len(bounded_body),
+        "Summary trace Jina input length mismatch",
+    )
+    return payload, encoded, record
+
+
+def load_jina_body(
+    document: dict[str, Any], trace: dict[str, Any]
+) -> tuple[str, dict[str, Any], dict[str, Any]]:
+    raw_path = document.get("cache_path")
+    require(isinstance(raw_path, str), "Jina document cache_path is missing")
+    require(trace.get("jina_cache_path") == raw_path, "Document/summary Jina path mismatch")
+    cache_path = Path(raw_path)
+    require(not cache_path.is_symlink(), "Jina Markdown path is a symlink")
+    resolved = cache_path.resolve(strict=True)
+    require(resolved.suffix == ".md", "Jina cache is not Markdown")
+    metadata_path = resolved.with_suffix(".json")
+    metadata, _, metadata_record = load_json_snapshot(metadata_path, max_bytes=2 * 1024 * 1024)
+    markdown_bytes, markdown_record = read_snapshot(resolved, max_bytes=64 * 1024 * 1024)
+    try:
+        full_text = markdown_bytes.decode("utf-8")
+    except UnicodeError as exc:
+        raise RuntimeError("Jina Markdown is not UTF-8") from exc
+    expected_characters = positive_int(metadata.get("characters"), "Jina metadata characters")
+    if len(full_text) == expected_characters + 1 and full_text.endswith("\n"):
+        full_text = full_text[:-1]
+    require(len(full_text) == expected_characters, "Jina Markdown character count mismatch")
+    require(metadata.get("target_url") == document.get("url"), "Jina metadata URL mismatch")
+    require(document.get("full_characters") == len(full_text), "Jina full character count mismatch")
+    returned = positive_int(document.get("returned_characters"), "Jina returned_characters")
+    require(returned <= 12_000 and returned <= len(full_text), "Jina bounded length is invalid")
+    bounded = full_text[:returned]
+    require(len(bounded) == returned, "Jina bounded body is truncated")
+    return bounded, markdown_record, metadata_record
+
+
+def validate_key_scan(
+    payload: dict[str, Any],
+    current_records: dict[str, dict[str, Any]],
+    cache_records: list[dict[str, Any]],
+) -> dict[str, Any]:
+    require(set(payload) == SCAN_KEYS, "Credential scan fields do not match schema v2")
+    require(payload.get("schema_version") == 2, "Credential scan schema is not v2")
+    require(payload.get("scope") == EXPECTED_SCAN_SCOPE, "Credential scan scope mismatch")
+    parse_timezone_timestamp(payload.get("scanned_at_utc"), "credential scan timestamp")
+    sources = payload.get("secret_sources_checked")
+    require(isinstance(sources, list) and bool(sources), "Credential sources are missing")
+    require(all(isinstance(item, str) for item in sources), "Credential source is invalid")
+    require(len(sources) == len(set(sources)), "Credential sources contain duplicates")
+    require(sources[0] == "SERPER_API_KEY", "SERPER_API_KEY was not checked")
+    require(
+        set(sources).issubset({"SERPER_API_KEY", "SUMMARIZER_API_KEY"}),
+        "Credential scan reports an unknown source",
+    )
+    require(payload.get("secret_values_recorded") is False, "Credential values were recorded")
+    require(payload.get("pass") is True, "Credential scan did not pass")
+    require(payload.get("exact_credential_matches") == 0, "Credential scan found a match")
+    require(payload.get("matching_files") == [], "Credential scan has matching files")
+    files = payload.get("files")
+    require(isinstance(files, list), "Credential scan file records are missing")
+    records_by_path: dict[str, dict[str, Any]] = {}
+    for record in files:
+        require(isinstance(record, dict) and set(record) == SCAN_FILE_KEYS, "Scan file schema mismatch")
+        path = record.get("path")
+        require(isinstance(path, str) and path not in records_by_path, "Scan file path is invalid")
+        nonnegative_int(record.get("bytes"), "scan file bytes")
+        digest = record.get("sha256")
+        require(
+            isinstance(digest, str) and HEX_SHA256_RE.fullmatch(digest) is not None,
+            "Scan file digest is invalid",
+        )
+        require(record.get("credential_match") is False, "Scan file records a credential match")
+        records_by_path[path] = record
+    require(payload.get("files_scanned") == len(files), "Credential file count mismatch")
+    require(
+        payload.get("total_bytes_scanned") == sum(record["bytes"] for record in files),
+        "Credential byte total mismatch",
+    )
+    bound_records = list(current_records.values()) + cache_records
+    log_path = str(LOG_PATH.resolve(strict=True))
+    expected_paths = {record["path"] for record in bound_records} | {log_path}
+    require(set(records_by_path) == expected_paths, "Credential scan target set is not exact")
+    require(str((OUTPUT_ROOT / "qwen3_key_scan.json").resolve()) not in records_by_path, "Scan includes itself")
+    for current in bound_records:
+        scanned = records_by_path[current["path"]]
+        require(scanned["bytes"] == current["bytes"], "Scanned/current file size mismatch")
+        require(scanned["sha256"] == current["sha256"], "Scanned/current file digest mismatch")
+    return records_by_path[log_path]
+
+
+def process_start_time(pid: int) -> str:
+    try:
+        raw = (Path("/proc") / str(pid) / "stat").read_text(encoding="ascii")
+    except (OSError, UnicodeError) as exc:
+        raise RuntimeError("Cannot read service process stat") from exc
+    close = raw.rfind(")")
+    require(close >= 0, "Service process stat is malformed")
+    fields = raw[close + 2 :].split()
+    require(len(fields) > 19, "Service process stat is incomplete")
+    return fields[19]
+
+
+def service_identity(pid: int) -> dict[str, Any]:
+    try:
+        os.kill(pid, 0)
+    except OSError as exc:
+        raise RuntimeError("Qwen3 service PID is not alive") from exc
+    proc_root = Path("/proc") / str(pid)
+    try:
+        status_text = (proc_root / "status").read_text(encoding="utf-8")
+        cmdline = (proc_root / "cmdline").read_bytes()
+    except (OSError, UnicodeError) as exc:
+        raise RuntimeError("Cannot inspect Qwen3 service process") from exc
+    states = [line.split(":", 1)[1].strip() for line in status_text.splitlines() if line.startswith("State:")]
+    require(len(states) == 1 and states[0] and not states[0].startswith("Z"), "Qwen3 service is a zombie")
+    require(bool(cmdline), "Qwen3 service command line is empty")
+    require(b"vllm" in cmdline.casefold(), "Service command line is not vLLM")
+    require(MODEL_PATH.encode("utf-8") in cmdline, "Service command line has the wrong model")
+    return {
+        "pid": pid,
+        "start_time_ticks": process_start_time(pid),
+        "cmdline_sha256": sha256_bytes(cmdline),
+    }
+
+
+def atomic_write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary_name: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary_name = handle.name
+            os.fchmod(handle.fileno(), 0o600)
+            json.dump(payload, handle, ensure_ascii=False, indent=2)
+            handle.write("\n")
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary_name, path)
+    finally:
+        if temporary_name is not None:
+            try:
+                Path(temporary_name).unlink()
+            except FileNotFoundError:
+                pass
+
+
+def safe_error(exc: BaseException) -> str:
+    message = f"{type(exc).__name__}: {exc}"
+    secrets = []
+    for name in ("SERPER_API_KEY", "SUMMARIZER_API_KEY"):
+        value = os.environ.get(name)
+        if value and value != "EMPTY":
+            secrets.append(value)
+    for secret in sorted(secrets, key=len, reverse=True):
+        message = message.replace(secret, "[REDACTED]")
+    return re.sub(r"(?i)bearer\s+\S+", "Bearer [REDACTED]", message)[:500]
+
+
+def main() -> None:
+    install_path = REPO_ROOT / "reproduction/env/qwen3_install_decision.json"
+    revision_path = REPO_ROOT / "reproduction/env/qwen3_huggingface_revision.json"
+    versions_path = REPO_ROOT / "reproduction/env/qwen3_summary_versions.txt"
+    smoke_path = OUTPUT_ROOT / "qwen3_summary_smoke.json"
+    flow_path = OUTPUT_ROOT / "real_search_flow_qwen3_summary.json"
+    key_scan_path = OUTPUT_ROOT / "qwen3_key_scan.json"
+
+    install, _, install_record = load_json_snapshot(install_path)
+    revision, _, revision_record = load_json_snapshot(revision_path)
+    versions_bytes, versions_record = read_snapshot(versions_path, max_bytes=1024 * 1024)
+    require(bool(versions_bytes.strip()), "Version evidence is blank")
+    smoke, smoke_bytes, smoke_record = load_json_snapshot(smoke_path)
+    flow, flow_bytes, flow_record = load_json_snapshot(flow_path, max_bytes=64 * 1024 * 1024)
+    key_scan, _, key_scan_record = load_json_snapshot(key_scan_path)
+
+    require(install.get("model", {}).get("resolved_revision") == EXPECTED_REVISION, "Install revision mismatch")
+    require(revision.get("validation_status") == "passed", "Model validation did not pass")
+    require(revision.get("resolved_revision") == EXPECTED_REVISION, "Model manifest revision mismatch")
+    require(revision.get("file_count") == 17, "Model manifest file count mismatch")
+    require(revision.get("total_bytes") == EXPECTED_TOTAL_BYTES, "Model byte count mismatch")
+    checks = revision.get("checks", {})
+    require(isinstance(checks, dict) and checks.get("seven_safetensors_sha256_match") is True, "Shard hashes were not validated")
+    require(smoke.get("schema_version") == 1 and smoke.get("pass") is True, "Smoke evidence did not pass")
+    require(smoke.get("mode") == "qwen3_summary_cached_raw_jina_rank1_smoke", "Smoke mode mismatch")
+    require(smoke.get("checks", {}).get("thinking_disabled") is True, "Smoke Thinking check failed")
+    require(flow.get("pass") is True, "Mixed Search flow did not pass")
+    require(flow.get("mode") == "cached_image_search_plus_serper_dev_plus_jina_plus_qwen3_summary", "Flow mode mismatch")
+    require(not find_forbidden_keys(smoke), "Smoke evidence contains forbidden fields")
+    require(not find_forbidden_keys(flow), "Flow evidence contains forbidden fields")
+
+    trace = flow.get("trace")
+    require(isinstance(trace, dict), "Flow trace is missing")
+    require(trace.get("data_id") == "fvqa_train_17", "Mixed Search sample mismatch")
+    require(trace.get("action_sequence") == ["image_search", "text_search", "answer"], "Action sequence mismatch")
+    require(trace.get("summarization_calls") == 1, "Summarization count mismatch")
+    require(trace.get("exact_match") is True, "Mixed Search exact match failed")
+    rounds = trace.get("rounds")
+    require(isinstance(rounds, list) and len(rounds) == 3, "Flow rounds are incomplete")
+    second = rounds[1]
+    require(isinstance(second, dict) and second.get("action") == "text_search", "Second round is not text search")
+    tool = second.get("tool")
+    require(isinstance(tool, dict) and tool.get("type") == "serper_dev_plus_jina_reader_plus_qwen3_summary", "Second-round tool mismatch")
+    status_payload = tool.get("status")
+    require(isinstance(status_payload, dict) and status_payload.get("success") is True, "Text tool did not pass")
+    summary_status = status_payload.get("summary")
+    require(isinstance(summary_status, dict), "Summary aggregate status is missing")
+    require(summary_status.get("success") is True, "Summary aggregate did not pass")
+    require(summary_status.get("requested") == 5, "Summary requested count mismatch")
+    require(summary_status.get("num_summaries") == 5, "Summary completed count mismatch")
+    require(summary_status.get("failures") == [], "Summary failures are present")
+    summaries = strict_ranks(status_payload.get("summaries"), "summary traces")
+    documents = strict_ranks(status_payload.get("documents"), "Jina documents")
+
+    cache_root = SUMMARY_CACHE_ROOT.resolve(strict=True)
+    cache_paths: list[Path] = []
+    bounded_bodies: list[str] = []
+    jina_records: list[dict[str, Any]] = []
+    for document, summary_trace in zip(documents, summaries, strict=True):
+        bounded, markdown_record, metadata_record = load_jina_body(document, summary_trace)
+        bounded_bodies.append(bounded)
+        jina_records.extend([markdown_record, metadata_record])
+        cache_path_value = summary_trace.get("summary_cache_path")
+        require(isinstance(cache_path_value, str), "Summary cache path is missing")
+        unresolved = Path(cache_path_value)
+        require(not unresolved.is_symlink(), "Summary cache path is a symlink")
+        resolved = unresolved.resolve(strict=True)
+        require(resolved.parent == cache_root, "Summary cache path escapes the fixed root")
+        require(resolved.suffix == ".json", "Summary cache path is not JSON")
+        cache_paths.append(resolved)
+    require(len(set(cache_paths)) == 5, "Summary cache paths are not unique")
+
+    cache_payloads: list[dict[str, Any]] = []
+    cache_bytes: list[bytes] = []
+    cache_records: list[dict[str, Any]] = []
+    for cache_path, summary_trace, document, body in zip(
+        cache_paths, summaries, documents, bounded_bodies, strict=True
+    ):
+        payload, encoded, record = validate_cache(cache_path, summary_trace, document, body)
+        cache_payloads.append(payload)
+        cache_bytes.append(encoded)
+        cache_records.append(record)
+
+    for body in bounded_bodies:
+        require(not serialized_body_leaked(body, flow, flow_bytes), "A bounded Jina body leaked into flow evidence")
+        require(not serialized_body_leaked(body, smoke, smoke_bytes), "A bounded Jina body leaked into smoke evidence")
+        for payload, encoded in zip(cache_payloads, cache_bytes, strict=True):
+            require(not serialized_body_leaked(body, payload, encoded), "A bounded Jina body leaked into a summary cache")
+
+    current_scan_records = {
+        record["path"]: record
+        for record in (
+            install_record,
+            revision_record,
+            versions_record,
+            smoke_record,
+            flow_record,
+        )
+    }
+    log_scan_record = validate_key_scan(key_scan, current_scan_records, cache_records)
+
+    pid_bytes, pid_record = read_snapshot(PID_PATH, max_bytes=128)
+    try:
+        pid_text = pid_bytes.decode("ascii").strip()
+    except UnicodeError as exc:
+        raise RuntimeError("Qwen3 service PID file is not ASCII") from exc
+    require(re.fullmatch(r"[1-9][0-9]*", pid_text) is not None, "Qwen3 service PID is malformed")
+    service = service_identity(int(pid_text))
+
+    manifest = {
+        "schema_version": 2,
+        "status": "passed",
+        "completed_at_utc": datetime.now(timezone.utc).isoformat(),
+        "step": 9,
+        "model_revision": EXPECTED_REVISION,
+        "model_file_count": 17,
+        "model_total_bytes": EXPECTED_TOTAL_BYTES,
+        "service_pid": service["pid"],
+        "service_alive": True,
+        "service_start_time_ticks": service["start_time_ticks"],
+        "service_cmdline_sha256": service["cmdline_sha256"],
+        "sample": "fvqa_train_17",
+        "action_sequence": trace["action_sequence"],
+        "final_answer": trace.get("final_answer"),
+        "ground_truth": trace.get("ground_truth"),
+        "exact_match": trace["exact_match"],
+        "summary_cache_records": 5,
+        "credential_matches": 0,
+        "credential_sources_checked": key_scan["secret_sources_checked"],
+        "primary_artifacts": [
+            install_record,
+            revision_record,
+            versions_record,
+            smoke_record,
+            flow_record,
+            key_scan_record,
+            pid_record,
+        ],
+        "summary_cache_artifacts": cache_records,
+        "jina_source_artifacts": jina_records,
+        "credential_scan_log_snapshot": log_scan_record,
+        "checks": {
+            "pinned_model_content_sha256": True,
+            "environment_pinned": True,
+            "service_process_identity_validated": True,
+            "thinking_disabled": True,
+            "top5_summaries_complete": True,
+            "top5_cache_schema_and_signatures_valid": True,
+            "same_gpu_mixed_search_passed": True,
+            "credential_scan_v2_bound_to_artifacts": True,
+            "raw_webpage_fields_absent": True,
+            "bounded_jina_bodies_absent": True,
+        },
+        "credentials_recorded": False,
+    }
+    require(service_identity(service["pid"]) == service, "Qwen3 service identity changed during finalization")
+    atomic_write_json(MANIFEST_PATH, manifest)
+    print(
+        json.dumps(
+            {
+                "status": "passed",
+                "output": str(MANIFEST_PATH),
+                "summary_cache_records": 5,
+                "service_pid": service["pid"],
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as exc:
+        print(
+            json.dumps(
+                {"status": "failed", "error": safe_error(exc)},
+                ensure_ascii=False,
+                indent=2,
+            ),
+            file=__import__("sys").stderr,
+        )
+        raise SystemExit(2) from exc

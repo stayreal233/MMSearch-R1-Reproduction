@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "mode": "qwen3_summary_cached_raw_jina_rank1_smoke",
+  "network_scope": "loopback_qwen3_only",
+  "source_trace": "/root/autodl-tmp/outputs/real_search_flow_raw_jina.json",
+  "source": {
+    "data_id": "fvqa_train_17",
+    "rank": 1,
+    "title": "Jodrell Bank Observatory",
+    "url": "https://en.wikipedia.org/wiki/Jodrell_Bank_Observatory",
+    "jina_cache_path": "/root/autodl-tmp/search_cache/jina/3d6812e7598943dba7aa78c912f34726e29992595b5d2343ac19914290d3a74b.md",
+    "jina_full_characters": 85815,
+    "summarizer_input_characters": 12000
+  },
+  "service_health": {
+    "success": true,
+    "source": "qwen3_summary",
+    "status_code": 200,
+    "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+    "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+    "model_available": true,
+    "available_models": [
+      "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    ],
+    "latency_seconds": 0.003766,
+    "thinking_enabled": false
+  },
+  "summary": "- The Lovell Telescope is located at Jodrell Bank Observatory.\n- Jodrell Bank Observatory is in Cheshire, England.\n- The observatory is near the village of Goostrey.\n- The site became a UNESCO World Heritage Site in 2019.\n- The observatory is part of the University of Manchester's Jodrell Bank Centre for Astrophysics.\n- The Lovell Telescope is the main telescope at the observatory.",
+  "summary_stat": {
+    "rank": 1,
+    "title": "Jodrell Bank Observatory",
+    "url": "https://en.wikipedia.org/wiki/Jodrell_Bank_Observatory",
+    "jina_cache_path": "/root/autodl-tmp/search_cache/jina/3d6812e7598943dba7aa78c912f34726e29992595b5d2343ac19914290d3a74b.md",
+    "full_characters": 85815,
+    "returned_characters": 12000,
+    "jina_content_sha256": "e7beba4c72f501db3018652b0cb7daba62f02e6422b01b30b7feaef56a55091a",
+    "jina_input_characters": 12000,
+    "public_input_signature": "b53bf3e5f5acb6989cca9956d3c6c3405ffda5699665e7bbf26b997197a4ad2c",
+    "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/b53bf3e5f5acb6989cca9956d3c6c3405ffda5699665e7bbf26b997197a4ad2c.json",
+    "cache_hit": false,
+    "api_called": true,
+    "summary": "- The Lovell Telescope is located at Jodrell Bank Observatory.\n- Jodrell Bank Observatory is in Cheshire, England.\n- The observatory is near the village of Goostrey.\n- The site became a UNESCO World Heritage Site in 2019.\n- The observatory is part of the University of Manchester's Jodrell Bank Centre for Astrophysics.\n- The Lovell Telescope is the main telescope at the observatory.",
+    "input_tokens": 3784,
+    "output_tokens": 92,
+    "total_tokens": 3876,
+    "finish_reason": "stop",
+    "generation_seconds": 2.942409,
+    "thinking_enabled": false,
+    "error": null,
+    "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+    "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+  },
+  "checks": {
+    "source_trace_passed": true,
+    "serper_network_called": false,
+    "jina_network_called": false,
+    "jina_cache_read_only": true,
+    "thinking_disabled": true,
+    "raw_webpage_body_omitted": true,
+    "credential_omitted": true
+  },
+  "pass": true
+}

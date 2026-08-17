@@ -1,0 +1,42 @@
+"""Composite Serper.dev search and Jina Reader tool for MMSearch-R1."""
+
+from __future__ import annotations
+
+from pathlib import Path
+from typing import Any
+
+from reproduction.mmsearch_tools.jina_reader import JinaReader
+from reproduction.mmsearch_tools.serper_text_search import SerperTextSearch
+
+
+class SerperJinaTextSearch:
+    def __init__(
+        self,
+        serper_cache_dir: Path,
+        jina_cache_dir: Path,
+        *,
+        top_k: int = 5,
+        max_chars_per_page: int = 12_000,
+    ) -> None:
+        self.search = SerperTextSearch(serper_cache_dir, top_k=top_k)
+        self.reader = JinaReader(
+            jina_cache_dir,
+            max_chars_per_page=max_chars_per_page,
+        )
+
+    def __call__(self, query: str) -> tuple[str, dict[str, Any]]:
+        search_text, results, search_stat = self.search(query)
+        webpage_text, documents, reader_stat = self.reader.read_many(results)
+        returned_text = f"{search_text}\n{webpage_text}"
+        tool_stat = {
+            "success": search_stat["success"] and reader_stat["success"],
+            "source": "serper_dev_plus_jina_reader",
+            "search": search_stat,
+            "reader": reader_stat,
+            "results": results,
+            "documents": [
+                {key: value for key, value in document.items() if key != "content"}
+                for document in documents
+            ],
+        }
+        return returned_text, tool_stat

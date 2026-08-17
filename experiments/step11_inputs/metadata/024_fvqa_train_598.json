@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_598",
+  "source_split": "train",
+  "source_row_index": 598,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is wearing the Colorado Rockies jersey with the number 20?",
+  "reward_model": {
+    "ground_truth": "Ian Desmond",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/024_fvqa_train_598.png",
+  "image_width": 611,
+  "image_height": 672,
+  "source_image_sha256": "c299cf1764dc5171df7aaa364f4c19ea93a66ee92c4a9929db66abec57414aeb",
+  "normalized_png_sha256": "c299cf1764dc5171df7aaa364f4c19ea93a66ee92c4a9929db66abec57414aeb",
+  "eval_index": 24,
+  "selection_rank_sha256": "00a63bf4741efdb407d4b5e63646f5775070e150646899680540cf490ee1bcdc",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

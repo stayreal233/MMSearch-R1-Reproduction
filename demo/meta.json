@@ -1,0 +1,36 @@
+{
+  "search_free": {
+    "data_id": "fvqa_train_0",
+    "category": "search_free",
+    "source_split": "train",
+    "source_row_index": 0,
+    "data_source": "mmsearch_r1/fvqa_train",
+    "image": "/root/autodl-tmp/mmsearch_demo/search_free.png",
+    "image_width": 399,
+    "image_height": 300,
+    "source_image_sha256": "8de703e42a884ffe502348bab28ad95ca490cf096d0965cded6100aa01398990",
+    "question": "What is the name of the system shown in the image?",
+    "reward_model": {
+      "candidate_answers": "[]",
+      "ground_truth": "namus",
+      "style": "rule"
+    }
+  },
+  "search_required": {
+    "data_id": "fvqa_train_6",
+    "category": "search_required",
+    "source_split": "train",
+    "source_row_index": 6,
+    "data_source": "mmsearch_r1/fvqa_train",
+    "image": "/root/autodl-tmp/mmsearch_demo/search_required.png",
+    "image_width": 531,
+    "image_height": 800,
+    "source_image_sha256": "6a72eda37c87b01359e299c88edb3a0c1a003287995917b131d4068e5af004b8",
+    "question": "What is the location of this building?",
+    "reward_model": {
+      "candidate_answers": "[\"Rubjerg Knude\"]",
+      "ground_truth": "Rubjerg Knude",
+      "style": "rule"
+    }
+  }
+}

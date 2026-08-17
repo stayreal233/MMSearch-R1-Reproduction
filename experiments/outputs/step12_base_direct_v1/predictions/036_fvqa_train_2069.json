@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 36,
+  "data_id": "fvqa_train_2069",
+  "category": "search_required",
+  "source_row_index": 2069,
+  "selection_rank_sha256": "00fb5ab7538089366655d67bdf5c0c8406e634cf0a6e57a390a4a19a4f9a7563",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/036_fvqa_train_2069.png",
+      "bytes": 291614,
+      "sha256": "efe436b417730fb609c1a854f89c990c8f6981bb7e8d0155a514aa37e67fcea0"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/036_fvqa_train_2069.json",
+      "bytes": 898,
+      "sha256": "3cfb6ba1d7d5fa21e078a706eb42006009073d3b8fcc091e2e93694a0579bf55"
+    },
+    "image_width": 640,
+    "image_height": 433,
+    "question": "What is the name of the group shown in the image?"
+  },
+  "result": {
+    "response_text": "The image shows a group of soldiers from the British Army during World War I.",
+    "answer": "The image shows a group of soldiers from the British Army during World War I.",
+    "parser_mode": "plain_text_fallback",
+    "ground_truth": "arditi",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 424,
+    "output_tokens": 17,
+    "generation_seconds": 0.319124,
+    "case_seconds": 0.343299,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17404264448,
+    "cuda_peak_memory_allocated_bytes": 16765171200,
+    "cuda_peak_memory_reserved_bytes": 17404264448
+  },
+  "credentials_recorded": false
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_4658",
+  "source_split": "train",
+  "source_row_index": 4658,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Compare the population of the country shown in the image in 2024 with the population of China in the same year, which one is higher?",
+  "reward_model": {
+    "ground_truth": "India",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/027_fvqa_train_4658.png",
+  "image_width": 1178,
+  "image_height": 622,
+  "source_image_sha256": "665d54fadec046f122fa93d374e3bf361f01b8411f3b3a08cfa6b38e5798a1d9",
+  "normalized_png_sha256": "665d54fadec046f122fa93d374e3bf361f01b8411f3b3a08cfa6b38e5798a1d9",
+  "eval_index": 27,
+  "selection_rank_sha256": "0360781394c0cd713dea94f99aab8cd7d1f9fa5be6e61397ba0bba145ce94c5e",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

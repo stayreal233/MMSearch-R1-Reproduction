@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 19,
+  "data_id": "fvqa_train_4385",
+  "category": "search_free",
+  "source_row_index": 4385,
+  "selection_rank_sha256": "0245c6daca565c357c734b6b7999f16688ab13a03e1be3ad700420d225fbc099",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/019_fvqa_train_4385.png",
+      "bytes": 9789,
+      "sha256": "881e4e2f2c04cc718f09120757ea99f4b7eaddac646a607ea7c37721f4bc8043"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/019_fvqa_train_4385.json",
+      "bytes": 924,
+      "sha256": "8a3d508bdae711172b70474992731faf0a43e6c2ddfb37d6a06a85b6fc8e58c1"
+    },
+    "image_width": 102,
+    "image_height": 104,
+    "question": "In which city were the Summer Olympics held the year this product was created?"
+  },
+  "result": {
+    "response_text": "<answer>Tokyo</answer>",
+    "answer": "Tokyo",
+    "parser_mode": "answer_tags",
+    "ground_truth": "Beijing",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 98,
+    "output_tokens": 9,
+    "generation_seconds": 0.152044,
+    "case_seconds": 0.153957,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17521704960,
+    "cuda_peak_memory_allocated_bytes": 16630295040,
+    "cuda_peak_memory_reserved_bytes": 17521704960
+  },
+  "credentials_recorded": false
+}

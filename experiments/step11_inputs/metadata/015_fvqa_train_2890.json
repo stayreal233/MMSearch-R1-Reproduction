@@ -1,0 +1,34 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2890",
+  "source_split": "train",
+  "source_row_index": 2890,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Which city or region does this lake locate in?",
+  "reward_model": {
+    "ground_truth": "Azores",
+    "candidate_answers": [
+      "Açores",
+      "Autonomous Region of the Azores",
+      "Região NUTS III de Portugal",
+      "Isles of Flanders",
+      "The Azores",
+      "Azores",
+      "Autonomous Region of Azores",
+      "Flemish Islands",
+      "Acores",
+      "Região NUTS 3 de Portugal"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/015_fvqa_train_2890.png",
+  "image_width": 800,
+  "image_height": 600,
+  "source_image_sha256": "ee0615d43c7d662f6f8e88ab688735fd960e35fb268e7c0a4b564aa36651fe27",
+  "normalized_png_sha256": "3b265ef8321357f48aaee8e4db26e88fd66a81d8c28079c6e7400913b0f901a2",
+  "eval_index": 15,
+  "selection_rank_sha256": "021e01837485698e9f371c24acb855f96e0187905212bdde5223ffe9ba353059",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

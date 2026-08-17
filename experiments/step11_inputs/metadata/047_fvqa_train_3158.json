@@ -1,0 +1,26 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3158",
+  "source_split": "train",
+  "source_row_index": 3158,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Which company manufactures this aircraft?",
+  "reward_model": {
+    "ground_truth": "Airbus",
+    "candidate_answers": [
+      "Airbus",
+      "Airbus Commercial Aircraft"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/047_fvqa_train_3158.png",
+  "image_width": 1024,
+  "image_height": 695,
+  "source_image_sha256": "5e725f5d8d46ec64917a80eb93482359001ac45c66f0afa4d3bd125ba802867f",
+  "normalized_png_sha256": "f9ef4e30aeb3b8c35f2f4b94964900e683dfa6feeee141cb38b539c490da2f48",
+  "eval_index": 47,
+  "selection_rank_sha256": "054206324cd41c80bcdb9899e5193752a0c70b08d2bd095ca5995a2e2a26c881",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

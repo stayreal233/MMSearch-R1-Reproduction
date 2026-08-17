@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2239",
+  "source_split": "train",
+  "source_row_index": 2239,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the name of the event associated with this statue?",
+  "reward_model": {
+    "ground_truth": "Strengthen the Arm of Liberty",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/032_fvqa_train_2239.png",
+  "image_width": 800,
+  "image_height": 672,
+  "source_image_sha256": "852494efae37a2d2c04499ff4d848b34930fbd1df596159eb38e9c18cd335789",
+  "normalized_png_sha256": "852494efae37a2d2c04499ff4d848b34930fbd1df596159eb38e9c18cd335789",
+  "eval_index": 32,
+  "selection_rank_sha256": "00cdf4b2ea13ad4455b247fcd2fe59f38267639ce340862976d59f8e816a03b4",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

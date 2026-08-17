@@ -1,0 +1,19 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_0",
+  "source_split": "train",
+  "source_row_index": 0,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the name of the system shown in the image?",
+  "reward_model": {
+    "ground_truth": "namus",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_a.png",
+  "image_width": 399,
+  "image_height": 300,
+  "source_image_sha256": "8de703e42a884ffe502348bab28ad95ca490cf096d0965cded6100aa01398990",
+  "normalized_png_sha256": "8de703e42a884ffe502348bab28ad95ca490cf096d0965cded6100aa01398990"
+}

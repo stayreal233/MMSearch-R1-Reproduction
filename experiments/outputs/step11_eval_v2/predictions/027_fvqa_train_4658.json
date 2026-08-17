@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "status": "failed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "0360781394c0cd713dea94f99aab8cd7d1f9fa5be6e61397ba0bba145ce94c5e",
+    "eval_index": 27
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_4658",
+    "source_split": "train",
+    "source_row_index": 4658,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "Compare the population of the country shown in the image in 2024 with the population of China in the same year, which one is higher?",
+    "candidate_answers": [],
+    "ground_truth": "India",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/027_fvqa_train_4658.png",
+      "width": 1178,
+      "height": 622,
+      "png_sha256": "665d54fadec046f122fa93d374e3bf361f01b8411f3b3a08cfa6b38e5798a1d9",
+      "source_sha256": "665d54fadec046f122fa93d374e3bf361f01b8411f3b3a08cfa6b38e5798a1d9"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a population graph for India from 1950 to 2025. The graph indicates that the population of India in 2024 is 1,450,935,791. To answer the question, we need to compare this with the population of China in 2024. However, the image does not provide information about the population of China. Therefore, we need to perform a search to find the population of China in 2024.</reason>\n<search><img></search>",
+        "response_sha256": "57d786e6ae2343c4b63abe363d697604ba4000b0976400b70ee57e85902cefae",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 987,
+        "output_tokens": 120,
+        "generation_seconds": 1.882,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_4658",
+            "requested": 5,
+            "num_images": 3,
+            "cache_hits": 0,
+            "titles": [
+              "Future of CP - Codeforces",
+              "The Indian Cat - $INCAT (@IncatOnSolana) / X",
+              "Expectedly, india has surpassed china in population growth,"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS3i9n9Q016PRDo5f2DUH7AXlRcTP7Kvm2ukkf7TgdOXIc91MJR",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSmOK5tbeEM0qdBU0yn1NJTiEDU8cj-S2MLmYOzyj5BdU_C7YwX",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa72R9gBJHT4HT6yVnekhrTIcVJdhOE8JllmuwBA-l_d6qh8KD"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4658_1_6e4e1069c23a6549a1f7.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4658_2_a53e241c01b233d49cc5.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_4658_4_1866dc6e3527d550ce69.png"
+            ],
+            "failures": [
+              {
+                "index": 2,
+                "title": "Swathi Bellam on X: \"@prashantsapp chicha tu bhi naa so in 12 years 17.22 crore doesn't become 22 cr 😂 India population was 121 cr in 2011 Today it is 142 crore https://t.co/4XWsr8XHT5\" / X",
+                "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg5ufKiuogs4aGjl3zvxgfcrXuGrYevi_agmLEH_z1lRSQyo-U",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg5ufKiuogs4aGjl3zvxgfcrXuGrYevi_agmLEH_z1lRSQyo-U"
+              },
+              {
+                "index": 4,
+                "title": "Investment Plans – Tax Planning Solution unit of Tech Saving Solution",
+                "source": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSt7HcOBLMNmy8JyQ5uxpMrD6XoyNLkLR4QkSM7QiT7Ch-vF_Pu",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSt7HcOBLMNmy8JyQ5uxpMrD6XoyNLkLR4QkSM7QiT7Ch-vF_Pu"
+              }
+            ]
+          },
+          "returned_text_characters": 760,
+          "returned_text_sha256": "17fec346d0395d25162e201170d39d7b4bba9f577fc2bbf49b417e310a013cae"
+        }
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 0,
+    "summarization_calls": 0,
+    "final_answer": null,
+    "terminal_status": "image_search_hard_failure",
+    "hard_failures": [
+      {
+        "stage": "image_search",
+        "round": 1,
+        "error": "RuntimeError: Image Search returned an invalid/empty public status"
+      }
+    ],
+    "total_turns": 1,
+    "action_sequence": [
+      "image_search"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": false,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 0,
+      "jina_network_requests": 0,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 5,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 5
+    },
+    "mmsearch_input_tokens": 987,
+    "mmsearch_output_tokens": 120,
+    "mmsearch_generation_seconds": 1.882,
+    "case_seconds": 3.161,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": false,
+  "eval_index": 27,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16197.69,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_27_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:54:00.278842+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69200, 28053",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69200",
+            "memory_free_mib": "28053"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "50384",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "229170",
+            "used_gpu_memory_mib": "18802",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 229170,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 18987614208,
+            "max_memory_allocated_bytes": 16984511488,
+            "max_memory_reserved_bytes": 18987614208
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002853,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.743,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

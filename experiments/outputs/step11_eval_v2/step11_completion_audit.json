@@ -1,0 +1,138 @@
+{
+  "schema_version": "mmsearch.step11.completion-audit.v1",
+  "status": "passed",
+  "step": 11,
+  "audit_scope": "independent structural, hash, metric, policy-scope, and serialized-evidence audit",
+  "completion_manifest": {
+    "path": "/root/autodl-tmp/outputs/step11_eval_v2/step11_completion_manifest.json",
+    "bytes": 6820,
+    "sha256": "f2747c945a022d578e3d053e7112a05937b0267894dc03b6f74adeabefe2ad87"
+  },
+  "verified_records": {
+    "protocol": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/step11_eval_protocol_v2.json",
+      "bytes": 4321,
+      "sha256": "d8d74572a8b369b37f44a66bc314d0e3c2e6bfef081122326a34e287ad92ff17"
+    },
+    "input_manifest": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/eval_manifest.json",
+      "bytes": 39827,
+      "sha256": "dbc28df74f3a1a0b87fd435255fda8ed73455dfe3a3d465dce9539fad37564ab"
+    },
+    "runner_wrapper_v2": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step11_batch_eval_qwen3_v2.py",
+      "bytes": 17058,
+      "sha256": "7eb98fcd3aa98bdf83fcc92d9e5ff6b405a874c8b90b9cb163a4f326f715aca1"
+    },
+    "runner_implementation": {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/scripts/step11_batch_eval_qwen3.py",
+      "bytes": 29609,
+      "sha256": "c217da46af089fcc709065b69d951c75ca425ac2b27ae64ea2f8b159fb5b086b"
+    },
+    "final_failure_summary": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/failure_summary.json",
+      "bytes": 18233,
+      "sha256": "386271d9c4e9f7e8b19b929c2bc87ed264a9db82bd78320b4badd52e4eff9c07"
+    },
+    "final_predictions": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/predictions.jsonl",
+      "bytes": 750316,
+      "sha256": "beda0f6a02f750b89a5a53cb9f39dcaac56dbe047e2fb1f4ecc01290d6ac48ff"
+    },
+    "state": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/state.json",
+      "bytes": 13747,
+      "sha256": "9885f17f47948d100adfa608a2e7e9471385fee3c2f304f47c77f08fdc3e8961"
+    },
+    "stage_5": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/stage_5_manifest.json",
+      "bytes": 7800,
+      "sha256": "9ab2f11cbc762cf72594dcb5bc529a7278fa9259335d4f6aa32af616045fad0d"
+    },
+    "stage_20": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/stage_20_manifest.json",
+      "bytes": 11436,
+      "sha256": "b7e97c7641b3987cda180453176fd00758ea4cec2ba4fc15b37796195d942b23"
+    },
+    "stage_50": {
+      "path": "/root/autodl-tmp/outputs/step11_eval_v2/stage_50_manifest.json",
+      "bytes": 19100,
+      "sha256": "cb3926c330117c4254d3db8c6d869bbd4c51d1eea797d4963ee9e96769fa51ae"
+    }
+  },
+  "prediction_files_verified": 50,
+  "fixed_input_order_verified": true,
+  "balanced_categories_verified": {
+    "search_free": 25,
+    "search_required": 25
+  },
+  "strict_em_recomputed_for_all": true,
+  "search_calls_and_routes_recomputed_for_all": true,
+  "stage_prefixes_verified": [
+    5,
+    20,
+    50
+  ],
+  "v1_failure_imported_without_reexecution_count": 1,
+  "natural_policy_only": true,
+  "controlled_step10_B_C_excluded": true,
+  "recomputed_metrics": {
+    "evaluated": 50,
+    "correct": 20,
+    "accuracy_percent": 40.0,
+    "image_search_calls": 40,
+    "text_search_calls": 30,
+    "total_search_calls": 70,
+    "search_ratio_percent": 70.0,
+    "average_turns": 2.18,
+    "route_counts": {
+      "answer": 10,
+      "image_search": 4,
+      "image_search -> answer": 6,
+      "image_search -> text_search": 7,
+      "image_search -> text_search -> answer": 23
+    },
+    "sample_failure_count": 11,
+    "sample_failure_rate_percent": 22.0,
+    "healthy_answered_count": 39,
+    "healthy_answered_correct": 20,
+    "healthy_answered_accuracy_percent": 51.2821
+  },
+  "failure_layer_total": 30,
+  "sample_tool_failure_count": 11,
+  "global_hard_failures": 0,
+  "qwen3_health_at_stage_completion": {
+    "success": true,
+    "source": "qwen3_summary",
+    "status_code": 200,
+    "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+    "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+    "model_available": true,
+    "available_models": [
+      "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    ],
+    "latency_seconds": 0.002864,
+    "thinking_enabled": false
+  },
+  "serialized_evidence_scan": {
+    "files_scanned": 61,
+    "json_files_scanned": 57,
+    "text_files_scanned": 4,
+    "forbidden_json_key_paths": [],
+    "data_image_base64_matches": 0,
+    "long_base64_matches": 0,
+    "raw_jina_marker_matches": 0,
+    "authorization_marker_matches": 0,
+    "known_credential_value_matches": 0,
+    "pass": true
+  },
+  "credentials_recorded": false,
+  "policy_and_import_provenance_compatibility_audit": {
+    "execution_mode": "natural",
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false,
+    "v1_import_source_sha256": "534863c9b57e9fd0f9f966bef1cbc80fd9e53551fa8c822773934eea6b1a359e",
+    "v1_import_reexecuted": false,
+    "verified_predictions": 50
+  }
+}

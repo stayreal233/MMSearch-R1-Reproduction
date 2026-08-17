@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "A",
+  "case_type": "search_free",
+  "selection": {
+    "selection_rule": "Pre-fixed first official search_free train row.",
+    "candidate_number": null,
+    "candidate_scan_sha256": null,
+    "selected_metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_a.json",
+      "bytes": 697,
+      "sha256": "c24e28b04eebee40dc196527526651f9ceedf115e988040b2e57b8d4639cc36a",
+      "meta_key": null
+    },
+    "execution_mode": "natural",
+    "claim_scope": "natural_policy",
+    "intervention": {
+      "applied": false
+    },
+    "natural_action_sequence": null,
+    "natural_exact_match": null
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_0",
+    "source_split": "train",
+    "source_row_index": 0,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What is the name of the system shown in the image?",
+    "candidate_answers": [],
+    "ground_truth": "namus",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step10_controlled_inputs/case_a.png",
+      "width": 399,
+      "height": 300,
+      "png_sha256": "8de703e42a884ffe502348bab28ad95ca490cf096d0965cded6100aa01398990",
+      "source_sha256": "8de703e42a884ffe502348bab28ad95ca490cf096d0965cded6100aa01398990"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a logo with the text \"National Missing and Unidentified Persons System\" and the acronym \"NamUs.\" The logo also features silhouettes of three people. The text and the acronym are clear and provide enough information to identify the system shown in the image.</reason>\n<answer>NamUs</answer>",
+        "response_sha256": "f230b919786e0cc60eb6d0a9e77e63ab46ebff44a39e940ce8cfd0746eeb23fc",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "NamUs",
+        "input_tokens": 561,
+        "output_tokens": 68,
+        "generation_seconds": 1.91
+      }
+    ],
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "summarization_calls": 0,
+    "final_answer": "NamUs",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 1,
+    "action_sequence": [
+      "answer"
+    ],
+    "exact_match": true,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 0,
+      "serper_api_requests": 0,
+      "jina_network_requests": 0,
+      "qwen_summary_requests": 0,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 0,
+      "local_qwen_completion_requests": 0,
+      "tool_http_requests_total": 0
+    },
+    "mmsearch_input_tokens": 561,
+    "mmsearch_output_tokens": 68,
+    "mmsearch_generation_seconds": 1.91,
+    "case_seconds": 1.94,
+    "expected_action_sequence": [
+      "answer"
+    ],
+    "path_pass": true,
+    "representative_pass": true,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "case_semantics": {
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false,
+    "claim_scope": "natural_policy"
+  },
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16031.31,
+    "gpu_snapshot_after_case": {
+      "label": "step10_case_A_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T02:20:05.410681+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 62932, 34321",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "62932",
+            "memory_free_mib": "34321"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "46050",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "204277",
+            "used_gpu_memory_mib": "16868",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 204277,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 16959668224,
+            "max_memory_allocated_bytes": 16810045952,
+            "max_memory_reserved_bytes": 16959668224
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_case": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.002832,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16"
+  },
+  "summarizer": {
+    "service_launch_contract": {
+      "host": "127.0.0.1",
+      "port": 8001,
+      "max_model_len": 8192,
+      "gpu_memory_utilization": 0.48,
+      "linear_backend": "cutlass",
+      "deep_gemm": false,
+      "flashinfer_sampler_enabled": false,
+      "sampling_backend": "native",
+      "max_num_seqs": 1,
+      "default_chat_template_enable_thinking": false,
+      "vllm_version": "0.27.1",
+      "torch_version": "2.13.0+cu130",
+      "torch_cuda": "13.0"
+    },
+    "config": {
+      "cache_dir": "/root/autodl-tmp/search_cache/qwen3_summary",
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_repo": "Qwen/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "max_input_chars": 12000,
+      "max_tokens": 512,
+      "timeout_seconds": 120.0,
+      "temperature": 0,
+      "seed": 0,
+      "thinking_enabled": false,
+      "prompt_version": "qwen3_web_summary_v1",
+      "cache_schema": "mmsearch.qwen3_summary.v1"
+    }
+  }
+}

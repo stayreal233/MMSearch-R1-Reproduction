@@ -1,0 +1,543 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "0023d5b5116a47c54d1252739274f627939a0840d4293835c065a13cb5f42b52",
+    "eval_index": 4
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_1580",
+    "source_split": "train",
+    "source_row_index": 1580,
+    "category": "search_required",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "What ancient dynasty ruled the region shown in the map?",
+    "candidate_answers": [],
+    "ground_truth": "orontid",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/004_fvqa_train_1580.png",
+      "width": 220,
+      "height": 144,
+      "png_sha256": "2f48ce90d37b4351bab0c0dd43cdf39fceaf1a4df640ab34b28bd7fb59a32c0f",
+      "source_sha256": "2f48ce90d37b4351bab0c0dd43cdf39fceaf1a4df640ab34b28bd7fb59a32c0f"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a map of the Middle East, specifically highlighting regions that were part of ancient empires. The map does not provide enough detail to identify a specific ancient dynasty with certainty. Therefore, I cannot confidently answer the question based on the image alone.</reason>\n<search><img></search>",
+        "response_sha256": "b0c1af0e65ea4a3dcdcf8fc58d5ca347250289de4d3be7764fb640d7a67ccb5d",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 446,
+        "output_tokens": 63,
+        "generation_seconds": 1.03,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_1580",
+            "requested": 5,
+            "num_images": 4,
+            "cache_hits": 0,
+            "titles": [
+              "Yervanduni kingdom - Wikidata",
+              "How did Armenia become a part of the Russian Empire? - Russia Beyond",
+              "Emirate - Wikipedia",
+              "Real Artsakh"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSAAJotdtgZYWCa1EK9Xon2DWchTL3WJE68mwldQv-mT7Xf5Tts",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSBQgp0n_1t8_YD43NtiXzQZneRS_oFgBYv9sCUN4XWdkZ2Gx6S",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS46PciSqAa6DKwtS5LbvWIkYcBcYie_vffjA3kX4hiuUXlEJ39",
+              "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ8NJ0eCQIe-Wc04c7q1AUa7Jb5XFamT7cy5_3Dt_Hktvo0kLcG"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1580_1_8d1ae44b4ca12536ad8d.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1580_2_f646a3a36e4d8885358f.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1580_3_8648c8be332f7859cbad.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_1580_5_250fa9d9fbb419b4e0a5.png"
+            ],
+            "failures": [
+              {
+                "index": 3,
+                "title": "Wikipedia:WikiProject Maps/Conventions/Historical maps - Wikipedia",
+                "source": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWDhxPLtjDPhJCZBYK3nKDkTvz_45OWESNiSocSnbLLXzF_VBF",
+                "error": "HTTPError: 404 Client Error: Not Found for url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWDhxPLtjDPhJCZBYK3nKDkTvz_45OWESNiSocSnbLLXzF_VBF"
+              }
+            ]
+          },
+          "returned_text_characters": 942,
+          "returned_text_sha256": "e7e4a99e2ecd87690bb4fd36b2fde469e41b30817b53b3a8126d90290873b0ce"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results suggest that the map might be related to the Yervanduni kingdom. To answer the user's question, we need to know the ancient dynasty that ruled the region shown in the map. A text search is necessary to find this information.</reason>\n<text_search>What ancient dynasty ruled the Yervanduni kingdom?</text_search>",
+        "response_sha256": "a1b40f9ca58bf3375181d76b294b37f9e139e4dfc8d47d162f4e5ab9d80ad509",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "What ancient dynasty ruled the Yervanduni kingdom?",
+        "input_tokens": 1046,
+        "output_tokens": 75,
+        "generation_seconds": 1.187,
+        "query": "What ancient dynasty ruled the Yervanduni kingdom?",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "What ancient dynasty ruled the Yervanduni kingdom?",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/9f29023753cbc9ec431d9b1dc6004072038955c193fcbf6f2493a4d526ee65bb.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 48486,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 18019,
+              "total_output_tokens": 638,
+              "total_tokens": 18657,
+              "total_generation_seconds": 20.458284,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "Orontid dynasty",
+                "url": "https://en.wikipedia.org/wiki/Orontid_dynasty",
+                "snippet": "The Orontid dynasty, also known as the Eruandids or Eruandunis, ruled the Satrapy of Armenia until 330 BC and the Kingdom of Armenia from 321 BC to 200 BC."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "The Orontid dynasty (aka Eruandid or Yervanduni) ...",
+                "url": "https://www.facebook.com/whencyclopedia/posts/the-orontid-dynasty-aka-eruandid-or-yervanduni-succeeded-the-kingdom-of-urartu-i/462998252908023/",
+                "snippet": "The Orontid dynasty (aka Eruandid or Yervanduni) succeeded the Kingdom of Urartu in ancient Armenia and ruled from the 6th to 3rd century BCE."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "Orontid Dynasty",
+                "url": "https://www.worldhistory.org/Orontid_Dynasty/",
+                "snippet": "The Orontid dynasty (aka Eruandid or Yervanduni) succeeded the Kingdom of Urartu in ancient Armenia and ruled from the 6th to 3rd century BCE."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "The Orontid dynasty | ARMENIAN ELECTRONIC ...",
+                "url": "https://www.patreon.com/posts/orontid-dynasty-104562793",
+                "snippet": "The Orontid dynasty (aka Eruandid or Yervanduni) succeeded the Kingdom of Urartu in ancient Armenia and ruled from the 6th to 3rd century BCE."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Orontid dynasty ruled ancient Armenia",
+                "url": "https://www.facebook.com/groups/ancienthistorycommunity/posts/3126807380875087/",
+                "snippet": "The Orontid dynasty (aka Eruandid or Yervanduni) succeeded the Kingdom of Urartu in ancient Armenia and ruled from the 6th to 3rd century BCE."
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "Orontid dynasty",
+                "url": "https://en.wikipedia.org/wiki/Orontid_dynasty",
+                "snippet": "The Orontid dynasty, also known as the Eruandids or Eruandunis, ruled the Satrapy of Armenia until 330 BC and the Kingdom of Armenia from 321 BC to 200 BC.",
+                "full_characters": 71107,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/6306668fda821a2a13c1dbb697f0f5553a189f9f9f2b1589a095d12b4a34c644.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "The Orontid dynasty (aka Eruandid or Yervanduni) ...",
+                "url": "https://www.facebook.com/whencyclopedia/posts/the-orontid-dynasty-aka-eruandid-or-yervanduni-succeeded-the-kingdom-of-urartu-i/462998252908023/",
+                "snippet": "The Orontid dynasty (aka Eruandid or Yervanduni) succeeded the Kingdom of Urartu in ancient Armenia and ruled from the 6th to 3rd century BCE.",
+                "full_characters": 26749,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/402a399b408a0c42e7a01bfd00bbf370532e21cb9e292e9290ccc6ae71c774c3.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "Orontid Dynasty",
+                "url": "https://www.worldhistory.org/Orontid_Dynasty/",
+                "snippet": "The Orontid dynasty (aka Eruandid or Yervanduni) succeeded the Kingdom of Urartu in ancient Armenia and ruled from the 6th to 3rd century BCE.",
+                "full_characters": 12786,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/8d7a7a27550414fecf8458cc63f664597d9794410da853181209c15b4a16c527.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "The Orontid dynasty | ARMENIAN ELECTRONIC ...",
+                "url": "https://www.patreon.com/posts/orontid-dynasty-104562793",
+                "snippet": "The Orontid dynasty (aka Eruandid or Yervanduni) succeeded the Kingdom of Urartu in ancient Armenia and ruled from the 6th to 3rd century BCE.",
+                "full_characters": 486,
+                "returned_characters": 486,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/1be77dbe8ec750976eb52e28d665a05b08f25cfac47f0854a298ef1629823b8b.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Orontid dynasty ruled ancient Armenia",
+                "url": "https://www.facebook.com/groups/ancienthistorycommunity/posts/3126807380875087/",
+                "snippet": "The Orontid dynasty (aka Eruandid or Yervanduni) succeeded the Kingdom of Urartu in ancient Armenia and ruled from the 6th to 3rd century BCE.",
+                "full_characters": 22354,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/13870f8969be0869559dc17a6e029f2bdab25d2e13392108b468b1c7b86510cd.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "Orontid dynasty",
+                "url": "https://en.wikipedia.org/wiki/Orontid_dynasty",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/6306668fda821a2a13c1dbb697f0f5553a189f9f9f2b1589a095d12b4a34c644.md",
+                "full_characters": 71107,
+                "returned_characters": 12000,
+                "jina_content_sha256": "21afc64b0baadf8becba1d3aeece6aa34e850bfa38a46fbd7581ea7872cce037",
+                "jina_input_characters": 12000,
+                "public_input_signature": "200081ef59b59c794dd84770927c3d997f066522df288097c366a8a118070648",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/200081ef59b59c794dd84770927c3d997f066522df288097c366a8a118070648.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Orontid dynasty, also known as the Yervanduni, ruled the Kingdom of Armenia from 321 BC to 200 BC.\n- The dynasty is named after the Hellenized form \"Orontes,\" which corresponds to \"Eruand\" in Old Armenian and \"Yervand\" in Modern Armenian.\n- The Orontids initially served as satraps under the Achaemenid Empire before establishing an independent kingdom.\n- Some historians suggest the Orontids were of Iranian origin, while others argue they were Armenian.\n- The Orontid dynasty is considered the first of three royal dynasties to rule the ancient Kingdom of Armenia.\n- A branch of the Orontids later ruled the Kingdom of Sophene and the Kingdom of Commagene.",
+                "input_tokens": 4034,
+                "output_tokens": 163,
+                "total_tokens": 4197,
+                "finish_reason": "stop",
+                "generation_seconds": 5.113095,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "The Orontid dynasty (aka Eruandid or Yervanduni) ...",
+                "url": "https://www.facebook.com/whencyclopedia/posts/the-orontid-dynasty-aka-eruandid-or-yervanduni-succeeded-the-kingdom-of-urartu-i/462998252908023/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/402a399b408a0c42e7a01bfd00bbf370532e21cb9e292e9290ccc6ae71c774c3.md",
+                "full_characters": 26749,
+                "returned_characters": 12000,
+                "jina_content_sha256": "1888f8e12ac4833aecff1b6c036a0a66baa768282dccf36ad951a1c184e2973c",
+                "jina_input_characters": 12000,
+                "public_input_signature": "b8584a7a9e6a0be38827087a53665a747d597327f17dd142d51cb98eb06e11d8",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/b8584a7a9e6a0be38827087a53665a747d597327f17dd142d51cb98eb06e11d8.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Orontid dynasty, also known as Yervanduni, ruled the Yervanduni kingdom.  \n- They succeeded the Kingdom of Urartu in ancient Armenia.  \n- The dynasty ruled from the 6th to the 3rd century BCE.  \n- Initially, they served as Persian satraps under the Achaemenid Empire.  \n- Later, under Seleucid rule, they gained more independence and minted their own coinage.  \n- The dynasty ended around 200 BCE with the murder of Orontes IV.",
+                "input_tokens": 6503,
+                "output_tokens": 116,
+                "total_tokens": 6619,
+                "finish_reason": "stop",
+                "generation_seconds": 4.464418,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "Orontid Dynasty",
+                "url": "https://www.worldhistory.org/Orontid_Dynasty/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/8d7a7a27550414fecf8458cc63f664597d9794410da853181209c15b4a16c527.md",
+                "full_characters": 12786,
+                "returned_characters": 12000,
+                "jina_content_sha256": "e157351e0ba296ebc2c26bf74942617f5ef6ec71ecc84d07b64810931ab8fffe",
+                "jina_input_characters": 12000,
+                "public_input_signature": "38d99ff76bed3f0763907e013ad9eb81eebd91f2adfebb54d7ce8579ad7fa002",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/38d99ff76bed3f0763907e013ad9eb81eebd91f2adfebb54d7ce8579ad7fa002.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Orontid dynasty, also known as the Yervanduni, ruled the ancient Armenian kingdom after the fall of Urartu.  \n- They governed from the 6th to 3rd century BCE.  \n- The dynasty originated with Orontes (Yervand) Sakavakyats, who took power following the collapse of Urartu.  \n- Initially, the Orontids served as Persian satraps under the Achaemenid Empire.  \n- Later, under Seleucid rule, they gained more independence and began minting their own coinage.  \n- The dynasty ended around 200 BCE with the murder of Orontes IV.",
+                "input_tokens": 3346,
+                "output_tokens": 140,
+                "total_tokens": 3486,
+                "finish_reason": "stop",
+                "generation_seconds": 4.344254,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "The Orontid dynasty | ARMENIAN ELECTRONIC ...",
+                "url": "https://www.patreon.com/posts/orontid-dynasty-104562793",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/1be77dbe8ec750976eb52e28d665a05b08f25cfac47f0854a298ef1629823b8b.md",
+                "full_characters": 486,
+                "returned_characters": 486,
+                "jina_content_sha256": "bea02386e7bbd30efa073160b3da985550cc5bf14b0b6e5ec99014158b3b890c",
+                "jina_input_characters": 486,
+                "public_input_signature": "fad4751b75ccbc825d91c600333777e472efbfb5a4ee8ee05534294f1c277967",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/fad4751b75ccbc825d91c600333777e472efbfb5a4ee8ee05534294f1c277967.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Orontid dynasty, also known as the Yervanduni, ruled the ancient Armenian kingdom.  \n- They succeeded the Kingdom of Urartu.  \n- Their rule lasted from the 6th to the 3rd century BCE.  \n- The dynasty is associated with ancient Armenia.  \n- The Orontid dynasty is sometimes referred to as the Eruandid.  \n- The Yervanduni kingdom was part of this ancient ruling lineage.",
+                "input_tokens": 379,
+                "output_tokens": 95,
+                "total_tokens": 474,
+                "finish_reason": "stop",
+                "generation_seconds": 2.527751,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Orontid dynasty ruled ancient Armenia",
+                "url": "https://www.facebook.com/groups/ancienthistorycommunity/posts/3126807380875087/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/13870f8969be0869559dc17a6e029f2bdab25d2e13392108b468b1c7b86510cd.md",
+                "full_characters": 22354,
+                "returned_characters": 12000,
+                "jina_content_sha256": "b60e72158879e589a89a3e45acb990b22a50458828f8b686f604498f28ff49b0",
+                "jina_input_characters": 12000,
+                "public_input_signature": "8b9b6620317312a5c7195e6b3f5f4ffd88dbf159c9af4de3f6d1494453e5fdeb",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/8b9b6620317312a5c7195e6b3f5f4ffd88dbf159c9af4de3f6d1494453e5fdeb.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- The Orontid dynasty, also known as Eruandid or Yervanduni, ruled the Yervanduni kingdom.\n- The dynasty ruled ancient Armenia from the 6th to 3rd century BCE.\n- They succeeded the Kingdom of Urartu in the region.\n- The Orontids were initially satraps under the Achaemenid Empire before establishing an independent kingdom.\n- A branch of the Orontids later ruled Sophene and Commagene.\n- The capital of the Yervanduni kingdom was moved to Yervandashat around 302 BCE.",
+                "input_tokens": 3757,
+                "output_tokens": 124,
+                "total_tokens": 3881,
+                "finish_reason": "stop",
+                "generation_seconds": 4.008766,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003824,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 4698,
+          "returned_text_sha256": "527a40f466b81de3a285fa4ed0da277b29479ed42c797141d5d516c715f40459"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the Orontid dynasty, also known as the Yervanduni, ruled the region shown in the map. The Orontid dynasty is mentioned multiple times in the search results, and it is associated with the Yervanduni kingdom, which is likely the region shown in the map.</reason>\n<answer>Orontid dynasty</answer>",
+        "response_sha256": "f2227a0341068424463a085a433a3d964c15aaec0249ceb73ff7cb422b48d1ed",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Orontid dynasty",
+        "input_tokens": 2609,
+        "output_tokens": 79,
+        "generation_seconds": 1.341
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "Orontid dynasty",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": false,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 4101,
+    "mmsearch_output_tokens": 217,
+    "mmsearch_generation_seconds": 3.558,
+    "case_seconds": 38.438,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 4,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16770.68,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_4_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:40:46.296319+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 67380, 29873",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "67380",
+            "memory_free_mib": "29873"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "48948",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "224777",
+            "used_gpu_memory_mib": "18418",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 224777,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 18584961024,
+            "max_memory_allocated_bytes": 17585331712,
+            "max_memory_reserved_bytes": 18584961024
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.00247,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.726,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

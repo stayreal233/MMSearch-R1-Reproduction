@@ -1,0 +1,71 @@
+{
+  "schema_version": "mmsearch.step11.metrics.v1",
+  "evaluated": 20,
+  "correct": 7,
+  "accuracy_percent": 35.0,
+  "image_search_calls": 15,
+  "text_search_calls": 11,
+  "total_search_calls": 26,
+  "search_ratio_percent": 65.0,
+  "average_turns": 2.0,
+  "route_counts": {
+    "answer": 5,
+    "image_search": 2,
+    "image_search -> answer": 2,
+    "image_search -> text_search": 4,
+    "image_search -> text_search -> answer": 7
+  },
+  "categories": {
+    "search_free": {
+      "count": 10,
+      "correct": 3,
+      "accuracy_percent": 30.0,
+      "total_search_calls": 11,
+      "search_ratio_percent": 55.0,
+      "average_turns": 1.6
+    },
+    "search_required": {
+      "count": 10,
+      "correct": 4,
+      "accuracy_percent": 40.0,
+      "total_search_calls": 15,
+      "search_ratio_percent": 75.0,
+      "average_turns": 2.4
+    }
+  },
+  "network_and_cache_totals": {
+    "external_network_requests": 141,
+    "thumbnail_network_attempts": 75,
+    "thumbnail_cache_hits": 0,
+    "serper_api_requests": 11,
+    "serper_cache_hits": 0,
+    "jina_network_requests": 55,
+    "jina_cache_hits": 0,
+    "local_qwen_completion_requests": 35,
+    "qwen_summary_requests": 35,
+    "qwen_summary_cache_hits": 0,
+    "tool_http_requests_total": 176
+  },
+  "infrastructure_failures": 6,
+  "non_answer_terminal_count": 6,
+  "network_count_incomplete": 4,
+  "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()",
+  "search_ratio_definition": "sum(total_search_calls) / (N * 2) * 100",
+  "natural_policy_only": true,
+  "controlled_step10_B_C_excluded": true,
+  "sample_failure_isolation_enabled": true,
+  "sample_failure_count": 6,
+  "sample_failure_rate_percent": 30.0,
+  "healthy_answered_count": 14,
+  "healthy_answered_correct": 7,
+  "healthy_answered_accuracy_percent": 50.0,
+  "end_to_end_failures_counted_in_denominator": true,
+  "component_failure_counts": {
+    "hard_stage:image_search": 2,
+    "hard_stage:text_search_jina_qwen": 4,
+    "image_item_failures": 12,
+    "jina_page_failures": 4,
+    "qwen_summary_failures": 1,
+    "serper_component_failures": 0
+  }
+}

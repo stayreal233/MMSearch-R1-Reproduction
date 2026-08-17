@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 22,
+  "data_id": "fvqa_train_4082",
+  "category": "search_required",
+  "source_row_index": 4082,
+  "selection_rank_sha256": "009ac0376317e405d810c14323316ae4c3c4e1a116a113fe092330102e01e562",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/022_fvqa_train_4082.png",
+      "bytes": 201600,
+      "sha256": "701373658f6ba43459b4e2559a1133f55e19cae16546ebb31886e79ee56a8eb4"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/022_fvqa_train_4082.json",
+      "bytes": 924,
+      "sha256": "65e1eecd0997b9c6a1fe79a0db6d15567fa5b500a123295b681d25ec6b85898a"
+    },
+    "image_width": 1650,
+    "image_height": 635,
+    "question": "Which university is one of the organizers of this conference?"
+  },
+  "result": {
+    "response_text": "Indian Institute of Science (IISc)",
+    "answer": "Indian Institute of Science (IISc)",
+    "parser_mode": "plain_text_fallback",
+    "ground_truth": "Yenepoya University",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 610,
+    "output_tokens": 10,
+    "generation_seconds": 0.253161,
+    "case_seconds": 0.310926,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17007902720,
+    "cuda_peak_memory_allocated_bytes": 16841000448,
+    "cuda_peak_memory_reserved_bytes": 17007902720
+  },
+  "credentials_recorded": false
+}

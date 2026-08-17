@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_529",
+  "source_split": "train",
+  "source_row_index": 529,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "Who is the person in the image known for their work in classic films?",
+  "reward_model": {
+    "ground_truth": "Joan Carroll",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/040_fvqa_train_529.png",
+  "image_width": 533,
+  "image_height": 672,
+  "source_image_sha256": "76e14cdfda50de8a45f9ddd86a4ea0a0679376c23330980d918a6a03909fc8ac",
+  "normalized_png_sha256": "76e14cdfda50de8a45f9ddd86a4ea0a0679376c23330980d918a6a03909fc8ac",
+  "eval_index": 40,
+  "selection_rank_sha256": "010a2872c3e9e0f38e2100babe894b28e72099697ca3ab9b0ca5ef4ce138c6dd",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

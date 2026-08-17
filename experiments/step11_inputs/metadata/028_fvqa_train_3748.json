@@ -1,0 +1,26 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3748",
+  "source_split": "train",
+  "source_row_index": 3748,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the parent peak of this mountain?",
+  "reward_model": {
+    "ground_truth": "Ben Nevis",
+    "candidate_answers": [
+      "Beinn Nibheis",
+      "Ben Nevis"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/028_fvqa_train_3748.png",
+  "image_width": 800,
+  "image_height": 532,
+  "source_image_sha256": "f536817e4b9ea6457e544a95d09d1d11b0fa127a69404db6a89d1d659038f3b4",
+  "normalized_png_sha256": "1f39487638f9b799ffad15816fefd81cfbd2dc6351752a4409450a49eb3b74f6",
+  "eval_index": 28,
+  "selection_rank_sha256": "00c4d1d6f9d627ee336af42a52077f0ad402c332b61e4d511c1d3360d3a1470f",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

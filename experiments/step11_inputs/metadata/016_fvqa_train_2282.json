@@ -1,0 +1,27 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2282",
+  "source_split": "train",
+  "source_row_index": 2282,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "In which year was this bridge retired from operational service?",
+  "reward_model": {
+    "ground_truth": "1945",
+    "candidate_answers": [
+      "1945",
+      "1944",
+      "1946"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/016_fvqa_train_2282.png",
+  "image_width": 799,
+  "image_height": 532,
+  "source_image_sha256": "f623ac4b32f60253ff73edeb9a3eb60fe5b856b7468dc1c742836bb69b2737c4",
+  "normalized_png_sha256": "936b4b080c88cbfa8fe31aedf125b11f298efcccdbdbdfbac77e2de676319dd3",
+  "eval_index": 16,
+  "selection_rank_sha256": "00538570fd8c56ab8eee1a6c7fee161d4905daa69ebfcdd5ce972e184acc2b9a",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

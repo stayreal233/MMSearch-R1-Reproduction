@@ -1,0 +1,26 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_2330",
+  "source_split": "train",
+  "source_row_index": 2330,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the parent organization of this garden?",
+  "reward_model": {
+    "ground_truth": "Architect of the Capitol",
+    "candidate_answers": [
+      "AOC",
+      "Architect of the Capitol"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/026_fvqa_train_2330.png",
+  "image_width": 800,
+  "image_height": 600,
+  "source_image_sha256": "772e4e6b0152b6c824a7d215a87597068ee2c6e116f58dbfd604f16af7d0fd16",
+  "normalized_png_sha256": "4394b939d1f6f6081db5947a2ecde5972c47e70a68a4f9fa49a30b12479d66b0",
+  "eval_index": 26,
+  "selection_rank_sha256": "00c21f2ec1dfa6cf7ac00ab9afe41bf631214cafaf508482c140abf944ab435f",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1580",
+  "source_split": "train",
+  "source_row_index": 1580,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What ancient dynasty ruled the region shown in the map?",
+  "reward_model": {
+    "ground_truth": "orontid",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/004_fvqa_train_1580.png",
+  "image_width": 220,
+  "image_height": 144,
+  "source_image_sha256": "2f48ce90d37b4351bab0c0dd43cdf39fceaf1a4df640ab34b28bd7fb59a32c0f",
+  "normalized_png_sha256": "2f48ce90d37b4351bab0c0dd43cdf39fceaf1a4df640ab34b28bd7fb59a32c0f",
+  "eval_index": 4,
+  "selection_rank_sha256": "0023d5b5116a47c54d1252739274f627939a0840d4293835c065a13cb5f42b52",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

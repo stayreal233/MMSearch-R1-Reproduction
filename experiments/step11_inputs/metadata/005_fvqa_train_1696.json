@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_1696",
+  "source_split": "train",
+  "source_row_index": 1696,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the title of this drama?",
+  "reward_model": {
+    "ground_truth": "River Where the Moon Rises",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/005_fvqa_train_1696.png",
+  "image_width": 264,
+  "image_height": 377,
+  "source_image_sha256": "62351893b0b4a3c88ae5ab66470b1f9391d4b4659bd6d52a74bcb0f04cd78e00",
+  "normalized_png_sha256": "62351893b0b4a3c88ae5ab66470b1f9391d4b4659bd6d52a74bcb0f04cd78e00",
+  "eval_index": 5,
+  "selection_rank_sha256": "00eaaad4b3c7867c652d82c65c42a0d5a5f0db3b04c6c0b34de6680f2ccc0e63",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

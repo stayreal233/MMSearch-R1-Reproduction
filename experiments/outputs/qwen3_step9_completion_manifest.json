@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "status": "passed",
+  "completed_at_utc": "2026-08-16T12:51:31.033988+00:00",
+  "step": 9,
+  "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+  "model_file_count": 17,
+  "model_total_bytes": 34338579454,
+  "service_pid": 136998,
+  "service_alive": true,
+  "service_start_time_ticks": "1178117283",
+  "service_cmdline_sha256": "be3b0e40bc6cc55126d889d88efefa97e4562bc3481eadf67cadce20e3c17ad9",
+  "sample": "fvqa_train_17",
+  "action_sequence": [
+    "image_search",
+    "text_search",
+    "answer"
+  ],
+  "final_answer": "Cheshire",
+  "ground_truth": "Cheshire",
+  "exact_match": true,
+  "summary_cache_records": 5,
+  "credential_matches": 0,
+  "credential_sources_checked": [
+    "SERPER_API_KEY"
+  ],
+  "primary_artifacts": [
+    {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/qwen3_install_decision.json",
+      "bytes": 1879,
+      "sha256": "cb95f5dab8f1b67d8dab016974f1bb871ad246554465a170cf083bcaa7fd4cd9"
+    },
+    {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/qwen3_huggingface_revision.json",
+      "bytes": 7208,
+      "sha256": "0bfa3d41ba6ba19621911f19b1161f55cfd773290a55740a372c6b2be9e198da"
+    },
+    {
+      "path": "/root/autodl-tmp/multimodal-search-r1/reproduction/env/qwen3_summary_versions.txt",
+      "bytes": 4922,
+      "sha256": "a8a6fb5567c40611b58bc9e2878a6f9cb32f7e81f75ba491e0bf352bd79f5233"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/qwen3_summary_smoke.json",
+      "bytes": 3135,
+      "sha256": "8768c255a90531bec2be6cd35c66158dcfc57c8d80a799beee186ec2821dde29"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/real_search_flow_qwen3_summary.json",
+      "bytes": 34916,
+      "sha256": "429d79e4ceb055a69c300e1ce6deac6b993670cb6952aeaec1b84ef6343ac929"
+    },
+    {
+      "path": "/root/autodl-tmp/outputs/qwen3_key_scan.json",
+      "bytes": 3205,
+      "sha256": "1ae56dadf040d61987c98d79cb424770a0bf8732153adbe8756be7d23e2902ca"
+    },
+    {
+      "path": "/root/autodl-tmp/logs/qwen3_summary_vllm.pid",
+      "bytes": 7,
+      "sha256": "c042e526c054730add2ec32b233865788652da57839e381d58ccf7335bc768d0"
+    }
+  ],
+  "summary_cache_artifacts": [
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/b53bf3e5f5acb6989cca9956d3c6c3405ffda5699665e7bbf26b997197a4ad2c.json",
+      "bytes": 1839,
+      "sha256": "85e04ceedf1522db91c70a9feaf1accdb2c1357c7f79fc5c50e2ea72d99ad574"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/f830c4af208b5996a6d2945d0f23969992c902f8d57edc13b192fee9ad693685.json",
+      "bytes": 2026,
+      "sha256": "62ea76146ff281c87113b7ef889ba629e2eac68e4e61e0f3a1f456cf6cf2316a"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/3c9dfac45a57cc4eadd16e9c27c0cbd0fc33cdb9880e71498efa20944e8e8b67.json",
+      "bytes": 2114,
+      "sha256": "919a2907166704e72888564fd795072ca761393b6bb6a17946d8b5c2bdc2cb52"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/090e37cc62aaa8d7dc58e95961bc31619bddaee25a8443b82a1ad13c5cbdc328.json",
+      "bytes": 1845,
+      "sha256": "53b7bba6286a2a05bdd7eec3112d04db82e9d9595268279b6f0e3346471b1489"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/qwen3_summary/8bd408019a860254a9f4f43c764590e00ad1c803919be87f3b67e034b93b323b.json",
+      "bytes": 1840,
+      "sha256": "ab41e5bf0e962c564042900d46df6bb182426a01a13de04e31f4b541cb7f0395"
+    }
+  ],
+  "jina_source_artifacts": [
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/3d6812e7598943dba7aa78c912f34726e29992595b5d2343ac19914290d3a74b.md",
+      "bytes": 86087,
+      "sha256": "aa26e7b08281b5e697a108e57a52f39cad7bbf66f1f1ade9a3caf3a8c10bf428"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/3d6812e7598943dba7aa78c912f34726e29992595b5d2343ac19914290d3a74b.json",
+      "bytes": 164,
+      "sha256": "2fb2f9fbdf965d4d6e344a9c9a935e35a9bdafadba9fba98a0a8674be1b44e0e"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/1fa8acb61a65e831f17516d8136274ed2bfcd23f8f575005e818c4e709c266b5.md",
+      "bytes": 25207,
+      "sha256": "a45c6f1cb71da45cf4b98a9316c4ca4a81ede6847a849ffd3c4d9080f3fa2c1e"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/1fa8acb61a65e831f17516d8136274ed2bfcd23f8f575005e818c4e709c266b5.json",
+      "bytes": 201,
+      "sha256": "4f91fb417a9e4250232d5f785f54fb688760cbfb34007a5719e86c92f35a3724"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/8dac0fdfbbb084ca4c7a1d9be5233b8d729a905337ba4400b0591e6c4fd2a9fe.md",
+      "bytes": 11965,
+      "sha256": "926f7623a6f207f6f262775fc71b2a5403715a3f294d613579b883948db98c64"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/8dac0fdfbbb084ca4c7a1d9be5233b8d729a905337ba4400b0591e6c4fd2a9fe.json",
+      "bytes": 263,
+      "sha256": "cd34dc9b2ad5a4fc6e9ccf18175f0029b77f903a6732f57cde732a4afff68229"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/4459480861d43a64074709310bb52f282d2b907b173267cdbaced7f13dc3d995.md",
+      "bytes": 7169,
+      "sha256": "d2718d7acc378ba4def9af044a0d23576702e184e6432282f4842eeecc6f68e1"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/4459480861d43a64074709310bb52f282d2b907b173267cdbaced7f13dc3d995.json",
+      "bytes": 155,
+      "sha256": "2ac91f9ad850aacc4ceffc00b8bd31e446748c20996576311539cdc54afc4771"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/356287410af03f458b97ea2dbbfcd70cd3ad4c4f6430b1b738d124762d5dc933.md",
+      "bytes": 91100,
+      "sha256": "3355819d519056938db33be688b2db3954ac4aa89ad49566caf513c68456cde2"
+    },
+    {
+      "path": "/root/autodl-tmp/search_cache/jina/356287410af03f458b97ea2dbbfcd70cd3ad4c4f6430b1b738d124762d5dc933.json",
+      "bytes": 156,
+      "sha256": "f831aabed5151ba8af5710e71600ed19ee4ebfdb1e33b41f689131bb75eeb67b"
+    }
+  ],
+  "credential_scan_log_snapshot": {
+    "path": "/root/autodl-tmp/logs/qwen3_summary_vllm.log",
+    "bytes": 82959,
+    "sha256": "34a9694f3844d0bdc5566d3eab41c250e01df46ab77e7d3f8d4218fae52cd449",
+    "credential_match": false
+  },
+  "checks": {
+    "pinned_model_content_sha256": true,
+    "environment_pinned": true,
+    "service_process_identity_validated": true,
+    "thinking_disabled": true,
+    "top5_summaries_complete": true,
+    "top5_cache_schema_and_signatures_valid": true,
+    "same_gpu_mixed_search_passed": true,
+    "credential_scan_v2_bound_to_artifacts": true,
+    "raw_webpage_fields_absent": true,
+    "bounded_jina_bodies_absent": true
+  },
+  "credentials_recorded": false
+}

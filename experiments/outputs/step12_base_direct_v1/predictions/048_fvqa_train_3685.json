@@ -1,0 +1,65 @@
+{
+  "schema_version": "mmsearch.step12.base-prediction.v1",
+  "status": "answered",
+  "eval_index": 48,
+  "data_id": "fvqa_train_3685",
+  "category": "search_required",
+  "source_row_index": 3685,
+  "selection_rank_sha256": "019e20a9bed74e050e9a2a1af94afd8bfe33608fbbcf3114e8836a015d9c570e",
+  "model": {
+    "repo_id": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "revision": "cc594898137f460bfe9f0759e9844b3ce807cfb5",
+    "local_dir": "/root/autodl-tmp/models/Qwen2.5-VL-7B-Instruct"
+  },
+  "execution": {
+    "mode": "direct_answer_no_tools",
+    "external_tool_calls": 0,
+    "image_search_calls": 0,
+    "text_search_calls": 0,
+    "controller_intervention": false,
+    "candidate_answers_provided_to_model": false,
+    "ground_truth_provided_to_model": false
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "torch_dtype": "bfloat16",
+    "attention_implementation": "sdpa",
+    "max_pixels": 451584
+  },
+  "input": {
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/048_fvqa_train_3685.png",
+      "bytes": 545430,
+      "sha256": "43d78da284fa23e1d7a73d9a28ee87197b2bbcee236cc6d599cca7e5f78e5d75"
+    },
+    "metadata": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/metadata/048_fvqa_train_3685.json",
+      "bytes": 1039,
+      "sha256": "0f45206d448c5bd5af8914ba4ac33f2d5927eb47b4530da993e1b729618ee679"
+    },
+    "image_width": 498,
+    "image_height": 800,
+    "question": "Who is the architect of this building?"
+  },
+  "result": {
+    "response_text": "The architect of this building is Aleksey Mikhailovich Krasnov.",
+    "answer": "The architect of this building is Aleksey Mikhailovich Krasnov.",
+    "parser_mode": "plain_text_fallback",
+    "ground_truth": "Pietro Antonio Solari",
+    "strict_exact_match": false,
+    "strict_exact_match_definition": "prediction.strip().lower() == ground_truth.strip().lower()"
+  },
+  "runtime": {
+    "input_tokens": 597,
+    "output_tokens": 16,
+    "generation_seconds": 0.334748,
+    "case_seconds": 0.373069,
+    "cuda_memory_allocated_bytes": 16592889856,
+    "cuda_memory_reserved_bytes": 17404264448,
+    "cuda_peak_memory_allocated_bytes": 16835760640,
+    "cuda_peak_memory_reserved_bytes": 17404264448
+  },
+  "credentials_recorded": false
+}

@@ -1,0 +1,25 @@
+{
+  "model_path": "/root/autodl-tmp/models/MMSearch-R1-7B",
+  "image": "/root/autodl-tmp/mmsearch_demo/search_free.png",
+  "question": "What is the name of the system shown in the image?",
+  "expected_answer": "namus",
+  "response": "<reason>The image shows a logo with the text \"National Missing and Unidentified Persons System\" and the acronym \"NamUs.\" The logo also features silhouettes of three people. The text and the acronym are clear and provide enough information to identify the system shown in the image.</reason>\n<answer>NamUs</answer>",
+  "parsed_answer": "NamUs",
+  "has_reason": true,
+  "has_answer": true,
+  "exact_match": true,
+  "attention_implementation": "sdpa",
+  "parameter_dtype": "torch.bfloat16",
+  "input_tokens": 561,
+  "output_tokens": 68,
+  "load_seconds": 4.439,
+  "generation_seconds": 1.72,
+  "peak_gpu_memory_mib": 16031.31,
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "compute_capability": [
+    12,
+    0
+  ],
+  "torch": "2.8.0+cu128",
+  "torch_cuda": "12.8"
+}

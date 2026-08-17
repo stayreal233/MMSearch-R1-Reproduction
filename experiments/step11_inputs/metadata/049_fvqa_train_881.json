@@ -1,0 +1,23 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_881",
+  "source_split": "train",
+  "source_row_index": 881,
+  "category": "search_free",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is the method used to understand what someone is saying without hearing them?",
+  "reward_model": {
+    "ground_truth": "lip-reading",
+    "candidate_answers": [],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/049_fvqa_train_881.png",
+  "image_width": 1356,
+  "image_height": 668,
+  "source_image_sha256": "c748094163cbbf67d2566ae56af948356c77cf2f46cd1fb252eb4093a0cea01b",
+  "normalized_png_sha256": "c748094163cbbf67d2566ae56af948356c77cf2f46cd1fb252eb4093a0cea01b",
+  "eval_index": 49,
+  "selection_rank_sha256": "05bd3ae4e4df7e8473d14a32881a72955659355b5b1eb818331023795755f6ab",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}

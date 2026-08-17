@@ -1,0 +1,541 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "case_label": "Eval",
+  "case_type": "batch_eval",
+  "selection": {
+    "execution_mode": "natural",
+    "selection_rank_sha256": "01ab6ddeb082f7d893a359cbb146d32139462288792e453fc9ca1dee8861461e",
+    "eval_index": 11
+  },
+  "dataset": {
+    "id": "lmms-lab/FVQA",
+    "revision": "bb4a4ff4c9c3fd0382d11f5d7fccd66d0b8428b5",
+    "split": "train"
+  },
+  "models": {
+    "mmsearch": {
+      "repository": "lmms-lab/MMSearch-R1-7B",
+      "revision": "3cdec93e6db79a409aff4a4b2eadc77a5a8a1e46",
+      "local_path": "/root/autodl-tmp/models/MMSearch-R1-7B"
+    },
+    "summarizer": {
+      "repository": "Qwen/Qwen3-32B-FP8",
+      "revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "local_path": "/root/autodl-tmp/models/Qwen3-32B-FP8"
+    }
+  },
+  "decoding": {
+    "seed": 0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "max_rounds": 3,
+    "image_search_limit": 1,
+    "text_search_limit": 1
+  },
+  "tool_contract": {
+    "image_search": "official_fvqa_cache_top5",
+    "text_search": "serper_dev_top5",
+    "reader": "jina_top5_max_12000_chars_per_page",
+    "summarizer": "qwen3_top5_temperature0_seed0_max512_thinking_false"
+  },
+  "trace": {
+    "data_id": "fvqa_train_37",
+    "source_split": "train",
+    "source_row_index": 37,
+    "category": "search_free",
+    "data_source": "mmsearch_r1/fvqa_train",
+    "question": "Which historic county does this building belong to?",
+    "candidate_answers": [
+      "Kent"
+    ],
+    "ground_truth": "Kent",
+    "image": {
+      "path": "/root/autodl-tmp/mmsearch_step11_inputs/images/011_fvqa_train_37.png",
+      "width": 426,
+      "height": 640,
+      "png_sha256": "e978caf6d689fe8961c8f6cfad056709c4aac4f9ecca92979cc34e365c804ece",
+      "source_sha256": "f0fb290bba539bbc01d766cb45fc4b0a7644018d92e093dba45f97dfdf863cf4"
+    },
+    "rounds": [
+      {
+        "round": 1,
+        "response": "<reason>The image shows a historic building with a moat, which is characteristic of buildings from the medieval period in England. The architecture and the style of the building suggest that it might be located in a county known for such structures. However, without additional context or specific details about the building, it's challenging to determine the exact historic county it belongs to. I will use the image search tool to gather more information.</reason>\n<search><img></search>",
+        "response_sha256": "0f3683752885e626ea71cf0f8b5500202fa179487edbfdff1e3b6d1a4dbade84",
+        "has_reason": true,
+        "action": "image_search",
+        "parsed_payload": null,
+        "input_tokens": 749,
+        "output_tokens": 94,
+        "generation_seconds": 1.495,
+        "tool": {
+          "type": "fvqa_official_image_search_cache",
+          "status": {
+            "success": true,
+            "source": "fvqa_official_image_search_cache",
+            "data_id": "fvqa_train_37",
+            "requested": 5,
+            "num_images": 5,
+            "cache_hits": 0,
+            "titles": [
+              "Template:Gloucestershire-struct-stub - Wikidata",
+              "Moat Castle Estate - Free photo on Pixabay",
+              "Igtham Mote - Stoats Holiday Home Rye",
+              "Ightham Mote Manor House, Kent | neOnbubble",
+              "Medieval manor houses | Barrs Court History"
+            ],
+            "thumbnail_urls": [
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQUiSG6jCiuGG08SdXt3mB0MrnH88dKK2601Tai7T3ZvhOxps6S",
+              "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQMDdWLldOr2KL71ktF2RKDjRe9zSLxUi7gtTycYUsBxi4TG6MY",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQbm_Vs5xL27OlRIgShfyqEFedJKXhwIQY_RHk0VEEnYnQ9HfuZ",
+              "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSofApYGpDBUc0oRgMTEqcR6aAAiI8lwN_f6uY0S4EEUdo4wVNy",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpqQV-S-21HQUAItBriJWG-AcVs3ihHjBzQSrGquXZiUUL-Cdb"
+            ],
+            "local_thumbnail_paths": [
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_37_1_b6ec190cc7c2ad10f2e2.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_37_2_572899c9d68e7b92dc47.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_37_3_cf9f70951e67eda12f9d.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_37_4_61b98cf33952a2b75308.png",
+              "/root/autodl-tmp/search_cache/fvqa_thumbnails/fvqa_train_37_5_f78abb85b7bfe8e4d3fb.png"
+            ],
+            "failures": []
+          },
+          "returned_text_characters": 1208,
+          "returned_text_sha256": "a60c371fec24c54b384894066b61c9865b0d4b085114345eaa7aa322302077b0"
+        }
+      },
+      {
+        "round": 2,
+        "response": "<reason>The image search results suggest that the building in the image is likely \"Ightham Mote,\" which is located in Kent, England. To determine the historic county, a text search is necessary to confirm the location and the county associated with Ightham Mote.</reason>\n<text_search>Ightham Mote historic county</text_search>",
+        "response_sha256": "3f2b233d6f4317aa9062d227596c351aeb2017f7070de91459be1c7d098711fa",
+        "has_reason": true,
+        "action": "text_search",
+        "parsed_payload": "Ightham Mote historic county",
+        "input_tokens": 1549,
+        "output_tokens": 76,
+        "generation_seconds": 1.3,
+        "query": "Ightham Mote historic county",
+        "tool": {
+          "type": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+          "status": {
+            "success": true,
+            "source": "serper_dev_plus_jina_reader_plus_qwen3_summary",
+            "search": {
+              "success": true,
+              "source": "serper_dev_google_search",
+              "endpoint": "https://google.serper.dev/search",
+              "request": {
+                "q": "Ightham Mote historic county",
+                "gl": "us",
+                "hl": "en",
+                "num": 5
+              },
+              "response_cache_hit": false,
+              "raw_response_cache": "/root/autodl-tmp/search_cache/serper/json/1bb0b4bd483edc132d658c09e80b1f1265f783cc355e9c2f6d47e204e34abaa3.json",
+              "requested": 5,
+              "num_results": 5,
+              "skipped": []
+            },
+            "reader": {
+              "success": true,
+              "source": "jina_reader",
+              "endpoint": "https://r.jina.ai",
+              "requested": 5,
+              "num_documents": 5,
+              "cache_hits": 0,
+              "max_chars_per_page": 12000,
+              "returned_characters": 37274,
+              "failures": []
+            },
+            "summary": {
+              "success": true,
+              "source": "qwen3_summary",
+              "requested": 5,
+              "num_summaries": 5,
+              "cache_hits": 0,
+              "api_calls": 5,
+              "total_input_tokens": 13713,
+              "total_output_tokens": 613,
+              "total_tokens": 14326,
+              "total_generation_seconds": 18.73259,
+              "failures": [],
+              "thinking_enabled": false,
+              "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+              "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+              "max_input_chars": 12000,
+              "max_tokens": 512,
+              "temperature": 0,
+              "seed": 0
+            },
+            "results": [
+              {
+                "rank": 1,
+                "position": 1,
+                "title": "Ightham Mote",
+                "url": "https://en.wikipedia.org/wiki/Ightham_Mote",
+                "snippet": "Ightham, is a medieval moated manor house in Kent, England. as \"the most complete small medieval manor house in the county\". a Scheduled Ancient Monument."
+              },
+              {
+                "rank": 2,
+                "position": 2,
+                "title": "Ightham Mote | Kent",
+                "url": "https://www.nationaltrust.org.uk/visit/kent/ightham-mote",
+                "snippet": "Ightham Mote. Kent. Outstanding 14th-century moated manor house, gardens and estate. Mote Road, Ivy Hatch, Sevenoaks, Kent, TN15 0NT (satnav TN15 0NU)."
+              },
+              {
+                "rank": 3,
+                "position": 3,
+                "title": "Three things you might not know about Ightham Mote ...",
+                "url": "https://www.facebook.com/NationalTrustLondonandSouthEast/posts/three-things-you-might-not-know-about-ightham-mote-in-kent-its-one-of-the-oldest/1284975797007002/",
+                "snippet": "Discover the 14th century charm of Ightham Mote, one of England's oldest medieval manor houses, nestled in the picturesque Kent countryside."
+              },
+              {
+                "rank": 4,
+                "position": 4,
+                "title": "Ightham Mote in Sevenoaks, England",
+                "url": "https://maps.apple.com/place?place-id",
+                "snippet": "Ightham Mote, at Ightham, is a medieval moated manor house in Kent, England. The architectural writer John Newman describes it as \"the most complete small ..."
+              },
+              {
+                "rank": 5,
+                "position": 5,
+                "title": "Ightham Mote, Kent",
+                "url": "https://boutique-retreats.co.uk/guides/3360/ightham-mote-kent.html",
+                "snippet": "The 700-year-old Ightham Mote in Kent is a beautiful Medieval manor house surrounded by a glassy moat and home to 550-acre grounds. With Hot Tubs Luxury"
+              }
+            ],
+            "documents": [
+              {
+                "rank": 1,
+                "title": "Ightham Mote",
+                "url": "https://en.wikipedia.org/wiki/Ightham_Mote",
+                "snippet": "Ightham, is a medieval moated manor house in Kent, England. as \"the most complete small medieval manor house in the county\". a Scheduled Ancient Monument.",
+                "full_characters": 24626,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/b64dd6e47c3988a2d0a4443e4cb7b5388fc851c6cd50db10830dffa782b46f55.md",
+                "http_status": 200
+              },
+              {
+                "rank": 2,
+                "title": "Ightham Mote | Kent",
+                "url": "https://www.nationaltrust.org.uk/visit/kent/ightham-mote",
+                "snippet": "Ightham Mote. Kent. Outstanding 14th-century moated manor house, gardens and estate. Mote Road, Ivy Hatch, Sevenoaks, Kent, TN15 0NT (satnav TN15 0NU).",
+                "full_characters": 47539,
+                "returned_characters": 12000,
+                "truncated": true,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/6673d5f464574bd84fbab03a7a239aa75adee4affe2629618c6953916b5cfac8.md",
+                "http_status": 200
+              },
+              {
+                "rank": 3,
+                "title": "Three things you might not know about Ightham Mote ...",
+                "url": "https://www.facebook.com/NationalTrustLondonandSouthEast/posts/three-things-you-might-not-know-about-ightham-mote-in-kent-its-one-of-the-oldest/1284975797007002/",
+                "snippet": "Discover the 14th century charm of Ightham Mote, one of England's oldest medieval manor houses, nestled in the picturesque Kent countryside.",
+                "full_characters": 6233,
+                "returned_characters": 6233,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/5e6e5a760f03b29e15b9c8f0c422b82e8112316f0382dfe8c23ec8767f9f404f.md",
+                "http_status": 200
+              },
+              {
+                "rank": 4,
+                "title": "Ightham Mote in Sevenoaks, England",
+                "url": "https://maps.apple.com/place?place-id",
+                "snippet": "Ightham Mote, at Ightham, is a medieval moated manor house in Kent, England. The architectural writer John Newman describes it as \"the most complete small ...",
+                "full_characters": 337,
+                "returned_characters": 337,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/04b1928990a522f2927a7f8baede316f983c17e77214651ff61180137292b146.md",
+                "http_status": 200
+              },
+              {
+                "rank": 5,
+                "title": "Ightham Mote, Kent",
+                "url": "https://boutique-retreats.co.uk/guides/3360/ightham-mote-kent.html",
+                "snippet": "The 700-year-old Ightham Mote in Kent is a beautiful Medieval manor house surrounded by a glassy moat and home to 550-acre grounds. With Hot Tubs Luxury",
+                "full_characters": 6704,
+                "returned_characters": 6704,
+                "truncated": false,
+                "cache_hit": false,
+                "cache_path": "/root/autodl-tmp/search_cache/jina/ecf49a674cb541c37bade094645e2876529c48117da424ff7a75a14cc33565d9.md",
+                "http_status": 200
+              }
+            ],
+            "summaries": [
+              {
+                "rank": 1,
+                "title": "Ightham Mote",
+                "url": "https://en.wikipedia.org/wiki/Ightham_Mote",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/b64dd6e47c3988a2d0a4443e4cb7b5388fc851c6cd50db10830dffa782b46f55.md",
+                "full_characters": 24626,
+                "returned_characters": 12000,
+                "jina_content_sha256": "38ed3343f42dfe41d2b07612e869bae24809548b4a689f6dd6c904faa328e488",
+                "jina_input_characters": 12000,
+                "public_input_signature": "59a3c018a7d31dbc98f894adc53d11de2fde37b105789e25f2e97490e9dfff2e",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/59a3c018a7d31dbc98f894adc53d11de2fde37b105789e25f2e97490e9dfff2e.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Ightham Mote is a medieval moated manor house located in Kent, England.\n- It is described as \"the most complete small medieval manor house in the county.\"\n- The property is owned by the National Trust and is open to the public.\n- Ightham Mote is a Grade I listed building and part of it is a Scheduled Ancient Monument.\n- The house was purchased by the National Trust in 1965 and underwent a major conservation project from 1989 to 2004.\n- The architectural style of Ightham Mote is classified as vernacular.",
+                "input_tokens": 3841,
+                "output_tokens": 130,
+                "total_tokens": 3971,
+                "finish_reason": "stop",
+                "generation_seconds": 4.19157,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 2,
+                "title": "Ightham Mote | Kent",
+                "url": "https://www.nationaltrust.org.uk/visit/kent/ightham-mote",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/6673d5f464574bd84fbab03a7a239aa75adee4affe2629618c6953916b5cfac8.md",
+                "full_characters": 47539,
+                "returned_characters": 12000,
+                "jina_content_sha256": "eb0875f4027cdd7bd7f9e53852aa9408a9073873c0086b9ee99a950f578447a4",
+                "jina_input_characters": 12000,
+                "public_input_signature": "ac8c974c2db7788982b3f121e823faea27a078ed330306908f39c34fd9172c9c",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/ac8c974c2db7788982b3f121e823faea27a078ed330306908f39c34fd9172c9c.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Ightham Mote is located in the historic county of Kent, England.  \n- It is a 14th-century moated manor house.  \n- The site includes gardens and an estate.  \n- It is managed by the National Trust.  \n- The address is Mote Road, Ivy Hatch, Sevenoaks, Kent, TN15 0NT.  \n- The site is listed as a place to visit in Kent.",
+                "input_tokens": 3851,
+                "output_tokens": 94,
+                "total_tokens": 3945,
+                "finish_reason": "stop",
+                "generation_seconds": 3.231018,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 3,
+                "title": "Three things you might not know about Ightham Mote ...",
+                "url": "https://www.facebook.com/NationalTrustLondonandSouthEast/posts/three-things-you-might-not-know-about-ightham-mote-in-kent-its-one-of-the-oldest/1284975797007002/",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/5e6e5a760f03b29e15b9c8f0c422b82e8112316f0382dfe8c23ec8767f9f404f.md",
+                "full_characters": 6233,
+                "returned_characters": 6233,
+                "jina_content_sha256": "2e462b398f68b2a5581aacc1a5ee590be3d9977aa7fdbad406b6c62503e4d927",
+                "jina_input_characters": 6233,
+                "public_input_signature": "cf3c7fb1d312486eecb8de2fc22491a20351d150dd73efe1a17f28a98d7ed83d",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/cf3c7fb1d312486eecb8de2fc22491a20351d150dd73efe1a17f28a98d7ed83d.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Ightham Mote is located in the historic county of Kent, England.  \n- It is one of the oldest medieval manor houses still standing in England.  \n- The site includes a Grade I listed dog kennel, built in 1890 for Dido the St. Bernard.  \n- The New Chapel features a Tudor barrel roof with painted symbols of Catherine of Aragon.  \n- Ightham Mote is managed by the National Trust.  \n- The property is situated in the picturesque countryside of Kent.",
+                "input_tokens": 3743,
+                "output_tokens": 112,
+                "total_tokens": 3855,
+                "finish_reason": "stop",
+                "generation_seconds": 3.684889,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 4,
+                "title": "Ightham Mote in Sevenoaks, England",
+                "url": "https://maps.apple.com/place?place-id",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/04b1928990a522f2927a7f8baede316f983c17e77214651ff61180137292b146.md",
+                "full_characters": 337,
+                "returned_characters": 337,
+                "jina_content_sha256": "35ebb0f416b6ef25105ac8cccd30e6a8403b04df83c1a54e4fd97fcfc1450caa",
+                "jina_input_characters": 337,
+                "public_input_signature": "4833b5ba3f2814b74f1ca9493d2d7aa799d8c2cbf765d07f5cccf2973b41f646",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/4833b5ba3f2814b74f1ca9493d2d7aa799d8c2cbf765d07f5cccf2973b41f646.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Ightham Mote is a medieval moated manor house located in Kent, England.  \n- It is situated in the village of Ightham.  \n- The historic county associated with Ightham Mote is Kent.  \n- Architectural writer John Newman has described it as \"the most complete small...\" (description incomplete).  \n- The provided webpage is not a valid source and returned a 404 error.  \n- No further details about the historic county were found on the page.",
+                "input_tokens": 324,
+                "output_tokens": 107,
+                "total_tokens": 431,
+                "finish_reason": "stop",
+                "generation_seconds": 2.828243,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              },
+              {
+                "rank": 5,
+                "title": "Ightham Mote, Kent",
+                "url": "https://boutique-retreats.co.uk/guides/3360/ightham-mote-kent.html",
+                "jina_cache_path": "/root/autodl-tmp/search_cache/jina/ecf49a674cb541c37bade094645e2876529c48117da424ff7a75a14cc33565d9.md",
+                "full_characters": 6704,
+                "returned_characters": 6704,
+                "jina_content_sha256": "aac4f523237c0f172be7500adc627d8406a25e20273cfed831d401db0c0c63b9",
+                "jina_input_characters": 6704,
+                "public_input_signature": "e1c27d06b2d829739d0fd50e1ca25de7a36f56daaa9426d7b04d8c27e4784609",
+                "summary_cache_path": "/root/autodl-tmp/search_cache/qwen3_summary/e1c27d06b2d829739d0fd50e1ca25de7a36f56daaa9426d7b04d8c27e4784609.json",
+                "cache_hit": false,
+                "api_called": true,
+                "summary": "- Ightham Mote is a 700-year-old Medieval manor house located in the historic county of Kent, England.  \n- The property is surrounded by a moat and set within 546 acres of grounds, including farmland, woodland, and gardens.  \n- It is one of the best-preserved small Medieval manor houses in England, with its original structure dating back to the 1300s.  \n- The house and grounds are maintained by the National Trust and open to the public for exploration and educational activities.  \n- Ightham Mote is situated in the Kent Downs Area of Outstanding Natural Beauty and offers walking trails and natural play areas for children.  \n- The site includes a café, shop, and hosts music events, reflecting its long-standing cultural and historical significance.",
+                "input_tokens": 1954,
+                "output_tokens": 170,
+                "total_tokens": 2124,
+                "finish_reason": "stop",
+                "generation_seconds": 4.79687,
+                "thinking_enabled": false,
+                "error": null,
+                "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+                "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df"
+              }
+            ]
+          },
+          "summary_service_health_after_tool": {
+            "success": true,
+            "source": "qwen3_summary",
+            "status_code": 200,
+            "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+            "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+            "model_available": true,
+            "available_models": [
+              "/root/autodl-tmp/models/Qwen3-32B-FP8"
+            ],
+            "latency_seconds": 0.003519,
+            "thinking_enabled": false
+          },
+          "returned_text_characters": 4669,
+          "returned_text_sha256": "762870833783fe8cb7cad76837dcf27b380eed405309c7f0825d3baa31374605"
+        }
+      },
+      {
+        "round": 3,
+        "response": "<reason>The search results indicate that the building in the image is Ightham Mote, which is located in Kent, England. The information from the search results confirms that Ightham Mote belongs to the historic county of Kent.</reason>\n<answer>Kent</answer>",
+        "response_sha256": "db0ab68757ad0166949f5db7dd87c2aa17e2322895991edfcbcadbe23590d3b3",
+        "has_reason": true,
+        "action": "answer",
+        "parsed_payload": "Kent",
+        "input_tokens": 3060,
+        "output_tokens": 60,
+        "generation_seconds": 1.113
+      }
+    ],
+    "image_search_calls": 1,
+    "text_search_calls": 1,
+    "summarization_calls": 1,
+    "final_answer": "Kent",
+    "terminal_status": "answered",
+    "hard_failures": [],
+    "total_turns": 3,
+    "action_sequence": [
+      "image_search",
+      "text_search",
+      "answer"
+    ],
+    "exact_match": true,
+    "tool_infrastructure_success": true,
+    "network_and_cache": {
+      "thumbnail_network_attempts": 5,
+      "serper_api_requests": 1,
+      "jina_network_requests": 5,
+      "qwen_summary_requests": 5,
+      "thumbnail_cache_hits": 0,
+      "serper_cache_hits": 0,
+      "jina_cache_hits": 0,
+      "qwen_summary_cache_hits": 0,
+      "count_complete": true,
+      "count_incomplete_reasons": [],
+      "external_network_requests": 11,
+      "local_qwen_completion_requests": 5,
+      "tool_http_requests_total": 16
+    },
+    "mmsearch_input_tokens": 5358,
+    "mmsearch_output_tokens": 230,
+    "mmsearch_generation_seconds": 3.908,
+    "case_seconds": 40.876,
+    "expected_action_sequence": null,
+    "path_pass": null,
+    "representative_pass": false,
+    "failure_capture_pass": false,
+    "route_origin": "natural_model_policy",
+    "controller_intervention": false
+  },
+  "pass": true,
+  "eval_index": 11,
+  "evaluation_semantics": "natural_model_policy",
+  "runtime": {
+    "mmsearch_peak_allocated_mib": 16946.42,
+    "gpu_snapshot_after_example": {
+      "label": "step11_example_11_complete_same_gpu",
+      "captured_at_utc": "2026-08-17T03:45:58.446457+00:00",
+      "nvidia_smi": {
+        "gpu_columns": [
+          "index",
+          "name",
+          "memory_total_mib",
+          "memory_used_mib",
+          "memory_free_mib"
+        ],
+        "gpu_csv": "0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887, 69224, 28029",
+        "gpus": [
+          {
+            "index": "0",
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_total_mib": "97887",
+            "memory_used_mib": "69224",
+            "memory_free_mib": "28029"
+          }
+        ],
+        "compute_processes": [
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "203748",
+            "used_gpu_memory_mib": "49646",
+            "owner": "summary_service"
+          },
+          {
+            "gpu_identity_sha256": "bc09d573b58fd521b935e87bb703e6b5c87f3f4383cc148ceab8bc2ce0f8f012",
+            "pid": "225955",
+            "used_gpu_memory_mib": "19564",
+            "owner": "mmsearch_current"
+          }
+        ]
+      },
+      "torch_process": {
+        "pid": 225955,
+        "cuda_initialized": true,
+        "cuda_visible_devices": "0",
+        "devices": [
+          {
+            "index": 0,
+            "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+            "memory_allocated_bytes": 16592889856,
+            "memory_reserved_bytes": 19786629120,
+            "max_memory_allocated_bytes": 17769613312,
+            "max_memory_reserved_bytes": 19786629120
+          }
+        ],
+        "current_device": 0
+      }
+    },
+    "mmsearch_fully_gpu_resident": true,
+    "summary_service_root_pid": 203574,
+    "summary_service_health_after_example": {
+      "success": true,
+      "source": "qwen3_summary",
+      "status_code": 200,
+      "model": "/root/autodl-tmp/models/Qwen3-32B-FP8",
+      "model_revision": "aa55da1ecc13d006e8b8e4f54579b1ea8c3db2df",
+      "model_available": true,
+      "available_models": [
+        "/root/autodl-tmp/models/Qwen3-32B-FP8"
+      ],
+      "latency_seconds": 0.00246,
+      "thinking_enabled": false
+    },
+    "attention_implementation": "sdpa",
+    "parameter_dtype": "torch.bfloat16",
+    "stage_mmsearch_load_seconds": 3.675,
+    "hf_device_map": {
+      "": "0"
+    }
+  }
+}

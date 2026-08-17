@@ -1,0 +1,25 @@
+{
+  "schema_version": "mmsearch.step10.suite-input-bridge.v1",
+  "data_id": "fvqa_train_3956",
+  "source_split": "train",
+  "source_row_index": 3956,
+  "category": "search_required",
+  "data_source": "mmsearch_r1/fvqa_train",
+  "question": "What is this mountain named after?",
+  "reward_model": {
+    "ground_truth": "Montserrat",
+    "candidate_answers": [
+      "Montserrat"
+    ],
+    "style": "rule"
+  },
+  "image": "/root/autodl-tmp/mmsearch_step11_inputs/images/014_fvqa_train_3956.png",
+  "image_width": 800,
+  "image_height": 599,
+  "source_image_sha256": "a56a80db6db295571385a7b6c6c1217341e6118cfa9e9eb9d285da2e42444947",
+  "normalized_png_sha256": "1b1b46427af13e14b3766e39a58149afc8b7ca7678cb5a4a21983fafe3334ed2",
+  "eval_index": 14,
+  "selection_rank_sha256": "00499ab75fb4f6dc5c74ba022c142212d166c7d8a36d2c4a6b845a5121b760ba",
+  "execution_mode": "natural",
+  "controller_intervention": false
+}
